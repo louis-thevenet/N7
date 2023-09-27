@@ -38,7 +38,6 @@ begin
 		Put (coups);
 		Put(" : ");
 		Get (Choix);
-		New_Line;
 		Fini := Traiter_Proposition(Nombre_A_Deviner, Choix);
 		coups:=coups+1;
 	end loop;

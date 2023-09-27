@@ -34,8 +34,8 @@ begin
 
 	while not Fini loop
 		New_Line;
-		Put ("Proposition");
-		Put (coups);
+		Put ("Proposition ");
+		Put (coups, 1);
 		Put(" : ");
 		Get (Choix);
 		Fini := Traiter_Proposition(Nombre_A_Deviner, Choix);
@@ -43,9 +43,9 @@ begin
 	end loop;
 	New_Line;
 	Put("Bravo. Vous avez trouvé ");
-	Put(Nombre_A_Deviner);
+	Put(Nombre_A_Deviner, 1);
 	Put(" en ");
-	Put(coups);
+	Put(coups, 1);
 	Put(" Essais");
 
 

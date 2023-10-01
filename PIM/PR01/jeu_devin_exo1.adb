@@ -11,7 +11,6 @@ procedure Jeu_Devin_Exo1 is
 
 	function Traiter_Proposition(Nombre_A_Deviner: in Integer; Choix: in Integer) return Boolean
 	is
-		Fini: Boolean;
 	begin
 		if Nombre_A_Deviner = Choix then
 			Put("Trouvé");
@@ -31,7 +30,7 @@ begin
 	Get_Random_Number(Nombre_A_Deviner);
 	Put ("J'ai choisi un nombre entre 1 et 999.");
 	Coups := 1;
-
+	Fini := false;
 	while not Fini loop
 		New_Line;
 		Put ("Proposition ");
@@ -46,7 +45,7 @@ begin
 	Put(Nombre_A_Deviner, 1);
 	Put(" en ");
 	Put(coups, 1);
-	Put(" Essais");
-
+	Put(" essais");
+	New_Line;
 
 end Jeu_Devin_Exo1;

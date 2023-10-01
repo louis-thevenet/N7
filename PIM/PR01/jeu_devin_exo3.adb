@@ -24,11 +24,16 @@ begin
 	while true loop
 		Afficher_Menu;
 		Get(Choix);
+		New_Line;
 		case Choix is
-			when 0 => return;
+			when 0 => 
+				Put("Au revoir...");
+				return;
 			when 1 => Jeu_Devin_Exo1;
 			when 2 => Jeu_Devin_Exo2;
-			when others => New_Line; Put("Choix incorrect.");
+			when others => 
+				New_Line;
+				Put("Choix incorrect.");
 		end case;
 	end loop;
 end Jeu_Devin_Exo3;

@@ -1,6 +1,5 @@
 with Text_Io;              use Text_Io;
 with Ada.Integer_Text_Io;  use Ada.Integer_Text_Io;
-with Alea;
 with Jeu_Devin_Exo1;
 with Jeu_Devin_Exo2;
 
@@ -26,12 +25,12 @@ begin
 		Get(Choix);
 		New_Line;
 		case Choix is
-			when 0 => 
+			when 0 =>
 				Put("Au revoir...");
 				return;
 			when 1 => Jeu_Devin_Exo1;
 			when 2 => Jeu_Devin_Exo2;
-			when others => 
+			when others =>
 				New_Line;
 				Put("Choix incorrect.");
 		end case;

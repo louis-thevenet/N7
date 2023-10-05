@@ -1,0 +1,28 @@
+(* Etude avec Why3 des théorèmes de la logique des prédicats prouvés avec Coq *)
+theory Predicat
+
+   (* Types abstraits manipulés par les prédicats *)
+   type t
+   type ta
+   type tb
+
+   (* Prédicats sur le type t *)
+   predicate p t
+   predicate q t
+
+   (* Adaptation du théorème à la logique du premier ordre : il n'est pas possible de quantifier p et q *)
+   (* Par contre, comme les prédicats sont génériques, le théorème reste vrai pour tout p et q *)
+   goal THM08 : (forall x : t.(p x) /\ (q x)) -> ((forall x : t.(p x)) /\ (forall x : t.(q x)))
+
+   (* Prédicats sur les types ta et tb *)
+   predicate r ta tb
+
+   (* Adaptation du théorème à la logique du premier ordre : il n'est pas possible de quantifier r *)
+   (* Par contre, comme les prédicats sont génériques, le théorème reste vrai pour tout r *)
+   goal THM09 : (exists x : ta. forall y : tb.(r x y)) -> (forall y : tb. exists x : ta.(r x y))
+
+   (* Adaptation du théorème à la logique du premier ordre : il n'est pas possible de quantifier p et q *)
+   (* Par contre, comme les prédicats sont génériques, le théorème reste vrai pour tout p et q *)
+   goal THM10 : (exists x : t.((p x) -> (q x))) -> (forall x : t. (p x)) -> (exists x : t. (q x))
+
+end

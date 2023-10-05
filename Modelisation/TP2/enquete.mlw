@@ -1,0 +1,13 @@
+(* Utilisation d'outils de preuve automatique à travers la passerelle Why3 pour résoudre une énigme *)
+theory Enquete
+
+   (* Définition des 3 propositions : A, B, C qui représentent le fait que les accusés sont innocents *)
+   predicate a
+   predicate b
+   predicate c
+
+   predicate da = (* A compléter *)
+   predicate db = (* A compléter *)
+   predicate dc = (* A compléter *)
+
+end

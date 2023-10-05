@@ -10,21 +10,21 @@ C1. Que se passe-t-il si dans Jeu_Devin_Exo2 l'utilisateur répond d'abord trop
 grand puis toujours trop petit ?
 --------------------------------------------------------------------------------
 
-Réponse : ...
+Réponse : Les nombres proposés par l'ordinateur vont se rapprocher de 500 en décroissant jusqu'à ce qu'une triche soit détectée.
 
 
 --------------------------------------------------------------------------------
 C2. Est-on sûr que Jeu_Devin_Exo1 se termine ?  Quel argument peut-on donner ?
 --------------------------------------------------------------------------------
 
-Réponse : ...
+Réponse : L'ensemble des propositions possibles est fini, l'utilisateur finira par trouver le nombre s'il ne répète pas ses propositions précédentes.
 
 
 --------------------------------------------------------------------------------
 C3. Est-on sûr que Jeu_Devin_Exo2 se termine ?  Quel argument peut-on donner ?
 --------------------------------------------------------------------------------
 
-Réponse : ...
+Réponse : `borneinf` croît strictement et bornesup décroît strictement, lorsque ces variables sont égales le programme s'arrête car une triche est détectée. Donc le programme, s'ils ne s'est pas arrêté à cause d'un succès, s'arrêtera pour triche.
 
 
 --------------------------------------------------------------------------------
@@ -32,7 +32,9 @@ F1. Les noms Jeu_Devin_Exo1, Jeu_Devin_Exo2 et Jeu_Devin_Exo3 ne sont pas très
 parlants.  Par quoi pourrait-on les remplacer ?
 --------------------------------------------------------------------------------
 
-Réponse : ...
+Réponse :   - Jeu_Devin_Deviner
+            - Jeu_Devin_Faire_Deviner
+            - Jeu_Devin_Complet
 
 
 --------------------------------------------------------------------------------
@@ -40,7 +42,7 @@ E1. Quelles sont les modifications à apporter à votre programme pour chercher
 des nombres compris entre 1 et 9999 ?
 --------------------------------------------------------------------------------
 
-Réponse : ...
+Réponse : Il faudrait changer la variable `bornesup` dans les deux premiers programmes.
 
 
 --------------------------------------------------------------------------------
@@ -49,7 +51,7 @@ puisse utiliser aussi les caractères <, > et = pour indiquer si le nombre
 proposé est trop petit, trop grand ou le bon ?
 --------------------------------------------------------------------------------
 
-Réponse : ...
+Réponse : Il faudrait les ajouter à la structure de switch case dans le deuxième programme, comme une troisième option pour chaque action.
 
 
 --------------------------------------------------------------------------------
@@ -57,7 +59,7 @@ E3. On veut limiter le nombre de tentatives à 10.  Si le nombre n'a pas été
 trouvé avant, le joueur a perdu.  Comment prendre en compte cette évolution ?
 --------------------------------------------------------------------------------
 
-Réponse : ...
+Réponse : Il faudrait ajouter un test à la condition de la boucle while : `while coups <= 10 and then not Fini loop`. Avec un message expliquant la raison de la défaite.
 
 
 --------------------------------------------------------------------------------
@@ -66,8 +68,7 @@ Comment faire pour donner l'impression que le programme joue comme un humain
 tout en restant efficace ?
 --------------------------------------------------------------------------------
 
-Réponse : ...
-
+Réponse : On devrait ajouter une certaine imprécision (à 5% près par exemple) à chaque calcul.
 
 --------------------------------------------------------------------------------
 E5. Actuellement, l'utilisateur doit attendre la fin d'un jeu pour quitter le
@@ -76,7 +77,7 @@ une question. Le programme doit alors dire que l'utilisateur a abandonné la
 partie.  Comment faire ?
 --------------------------------------------------------------------------------
 
-Réponse : ...
+Réponse : Il faudrait comparer chaque entrée de l'utilisateur à `0` dans les deux jeux, puis on pourrait utiliser l'instruction `GNAT.OS_Lib.OS_Exit(0)` du paquet `Gnat.Os_Lib`.
 
 
 --------------------------------------------------------------------------------
@@ -84,7 +85,7 @@ E6. Quand le programme détecte que l'utilisateur a triché, comment faire pour
 que le programme explique au joueur quand il a triché ?
 --------------------------------------------------------------------------------
 
-Réponse : ...
+Réponse :
 
 
 --------------------------------------------------------------------------------

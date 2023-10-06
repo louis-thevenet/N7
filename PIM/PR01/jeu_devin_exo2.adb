@@ -10,7 +10,6 @@ procedure jeu_devin_exo2 is
    triche : Boolean;
    compteur : Integer;
 
-
 begin
 	bornesupp := 1000;
 	borneinff := 1;
@@ -20,14 +19,19 @@ begin
    compteur := 0;
    Put("Joue au jeu du devin, laisse moi deviner ton nombre");
    New_Line;
-
    while (reponse /= 't' or reponse /= 'T') and triche = false loop
       compteur := compteur+1;
-    	Put("est ce que ");
-    	Put(proposition, Width => 0);
-    	Put(" est le bon nombre?");
+      Put("Trop (g)rand, trop (p)etit ou (t)rouvé ?");
+      New_Line;
+      Put("proposition ");
+      put(compteur, Width =>0);
+      put(" : ");
+      put(proposition, width =>0);
       Get(reponse);
 
+      while (reponse =' ') loop
+         get(reponse);
+      end loop;
 
     	New_Line;
 
@@ -48,7 +52,7 @@ begin
             end if;
 
          when 't' | 'T' =>
-            put("J'ai trouvÃ© ton nombre je suis trop fort ! En seulement ");
+            put("J'ai trouvé ton nombre je suis trop fort ! En seulement ");
             put(compteur,  Width => 0);
             put(" fois!!!");
             return ;
@@ -66,10 +70,7 @@ begin
 
 	end loop;
    if triche = true then
-      put("j'ai vu que tu as trichÃ© ! ce n'est pas bien !");
+      put("j'ai vu que tu as triché ! ce n'est pas bien !");
    end if;
 
 end jeu_devin_exo2;
-
-
-

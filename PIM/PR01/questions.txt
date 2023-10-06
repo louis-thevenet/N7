@@ -85,7 +85,7 @@ E6. Quand le programme détecte que l'utilisateur a triché, comment faire pour
 que le programme explique au joueur quand il a triché ?
 --------------------------------------------------------------------------------
 
-Réponse :
+Réponse : Si le programme détecte que l’utilisateur à annoncer que le nombre était plus haut que la borne supérieure ou plus bas que la borne inférieure, c’est qu’il y a triche. Alors, le programme annonce que le joueur a triché et que ce n’est pas bien.
 
 
 --------------------------------------------------------------------------------

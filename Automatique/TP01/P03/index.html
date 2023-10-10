@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<title>Dahu Presentation
+</title>
+<meta charset="utf-8">
+<script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript">
+</script>
+<script src="parse-search.js" type="text/javascript">
+</script>
+
+<link rel="stylesheet" href="dahuapp.viewer.css"><style>.s0-o2{background-color:   #FFFFDD;width:  240px}
+.s1-o2{background-color:   #FFFFDD;width:  240px}
+.s2-o2{background-color:   #FFFFDD;width:  240px}
+.s3-o2{background-color:   #FFFFDD;width:  240px}
+.s4-o2{background-color:   #FFFFDD;width:  240px}
+.s5-o2{background-color:   #FFFFDD;width:  240px}
+.s6-o2{background-color:   #FFFFDD;width:  240px}
+.s7-o2{background-color:   #FFFFDD;width:  240px}
+.s9-o2{background-color:   #FFFFDD;width:  240px}
+.s10-o2{background-color:   #FFFFDD;width:  240px}
+.s11-o2{background-color:   #FFFFDD;width:  240px}
+.s12-o2{background-color:   #FFFFDD;width:  240px}
+.s13-o2{background-color:   #FFFFDD;width:  240px}
+.s14-o2{background-color:   #FFFFDD;width:  240px}
+.s15-o2{background-color:   #FFFFDD;width:  240px}
+</style>
+</head>
+
+<body>
+
+<div id="my-dahu-presentation">
+
+<div id="loading">Loading presentation...
+</div>
+
+<div class="object-list" style="display: none">
+<img src="img/69e4196e-0ab1-2975-bcca-7ad56cb9f246.png" alt="img/69e4196e-0ab1-2975-bcca-7ad56cb9f246.png" class="background 69e4196e-0ab1-2975-bcca-7ad56cb9f2460">
+
+<div class="tooltip s0-o2">Sélectionner l'onglet Continuous dans la boite à outils Simulink.
+</div>
+<img src="img/4a0ff2c8-7524-5a5b-6e82-b37642bf6def.png" alt="img/4a0ff2c8-7524-5a5b-6e82-b37642bf6def.png" class="background 4a0ff2c8-7524-5a5b-6e82-b37642bf6def0">
+
+<div class="tooltip s1-o2">Sélectionner le bloc Derivator.
+</div>
+<img src="img/f716c082-83a5-4cd2-1e69-4c66c05f2c48.png" alt="img/f716c082-83a5-4cd2-1e69-4c66c05f2c48.png" class="background f716c082-83a5-4cd2-1e69-4c66c05f2c480">
+
+<div class="tooltip s2-o2">Déposer un bloc Derivator dans votre modèle.
+</div>
+<img src="img/f5a01d52-fc33-d9e0-2ddf-4ec7f9f4799f.png" alt="img/f5a01d52-fc33-d9e0-2ddf-4ec7f9f4799f.png" class="background f5a01d52-fc33-d9e0-2ddf-4ec7f9f4799f0">
+
+<div class="tooltip s3-o2">Sélectionner le bloc Integrator.
+</div>
+<img src="img/88ed11b7-b2c8-fdc3-4433-c3a5f9400f6d.png" alt="img/88ed11b7-b2c8-fdc3-4433-c3a5f9400f6d.png" class="background 88ed11b7-b2c8-fdc3-4433-c3a5f9400f6d0">
+
+<div class="tooltip s4-o2">Déposer un bloc Integrator dans votre modèle.
+</div>
+<img src="img/0edbde4a-26ff-f2d1-a88f-5a13affc536a.png" alt="img/0edbde4a-26ff-f2d1-a88f-5a13affc536a.png" class="background 0edbde4a-26ff-f2d1-a88f-5a13affc536a0">
+
+<div class="tooltip s5-o2">Connecter l'entrée du bloc Derivator au signal de sortie du bloc Générateur de sinusoïde.
+</div>
+<img src="img/321ec853-941a-e69e-7fa1-eac7f318f366.png" alt="img/321ec853-941a-e69e-7fa1-eac7f318f366.png" class="background 321ec853-941a-e69e-7fa1-eac7f318f3660">
+
+<div class="tooltip s6-o2">Connecter l'entrée du bloc Integrator au signal de sortie du bloc Générateur de sinusoïde.
+</div>
+<img src="img/edcbee3f-34e7-d5af-c956-28b9d0680a7b.png" alt="img/edcbee3f-34e7-d5af-c956-28b9d0680a7b.png" class="background edcbee3f-34e7-d5af-c956-28b9d0680a7b0">
+
+<div class="tooltip s7-o2">Ouvrir les paramètres de l'écran de l'oscilloscope.
+</div>
+<img src="img/9e61a3ea-c0cf-ce23-4caa-ea8be8b8180d.png" alt="img/9e61a3ea-c0cf-ce23-4caa-ea8be8b8180d.png" class="background 9e61a3ea-c0cf-ce23-4caa-ea8be8b8180d0">
+<img src="img/1d9e476d-7d77-fc65-07f3-77174933ac05.png" alt="img/1d9e476d-7d77-fc65-07f3-77174933ac05.png" class="background 1d9e476d-7d77-fc65-07f3-77174933ac050">
+
+<div class="tooltip s9-o2">Indiquer que l'oscilloscope doit avoir 3 entrées.
+</div>
+<img src="img/ee3f999c-8cdc-3624-ed00-917c9f8025b0.png" alt="img/ee3f999c-8cdc-3624-ed00-917c9f8025b0.png" class="background ee3f999c-8cdc-3624-ed00-917c9f8025b00">
+
+<div class="tooltip s10-o2">Les 3 entrées apparaissent sur le bloc Oscilloscope.
+</div>
+<img src="img/8248ea8c-777a-3f5f-4441-4e7e65f06321.png" alt="img/8248ea8c-777a-3f5f-4441-4e7e65f06321.png" class="background 8248ea8c-777a-3f5f-4441-4e7e65f063210">
+
+<div class="tooltip s11-o2">Connecter la sortie du bloc Derivator sur la deuxième entrée du bloc Oscilloscope.
+</div>
+<img src="img/01f96120-1e41-b4d3-b844-e73128943106.png" alt="img/01f96120-1e41-b4d3-b844-e73128943106.png" class="background 01f96120-1e41-b4d3-b844-e731289431060">
+
+<div class="tooltip s12-o2">Connecter la sortie du bloc Integrator sur la troisième entrée du bloc Oscilloscope.
+</div>
+<img src="img/343ed3f0-798d-32ed-eb69-f5b428471c19.png" alt="img/343ed3f0-798d-32ed-eb69-f5b428471c19.png" class="background 343ed3f0-798d-32ed-eb69-f5b428471c190">
+
+<div class="tooltip s13-o2">Retourner en simulation à pas variable (Variable step).
+</div>
+<img src="img/f7902f1c-c5d4-b6f3-23a9-0d3d21e8cf88.png" alt="img/f7902f1c-c5d4-b6f3-23a9-0d3d21e8cf88.png" class="background f7902f1c-c5d4-b6f3-23a9-0d3d21e8cf880">
+
+<div class="tooltip s14-o2">Démarrer la simulation.
+</div>
+<img src="img/e198e134-62de-f434-c767-5c759618a866.png" alt="img/e198e134-62de-f434-c767-5c759618a866.png" class="background e198e134-62de-f434-c767-5c759618a8660">
+
+<div class="tooltip s15-o2">Mettre à l'échelle l'écran de l'oscilloscope. Observer les résultats obtenus pour la dérivation et l'intégration d'une fonction sinusoïde.
+</div>
+
+<div class="mouse-cursor">
+<img src="img/cursor.png" alt="img/cursor.png" class="mouse-cursor-normal">
+<img src="img/cursor-pause.png" alt="img/cursor-pause.png" style="display: none" class="mouse-cursor-pause">
+</div>
+</div>
+
+<div class="control" style="top: 616px;">
+<button class="previous">Previous
+</button>
+<button class="next">Next
+</button>
+</div>
+</div>
+<script src="dahuapp.js" type="text/javascript">
+</script>
+<script src="dahuapp.viewer.js" type="text/javascript">
+</script>
+<script type="text/javascript">(function($) {
+    var myPresentation = dahuapp.viewer.createDahuViewer("#my-dahu-presentation", window.getParams);
+    myPresentation.load({
+    "metaData": {
+        "imageWidth": 800,
+        "imageHeight": 600,
+        "initialBackgroundId": "69e4196e-0ab1-2975-bcca-7ad56cb9f2460",
+        "initialMouseX": 0.6715277777777777,
+        "initialMouseY": 0.18222222222222223
+    },
+    "action": [
+        {
+            "id": "37",
+            "type": "appear",
+            "target": "s0-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.35833333333333334,
+            "ord": 0.11625,
+            "duration": 400
+        },
+        {
+            "id": "3",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.775,
+            "finalOrd": 0.17,
+            "speed": 0.8
+        },
+        {
+            "id": "4",
+            "type": "appear",
+            "target": "4a0ff2c8-7524-5a5b-6e82-b37642bf6def0",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "38",
+            "type": "appear",
+            "target": "s1-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.3933333333333333,
+            "ord": 0.11625,
+            "duration": 400
+        },
+        {
+            "id": "5",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.25,
+            "finalOrd": 0.3477777777777778,
+            "speed": 0.8
+        },
+        {
+            "id": "6",
+            "type": "appear",
+            "target": "f716c082-83a5-4cd2-1e69-4c66c05f2c480",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "39",
+            "type": "appear",
+            "target": "s2-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.17833333333333334,
+            "ord": 0.1675,
+            "duration": 400
+        },
+        {
+            "id": "7",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.9041666666666667,
+            "finalOrd": 0.17444444444444446,
+            "speed": 0.8
+        },
+        {
+            "id": "8",
+            "type": "appear",
+            "target": "f5a01d52-fc33-d9e0-2ddf-4ec7f9f4799f0",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "40",
+            "type": "appear",
+            "target": "s3-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.405,
+            "ord": 0.105,
+            "duration": 400
+        },
+        {
+            "id": "9",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.24375,
+            "finalOrd": 0.45111111111111113,
+            "speed": 0.8
+        },
+        {
+            "id": "10",
+            "type": "appear",
+            "target": "88ed11b7-b2c8-fdc3-4433-c3a5f9400f6d0",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "41",
+            "type": "appear",
+            "target": "s4-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.26666666666666666,
+            "ord": 0.17125,
+            "duration": 400
+        },
+        {
+            "id": "11",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.21736111111111112,
+            "finalOrd": 0.2633333333333333,
+            "speed": 0.8
+        },
+        {
+            "id": "12",
+            "type": "appear",
+            "target": "0edbde4a-26ff-f2d1-a88f-5a13affc536a0",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "42",
+            "type": "appear",
+            "target": "s5-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.25833333333333336,
+            "ord": 0.13375,
+            "duration": 400
+        },
+        {
+            "id": "13",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.21666666666666667,
+            "finalOrd": 0.3511111111111111,
+            "speed": 0.8
+        },
+        {
+            "id": "14",
+            "type": "appear",
+            "target": "321ec853-941a-e69e-7fa1-eac7f318f3660",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "43",
+            "type": "appear",
+            "target": "s6-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.27,
+            "ord": 0.1425,
+            "duration": 400
+        },
+        {
+            "id": "31",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.06597222222222222,
+            "finalOrd": 0.6666666666666666,
+            "speed": 0.8
+        },
+        {
+            "id": "32",
+            "type": "appear",
+            "target": "edcbee3f-34e7-d5af-c956-28b9d0680a7b0",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "44",
+            "type": "appear",
+            "target": "s7-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.12,
+            "ord": 0.2975,
+            "duration": 400
+        },
+        {
+            "id": "15",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.06388888888888888,
+            "finalOrd": 0.6666666666666666,
+            "speed": 0.8
+        },
+        {
+            "id": "16",
+            "type": "appear",
+            "target": "9e61a3ea-c0cf-ce23-4caa-ea8be8b8180d0",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "17",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.09444444444444444,
+            "finalOrd": 0.7566666666666667,
+            "speed": 0.8
+        },
+        {
+            "id": "18",
+            "type": "appear",
+            "target": "1d9e476d-7d77-fc65-07f3-77174933ac050",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "45",
+            "type": "appear",
+            "target": "s9-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.14833333333333334,
+            "ord": 0.315,
+            "duration": 400
+        },
+        {
+            "id": "19",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.3013888888888889,
+            "finalOrd": 0.37,
+            "speed": 0.8
+        },
+        {
+            "id": "20",
+            "type": "appear",
+            "target": "ee3f999c-8cdc-3624-ed00-917c9f8025b00",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "46",
+            "type": "appear",
+            "target": "s10-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.315,
+            "ord": 0.10125,
+            "duration": 400
+        },
+        {
+            "id": "21",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.25763888888888886,
+            "finalOrd": 0.24555555555555555,
+            "speed": 0.8
+        },
+        {
+            "id": "22",
+            "type": "appear",
+            "target": "8248ea8c-777a-3f5f-4441-4e7e65f063210",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "47",
+            "type": "appear",
+            "target": "s11-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.2816666666666667,
+            "ord": 0.125,
+            "duration": 400
+        },
+        {
+            "id": "23",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.30416666666666664,
+            "finalOrd": 0.2777777777777778,
+            "speed": 0.8
+        },
+        {
+            "id": "24",
+            "type": "appear",
+            "target": "01f96120-1e41-b4d3-b844-e731289431060",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "48",
+            "type": "appear",
+            "target": "s12-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.31,
+            "ord": 0.10875,
+            "duration": 400
+        },
+        {
+            "id": "25",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.56875,
+            "finalOrd": 0.7166666666666667,
+            "speed": 0.8
+        },
+        {
+            "id": "26",
+            "type": "appear",
+            "target": "343ed3f0-798d-32ed-eb69-f5b428471c190",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "49",
+            "type": "appear",
+            "target": "s13-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.3333333333333333,
+            "ord": 0.31625,
+            "duration": 400
+        },
+        {
+            "id": "27",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.2916666666666667,
+            "finalOrd": 0.10111111111111111,
+            "speed": 0.8
+        },
+        {
+            "id": "28",
+            "type": "appear",
+            "target": "f7902f1c-c5d4-b6f3-23a9-0d3d21e8cf880",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "50",
+            "type": "appear",
+            "target": "s14-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.2966666666666667,
+            "ord": 0.1275,
+            "duration": 400
+        },
+        {
+            "id": "29",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.14791666666666667,
+            "finalOrd": 0.6666666666666666,
+            "speed": 0.8
+        },
+        {
+            "id": "30",
+            "type": "appear",
+            "target": "e198e134-62de-f434-c767-5c759618a8660",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "51",
+            "type": "appear",
+            "target": "s15-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.20833333333333334,
+            "ord": 0.27375,
+            "duration": 400
+        }
+    ]
+});
+    myPresentation.start();
+})(jQuery);
+
+</script>
+</body>
+</html>

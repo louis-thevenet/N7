@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<title>Dahu Presentation
+</title>
+<meta charset="utf-8">
+<script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript">
+</script>
+<script src="parse-search.js" type="text/javascript">
+</script>
+
+<link rel="stylesheet" href="dahuapp.viewer.css"><style>.s0-o2{background-color:   #FFFFDD;width:  240px}
+.s2-o2{background-color:   #FFFFDD;width:  240px}
+.s4-o2{background-color:   #FFFFDD;width:  240px}
+.s6-o2{background-color:   #FFFFDD;width:  240px}
+.s7-o2{background-color:   #FFFFDD;width:  240px}
+.s8-o2{background-color:   #FFFFDD;width:  240px}
+.s9-o2{background-color:   #FFFFDD;width:  240px}
+.s10-o2{background-color:   #FFFFDD;width:  240px}
+.s11-o2{background-color:   #FFFFDD;width:  240px}
+.s12-o2{background-color:   #FFFFDD;width:  240px}
+</style>
+</head>
+
+<body>
+
+<div id="my-dahu-presentation">
+
+<div id="loading">Loading presentation...
+</div>
+
+<div class="object-list" style="display: none">
+<img src="img/47b1d9d8-377e-8956-12e0-1a5855936ad9.png" alt="img/47b1d9d8-377e-8956-12e0-1a5855936ad9.png" class="background 47b1d9d8-377e-8956-12e0-1a5855936ad90">
+
+<div class="tooltip s0-o2">Ouvrir l'écran du bloc Oscilloscope par un double-clic sur le bloc.
+</div>
+<img src="img/88d9520b-2d83-1911-c07c-adc370f752ad.png" alt="img/88d9520b-2d83-1911-c07c-adc370f752ad.png" class="background 88d9520b-2d83-1911-c07c-adc370f752ad0">
+<img src="img/5cc446dc-d0c1-0797-7b20-7b193c939258.png" alt="img/5cc446dc-d0c1-0797-7b20-7b193c939258.png" class="background 5cc446dc-d0c1-0797-7b20-7b193c9392580">
+
+<div class="tooltip s2-o2">Ouvrir la configuration de la simulation.
+</div>
+<img src="img/1895ad3f-8322-65f5-cc85-a730ee6a9102.png" alt="img/1895ad3f-8322-65f5-cc85-a730ee6a9102.png" class="background 1895ad3f-8322-65f5-cc85-a730ee6a91020">
+<img src="img/f6edf30b-b3c9-992b-5a29-2899155fc088.png" alt="img/f6edf30b-b3c9-992b-5a29-2899155fc088.png" class="background f6edf30b-b3c9-992b-5a29-2899155fc0880">
+
+<div class="tooltip s4-o2">Démarrer la simulation.
+</div>
+<img src="img/3f6a7fc7-c0ae-d0e6-416c-9164a0311aa4.png" alt="img/3f6a7fc7-c0ae-d0e6-416c-9164a0311aa4.png" class="background 3f6a7fc7-c0ae-d0e6-416c-9164a0311aa40">
+<img src="img/a8a2a39c-ff74-dc5b-d479-61864f684c7a.png" alt="img/a8a2a39c-ff74-dc5b-d479-61864f684c7a.png" class="background a8a2a39c-ff74-dc5b-d479-61864f684c7a0">
+
+<div class="tooltip s6-o2">Mettre à l'échelle l'écran de l'oscilloscope.
+</div>
+<img src="img/551c31b6-7df8-0500-8bc8-55e8283c8ca9.png" alt="img/551c31b6-7df8-0500-8bc8-55e8283c8ca9.png" class="background 551c31b6-7df8-0500-8bc8-55e8283c8ca90">
+
+<div class="tooltip s7-o2">Passer en mode de simulation à pas fixe (Fixed step).
+</div>
+<img src="img/99e6c70e-5d6f-796d-d931-04aef1b87fe2.png" alt="img/99e6c70e-5d6f-796d-d931-04aef1b87fe2.png" class="background 99e6c70e-5d6f-796d-d931-04aef1b87fe20">
+
+<div class="tooltip s8-o2">Démarrer la simulation.
+</div>
+<img src="img/e1f3f8d9-b4c2-e9b1-78be-b5384c0608a5.png" alt="img/e1f3f8d9-b4c2-e9b1-78be-b5384c0608a5.png" class="background e1f3f8d9-b4c2-e9b1-78be-b5384c0608a50">
+
+<div class="tooltip s9-o2">Mettre à l'échelle l'écran de l'oscilloscope. Vous ne constatez pas de différence avec la simulation à pas variable.
+</div>
+<img src="img/4cd13680-2e47-849f-6779-e9f8967d51b8.png" alt="img/4cd13680-2e47-849f-6779-e9f8967d51b8.png" class="background 4cd13680-2e47-849f-6779-e9f8967d51b80">
+
+<div class="tooltip s10-o2">Changer le pas de simulation. Passer à 1 s.
+</div>
+<img src="img/9f513610-b961-16aa-61b5-06227f763eb4.png" alt="img/9f513610-b961-16aa-61b5-06227f763eb4.png" class="background 9f513610-b961-16aa-61b5-06227f763eb40">
+
+<div class="tooltip s11-o2">Démarrer la simulation.
+</div>
+<img src="img/16f02396-3c95-ab6a-c7af-c6e6aa4c708a.png" alt="img/16f02396-3c95-ab6a-c7af-c6e6aa4c708a.png" class="background 16f02396-3c95-ab6a-c7af-c6e6aa4c708a0">
+
+<div class="tooltip s12-o2">Mettre à l'échelle l'écran de l'oscilloscope. Constater que la sinusoïde affichée est maintenant linéaire par morceau.
+</div>
+
+<div class="mouse-cursor">
+<img src="img/cursor.png" alt="img/cursor.png" class="mouse-cursor-normal">
+<img src="img/cursor-pause.png" alt="img/cursor-pause.png" style="display: none" class="mouse-cursor-pause">
+</div>
+</div>
+
+<div class="control" style="top: 616px;">
+<button class="previous">Previous
+</button>
+<button class="next">Next
+</button>
+</div>
+</div>
+<script src="dahuapp.js" type="text/javascript">
+</script>
+<script src="dahuapp.viewer.js" type="text/javascript">
+</script>
+<script type="text/javascript">(function($) {
+    var myPresentation = dahuapp.viewer.createDahuViewer("#my-dahu-presentation", window.getParams);
+    myPresentation.load({
+    "metaData": {
+        "imageWidth": 800,
+        "imageHeight": 600,
+        "initialBackgroundId": "47b1d9d8-377e-8956-12e0-1a5855936ad90",
+        "initialMouseX": 0.3173611111111111,
+        "initialMouseY": 0.25555555555555554
+    },
+    "action": [
+        {
+            "id": "49",
+            "type": "appear",
+            "target": "s0-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.21666666666666667,
+            "ord": 0.14125,
+            "duration": 400
+        },
+        {
+            "id": "3",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.3173611111111111,
+            "finalOrd": 0.2577777777777778,
+            "speed": 0.8
+        },
+        {
+            "id": "4",
+            "type": "appear",
+            "target": "88d9520b-2d83-1911-c07c-adc370f752ad0",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "5",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.20694444444444443,
+            "finalOrd": 0.10555555555555556,
+            "speed": 0.8
+        },
+        {
+            "id": "6",
+            "type": "appear",
+            "target": "5cc446dc-d0c1-0797-7b20-7b193c9392580",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "50",
+            "type": "appear",
+            "target": "s2-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.17833333333333334,
+            "ord": 0.07875,
+            "duration": 400
+        },
+        {
+            "id": "7",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.20694444444444443,
+            "finalOrd": 0.10666666666666667,
+            "speed": 0.8
+        },
+        {
+            "id": "8",
+            "type": "appear",
+            "target": "1895ad3f-8322-65f5-cc85-a730ee6a91020",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "9",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.28958333333333336,
+            "finalOrd": 0.10555555555555556,
+            "speed": 0.8
+        },
+        {
+            "id": "10",
+            "type": "appear",
+            "target": "f6edf30b-b3c9-992b-5a29-2899155fc0880",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "51",
+            "type": "appear",
+            "target": "s4-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.22833333333333333,
+            "ord": 0.085,
+            "duration": 400
+        },
+        {
+            "id": "13",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.2916666666666667,
+            "finalOrd": 0.1,
+            "speed": 0.8
+        },
+        {
+            "id": "14",
+            "type": "appear",
+            "target": "3f6a7fc7-c0ae-d0e6-416c-9164a0311aa40",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "15",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.14583333333333334,
+            "finalOrd": 0.6633333333333333,
+            "speed": 0.8
+        },
+        {
+            "id": "16",
+            "type": "appear",
+            "target": "a8a2a39c-ff74-dc5b-d479-61864f684c7a0",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "52",
+            "type": "appear",
+            "target": "s6-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.09833333333333333,
+            "ord": 0.2975,
+            "duration": 400
+        },
+        {
+            "id": "17",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.5638888888888889,
+            "finalOrd": 0.7466666666666667,
+            "speed": 0.8
+        },
+        {
+            "id": "18",
+            "type": "appear",
+            "target": "551c31b6-7df8-0500-8bc8-55e8283c8ca90",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "53",
+            "type": "appear",
+            "target": "s7-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.39666666666666667,
+            "ord": 0.32875,
+            "duration": 400
+        },
+        {
+            "id": "19",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.2923611111111111,
+            "finalOrd": 0.09666666666666666,
+            "speed": 0.8
+        },
+        {
+            "id": "20",
+            "type": "appear",
+            "target": "99e6c70e-5d6f-796d-d931-04aef1b87fe20",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "54",
+            "type": "appear",
+            "target": "s8-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.17833333333333334,
+            "ord": 0.0775,
+            "duration": 400
+        },
+        {
+            "id": "27",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.14375,
+            "finalOrd": 0.6666666666666666,
+            "speed": 0.8
+        },
+        {
+            "id": "28",
+            "type": "appear",
+            "target": "e1f3f8d9-b4c2-e9b1-78be-b5384c0608a50",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "55",
+            "type": "appear",
+            "target": "s9-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.075,
+            "ord": 0.3025,
+            "duration": 400
+        },
+        {
+            "id": "29",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.7118055555555556,
+            "finalOrd": 0.7722222222222223,
+            "speed": 0.8
+        },
+        {
+            "id": "30",
+            "type": "appear",
+            "target": "4cd13680-2e47-849f-6779-e9f8967d51b80",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "56",
+            "type": "appear",
+            "target": "s10-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.24166666666666667,
+            "ord": 0.33375,
+            "duration": 400
+        },
+        {
+            "id": "39",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.28680555555555554,
+            "finalOrd": 0.1,
+            "speed": 0.8
+        },
+        {
+            "id": "40",
+            "type": "appear",
+            "target": "9f513610-b961-16aa-61b5-06227f763eb40",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "57",
+            "type": "appear",
+            "target": "s11-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.2,
+            "ord": 0.08625,
+            "duration": 400
+        },
+        {
+            "id": "31",
+            "type": "move",
+            "target": "mouse-cursor",
+            "trigger": "onClick",
+            "finalAbs": 0.1451388888888889,
+            "finalOrd": 0.6666666666666666,
+            "speed": 0.8
+        },
+        {
+            "id": "32",
+            "type": "appear",
+            "target": "16f02396-3c95-ab6a-c7af-c6e6aa4c708a0",
+            "trigger": "afterPrevious",
+            "abs": 0,
+            "ord": 0,
+            "duration": 0
+        },
+        {
+            "id": "58",
+            "type": "appear",
+            "target": "s12-o2",
+            "trigger": "afterPrevious",
+            "abs": 0.22166666666666668,
+            "ord": 0.28125,
+            "duration": 400
+        }
+    ]
+});
+    myPresentation.start();
+})(jQuery);
+
+</script>
+</body>
+</html>

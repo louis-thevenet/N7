@@ -1,0 +1,28 @@
+(* Utilisation d'outils de preuve automatique à travers la passerelle Why3 pour résoudre une énigme *)
+theory Enquete
+
+   (* Définition des 3 propositions : A, B, C qui représentent le fait que les accusés sont innocents *)
+   predicate a
+   predicate b
+   predicate c
+
+   predicate da = (not b) /\ c
+   predicate db = (not a) -> (not c)
+   predicate dc = c /\ ((not b) \/ (not a))
+
+   goal Compatibles : not (da /\ db /\ dc)
+   goal Deduire : (da /\ db) -> dc
+        
+   goal InnocentA : (a /\ b /\ c) -> (not da)
+   goal InnocentB : (a /\ b /\ c) -> (not db)
+   goal InnocentC : (a /\ b /\ c) -> (not dc)
+
+   goal MenteurA : (da /\ db /\ dc) -> (not a)
+   goal MenteurB : (da /\ db /\ dc) -> (not b)
+   goal MenteurC : (da /\ db /\ dc) -> (not c)
+
+
+   goal InnoVeriteA : ((da ->a) /\ (db->b)/\(dc->c)) -> a
+   goal InnoVeriteB : ((da ->a) /\ (db->b)/\(dc->c)) -> b
+   goal InnoVeriteC : ((da ->a) /\ (db->b)/\(dc->c)) -> c
+end

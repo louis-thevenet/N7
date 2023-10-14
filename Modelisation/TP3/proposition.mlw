@@ -1,0 +1,30 @@
+(* Etude avec Why3 des théorèmes de la logique des propositions prouvés avec Coq *)
+theory Proposition
+
+   (* Propositions exprimées sous la forme de prédicats d'arité 0 *)
+   predicate a
+   predicate b
+
+   goal Thm00 : (a /\ b) -> (b /\ a)
+
+   (* Propositions exprimées sous la forme de prédicats d'arité 0 *)
+   predicate c
+
+   goal Thm01 : ((a \/ b) -> c) -> (b -> c)
+
+   goal Thm02 : a -> (not (not a))
+
+   goal Thm03 : (a -> b) -> ((not b) -> (not a))
+
+   goal Thm04 : (not (not a)) -> a
+
+   goal Thm05 : ((not b) -> (not a)) -> (a -> b)
+
+   (* Propositions exprimées sous la forme de prédicats d'arité 0 *)
+   predicate e
+   predicate y
+   predicate r
+
+   goal Thm06 : ((e -> (y \/ r)) /\ (y -> r)) -> ((not r) -> (not e))
+
+end

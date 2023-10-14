@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"http://why3.lri.fr/why3session.dtd">
+<why3session shape_version="5">
+<prover id="0" name="Coq" version="8.11.0" timelimit="0" steplimit="0" memlimit="0"/>
+<prover id="1" name="Alt-Ergo" version="2.0.0" timelimit="5" steplimit="0" memlimit="1000"/>
+<file>
+<path name=".."/>
+<path name="proposition.mlw"/>
+<theory name="Proposition">
+ <goal name="Thm00" proved="true">
+ <proof prover="0" edited="proposition_Proposition_Thm00_1.v"><result status="valid" time="0.36"/></proof>
+ </goal>
+ <goal name="Thm01" proved="true">
+ <proof prover="1"><result status="valid" time="0.00" steps="3"/></proof>
+ </goal>
+ <goal name="Thm02">
+ </goal>
+ <goal name="Thm03">
+ </goal>
+ <goal name="Thm04">
+ </goal>
+ <goal name="Thm05">
+ </goal>
+ <goal name="Thm06">
+ </goal>
+</theory>
+</file>
+</why3session>

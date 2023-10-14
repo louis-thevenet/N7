@@ -1,0 +1,23 @@
+theory Induction
+
+(* Définition du type inductif liste *)
+type liste 'a = Nil | Cons 'a (liste 'a)
+
+(* Concaténation de deux listes *)
+function append (l1 l2 : liste 'a) : liste 'a =
+   match l1 with
+      | Nil -> l2
+      | Cons t q -> Cons t (append q l2)
+   end
+
+lemma append_Nil_left : forall l : liste 'a. append Nil l = l
+
+lemma append_Cons_left : forall e : 'a. forall l1 l2 : liste 'a.
+   append (Cons e l1) l2 = Cons e (append l1 l2)
+
+lemma append_Nil_right: forall l : liste 'a. append l Nil = l
+
+lemma append_associative : forall l1 l2 l3 : liste 'a.
+   append l1 (append l2 l3) = append (append l1 l2) l3
+
+end

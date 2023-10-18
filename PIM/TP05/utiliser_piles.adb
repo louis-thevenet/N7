@@ -149,7 +149,7 @@ procedure Utiliser_Piles is
         --! Ceci ne pose pas de problème car en fonction du paramètre
         --! effectif fourni : entier ou T_Pile, le compilateur saura
         --! laquelle choisir.
-        --! 
+        --!
         --! Remarque : on doit mettre Pile_Integer.Afficher parce que
         --! Ada ne veut pas que l'instance Afficher (T_Pile) porte le même nom
         --! que la procédure générique (risque de masquage).
@@ -161,10 +161,10 @@ procedure Utiliser_Piles is
         Empiler (P, 5);
         Put ("5 = "); Afficher (5); New_Line;   --! la 1 : afficher entier
         Put ("P = "); Afficher (P); New_Line;   --! la 2 : afficher pile
-        --! Décommenter la ligne suivante et compiler pour voir l'erreur
+        -- Décommenter la ligne suivante et compiler pour voir l'erreur
         --! signalée par le compilateur et les versions de Afficher qu'il
         --! connait.
-        -- Afficher("XXX");
+        Afficher(5);
 
     end Illustrer_Surcharge;
 

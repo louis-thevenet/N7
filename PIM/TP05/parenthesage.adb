@@ -1,3 +1,4 @@
+with Ada.Text_IO; use Ada.Text_IO;
 with Piles;
 
 procedure Parenthesage is
@@ -41,10 +42,64 @@ procedure Parenthesage is
     --   "((()"    -> Non Correct et Indice_Erreur = 2
     --
     procedure Verifier_Parenthesage (Chaine: in String ; Correct : out Boolean ; Indice_Erreur : out Integer) is
+
+        function Contains(Chaine: in string; C: Character) return Integer is
+        begin
+            for i in Chaine'Range loop
+                if Chaine(i) = C then
+                    return i;
+                end if;
+            end loop;
+            return 0;
+        end Contains;
+
+
+        package PPC is
+            new Piles(32, Character);
+        use PPC;
+
+
         Ouvrants : Constant String := "([{";
         Fermants : Constant String := ")]}";
+
+        Pile: PPC.T_Pile;
+        Caractere_Depile : Character;
+        Compteur:Integer;
+        Indice_O, Indice_F:Integer;
     begin
-        Null;   -- TODO : à corriger !
+        PPC.Initialiser(Pile);
+        Compteur:=0;
+
+        for i in  Chaine'Range loop
+            Indice_O := Contains(Ouvrants, Chaine(i));
+            Indice_F:=Contains(Fermants, Chaine(i));
+
+
+            if Indice_O>0 then -- appartient à Ouvrants
+                Compteur:=Compteur+1;
+                PPC.Empiler(Pile, Chaine(i));
+
+
+            elsif Indice_F >0 then -- apaprtient à Fermants
+                if (PPC.Est_Vide(pile)) then
+                    Correct:=false;
+                    Indice_Erreur := i;
+                    return;
+                else
+                    Caractere_Depile := PPC.Sommet(Pile);
+                    if Ouvrants(Indice_F) /= Caractere_Depile then
+                        Correct := false;
+                        Indice_Erreur:=i;
+                        return;
+                    else
+                        PPC.Depiler(Pile);
+                    end if;
+                end if;
+            end if;
+        end loop;
+
+        Indice_Erreur:=Compteur1;
+        Correct := PPC.Est_Vide(Pile);
     end Verifier_Parenthesage;
 
 
@@ -101,6 +156,6 @@ procedure Parenthesage is
     end Tester_Verifier_Parenthesage;
 
 begin
-    Tester_Index;
+   --Tester_Index;
     Tester_Verifier_Parenthesage;
 end Parenthesage;

@@ -56,7 +56,7 @@ private
 
     type T_Tab_Elements is array (1..Capacite) of T_Element;
 
-    type T_Pile is 
+    type T_Pile is
         record
             Elements : T_Tab_Elements;  -- les éléments de la pile
             Taille: Integer;        -- Nombre d'éléments dans la pile

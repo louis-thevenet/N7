@@ -51,9 +51,6 @@ begin
       while (reponse =' ') loop
          get(reponse);
       end loop;
-      while (reponse =' ') loop
-         get(reponse);
-      end loop;
 
     	New_Line;
 
@@ -75,8 +72,7 @@ begin
             end if;
 
          when 't' | 'T' =>
-            put("J'ai trouv� ton nombre je suis trop fort ! En seulement ");
-            put("J'ai trouv� ton nombre je suis trop fort ! En seulement ");
+            put("J'ai trouvé ton nombre je suis trop fort ! En seulement ");
             put(compteur,  Width => 0);
             put(" fois!!!");
             return ;
@@ -94,7 +90,7 @@ begin
 
 	end loop;
    if triche = true then
-      put("j'ai vu que tu as trich� ! ce n'est pas bien !");
+      put("j'ai vu que tu as triché ! ce n'est pas bien !");
    end if;
 
 end jeu_devin_exo2;

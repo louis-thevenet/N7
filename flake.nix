@@ -25,6 +25,7 @@
           gnat
 
           # Utilitaires
+          unzip
           vpnc
           filezilla
           x2goclient

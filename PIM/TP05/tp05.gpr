@@ -1,0 +1,18 @@
+project TP05 is
+
+   for Main use ("exemple_integer_io.adb", "parenthesage.adb", "test_piles.adb", "utiliser_piles.adb");
+
+   package Builder is
+      for Default_Switches ("ada") use ("-s");
+   end Builder;
+
+   package Compiler is
+      for Default_Switches ("ada") use ("-gnatwa", "-gnata", "-g");
+   end Compiler;
+
+   package Binder is
+      for Default_Switches ("ada") use ("-E");
+   end Binder;
+
+end TP05;
+

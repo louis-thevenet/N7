@@ -3,6 +3,9 @@ with ada.Integer_Text_IO; use ada.Integer_Text_IO;
 
 
 procedure jeu_devin_exo2 is
+
+    -- Permet de jouer à faire deviner un nombre au devin
+
 	borneinff : Integer;
 	bornesupp : Integer;
 	proposition : Integer;
@@ -11,24 +14,43 @@ procedure jeu_devin_exo2 is
    compteur : Integer;
 
 begin
+
+   --Faire deviner à la machine un nombre choisi par l’utilisateur.
+
+
 	bornesupp := 1000;
 	borneinff := 1;
 	proposition := 500;
    reponse := 'm';
+
+   --comment vérifier qu’il n’y a pas de triche ?
+
    triche := False;
    compteur := 0;
    Put("Joue au jeu du devin, laisse moi deviner ton nombre");
    New_Line;
+
+   --Comment deviner le nombre choisi par l’utilisateur ?
+
    while (reponse /= 't' or reponse /= 'T') and triche = false loop
       compteur := compteur+1;
-      Put("Trop (g)rand, trop (p)etit ou (t)rouv� ?");
+
+      --comment proposer un nombre ?
+
+      Put("Trop (g)rand, trop (p)etit ou (t)rouvé ?");
       New_Line;
       Put("proposition ");
       put(compteur, Width =>0);
       put(" : ");
       put(proposition, width =>0);
+
+      --comment attendre la réponse?
+
       Get(reponse);
 
+      while (reponse =' ') loop
+         get(reponse);
+      end loop;
       while (reponse =' ') loop
          get(reponse);
       end loop;
@@ -36,6 +58,7 @@ begin
     	New_Line;
 
 
+      --comment redéfinir les bornes ?
     	case reponse is
          when 'g'  | 'G' =>
             if proposition= bornesupp-1 then
@@ -52,7 +75,8 @@ begin
             end if;
 
          when 't' | 'T' =>
-            put("J'ai trouv� ton nombre je suis trop fort ! En seulement ");
+            put("J'ai trouv� ton nombre je suis trop fort ! En seulement ");
+            put("J'ai trouv� ton nombre je suis trop fort ! En seulement ");
             put(compteur,  Width => 0);
             put(" fois!!!");
             return ;
@@ -70,7 +94,7 @@ begin
 
 	end loop;
    if triche = true then
-      put("j'ai vu que tu as trich� ! ce n'est pas bien !");
+      put("j'ai vu que tu as trich� ! ce n'est pas bien !");
    end if;
 
 end jeu_devin_exo2;

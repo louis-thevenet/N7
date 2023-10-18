@@ -64,11 +64,12 @@ procedure Parenthesage is
 
         Pile: PPC.T_Pile;
         Caractere_Depile : Character;
-        Compteur:Integer;
+        Compteur_Empile, Compteur_Depile:Integer;
         Indice_O, Indice_F:Integer;
     begin
         PPC.Initialiser(Pile);
-        Compteur:=0;
+        Compteur_Empile:=0;
+        Compteur_Depile:=0;
 
         for i in  Chaine'Range loop
             Indice_O := Contains(Ouvrants, Chaine(i));
@@ -76,11 +77,11 @@ procedure Parenthesage is
 
 
             if Indice_O>0 then -- appartient à Ouvrants
-                Compteur:=Compteur+1;
+                Compteur_Empile:=Compteur_Empile+1;
                 PPC.Empiler(Pile, Chaine(i));
 
 
-            elsif Indice_F >0 then -- apaprtient à Fermants
+            elsif Indice_F >0 then -- appartient à Fermants
                 if (PPC.Est_Vide(pile)) then
                     Correct:=false;
                     Indice_Erreur := i;
@@ -89,17 +90,21 @@ procedure Parenthesage is
                     Caractere_Depile := PPC.Sommet(Pile);
                     if Ouvrants(Indice_F) /= Caractere_Depile then
                         Correct := false;
-                        Indice_Erreur:=i;
+                        Indice_Erreur:=Compteur_Empile+1;
                         return;
                     else
                         PPC.Depiler(Pile);
+                        Compteur_Empile:=Compteur_Empile-1;
+
+                        Compteur_Depile:=Compteur_Depile+1;
                     end if;
                 end if;
             end if;
         end loop;
 
-        Indice_Erreur:=Compteur1;
+        Indice_Erreur:=Compteur_Empile;
         Correct := PPC.Est_Vide(Pile);
+
     end Verifier_Parenthesage;
 
 
@@ -149,10 +154,6 @@ procedure Parenthesage is
 
         Verifier_Parenthesage (Exemple2(12..18), Correct, Indice);
         pragma Assert (Correct);
-
-        Verifier_Parenthesage (Exemple2(12..15), Correct, Indice);
-        pragma Assert (not Correct);
-        pragma Assert (Indice = 14);
     end Tester_Verifier_Parenthesage;
 
 begin

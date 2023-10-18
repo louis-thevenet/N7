@@ -23,11 +23,15 @@
 
           # PIM
           gnat
+          gprbuild
 
           # Utilitaires
           unzip
           vpnc
           filezilla
+          typst
+          typst-lsp
+          typst-fmt
           x2goclient
         ];
       };

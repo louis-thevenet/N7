@@ -65,8 +65,10 @@ $E[alpha(X,Y)]=E_X [E_Y [alpha(X,Y) | X]]$
 
 = Vecteurs Gaussiens
 == Transformation affine
-Pour $X tilde cal(N)_n (m, Sigma)$ un vecteur Gaussien et $Y = A X+b$, $A in cal(M)_(p,n) (bb(R))$, on a :
-$ Y tilde cal(N)_p (A m+b, A Sigma A^T) $ avec $"rg"(A)=p$
+Pour $X tilde cal(N)_n (m, Sigma)$ un vecteur Gaussien et $Y = A X+b$, $A in cal(M)_(p,n) (bb(R))$,  \
+Si $"rg"(A) = p$, on a :
+
+$ Y "est un vecteur Gaussien et" Y tilde cal(N)_p (A m+b, A Sigma A^T) $
 
 == Lois marginales
 $ X=mat(X', X'') tilde cal(N)_n (m, Sigma)$, $m=mat(m',m'')$, $Sigma = mat(Sigma' ,  M; M^T, Sigma'')$, alors on a :

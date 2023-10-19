@@ -1,12 +1,16 @@
-// The project function defines how your document looks.
-// It takes your content and some metadata and formats it.
-// Go ahead and customize it to your liking!
+#import "theorems.typ": *
+
 #let project(title: "", authors: (), date: none, body) = {
   // Set the document's basic properties.
   set document(author: authors, title: title)
   set page(numbering: "1", number-align: center)
   set text(font: "New Computer Modern", lang: "fr")
   show math.equation: set text(weight: 400)
+
+  // set ctheorems properties
+  //set page(width: 16cm, height: auto, margin: 1.5cm)
+  set text(font: "Linux Libertine", lang: "en")
+  set heading(numbering: "1.1.")
 
   // Title row.
   align(center)[
@@ -16,19 +20,15 @@
   ]
 
   // Author information.
-  pad(
-    top: 0.5em,
-    bottom: 0.5em,
-    x: 2em,
-    grid(
-      columns: (1fr,) * calc.min(3, authors.len()),
-      gutter: 1em,
-      ..authors.map(author => align(center, strong(author))),
-    ),
-  )
+  pad(top: 0.5em, bottom: 0.5em, x: 2em, grid(
+    columns: (1fr,) * calc.min(3, authors.len()),
+    gutter: 1em,
+    ..authors.map(author => align(center, strong(author))),
+  ))
 
   // Main body.
   set par(justify: true)
 
   body
 }
+

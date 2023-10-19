@@ -14,7 +14,6 @@
 
 #grid(columns: 3, rows: 1, gutter: 3fr,
 [
-  === VAD
   $F : cases(bb(R) arrow [0,1], x |-> P[X<x])$
 ],
 [
@@ -27,7 +26,7 @@
 )
 
 == Fonction caractéristique
-$Phi_X(t) = E[exp(i t X)]$
+$Phi_X (t) = E[exp(i t X)]$
 
 == Lois conditionnelles
 #grid(columns: 3, rows: 1, gutter: 13%,
@@ -40,7 +39,7 @@ $Phi_X(t) = E[exp(i t X)]$
   Densité de $X|(Y=y)$ : $p(x|y)=p(x,y)/p(.,y)$
 ],
 [
-  Où $p_(i.)$ et $p(x,.)$ sont les lois marginales,\ i.e. $p(x,.)=integral_bb(R) p(x,y)d x d y$
+  Où $p_(i.)$ et $p(x,.)$ sont les lois marginales,\ i.e. $p(x,.)=integral_bb(R) p(x,y) d y$
 ]
 
 )
@@ -97,7 +96,6 @@ $ Y_n = (sum_(k=1)^n X_k - n m)/(sqrt(n sigma^2)) arrow.long_(n arrow infinity)^
 = Méthodes
 == Changements de variables
 
-Si $g:bb(R)^2 arrow bb(R)^2$, on a : $p_(U,V)(u,v) = P_(X,Y)(g^(-1)(u,v)) abs(det(J))$
 
 #grid(columns: 2, rows: 1,gutter: 2fr,
 [
@@ -110,9 +108,9 @@ Si $g:bb(R)^2 arrow bb(R)^2$, on a : $p_(U,V)(u,v) = P_(X,Y)(g^(-1)(u,v)) abs(de
   $ p_Y(y)=p_X(g^(-1)(y)) abs((d x)/(d y)) $
 ]
 )
+Si $g:bb(R)^2 arrow bb(R)^2$, on a : $p_(U,V)(u,v) = P_(X,Y)(g^(-1)(u,v)) abs(det(J))$
 
 = Astuces
-- $ P[a < X < b]=P[(a<X) sect (X<b)]=1-(P[a>=X]+P[X>=b]) $ Pratique quand les évenements $(a<X)$ et $(X<b)$ ne sont pas indépendants, mais $overline(a<X)$ et $overline(X<b)$ le sont.
 
-- Changement de variable type $Z)alpha(X,Y)$, on peut poser $T=Y$ par exemple pour utiliser les théorèmes sur les changements de $bb(R)² arrow bb(R)²$
+- Changement de variable type $Z=alpha(X,Y)$, on peut poser $T=Y$ par exemple pour utiliser les théorèmes sur les changements de $bb(R)² arrow bb(R)²$
 

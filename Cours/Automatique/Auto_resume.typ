@@ -2,7 +2,7 @@
 #import "@preview/physica:0.8.0": * // for dd()
 
 #show: project.with(
-  title: "EDP - Résumé",
+  title: "Automatique - Résumé",
   authors: ("THEVENET Louis",),
   date: "October 19, 2023",
 )

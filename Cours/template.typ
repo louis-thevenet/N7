@@ -7,9 +7,6 @@
   set text(font: "New Computer Modern", lang: "fr")
   show math.equation: set text(weight: 400)
 
-  // set ctheorems properties
-  //set page(width: 16cm, height: auto, margin: 1.5cm)
-  set text(font: "Linux Libertine", lang: "en")
   set heading(numbering: "1.1.")
 
   // Title row.
@@ -25,6 +22,8 @@
     gutter: 1em,
     ..authors.map(author => align(center, strong(author))),
   ))
+
+  outline(depth: 3, indent: true)
 
   // Main body.
   set par(justify: true)

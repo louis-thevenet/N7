@@ -2,10 +2,10 @@
 #show: thmrules
 
 #let theorem = thmbox("theorem", "Théorème", fill: rgb("#eeffee"))
-#let corollary = thmplain("corollary", "Corollaire", base: "theorem", titlefmt: strong)
-#let definition = thmbox("definition", "Définition", inset: (x: 1.2em, top: 1em))
-
+#let definition = thmbox("definition", "Définition", fill:rgb("#e8f4f8"))
 #let example = thmplain("example", "Exemple").with(numbering: none)
+
+#let corollary = thmplain("corollary", "Corollaire", base: "theorem", titlefmt: strong)
 #let proof = thmplain(
   "proof",
   "Proof",

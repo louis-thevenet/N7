@@ -2,7 +2,7 @@
 #import "@preview/physica:0.8.0": *
 
 #show: project.with(
-  title: "Opti - Résumé",
+  title: "Optimisation - Résumé",
   authors: ("THEVENET Louis",),
   date: "October 18, 2023",
 )
@@ -16,7 +16,7 @@ Pour $a in Omega$ où $f : Omega subset bb(R)^n arrow bb(R)$ est doublement
 dérivable :
 
 $ Delta f(a) = mat(pdv(f, x_1)(a);dots.v;pdv(f, x_n)(a)), Delta²f(a) = mat(
-  pdv(f, x_1, [2])(a), pdv(f, x_1, x_2)(a), dots, pdv(f, x_1, x_n)(a);dots.v, dots.v, dots.down, dots.v;pdv(f, x_n, x_1)(a), pdv(f, x_n, x_2)(a), dots, pdv(f, x_n, [2])(a), ,
+  pdv(f, x_1, [2])(a), pdv(f, x_1, x_2)(a), dots, pdv(f, x_1, x_n)(a);dots.v, dots.v, dots.down, dots.v;pdv(f, x_n, x_1)(a), pdv(f, x_n, x_2)(a), dots, pdv(f, x_n, [2])(a), , ,
 ) $
 
 == Convexité

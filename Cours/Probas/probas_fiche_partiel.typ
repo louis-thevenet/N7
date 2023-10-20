@@ -1,7 +1,7 @@
 #import "../template.typ": *
 
 #show: project.with(
-  title: "Probas - Résumé",
+  title: "Probabilités - Résumé",
   authors: ("THEVENET Louis",),
   date: "October 18, 2023",
 )

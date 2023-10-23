@@ -8,14 +8,20 @@
 
 = Logique propositionnelle
 
+#definition[
+
 La logique propositionnelle ne parle que de vérité :
 - elle ne permet pas de faire référence à des objets, ou à des notions,
 - elle ne permet pas de mettre objets ou notions en rapport.
+]
 
 = Logique des prédicats
 
-C'est l'ajout des quantificateurs, des relations et des structure à la logique
+#definition[
+
+C'est l'ajout des quantificateurs, des relations et des structures à la logique
 propositionnelle.
+]
 
 Extension de la logique des propositions :
 - Univers $cal(U)$ (objets mathématiques ou informatiques)
@@ -34,13 +40,19 @@ Mais aussi :
 - Lieurs : $forall, exists$
 - Paramètres des relations et fonctions : $(,)$
 
+
 == Ordres de la logique des prédicats
+
+#definition[
 
 - Ordre supérieur : les lieurs peuvent quantifier des termes, des relations, des
   propositions, des fonctions, des constantes
+
 - Premier ordre (First Order Logic, FOL) : Les lieurs ne peuvent quantifier que des
   termes
+
 - Second ordre (SOL) : on peut quantifier sur des ensembles de termes
+]
 
 #example[ du premier ordre avec $cal(V)={m,n}, cal(R)_1={"entier"}, cal(R)_2 = {"egal"}$
     $ forall m. ("entier"(m) -> ("impair"(m) <-> (exists n. ("entier"(n) and "egal"(m, "somme"("produit"("deux", n), "un")))))) $
@@ -75,7 +87,7 @@ $ forall g. forall o.  "groupe"(g,o) <-> cases(
     _$xsubst$ : $f(x,y)$ remplace $x$_
     $ &xsubst((x->y)and exists y. (x or ((forall x. phi)->y))) \
     &= (xsubst(x->y)) and xsubst(exists y. (x or ((forall x. phi)->y))) \
-    &= (xsubst(x) -> xsubst(y)) and (exists y. xsubst(x or ((forall x. phi -> y)))) \
+    &= (xsubst(x) -> xsubst(y)) and xsubst(exists y. (x or ((forall x. phi)->y))) \
     &= (f(x,y) -> y) and (exists z. xsubst [z,y](x or (((forall x. phi) -> y)))) \
     &= (f(x,y) -> y) and (exists z. xsubst ([z,y](x) or [z,y](((forall x. phi) -> y)))) \
     &= (f(x,y) -> y) and (exists z. xsubst (x or ((forall x. [z slash y](phi)) -> [z,y](y)))) \
@@ -113,6 +125,8 @@ od
         }
     }
 
+#theorem[
+
 - Chaque étape intermédiaire est annotée par une propriété de l'état de la mémoire
 - Chaque instruction $I$ est
     - précédée d'une pré-condition $phi$
@@ -121,6 +135,7 @@ od
     - Correction partielle : $phi$ est satisfaite #text(red)[et] l'éxecution termine #text(green)[alors] $psi$ est satisfaite après éxecution
     - Correction totale : $phi$ est satisfaite #text(green)[alors] l'éxecution termine #text(red)[et]   $psi$ est satisfaite après éxecution
 - On représente les propriété sur l'état de la mémoire avec la *logique équationnelle* (i.e. premier ordre + spécifications algébriques)
+]
 
 === Preuve de correction partielle
 #example[ Preuve de correction *partielle* de l'élevation au carré (invariant : $y=x²$)
@@ -173,4 +188,3 @@ $ &{0 <= N}\
       $ cases(y=x², and x eq.not N, (N-x) in bb(N), (N-x)=V) -> cases(y+2 times x + 1 = (x+1)², (N-(x+1))in bb(N), (N-(x+1))<V) $
       $ y=x² and not(x eq.not N)) -> y=N² $
 ]
-

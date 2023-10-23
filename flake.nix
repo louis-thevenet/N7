@@ -1,8 +1,12 @@
 {
   description = "A Nix flake dev environment for N7 assignements (Matlab, Coq, Gnat, X2GO, ...)";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix-matlab = {
+      url = "gitlab:doronbehar/nix-matlab";
+    };
+  };
   outputs = {
     self,
     nixpkgs,

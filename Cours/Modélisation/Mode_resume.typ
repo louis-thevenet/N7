@@ -70,6 +70,57 @@ $ forall g. forall o.  "groupe"(g,o) <-> cases(
     )$
 ]
 
+= Spécification algébrique
+#definition[ Typage des constantes et opérateurs
+
+Soit $cal(S)$ un ensemble dénombrable de symboles, ce sont les *sortes* utilisées pour distinguer les termes possédant les mêmes caractéristiques, ainsi on classe
+- les termes : $cal(T) = union.big_(s in cal(S)) cal(T)_s$
+
+- les constantes : $cal(C) = union.big_(s in cal(S)) cal(C)_s$
+
+- les variables : $cal(V) = union.big_(s in cal(S)) cal(V)_s$
+
+- L'arité des fonctions prend en compte la sorte des paramètres et du résultat : $ forall n in NN. cal(F)_n = union.big_(s in cal(S), forall i in[1, dots, n]. s_i in cal(S)) cal(F)_((s_1 times dots times s_n) |-> s) $
+    Ainsi l'arité prend en compte les *sortes*
+]
+
+#example[ Vision ensembliste
+
+Soit $cal(S)$ un ensemble dénombrable de sortes, $cal(T)$ est le plus petit ensemble tel que :
+- $forall s in cal(S). forall c in cal(C)_s. c in cal(T)_s$
+- $forall s_1, dots, s_n, s in cal(S). forall f in cal(F)_(s_1 times dots times s_n |-> s). forall t_1, dots, t_n in cal(T)_(s_1) times dots times cal(T)_(s_n). f(t_1, dots, t_n) in cal(T)_s$
+
+#example[ Entiers naturels de Peano
+    $ "nat" &in cal(S) \
+    "zero" &in cal(C)_("nat") \
+    "successeur" &in cal(F)_("nat" |-> "nat") $
+
+    L'ensemble des termes est la plus petite solution de l'équation :
+    $ cal(T)_("nat") = {"zero"} union {"successeur"(n) bar n in cal(T)_("nat")}  $
+
+]
+]
+
+
+#definition[ Termes avec variables
+
+On note $cal(T)[cal(V)]$ l'ensemble des termes avec variables *partitionné selon les sortes*, il est le plus petit ensemble tel que :
+- $forall s in cal(S). forall c in cal(C)_s. c in cal(T[V])_s$
+- $forall s in cal(S). forall x in cal(V)_s. x in cal(T[V])_s$
+- $forall s_1, dots, s_n, s in cal(S). forall f in cal(F)_(s_1 times dots times s_n |-> s). forall t_1, dots, t_n in cal(T[V])_(s_1) times dots times cal(T[V])_(s_n). f(t_1, dots, t_n) in cal(T[V])_s$
+]
+
+#example[ Arithmétique de Peano
+
+- On modélise $NN$ par :
+    - $op("zero") in cal(C)_0 (overline(0)=emptyset)$
+    - $op("successeur") in cal(F)_1 (overline(n+1)={overline(n) union overline(n)})$
+
+- Puis $ZZ$ par $NN²$ avec :
+    - $(n, 0)$ modélise $ZZ^+$
+    - $(0,n)$ modélise $ZZ^-$
+
+]
 = Variables libres
 #example[
     #let VL = text(red)[VL]
@@ -99,7 +150,6 @@ $ forall g. forall o.  "groupe"(g,o) <-> cases(
     &= (f(x,y) -> y) and (exists z. (f(x slash y) or ((forall x. [z slash y]phi) -> z))) \ $
 ]
 
-//= Spécification algébrique
 
 = Preuves de programme
 #example[ spécification formelle (pré-condition, post-condition)
@@ -168,23 +218,25 @@ $ &{0 <= N}\
     On pourrait combiner les preuves en remplaçant les $dots$ par la preuve par invariant précédente.
 
     $ &{0<=N} \
-      &{ dots  and (N-0) in bb(N)} \
-      &x:=0; \
-      &{dots and N-x in bb(N)}\
-      &y:=0; \
-      &{N-x in bb(N)}\
-      &"while" x eq.not N "invariant" y=x^2 "variant" N-x "do" \
-      & indent {dots and x eq.not N and (N-x) in bb(N) and V=N-x} \
-      & indent y:=y+2 times x +1;\
-      & indent {dots and (N-(x+1)) in bb(N) and N-(x+1) < V}\
-      & indent x:=x+1; \
-      & indent {dots and (N-x) in bb(N) and N-x < V} \
-      &"od"\
-      &{...}\
-      &{y=N^2} $
+    &{ dots  and (N-0) in bb(N)} \
+    &x:=0; \
+    &{dots and N-x in bb(N)}\
+    &y:=0; \
+    &{N-x in bb(N)}\
+    &"while" x eq.not N "invariant" y=x^2 "variant" N-x "do" \
+    & indent {dots and x eq.not N and (N-x) in bb(N) and V=N-x} \
+    & indent y:=y+2 times x +1;\
+    & indent {dots and (N-(x+1)) in bb(N) and N-(x+1) < V}\
+    & indent x:=x+1; \
+    & indent {dots and (N-x) in bb(N) and N-x < V} \
+    &"od"\
+    &{...}\
+    &{y=N^2} $
 
-      Puis
-      $ 0<=N -> 0=0^2 and (N-0) in bb(N) $
-      $ cases(y=x², and x eq.not N, (N-x) in bb(N), (N-x)=V) -> cases(y+2 times x + 1 = (x+1)², (N-(x+1))in bb(N), (N-(x+1))<V) $
-      $ y=x² and not(x eq.not N)) -> y=N² $
+    Puis
+    $ 0<=N -> 0=0^2 and (N-0) in bb(N) $
+    $ cases(y=x², and x eq.not N, (N-x) in bb(N), (N-x)=V) -> cases(y+2 times x + 1 = (x+1)², (N-(x+1))in bb(N), (N-(x+1))<V) $
+    $ y=x² and not(x eq.not N)) -> y=N² $
 ]
+
+

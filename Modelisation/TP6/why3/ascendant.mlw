@@ -1,0 +1,60 @@
+(* Spécification de la fonction factorielle *)
+
+theory Factorielle
+
+   use int.Int
+
+   function factorielle( n : int ) : int
+
+   axiom factorielle_zero : (factorielle zero) = one
+
+   axiom factorielle_succ : forall n : int. (n >= 0) -> (factorielle (n + 1)) = ((n + 1) * (factorielle n))
+
+end
+
+(* Implémentation de la fonction factorielle par un algorithme ascendant *)
+
+module FactorielleAscendant
+
+  use int.Int
+  use ref.Refint
+  use Factorielle
+
+  let factorielle_ascendant (n: int) : int
+    requires { 0 <= n }
+    ensures  { (factorielle n) = result }
+  =
+    let i = ref 0 in
+    let r = ref 1 in
+    while  (!i < n) do
+      invariant { (factorielle !i) = !r && (0 <= !i <= n) }
+      variant   { n - !i }
+      i := (!i) + 1;
+      r := (!i) * (!r) 
+    done;
+    !r
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

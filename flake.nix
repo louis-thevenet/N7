@@ -3,51 +3,47 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-matlab = {
-      url = "gitlab:doronbehar/nix-matlab";
-    };
+    flake-utils.url = "github:numtide/flake-utils";
+    nix-matlab.url = "gitlab:doronbehar/nix-matlab";
   };
   outputs = {
     self,
     nixpkgs,
+    flake-utils,
     nix-matlab,
-  }: let
-    supportedSystems = ["x86_64-linux"];
-    forEachSupportedSystem = f:
-      nixpkgs.lib.genAttrs supportedSystems (system:
-        f {
-          pkgs = import nixpkgs {inherit system;};
-        });
-  in {
-    devShells = forEachSupportedSystem ({pkgs}: {
-      default = pkgs.mkShell {
-        # Matlab
-        buildInputs = with nix-matlab.packages.x86_64-linux; [
-          matlab
-          matlab-mlint
-          matlab-mex
-        ];
-        shellHook = nix-matlab.shellHooksCommon;
+  }:
+    flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      devShells = {
+        default = pkgs.mkShell {
+          # Matlab
+          buildInputs = with nix-matlab.packages.x86_64-linux; [
+            matlab
+            matlab-mlint
+            matlab-mex
+          ];
+          shellHook = nix-matlab.shellHooksCommon;
 
-        packages = with pkgs; [
-          # Modélisation
-          coq
-          coqPackages.coqide
+          packages = with pkgs; [
+            # Modélisation
+            coq
+            coqPackages.coqide
 
-          # PIM
-          gnat
-          gprbuild
+            # PIM
+            gnat
+            gprbuild
 
-          # Utilitaires
-          unzip
-          vpnc
-          filezilla
-          typst
-          typst-lsp
-          typst-fmt
-          x2goclient
-        ];
+            # Utilitaires
+            unzip
+            vpnc
+            filezilla
+            typst
+            typst-lsp
+            typst-fmt
+            x2goclient
+          ];
+        };
       };
     });
-  };
 }

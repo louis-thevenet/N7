@@ -1,0 +1,23 @@
+
+(* Division entière par l'algorithme d'Euclide *)
+
+module Division
+
+  use int.Int
+  use ref.Refint
+
+  let division (a b: int) (* renvoie une paire d'entiers (quotient,reste) *)
+    requires { 0 <= a && 0 < b }
+    ensures  { let (q,r) = result in q * b + r = a && 0 <= r < b }
+  =
+    let q = ref 0 in
+    let r = ref a in
+    while !r >= b do
+      invariant { true (* A COMPLETER *) }
+      variant   { 0 (* A COMPLETER *) }
+      q := (!q) + 1;
+      r := (!r) - b
+    done;
+    (!q,!r)
+
+end

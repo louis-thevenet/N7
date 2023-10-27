@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"http://why3.lri.fr/why3session.dtd">
+<why3session shape_version="6">
+<file format="whyml">
+<path name="ascendant.mlw"/>
+<theory name="FactorielleAscendant">
+ <goal name="factorielle_ascendant&#39;vc" expl="VC for factorielle_ascendant">
+ <transf name="split_vc" >
+  <goal name="factorielle_ascendant&#39;vc.0" expl="loop invariant init">
+  </goal>
+  <goal name="factorielle_ascendant&#39;vc.1" expl="loop variant decrease">
+  </goal>
+  <goal name="factorielle_ascendant&#39;vc.2" expl="loop invariant preservation">
+  </goal>
+  <goal name="factorielle_ascendant&#39;vc.3" expl="postcondition">
+  </goal>
+ </transf>
+ </goal>
+</theory>
+</file>
+</why3session>

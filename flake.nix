@@ -1,6 +1,5 @@
 {
   description = "A Nix flake dev environment for N7 assignements (Matlab, Coq, Gnat, X2GO, ...)";
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
@@ -27,9 +26,14 @@
 
           packages = with pkgs; [
             # Modélisation
-            coq
+            opam # il faut installer les packages why3-coq, why3
+            # et run : eval $(opam env)
+            autoconf
+            pkg-config
+            gtk3
+            gtksourceview
             coqPackages.coqide
-
+            coq
             # PIM
             gnat
             gprbuild

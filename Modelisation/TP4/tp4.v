@@ -23,7 +23,7 @@ append_spec (Cons t q) l = Cons t (append_spec q l).
 
 
 Theorem append_Nil_right : forall (l : liste), (append_spec l Nil) = l.
-intros.
+intro.
 induction l.
 rewrite append_Nil.
 reflexivity.
@@ -36,20 +36,17 @@ Qed.
 
 Theorem append_associative : forall (l1 l2 l3 : liste),
 (append_spec l1 (append_spec l2 l3)) = (append_spec (append_spec l1 l2) l3).
-
 intros.
 induction l1.
 rewrite append_Nil.
 rewrite append_Nil.
 reflexivity.
-
 rewrite append_Cons.
 rewrite append_Cons.
 rewrite append_Cons.
 rewrite IHl1.
 reflexivity.
 Qed.
-
 
 Fixpoint append_impl (l1 l2 : liste) {struct l1} : liste :=
 match l1 with
@@ -59,20 +56,17 @@ end.
 
 Theorem append_correctness : forall (l1 l2 : liste),
 (append_spec l1 l2) = (append_impl l1 l2).
-
 intros.
 induction l1.
 rewrite append_Nil.
 simpl.
 reflexivity.
 
-rewrite append_Cons.
 simpl.
+rewrite append_Cons.
 rewrite IHl1.
 reflexivity.
 Qed.
-
-
 
 
 Fixpoint rev_impl (l : liste) : liste :=
@@ -84,17 +78,14 @@ end.
 
 Lemma rev_append : forall (l1 l2 : liste),
 (rev_impl (append_impl l1 l2)) = (append_impl (rev_impl l2) (rev_impl l1)).
-
 intros.
 induction l1.
 simpl.
-rewrite <-append_correctness.
+rewrite <- append_correctness.
 rewrite append_Nil_right.
 reflexivity.
 
-
-
-rewrite <-append_correctness.
+rewrite <- append_correctness.
 rewrite append_Cons.
 rewrite append_correctness.
 simpl.
@@ -105,7 +96,6 @@ rewrite <-append_associative.
 rewrite <-append_correctness.
 rewrite <-append_correctness.
 reflexivity.
-
 Qed.
 
 

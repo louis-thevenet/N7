@@ -10,31 +10,26 @@ Theorem Thm_8 : forall (P Q : A -> Prop), (* Quantification du second ordre : P 
      -> 
      (forall x2 : A, (P x2)) /\ (forall x3 : A, (Q x3)). (* conclusion : P est vrai pour toute valeur de x2 et Q est vrai pour toute valeur de x3 *)
 
-intro P.
-intro Q.
-intro casssoulet.
+intros.
 split.
+intro.
 
-
-intro R.
-cut ((P R) /\ (Q R)).
-intro H.
-elim H.
+cut ((P x2) /\ (Q x2)).
+intro H2.
+elim H2.
 intros HA HB.
 exact HA.
+generalize x2.
+exact H.
 
-generalize R.
-exact casssoulet.
-
-intro R.
-cut ((P R) /\ (Q R)).
-intro H.
-elim H.
+intro.
+cut ((P x3) /\ (Q x3)).
+intro H2.
+elim H2.
 intros HA HB.
 exact HB.
-
-generalize R.
-exact casssoulet.
+generalize x3.
+exact H.
 
 Qed.
 
@@ -46,10 +41,9 @@ Theorem Thm_9 : forall (P : A -> (B -> Prop)), (* P est un prédicat de 2 variab
 
 intros.
 pose proof H as (x1, H1).
-exists x1.
+exists x1.  
 generalize y2.
 exact H1.
-
 Qed.
 
 (* Formule du second ordre : Quantification des prédicats P et Q *) 
@@ -59,12 +53,14 @@ Theorem Thm_10 : forall (P Q : A -> Prop),
      (forall x2 : A, (P x2))           (* hyp 2 : P est vraie pour toutes valeurs notée x2 de A *)
      -> 
      exists x3 : A, (Q x3).            (* conclusion : il y a au moins une valeur de A notée x 3 pour laquelle Q est vraie : x1 car  P est vraie pour toutes les valeurs de A donc pour x1 en particulier *)
+
+
 intros.
-pose proof H as (x1, H1).
-exists x1.
-cut (P x1).
+pose proof H as (x0, H1).
+exists x0.
+cut (P x0).
 exact H1.
-generalize x1.
+generalize x0.
 exact H0.
 Qed.
 
@@ -81,16 +77,17 @@ Theorem T : (forall (e : H), exists (p : H), (P e p))    (* Tout enfant a un pè
      -> (forall (e : H), exists (gpp : H), (GPP e gpp)). (* alors tout enfant a un grand père paternel *)
 
 intros.
-destruct H0   as (H1, H2).
-pose proof (H1 e) as (p, Hp). (* on applique H1 avec le cas e*)
+destruct H0 as (H1, H2).
+pose proof (H1 e) as (p, Hp).
 pose proof (H1 p) as (gpp, Hgpp).
 exists gpp.
-apply (H2 e gpp). (* on utilise l'équivalent*) 
+apply (H2 e gpp).
 exists p.
 split.
 exact Hp.
 exact Hgpp.
 Qed.
+
 
 End LogiquePredicats.
 

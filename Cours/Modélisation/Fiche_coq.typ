@@ -56,12 +56,12 @@ Si H est du type $forall x : A, exists y : A, phi$ :
 
 #definition[ `exists x1`
 
-Si on veut un `exists x : A, P x y`, et qu'on a un `x1`, on peut l'exhiber pour n'avoir plus qu'à prouver `P x1 y`. On dit à Coq "voilà le x que tu veux"
+Si on veut prouver un `exists x : A, P x y`, et qu'on a un `x1`, on peut l'exhiber pour n'avoir plus qu'à prouver `P x1 y`. On dit à Coq "voilà le x que tu veux"
 ]
 
 #definition[ `apply H` ou `apply (H x y)`
 
-On applique un lemme avec ou sans hypothèsesPar exemple,  si on a une équivalence, on peut passer de d'un côté à l'autre en fournissant si besoin les variables à utiliser
+On applique un lemme avec ou sans hypothèses. Par exemple,  si on a une équivalence, on peut passer de d'un côté à l'autre en fournissant si besoin les variables à utiliser
 ]
 
 = Preuves de programmes fonctionnels

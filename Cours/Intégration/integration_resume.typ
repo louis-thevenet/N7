@@ -31,6 +31,12 @@ Si $(E, cal(O))$ est un espace topologique, $sigma(cal(O))=sigma(cal(F)) := cal(
 On appelle $cal(B)(E)$ la *tribu de Borel* de $E$
 ]
 
+#definition[
+
+- Tribu image : $f(cal(A)_1) = {B in E_2 bar f^(-1)(B) in cal(A)_1}$
+- Tribu réciproque : $f^(-1) (cal(A)_2) = { f^(-1) (B) subset E_1 bar  B in cal(A)_2}$
+]
+
 #theorem[ Lemme de transport
 
 Soit $f : E_1 arrow E_2$ et une classe de parties $E_2$, notée $cal(C)$. Alors
@@ -91,10 +97,10 @@ $(f_n)_n$ une suite de fonctions *mesurables* sur $(E, cal(A))$ à valeurs dans 
 == Mesure et espaces mesurés
 #definition[ Mesure
 
-Soit $(E, cal(A))$ un espace mesurable. on appelle *mesure* sur $(E, cal(A))$ une applicaiton $ mu : cal(A) -> bar(RR)_+ := RR_+ union {+ infinity}$ telle que
+Soit $(E, cal(A))$ un espace mesurable. on appelle *mesure* sur $(E, cal(A))$ une applicaiton $ mu : cal(A) -> overline(RR)_+ := RR_+ union {+ infinity}$ telle que
 
 + $mu(emptyset)=0$
-+ $forall A_1, A_2, dots, A_n in cal(A)$ 2 à 2 disjoints : $mu(limits(union.big)_n A_n) = limits(sum)_n mu(A_n)$ ($sigma$-additivité)
++ $forall A_1, A_2, dots, A_n in cal(A)$ 2 à 2 disjoints : $mu(limits(union.sq.big)_n A_n) = limits(sum)_n mu(A_n)$ ($sigma$-additivité)
 ]
 
 #definition[ Espace mesuré
@@ -125,6 +131,15 @@ On appelle Soit $(E, cal(A), mu)$ *espace mesuré*.
 #definition[ Pour #espace_mesure un espace mesuré.
 
     $A in cal(A)$ est négligeable si $mu(A)=0$
+]
+
+#theorem[ Mesure image
+
+Soient $(E_1, cal(A)_1)$, $(E_2, cal(A)_2)$ deux espaces mesurables. $mu : cal(A)_1 -> overline(RR)_+$ une mesure sur $(E_1, cal(A)_1)$ et $f$ mesurable de $(E_1, cal(A)_1)$ dans $(E_2, cal(A)_2)$
+
+On pose $ mu : cases(cal(A)_2 -> overline(RR)_+, B |-> mu_f (B) := mu(f^(-1) (B))) $
+
+$mu_f$ est une mesure sur $(E_2, cal(A)_2)$ appelée *mesure image* de $mu$ par $f$.
 ]
 
 == La mesure de Lebesgue

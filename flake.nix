@@ -38,6 +38,10 @@
             gnat
             gprbuild
 
+            # C
+            python310Packages.jupyter-c-kernel
+            jupyter
+
             # Utilitaires
             unzip
             vpnc

@@ -100,6 +100,7 @@ Avec $op("Sp")_RR (A) = {op("Re")(lambda) bar lambda in op("SP")(A)}$
 #theorem[
   Dans le cas *linéaire*, $(Sigma_(u,L))$ est *complètement contrôlable* $forall t>0 <=>$
   $ "rg"mat(B, A B, dots, A^(n-1)B)=n $
+  On appelle la matrice $mat(B, A B, dots, A^(n-1) B)$ matrice de contrôlabilité.
 ]
 
 == Stabilisation par retour d'état

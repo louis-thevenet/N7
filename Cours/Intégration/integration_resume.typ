@@ -1,4 +1,6 @@
 #import "../template.typ": *
+#import "@preview/physica:0.8.0": *
+
 
 #show: project.with(
   title: "Intégration - Résumé",
@@ -145,11 +147,78 @@ $mu_f$ est une mesure sur $(E_2, cal(A)_2)$ appelée *mesure image* de $mu$ par 
 == La mesure de Lebesgue
 #theorem[ Mesure de Lebesgue (ou mesure de Borel-Lebesgue)
 
-Il existe une *unique* mesure *mu_d* sur les boréliens de $RR^d$ telle que la mesure de tout pavé $product_(i=1)^d ]a_i, b_i[$ est :
+Il existe une *unique* mesure $mu_d$ sur les boréliens de $RR^d$ telle que la mesure de tout pavé $product_(i=1)^d ]a_i, b_i[$ est :
 $ mu_d (sect.big_(i=1)^d  bracket.r a_i,b_i bracket.l ) = product_(i=1)^d (b_i-a_i) $
 
 Elle est appelée *mesure de Lebesgue* et notée $mu$ si il n'y a pas d'ambiguïté sur la dimension.
 ]
+
+= Intégral de Lebesgue des fonctions mesurables positives
+== Fonctions étagées positives
+#definition[ Fonctions étagée
+
+$f$ est une fonction étagée si elle s'écrit :
+$f = sum_(i in I) alpha_i bb(1)_(A_i)$ \
+avec $A_i = f^(-1) ({alpha_i}) =: {f= alpha_i}$
+]
+
+#definition[ Intégrale d'une fonction étagée
+
+On appelle intégrale d'une fonction étagée $f$ *positive* par rapport à la mesure $mu$ sur $(E, cal(A))$ :
+$ integral_E  f dd(mu) := sum_(alpha in f(E)) alpha mu(f^(-1) ({alpha})) in [0, + infinity[ $
+
+Si $integral_E f dd(mu) < + infinity$, on dit que *$f$ est intégrable*
+]
+
+// #example[
+//     Soit $f = sum_i alpha_i bb(1)_(A_i)$ une fonction étagée positive
+
+//     On a $ integral_RR f dd(delta_0) &= sum_(alpha in f(RR)) alpha delta_0 (f^(-1) ({alpha}))
+//     \ &=
+
+
+//     $
+
+//     On note $(beta_1, dots, beta_n) in RR^n bar forall i in [|0, n|] f(beta_i) = 0$
+
+//     Donc
+
+//     $ integral_RR f dd(delta_0) &= sum_(alpha in f(RR)) alpha delta_0 (f^(-1) ({alpha}))
+//     \ &= sum_(i in [|0, n|]) beta_i * 1 + 0
+//     \ &= f(0) $
+// ]
+
+
+== Fonctions mesurables positives
+#theorem[ Toute fonction de $cal(M)_+$ est limite d'une suite de fonctions de $cal(E)_+$ (étagées positives)]
+
+#definition[
+
+On appelle intégrale d'une fonction mesurable *positive* $f$ par rapport à $mu$ sur $(E, cal(A))$ :
+
+$ integral_E f dd(mu) = sup {integral_E phi dd(mu) bar phi in cal(E)_+ "et" phi <= f} in [0, + infinity[ $
+
+Si $integral_E phi dd(mu) < + infinity$, on dit que *$f$ est intégrable*
+]
+
+#corollary[$mu(A)=0 => integral_E f bb(1)_A dd(mu) = integral_A f dd(mu) =0$]
+
+#corollary[ Si $f <= g$ et *$g$ est intégrable*, alors $f$ est *intégrable*]
+
+#theorem[ Si $mu$ est *finie*, alors $forall f in cal(M)_+$, si $f$ est *bornée* alors $f$ est *intégrable*]
+
+#corollary[ $forall f in cal(M)_+, integral_E f dd(mu) < + infinity => mu({f = +infinity}) = 0$]
+
+#theorem[ Théorème de convergence monotone
+
+Si $(f_n)_n$ est une suite croissante de $cal(M)_+ (cal(A))$, alors $f := lim_(n -> infinity) f_n in cal(M)_+ (cal(A))$ et
+
+$ integral_E f dd(mu) = lim_(n -> infinity) integral_E f_n dd(mu) $
+
+Utilité : On veut calculer l'intégrale de $f$, on sait pas faire, on peut faire l'intégrale des $f_n$ puis passer à la limite.
+]
+
+
 
 = Au partiel (d'après le prof)
 - à l'examen, est-ce que l'indicatrice est mesurable pour un $(E, cal(A))$ donné (voir exemple 2.2.1)

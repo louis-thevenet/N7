@@ -22,19 +22,43 @@ begin
     new_line;
 
 
+    New_Line;
+    Put("On modifie V(5)");
+    New_Line;
+    Modifier(V, 5, 2.0);
+    New_Line;
+    Afficher(V);
+    New_Line;
+
+    Afficher(V);
+
+    New_Line;
+
+
 
     Initialiser(V2);
-
-    Put("V=V2 : ");
-    New_Line;
-    Put ("Itératif : ");
-    --Put(Sont_Egaux_Iteratif(V, V2));
-    New_Line;
-    --Put ("Récursif : ");
-    --Put(Sont_Egaux_Récursirf(V, V2));
-    New_Line;
+    Modifier(V2, 5, 2.0);
 
 
+    pragma Assert (Sont_Egaux_Recursif(V, V2));
+    pragma Assert (Sont_Egaux_Iteratif(V, V2));
+
+    Modifier(V, 2, 2.0);
+    Modifier(V2, 8, 2.0);
+    Modifier(V, 8, 2.0);
+
+
+    Put(Produit_Scalaire(V, V2));
+    New_Line;
+
+    Afficher(V);
+    new_line;
+    Afficher(V2);
+New_Line;
+    Additionner(V, V2);
+    Afficher(V);
+New_Line;
+Put(Norme2(V));
     Detruire(V);
     Detruire(V2);
 	Put_Line ("Fin du scénario");

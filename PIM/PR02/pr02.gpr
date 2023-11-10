@@ -1,0 +1,18 @@
+project PR02 is
+
+   for Main use ("evaluer_alea_lca.adb", "evaluer_alea_th.adb", "exemple_alea.adb", "exemple_unbounded_string.adb", "lca_sujet.adb", "test_lca.adb", "test_th.adb", "th_sujet.adb");
+
+   package Builder is
+      for Default_Switches ("ada") use ("-s");
+   end Builder;
+
+   package Compiler is
+      for Default_Switches ("ada") use ("-gnatwa", "-gnata", "-g");
+   end Compiler;
+
+   package Binder is
+      for Default_Switches ("ada") use ("-E");
+   end Binder;
+
+end PR02;
+

@@ -1,6 +1,6 @@
-% Compte-rendu minimal du mini-projet SDA : LCA et TH
-% Auteur : NOM Prénom
-% Groupe de TP : ...
+% Compte-rendu minimal du mini-projet SDA : LCA et TH \
+% Auteur : THEVENET Louis \
+% Groupe de TP : F
 
 
 **Consigne :** Vous devez écrire vos réponse à la place des ... en laissant

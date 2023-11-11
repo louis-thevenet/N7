@@ -65,5 +65,5 @@ package TH is
 
 
 private
-    type T_TH is array(1..Taille_TH) of T_LCA;
+    type T_TH is array(1..Taille_TH+1) of T_LCA;
 end TH;

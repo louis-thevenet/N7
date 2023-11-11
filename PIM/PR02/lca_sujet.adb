@@ -26,7 +26,6 @@ begin
     Initialiser(Liste);
     Enregistrer(Liste, To_Unbounded_String("un"), 1);
     Enregistrer(Liste, To_Unbounded_String("deux"), 2);
-    Supprimer(Liste, To_Unbounded_String("un"));
     Afficher_Elements(Liste);
-
+    Detruire(Liste);
 end lca_sujet;

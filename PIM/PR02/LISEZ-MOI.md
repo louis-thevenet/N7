@@ -21,8 +21,12 @@ pandoc --toc -N -o LISEZ-MOI.pdf LISEZ-MOI.txt
 **Indiquer les inconvénients/avantages d'une implantation par listes chaînées
 d'une SDA.**
 
-...
+Avantages :
+- Implémentation très simple grâce à la nature récursive de la structure de donnée
+- Taille dynamique
 
+Inconvénients :
+- Recherches, enregistrements et suppressions lents car il faut parcourir la liste et tester chacun de ses élements
 
 
 # Évaluation expérimentale.

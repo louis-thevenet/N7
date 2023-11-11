@@ -77,22 +77,27 @@ package body LCA is
 
 
 	procedure Supprimer (Sda : in out T_LCA ; Cle : in T_Cle) is
+    Tmp : T_LCA;
 	begin
 		if Est_Vide(Sda) then
             raise Cle_Absente_Exception;
         end if;
 
         if Sda.All.Cle = Cle then
-            Detruire(Sda);
+            Tmp:= Sda;
+            Sda := Sda.All.Suivant;
+            Free(Tmp);
         else
             if Est_Vide(Sda.All.Suivant) then
                 raise Cle_Absente_Exception;
             else
-                if Sda.All.Suivant.Cle = Cle then
-                    Detruire(Sda.All.Suivant);
-                    Sda.All.Suivant := Null;
+                if Sda.All.Suivant.All.Cle = Cle then
+                    Tmp := Sda.All.Suivant.All.Suivant;
+
+                    Free(Sda.All.Suivant);
+                    Sda.All.Suivant := Tmp;
                 else
-                    Supprimer(Sda.All.Suivant, Sda.All.Cle);
+                    Supprimer(Sda.All.Suivant, Cle);
                 end if;
             end if;
         end if;
@@ -105,8 +110,14 @@ package body LCA is
             return;
         end if;
 
-        Traiter(Sda.All.Cle, Sda.All.Valeur);
+        begin
+            Traiter(Sda.All.Cle, Sda.All.Valeur);
+            exception
+                when others => null;
+        end;
+
         Pour_Chaque(Sda.All.Suivant);
+
 	end Pour_Chaque;
 
 

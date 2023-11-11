@@ -21,11 +21,11 @@ end Afficher_Couple;
 
 procedure Afficher_Elements is new LCA_STR_INT.Pour_Chaque(Traiter => Afficher_Couple);
 
-Liste : T_LCA;
+Sda : T_LCA;
 begin
-    Initialiser(Liste);
-    Enregistrer(Liste, To_Unbounded_String("un"), 1);
-    Enregistrer(Liste, To_Unbounded_String("deux"), 2);
-    Afficher_Elements(Liste);
-    Detruire(Liste);
+    Initialiser(Sda);
+    Enregistrer(Sda, To_Unbounded_String("un"), 1);
+    Enregistrer(Sda, To_Unbounded_String("deux"), 2);
+    Afficher_Elements(Sda);
+    Detruire(Sda);
 end lca_sujet;

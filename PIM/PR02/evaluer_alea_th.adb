@@ -3,6 +3,7 @@ with Ada.Integer_Text_IO;  use Ada.Integer_Text_IO;
 with Ada.Command_Line;     use Ada.Command_Line;
 with SDA_Exceptions;       use SDA_Exceptions;
 with Alea;
+with TH;
 
 -- Évaluer la qualité du générateur aléatoire et les TH.
 procedure Evaluer_Alea_TH is
@@ -57,7 +58,7 @@ procedure Evaluer_Alea_TH is
 	-- Ici, pour tester on peut afficher les nombres aléatoires et refaire
 	-- les calculs par ailleurs pour vérifier que le résultat produit est
 	-- le bon.
-	procedure Calculer_Statistiques (
+    	procedure Calculer_Statistiques (
 		Borne    : in Integer;  -- Borne supérieur de l'intervalle de recherche
 		Taille   : in Integer;  -- Taille de l'échantillon
 		Min, Max : out Integer  -- min et max des fréquences de l'échantillon
@@ -71,10 +72,43 @@ procedure Evaluer_Alea_TH is
 			new Alea (1, Borne);
 		use Mon_Alea;
 
-	begin
-		null;	-- TODO à remplacer !
-	end Calculer_Statistiques;
 
+        function Hachage(Cle : Integer) return Integer is begin return Cle; end Hachage;
+
+        package TH_INT_INT is new TH (Integer, Integer, Hachage, 1000);
+        use TH_INT_INT;
+
+
+    Sda : T_TH;
+    Nombre : Integer;
+	begin
+        Initialiser(Sda);
+
+        for I in 1..Borne loop
+            Enregistrer(Sda, I, 0);
+        end loop;
+
+
+        for I in 1..Taille+1 loop
+            Get_Random_Number (Nombre);
+            Enregistrer(Sda, Nombre, La_Valeur(Sda, Nombre)+1);
+        end loop;
+
+        Min := Taille; -- on sait que Sda n'est pas vide
+        Max := 0;
+
+        for I in 1..Borne loop
+            if Max < La_Valeur(Sda, I) then
+                Max := La_Valeur(Sda, I);
+            end if;
+
+            if Min > La_Valeur(Sda, I) then
+                Min := La_Valeur(Sda, I);
+            end if;
+        end loop;
+
+        Detruire(Sda);
+	end Calculer_Statistiques;
 
 
 	Min, Max: Integer; -- fréquence minimale et maximale d'un échantillon
@@ -98,4 +132,8 @@ begin
 		Afficher_Variable ("Min", Min);
 		Afficher_Variable ("Max", Max);
 	end if;
+
+    exception
+        when CONSTRAINT_ERROR => Put("Borne et taille doivent être entiers");
+
 end Evaluer_Alea_TH;

@@ -3,6 +3,7 @@ with Ada.Integer_Text_IO;  use Ada.Integer_Text_IO;
 with Ada.Command_Line;     use Ada.Command_Line;
 with SDA_Exceptions;       use SDA_Exceptions;
 with Alea;
+with LCA;
 
 -- Évaluer la qualité du générateur aléatoire et les LCA.
 procedure Evaluer_Alea_LCA is
@@ -71,8 +72,40 @@ procedure Evaluer_Alea_LCA is
 			new Alea (1, Borne);
 		use Mon_Alea;
 
+
+        package LCA_INT_INT is new LCA (Integer, Integer);
+        use LCA_INT_INT;
+
+
+    Sda : T_LCA;
+    Nombre : Integer;
 	begin
-		null;	-- TODO à remplacer !
+        Initialiser(Sda);
+
+        for I in 1..Borne loop
+            Enregistrer(Sda, I, 0);
+        end loop;
+
+
+        for I in 1..Taille+1 loop
+            Get_Random_Number (Nombre);
+            Enregistrer(Sda, Nombre, La_Valeur(Sda, Nombre)+1);
+        end loop;
+
+        Min := Taille; -- on sait que Sda n'est pas vide
+        Max := 0;
+
+        for I in 1..Borne loop
+            if Max < La_Valeur(Sda, I) then
+                Max := La_Valeur(Sda, I);
+            end if;
+
+            if Min > La_Valeur(Sda, I) then
+                Min := La_Valeur(Sda, I);
+            end if;
+        end loop;
+
+        Detruire(Sda);
 	end Calculer_Statistiques;
 
 
@@ -98,4 +131,8 @@ begin
 		Afficher_Variable ("Min", Min);
 		Afficher_Variable ("Max", Max);
 	end if;
+
+    exception
+        when CONSTRAINT_ERROR => Put("Borne et taille doivent être entiers");
+
 end Evaluer_Alea_LCA;

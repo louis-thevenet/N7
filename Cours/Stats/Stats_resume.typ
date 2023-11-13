@@ -6,7 +6,9 @@
   authors: ("THEVENET Louis",),
   date: "October 25, 2023",
 )
-TD1 : Maximum & méthode des moments
+
+#let vraisemblance = $L(X_1, dots, X_n; theta)$
+
 
 
 = Estimation
@@ -23,6 +25,11 @@ Qualités d'un estimateur
     - un estimateur $hat(theta)_n$ est convergent si $limits(lim)_(n arrow + infinity) b_n (theta) = limits(lim)_(n arrow + infinity) v_n (theta) = 0$
 ]
 
+== Vraisemblance
+#definition[ Vraisemblance
+
+$ L(x_1, dots, x_n; theta) = cases(X_i "VA discrète" P[X_1=x_1, dots, X_n=x_n; theta], X_i "VA continue" p(x_1, dots, x_n; theta)) $
+]
 
 == Inégalité de Cramér Rao
 
@@ -40,41 +47,67 @@ Qualités d'un estimateur
 == Maximum de vraisemblance
 #definition[ Maximum de vraisemblance
 
-$ hat(theta)_(op("MV")) = arg limits(max)_theta L(X_1, dots, X_n; theta) $
+$ hat(theta)_(op("MV")) = limits(arg max)_theta space L(X_1, dots, X_n; theta) $
 ]
 
 #theorem[ Recherche de $hat(theta)_op("MV")$
 
-- Cherche les points fixes de la vraisemblances ou de la log-vraisemblances
-- Tableau de variations pour vérifier ou alors étudier $pdv(ln L(X_1, dots, X_n; hat(theta)_op("MV")), theta, [2])<0$
+- On cherche $theta$ tel que $pdv(#vraisemblance, theta) = 0$ ou $pdv(ln vraisemblance, theta)=0$
+
+- Puis éventuellement tableau de variations pour vérifier ou alors on étudie $pdv(ln L(X_1, dots, X_n; hat(theta)_op("MV")), theta, [2])<0$
 ]
 
-#definition[ Régularité]
+== Méthode des moments (construire un estimateur)
+#definition[ Estimateur des moments
 
-Comment construire un estimateur
-== Méthode des moments
+$ hat(theta)_op("Mo") = h(hat(m)_1, dots, hat(m)_q) "avec" hat(m)_k = 1/n  sum_(i=1)^n X_i^k $
+
+Utile car en général le paramètre à estimer $theta$ est lié *aux premiers moments* de la loi des $X_i$, i.e. $theta=h(m_1, dots, m_q)$ avec $m_k = E[X_i^k], q>=p$
+]
 == Estimation Bayésienne
 #definition[ Estimation Bayésienne
 
-On va estimer un paramètre inconnu $theta in RR^p$ à l'aide de l'estimation paramétrée par $theta$, et 'une loi à priori $p(theta)$. Pour celà on minimise une fonction de coût $c(theta, hat(theta))$ qui représente l'erreur entre $theta$ et $hat(theta)$. Deux estimateurs principaux :
-- MMSE : moyenne de la loi à posteriori $hat(theta)_(op("MSEE"))=E(theta(X_1, dots, X_n))$
-- MAP : estimateur du maximum à posteriori de $theta$ est définie par $hat(theta)_(op("MAP")) = limits(arg)_theta max p(theta bar X_1, dots, X_n)$
+On va estimer un paramètre inconnu $theta in RR^p$ à l'aide de la vraisemblance des $X_1, dots, X_n$, et une loi à priori $p(theta)$. \
+Pour celà on minimise une fonction de coût $c(theta, hat(theta))$ qui représente l'erreur entre $theta$ et $hat(theta)$. \
+Deux estimateurs principaux :
+- MMSE : moyenne de la loi à posteriori $ hat(theta)_(op("MSEE"))=E[theta bar X_1, dots, X_n] $
+- MAP : estimateur du maximum à posteriori de $theta$ est définie par
+        $ hat(theta)_(op("MAP")) = limits(arg max)_theta space  p(theta bar X_1, dots, X_n) $
+
+On appelle
+- $p(theta)$ loi à *priori* de $theta$
+- $p(theta bar X_1, dots, X_n)$ loi à *posteriori* de $theta$
 ]
 
 #theorem[ MMSE
 
-L'estimateur MMSE minimise l'erreur quadratique moyenne (**R**oot **M**ean **S**quare) \
+L'estimateur MMSE minimise l'erreur quadratique moyenne (Mean Square Error, MSE) \
 On a $ c(theta, hat(theta)) = E[(theta - hat(theta))^T (theta-hat(theta))] $
 ]
 
 #theorem[ MAP
 
-_à vérifier si ça minimise la moyenne ou la f° de coût tout court_
-On a :
-- L'estimateur MAP minimise la fonction de coût $E[c(theta, hat(theta))]$ avec
-$ c(theta, hat(theta))=cases(1 "si" norm(theta-hat(theta))> delta, 0 "si" norm(theta-hat(theta))< delta) $
+L'estimateur MAP minimise la fonction de coût $E[c(theta, hat(theta))]$ en moyenne (moyenne à posteriori) avec
+$ c(theta, hat(theta))=cases(1 "si" norm(theta-hat(theta))> Delta, 0 "si" norm(theta-hat(theta))< Delta) $
+
+Avec $Delta$ arbitrairement petit
 ]
-== Intervalles de confiance
+
+#example[ Estimation Bayésienne
+
+Exemple :
+- Vraisemblance : $X_i tilde cal(N)(theta, sigma²)$
+- Loi à priori : $theta tilde cal(N)(mu, nu²)$
+
+Solution
+- Loi à posteriori : $theta bar X_1, dots, X_n tilde cal(N)(m_p, sigma_p^2)$
+- Estimateurs : $hat(theta)_op("MAP") = hat(theta)_op("MMSE") = m_p = overline(X)((n nu^2) / (n mu^2 + sigma^2)) + mu(sigma^2 / (sigma²+n nu^2))$
+
+]
+
+
+
+
 
 = Tests Statistiques
 #definition[

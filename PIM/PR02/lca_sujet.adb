@@ -13,9 +13,9 @@ use LCA_STR_INT;
 
 procedure Afficher_Couple (Cle : in Unbounded_String; Valeur : in Integer) is
 begin
-    Put("(" & Cle & " : ");
+    Put("[" & Cle & ":");
     Put(Valeur,1);
-    Put(") => ");
+    Put("] --> ");
 
 end Afficher_Couple;
 

@@ -1,4 +1,5 @@
-with SDA_Exceptions;         use SDA_Exceptions;
+with SDA_Exceptions; use SDA_Exceptions;
+with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Unchecked_Deallocation;
 
 package body LCA is

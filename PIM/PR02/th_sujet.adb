@@ -38,7 +38,7 @@ begin
     Enregistrer(Sda, To_Unbounded_String("cinq"), 5);
     Enregistrer(Sda, To_Unbounded_String("quatre-vingt-dix-neuf"), 99);
     Enregistrer(Sda, To_Unbounded_String("vingt-et-un"), 21);
-
+    New_Line;
     Afficher_Elements(Sda);
     Detruire(Sda);
 end th_sujet;

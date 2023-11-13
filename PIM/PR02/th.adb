@@ -54,16 +54,21 @@ begin
 end La_Valeur;
 
 procedure Pour_Chaque (Sda : in T_TH) is
-
-procedure Pour_Chaque_LCA is new LCA_TH.Pour_Chaque(Traiter => Traiter);
-
-
+    procedure Pour_Chaque_LCA is new LCA_TH.Pour_Chaque(Traiter => Traiter);
 begin
     for I in 1..Taille_TH+1 loop
         Pour_Chaque_LCA(Sda(I));
     end loop;
 
 end Pour_Chaque;
+
+procedure Afficher_Debug (Sda : in T_TH) is
+    procedure Afficher_Debug_LCA is new LCA_TH.Afficher_Debug(Afficher_Cle, Afficher_Donnee);
+begin
+    for I in 1..Taille_TH+1 loop
+        Afficher_Debug_LCA(Sda(I));
+    end loop;
+end Afficher_Debug;
 
 end TH;
 

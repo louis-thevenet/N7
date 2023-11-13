@@ -1,0 +1,23 @@
+(* shapes version: 6 *)
+a>=anc0
+a=a+c0a*anana*anan
+loop invariant init
+a=a+ara*axaxa*anan
+Na=axc0
+a=ar1a-a+ara*c2axc1
+a=ax1a-axc1
+a<ax1axAa<=c0ax
+loop variant decrease
+a=a+ar1a*ax1ax1a*anan
+loop invariant preservation
+NNa=axc0
+a=ara*anan
+postcondition
+ia=V5a*V0V0LV5LV5a=a+V22a*V27V27a*V0V0Aa<V27V6Aa<=c0V6Ia=V27V25Laref'mkV27FLV25La-V6c1LV6Ia=V22V20Laref'mkV22FLV20La-V18c1LV18La+V5V15LV5LV15La*c2V6LV6Na=V6c0LiaFalseaTruea=V6c0LV6Laref'mkV6Ia=a+V5a*V6V6a*V0V0Laref'mkV5Laref'mkV6FAa=a+c0a*V0V0a*V0V0Laref'mkc0Laref'mkc0Laref'mkV0Laref'mkV0Ia>=V0c0F
+VC for carre
+
+1aa5c3c8d66c92a5d296bd4ea10cc87e 15H14
+0135aca34a91e5eb2883ac0f88147234 2H1H0
+9381dc2db21273665af5594b06b880f6 8H7H6H5H4H3H0
+babc749bb16c697f6875d770612227b4 10H9H6H5H4H3H0
+8e3ca8ddae93d7926679122260f5243f 13H12H11H3H0

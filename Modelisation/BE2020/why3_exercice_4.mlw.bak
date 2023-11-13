@@ -1,0 +1,23 @@
+(* BE : Session 1 2020 *)
+(* Implémentation de la fonction carre d'un entier naturel par un algorithme inspiré des identités remarquables *)
+
+module Carre
+
+  use int.Int
+  use ref.Refint
+
+  let carre (n: int) : int
+    requires { n>=0 }
+    ensures  { result=n*n }
+  =
+    let x = ref n in
+    let r = ref 0 in
+    while  (!x <> 0) do
+      invariant { !r+(!x)*(!x) = n*n }
+      variant   { !x}
+      r :=  (!r) + 2 * (!x) - 1;
+      x := (!x) - 1
+    done;
+    !r
+
+end

@@ -89,14 +89,24 @@ Qed.
 (* Implantation de la fonction flatten *)
 Fixpoint flatten_impl (E : Set) (l : liste (liste E)) {struct l} : liste E :=
   match l with
-Nil _ => Nil
+Nil _ => Nil E
+| (Cons _ t q) => append_impl E t (flatten_impl E q)
 end.
 
 (* Correction de l'implantation de flatten par rapport à sa spécification *)
 Theorem flatten_correctness : forall E : Set, forall (l : liste (liste E)),
    (flatten_spec E l) = (flatten_impl E l).
 Proof.
-(* A COMPLETER *)
+induction l.
+simpl.
+rewrite flatten_Nil.
+reflexivity.
+
+simpl.
+rewrite <-append_correctness.
+rewrite <-IHl.
+rewrite flatten_Cons.
+reflexivity.
 Qed.
 
 End Session1_2019_Induction_Exercice_3.

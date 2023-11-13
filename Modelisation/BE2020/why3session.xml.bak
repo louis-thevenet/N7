@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"http://why3.lri.fr/why3session.dtd">
+<why3session shape_version="6">
+<prover id="0" name="Coq" version="8.11.0" timelimit="0" steplimit="0" memlimit="0"/>
+<file format="whyml">
+<path name="why3_exercice_4.mlw"/>
+<theory name="Carre">
+ <goal name="carre&#39;vc" expl="VC for carre">
+ <transf name="split_vc" >
+  <goal name="carre&#39;vc.0" expl="loop invariant init">
+  </goal>
+  <goal name="carre&#39;vc.1" expl="loop variant decrease">
+  <proof prover="0"><path name="why3_exercice_4_Carre_carreqtvc_2.v"/><undone/></proof>
+  </goal>
+  <goal name="carre&#39;vc.2" expl="loop invariant preservation">
+  </goal>
+  <goal name="carre&#39;vc.3" expl="postcondition">
+  </goal>
+ </transf>
+ </goal>
+</theory>
+</file>
+</why3session>

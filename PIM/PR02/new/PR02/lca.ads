@@ -22,7 +22,7 @@ package LCA is
 	function Est_Vide (Sda : T_LCA) return Boolean;
 
 
-	-- Obtenir le nombre d'éléments d'une Sda.
+	-- Obtenir le nombre d'éléments d'une Sda. 
 	function Taille (Sda : in T_LCA) return Integer with
 		Post => Taille'Result >= 0
 			and (Taille'Result = 0) = Est_Vide (Sda);
@@ -30,8 +30,7 @@ package LCA is
 
 	-- Enregistrer une valeur associée à une Clé dans une Sda.
 	-- Si la clé est déjà présente dans la Sda, sa valeur est changée.
-	procedure Enregistrer (Sda : in out T_LCA ; Cle : in T_Cle ; Valeur : in T_Valeur)
-    with
+	procedure Enregistrer (Sda : in out T_LCA ; Cle : in T_Cle ; Valeur : in T_Valeur) with
 		Post => Cle_Presente (Sda, Cle) and (La_Valeur (Sda, Cle) = Valeur)   -- valeur insérée
 				and (not (Cle_Presente (Sda, Cle)'Old) or Taille (Sda) = Taille (Sda)'Old)
 				and (Cle_Presente (Sda, Cle)'Old or Taille (Sda) = Taille (Sda)'Old + 1);
@@ -66,13 +65,9 @@ package LCA is
 		with procedure Afficher_Donnee (Valeur : in T_Valeur);
 	procedure Afficher_Debug (Sda : in T_LCA);
 
+
 private
-    type T_Cellule;
-	type T_LCA is access T_Cellule;
-    type T_Cellule is record
-        Cle : T_Cle;
-        Valeur: T_Valeur;
-        Suivant: T_LCA;
-    end record;
+
+	-- TODO : à compléter
 
 end LCA;

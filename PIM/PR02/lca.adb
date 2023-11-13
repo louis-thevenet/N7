@@ -120,5 +120,19 @@ package body LCA is
 
 	end Pour_Chaque;
 
+   	procedure Afficher_Debug (Sda : in T_LCA) is
+    begin
+        if (Est_Vide(Sda)) then
+            return;
+        end if;
+        Put("-->[");
+        Afficher_Cle(Sda.All.Cle);
+        Put(":");
+        Afficher_Donnee(Sda.All.Valeur);
+        Put("]");
+        Afficher_Debug(Sda.All.Suivant);
+    end Afficher_Debug;
+
+
 
 end LCA;

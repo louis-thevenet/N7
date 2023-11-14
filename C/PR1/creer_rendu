@@ -1,0 +1,50 @@
+#!/bin/bash
+
+filename="rendu"
+fichiers=("complexe.h" "complexe.c" "mandelbrot.c" "A-COMPLETER.txt")
+
+check_existance () {
+    if [ ! -f "$2" ]; then
+        echo "Erreur : il manque le fichier $2 !"
+        return 1
+    else
+        return $1
+    fi
+}
+
+err=0
+for f in ${fichiers[@]}; do
+    check_existance $err $f
+    err=$?
+done
+
+if [ $err -eq 0 ]; then
+    num=($(sed -E '/^Nom\s*[[:digit:]]\s*:\s*([[:alpha:]].*)$/!d' < A-COMPLETER.txt | wc -l))
+
+    if [ $num -lt 1 ]; then
+        echo "Erreur : vous n'avez pas complété le fichier A-COMPLETER.txt !!"
+        err=2
+    fi
+fi
+
+if [ $err -ne 0 ]; then
+    echo "Interruption du script"
+    exit -1
+fi
+
+if [ -e "${filename}" ]; then
+    rm -rf "${filename}"
+fi
+
+echo "Création de l'archive ${filename}.tar.gz"
+tar zcvf "${filename}.tar.gz" "${fichiers[@]}"
+
+if [ -f "${filename}.tar.gz" ]; then
+    echo "Le fichier ${filename}.tar.gz a bien été créé."
+    echo "Vous pouvez le déposer sur Moodle !"
+else
+    echo "Le fichier ${filename}.tar.gz n'a pas pu être créé :("
+    exit -1
+fi
+
+

@@ -1,0 +1,167 @@
+// This file is part of mandelbrot.
+// 
+// mandelbrot is free software: you can redistribute it and/or modify it under 
+// the terms of the GNU General Public License as published by the Free Software 
+// Foundation, either version 3 of the License, or (at your option) any later 
+// version.
+// 
+// mandelbrot is distributed in the hope that it will be useful, but WITHOUT ANY 
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR 
+// A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License along with 
+// mandelbrot. If not, see <https://www.gnu.org/licenses/>.
+//
+// mandelbrot - Copyright (c) 2023 Guillaume Dupont
+// Contact: <guillaume.dupont@toulouse-inp.fr>
+
+// Note : ce fichier ne sert qu'à configurer la page de garde de la documentation,
+// et ne contient donc pas de code (c'est normal).
+
+/**
+ * @mainpage `mandelbrot` &ndash; Rendu graphique interactif de la fractale de Mandelbrot
+ *
+ * Cette documentation présente en détail les différents modules composant le projet `mandelbrot`.
+ *
+ * **Il n'est absolument pas nécessaire de se plonger dans le fonctionnement des modules pour
+ * aborder le projet.** C'est même _très peu recommandé_, car il y a beaucoup de choses très
+ * avancées.
+ * 
+ * Cette documentation est principalement destinée 1) aux développeurs du projet et éventuellement
+ * 2) à des étudiants curieux (et compétents en C).
+ *
+ * ## La fractale de Mandelbrot
+ * 
+ * On définit la _suite de Mandelbrot_ par la relation de récurrence suivante :
+ * @f[
+ * \left\{\begin{array}{ll}
+ * z_0 & \in \mathbb{C} \\
+ * z_{n + 1} = z_n^2 + c
+ * \end{array}\right.
+ * @f]
+ * 
+ * Pour @f$c \in \mathbb{C}@f$ quelconque et @f$z_0 = 0 + 0 i@f$ (en général).
+ *
+ * L'_ensemble de Mandelbrot_ est alors l'ensemble des paramètres @f$c \in \mathbb{C}@f$ pour lesquels
+ * la suite de Mandelbrot converge.
+ *
+ * Une rapide analyse de la fonction holomorphe qui définie la suite de Mandelbrot permet de montrer que,
+ * si la suite converge, alors le module de sa limite est nécessairement inférieur ou égale à 2. Corolairement, 
+ * s'il existe @f$n \geq 0@f$ tel que @f$z_n > 2@f$, alors nécessairement la suite est divergente.
+ *
+ * Soit @f$\theta@f$ un _seuil_, on appelle _vitesse de divergence_ (pour le seuil @f$\theta@f$ donné) le plus petit
+ * nombre @f$N_\theta@f$ tel que @f$z_{N_\theta} > \theta@f$.
+ *
+ * Ajoutons à cela qu'un nombre complexe (@f$a + b i@f$) est essentiellement un point du plan, et on peut créer
+ * le "champ scalaire de Mandelbrot" en associant, à chaque point @f$c@f$ du plan :
+ *   - le nombre 0 si la suite converge pour ce point
+ *   - la vitesse de divergence si la suite diverge pour ce point
+ * 
+ * En associant une couleur à chaque valeur (généralement, noir pour 0 et une couleur plus ou moins lumineuse
+ * pour chaque vitesse de divergence), on peut représenter ce champ scalaire sous forme d'image.
+ *
+ * C'est exactement l'objectif de ce projet !
+ *
+ * ## Faire fonctionner le projet
+ *
+ * Pour générer cette doc, il suffit d'appeler `make` avec la cible `doc` :
+ * ```
+ * > make doc
+ * ```
+ *
+ * La doc résultante est dans le dossier `doc` en HTML et en LaTeX. Pour la consulter, le
+ * mieux est encore d'ouvrir le fichier `doc/html/index.html` (qui correspond à cette page).
+ *
+ * <br>
+ *
+ * Pour générer le projet :
+ * ```
+ * > make
+ * ```
+ *
+ * S'il n'y a pas d'erreur, cela devrait générer l'exécutable `mandelbrot`, à lancer comme suit :
+ * ```
+ * > ./mandelbrot
+ * ```
+ *
+ * Il y a des options disponibles, que l'on peut explorer en invoquant l'aide du programme :
+ * ```
+ * > ./mandelbrot --help
+ * ```
+ *
+ * <br>
+ *
+ * Il existe une version "debug" du programme, qui affiche plein de messages pour tracker les
+ * erreurs :
+ * ```
+ * > make debug
+ * > ./mandelbrot_debug
+ * ```
+ *
+ * (mêmes options disponibles que pour la version pas debug)
+ * 
+ * <br>
+ *
+ * Pour tester le module complexe :
+ * ```
+ * > make test
+ * > make runtest
+ * ```
+ *
+ * Les tests unitaires se trouvent dans le fichier `test_complexe.c`. Les tests se basent
+ * sur `libt` (fourni avec l'archive).
+ *
+ *
+ * ## Présentation succincte des modules principaux
+ *
+ * - Calculs de la fractale (aspects mathématiques)
+ *   - @ref complexe.h définition des nombres complexes (à compléter)
+ *   - @ref mandelbrot.h algorithme pour le calcul de la vitesse de divergence (à compléter)
+ *   - @ref config.h paramètres du calcul de la fractale
+ * - Rendu de la fractale
+ *   - @ref gradient.h association d'une couleur à chaque vitesse de divergence
+ *   - @ref viewport.h gestion de repère/plan complexe
+ *   - @ref render.h rendu de la fractale (de manière efficace et parallélisé)
+ *   - @ref mosaic.h découpage de la fractale pour accélérer le rendu (en tandem avec render)
+ * - Interactions graphiques
+ *   - @ref frame.h représentation et gestion du repère graphique (pour zoomer, translater, etc.)
+ *   - @ref window.h fenêtre principale
+ * - Concurrence (utilisé par `render` principalement)
+ *   - @ref task_queue.h file concurrente de tâches
+ *   - @ref pool.h pool de thread pour la répartition/parallélisation de tâches
+ * - Gestion des options
+ *   - @ref options.h petit parseur d'options de la ligne de commande
+ *   - @ref conf.h valeurs par défaut pour les options
+ * - Programme principal
+ *   - @ref app.h mise en commun et gestion de l'application principale
+ *   - @ref main.c programme principal
+ * - Tests
+ *   - `test_complexe.c` tests unitaires pour le module @ref complexe.h
+ * - Autres fichiers
+ *   - `Makefile` makefile pour le projet
+ *   - `Doxyfile` configuration pour la génération de la documentation
+ *   - `mainpage.dox` page principale de la documentation
+ *
+ * ## Informations de licence
+ *
+ * Les fichiers de ce projet sont distribués sous la licence GNU General Public License (GPL)
+ * version 3.0.
+ *
+ * Cette licence stipule que les sources fournies sont libres : elles peuvent
+ * êtres redistribuées (modifiées ou non), à condition qu'elles le soient *sous la même licence*,
+ * ou une version ultérieure de cette même licence (au choix).
+ *
+ * Ces sources sont distribuées avec l'espoir d'être utiles mais _sans aucune garantie_; et notamment,
+ * aucune garantie implicite pour des fins _commerciale_ ou pour une _quelconque utilisation spécifique_.
+ * 
+ * Chaque fichier est estampillé de ce même texte de licence (en anglais), et les détails de la licence
+ * peuvent être trouvés ici: https://www.gnu.org/licenses/
+ *
+ * <br>
+ *
+ * `mandelbrot` - Copyright (c) 2023 Guillaume Dupont
+ *
+ * Contact: <guillaume.dupont@toulouse-inp.fr>
+ */
+
+

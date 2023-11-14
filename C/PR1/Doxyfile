@@ -1,0 +1,12 @@
+PROJECT_NAME=mandelbrot
+PROJECT_NUMBER=1.0
+PROJECT_BRIEF=Rendu interactif de fractale de Mandelbrot
+
+OUTPUT_DIRECTORY=doc
+OUTPUT_LANGUAGE=French
+
+OPTIMIZE_OUTPUT_FOR_C=YES
+MARKDOWN_SUPPORT=YES
+
+EXTRA_PACKAGES=amsmath amssymb
+

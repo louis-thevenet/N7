@@ -1,0 +1,79 @@
+#!/bin/bash
+# Petit script bash qui test la conformance du fichier complexe.h aux
+# exigences du sujet.
+#
+# /!\ NE PAS MODIFIER /!\
+
+logfile="checkerror.log"
+
+check () {
+    read -r -d '' RESULT <<END_DOC
+#include "complexe.h"
+
+void test() {
+$1
+}
+END_DOC
+
+    echo "$RESULT" | gcc -c -Wall -Wextra -pedantic -Werror -fsyntax-only -x c - >>$logfile 2>&1
+
+    if [ $? -ne 0 ]; then
+        echo "Erreur : $2"
+        return 1
+    fi
+
+    return 0
+}
+
+if [ -f $logfile ]; then
+    rm $logfile
+fi
+
+if [ ! -f "complexe.h" ]; then
+    echo "Je ne trouve pas complexe.h !! Vérifiez que vous êtes bien dans le bon répertoire"
+    exit 1
+fi
+ 
+check \
+    "complexe_t c; (void) c;" \
+    "La structure 'complexe_t' n'existe pas ou n'a pas le bon nom" \
+&& check \
+    "complexe_t c; double x = reelle(c); x = imaginaire(c); (void) x;" \
+    "Les fonctions 'reelle' et 'imaginaire' sont mal ou pas définies" \
+&& check \
+    "complexe_t c; double x = 1.0; init(&c, x, x);" \
+    "La fonction 'init' est mal ou pas définie" \
+&& check \
+    "complexe_t c; double x = 0.0; set_reelle(&c, x); set_imaginaire(&c, x);" \
+    "Les fonctions 'set_reelle' et 'set_imaginaire' sont mal ou pas définies" \
+&& check \
+    "complexe_t c; copie(&c, c);" \
+    "La fonction 'copie' est mal ou pas définie" \
+&& check \
+    "complexe_t c; ajouter(&c, c, c);" \
+    "La fonction 'ajouter' est mal ou pas définie" \
+&& check \
+    "complexe_t c; soustraire(&c, c, c);" \
+    "La fonction 'soustraire' est mal ou pas définie" \
+&& check \
+    "complexe_t c; multiplier(&c, c, c);" \
+    "La fonction 'multiplier' est mal ou pas définie" \
+&& check \
+    "complexe_t c; double x; echelle(&c, c, x);" \
+    "La fonction 'echelle' est mal ou pas définie" \
+&& check \
+    "complexe_t c; int n; puissance(&c, c, n);" \
+    "La fonction 'puissance' est mal ou pas définie" \
+&& check \
+    "complexe_t c; double x = module_carre(c); (void) x;" \
+    "La fonction 'module_carre' est mal ou pas définie" \
+&& check \
+    "complexe_t c; double x = module(c); (void) x;" \
+    "La fonction 'module' est mal ou pas définie" \
+&& check \
+    "complexe_t c; double x = argument(c); (void) x;" \
+    "La fonction 'argument' est mal ou pas définie" \
+&& echo "Check ok"
+
+
+

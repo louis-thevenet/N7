@@ -1,0 +1,5 @@
+Groupe   :
+Nom 1    :
+Prénom 1 :
+Nom 2    :
+Prénom 2 :

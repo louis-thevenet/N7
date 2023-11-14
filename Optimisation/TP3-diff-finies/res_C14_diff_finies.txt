@@ -1,0 +1,7626 @@
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mtimes')" style="font-weight:bold"> * </a>
+Incorrect dimensions for matrix multiplication. Check that the number of columns in the first matrix matches the number of rows
+in the second matrix. To operate on each element of the matrix individually, use TIMES (.*) for elementwise multiplication.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('diff_finies_avant', '/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m', 25)" style="font-weight:bold">diff_finies_avant</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m',25,0)">line 25</a>)
+    Jac(i, :) = (fun(x+h * I) - fun(x) ) ./ h(i);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 112)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',112,0)">line 112</a>)
+	    Jres = diff_finies_avant( @(beta) res_C14_ref(beta,Ti,Ai), beta0, ndigits);
+
+<a href="matlab:helpview('matlab','error_innerdim')" style="font-weight:bold">Related documentation</a>
+} 
+C14_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+{Arrays have incompatible sizes for this operation.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('diff_finies_avant', '/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m', 25)" style="font-weight:bold">diff_finies_avant</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m',25,0)">line 25</a>)
+    Jac(i, :) = (fun(x+h .* I) - fun(x) ) ./ h(i);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 112)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',112,0)">line 112</a>)
+	    Jres = diff_finies_avant( @(beta) res_C14_ref(beta,Ti,Ai), beta0, ndigits);
+
+<a href="matlab:helpview('matlab','error_sizeDimensionsMustMatch')" style="font-weight:bold">Related documentation</a>
+} 
+C14_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+{Arrays have incompatible sizes for this operation.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('diff_finies_avant', '/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m', 25)" style="font-weight:bold">diff_finies_avant</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m',25,0)">line 25</a>)
+    Jac(:, i) = (fun(x+h .* I) - fun(x) ) ./ h(i);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 112)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',112,0)">line 112</a>)
+	    Jres = diff_finies_avant( @(beta) res_C14_ref(beta,Ti,Ai), beta0, ndigits);
+
+<a href="matlab:helpview('matlab','error_sizeDimensionsMustMatch')" style="font-weight:bold">Related documentation</a>
+} 
+C14_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+{Arrays have incompatible sizes for this operation.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('diff_finies_avant', '/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m', 25)" style="font-weight:bold">diff_finies_avant</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m',25,0)">line 25</a>)
+    Jac(i, :) = (fun(x+h .* I) - fun(x) ) ;
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 112)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',112,0)">line 112</a>)
+	    Jres = diff_finies_avant( @(beta) res_C14_ref(beta,Ti,Ai), beta0, ndigits);
+
+<a href="matlab:helpview('matlab','error_sizeDimensionsMustMatch')" style="font-weight:bold">Related documentation</a>
+} 
+C14_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+{<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m',23,35)">File: diff_finies_avant.m Line: 23 Column: 35</a>
+Invalid expression. When calling a function or indexing a variable, use parentheses. Otherwise, check for mismatched
+delimiters.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 112)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',112,0)">line 112</a>)
+	    Jres = diff_finies_avant( @(beta) res_C14_ref(beta,Ti,Ai), beta0, ndigits);
+} 
+exem1_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mtimes')" style="font-weight:bold"> * </a>
+Incorrect dimensions for matrix multiplication. Check that the number of columns in the first matrix matches the number of rows
+in the second matrix. To operate on each element of the matrix individually, use TIMES (.*) for elementwise multiplication.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 120)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',120,0)">line 120</a>)
+gradf_beta = norm(Jres'*res);
+
+<a href="matlab:helpview('matlab','error_innerdim')" style="font-weight:bold">Related documentation</a>
+} 
+exem1_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01  -6.7032e-01  -6.0653e-01  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01  -6.7032e-01  -6.0653e-01  -5.3259e-01
+  -9.5123e+00  -9.0484e+00  -8.1873e+00  -7.4082e+00  -6.7032e+00  -6.0653e+00  -5.3259e+00
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mtimes')" style="font-weight:bold"> * </a>
+Incorrect dimensions for matrix multiplication. Check that the number of columns in the first matrix matches the number of rows
+in the second matrix. To operate on each element of the matrix individually, use TIMES (.*) for elementwise multiplication.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 120)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',120,0)">line 120</a>)
+gradf_beta = norm(Jres'*res);
+
+<a href="matlab:helpview('matlab','error_innerdim')" style="font-weight:bold">Related documentation</a>
+} 
+C14_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01  -6.7032e-01  -6.0653e-01  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01  -6.7032e-01  -6.0653e-01  -5.3259e-01
+  -9.5123e+00  -9.0484e+00  -8.1873e+00  -7.4082e+00  -6.7032e+00  -6.0653e+00  -5.3259e+00
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mtimes')" style="font-weight:bold"> * </a>
+Incorrect dimensions for matrix multiplication. Check that the number of columns in the first matrix matches the number of rows
+in the second matrix. To operate on each element of the matrix individually, use TIMES (.*) for elementwise multiplication.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 120)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',120,0)">line 120</a>)
+gradf_beta = norm(Jres'*res);
+
+<a href="matlab:helpview('matlab','error_innerdim')" style="font-weight:bold">Related documentation</a>
+} 
+C14_diff_finies
+Algorithme de Gauss-Newton
+ndigits 5 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  Columns 1 through 4
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01
+
+  Columns 5 through 7
+
+  -6.7032e-01  -6.0653e-01  -5.3259e-01
+
+
+Jac =
+
+  Columns 1 through 4
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01
+  -9.5123e+00  -9.0484e+00  -8.1873e+00  -7.4082e+00
+
+  Columns 5 through 7
+
+  -6.7032e-01  -6.0653e-01  -5.3259e-01
+  -6.7032e+00  -6.0653e+00  -5.3259e+00
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mtimes')" style="font-weight:bold"> * </a>
+Incorrect dimensions for matrix multiplication. Check that
+the number of columns in the first matrix matches the number
+of rows in the second matrix. To operate on each element of
+the matrix individually, use TIMES (.*) for elementwise
+multiplication.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 120)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',120,0)">line 120</a>)
+gradf_beta = norm(Jres'*res);
+
+<a href="matlab:helpview('matlab','error_innerdim')" style="font-weight:bold">Related documentation</a>
+} 
+C14_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  Columns 1 through 4
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01
+
+  Columns 5 through 7
+
+  -6.7032e-01  -6.0653e-01  -5.3259e-01
+
+
+Jac =
+
+  Columns 1 through 4
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01
+  -9.5123e+00  -9.0484e+00  -8.1873e+00  -7.4082e+00
+
+  Columns 5 through 7
+
+  -6.7032e-01  -6.0653e-01  -5.3259e-01
+  -6.7032e+00  -6.0653e+00  -5.3259e+00
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mtimes')" style="font-weight:bold"> * </a>
+Incorrect dimensions for matrix multiplication. Check that
+the number of columns in the first matrix matches the number
+of rows in the second matrix. To operate on each element of
+the matrix individually, use TIMES (.*) for elementwise
+multiplication.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 120)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',120,0)">line 120</a>)
+gradf_beta = norm(Jres'*res);
+
+<a href="matlab:helpview('matlab','error_innerdim')" style="font-weight:bold">Related documentation</a>
+} 
+exem1_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01  -6.7032e-01  -6.0653e-01  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01  -6.7032e-01  -6.0653e-01  -5.3259e-01
+  -9.5123e+00  -9.0484e+00  -8.1873e+00  -7.4082e+00  -6.7032e+00  -6.0653e+00  -5.3259e+00
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mtimes')" style="font-weight:bold"> * </a>
+Incorrect dimensions for matrix multiplication. Check that the number of columns in the first matrix matches the number of rows
+in the second matrix. To operate on each element of the matrix individually, use TIMES (.*) for elementwise multiplication.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 120)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',120,0)">line 120</a>)
+gradf_beta = norm(Jres'*res);
+
+<a href="matlab:helpview('matlab','error_innerdim')" style="font-weight:bold">Related documentation</a>
+} 
+C14_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  Columns 1 through 4
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01
+
+  Columns 5 through 7
+
+  -6.7032e-01  -6.0653e-01  -5.3259e-01
+
+{Unable to perform assignment because the size of the left
+side is 1-by-1 and the size of the right side is 7-by-1.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('diff_finies_avant', '/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m', 26)" style="font-weight:bold">diff_finies_avant</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m',26,0)">line 26</a>)
+        Jac(i, :) = (fun(x+h .* I) - fun(x) ) ./ h(i)
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 112)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',112,0)">line 112</a>)
+	    Jres = diff_finies_avant( @(beta) res_C14_ref(beta,Ti,Ai), beta0, ndigits);
+} 
+C14_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01  -6.7032e-01  -6.0653e-01  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01  -6.7032e-01  -6.0653e-01  -5.3259e-01
+  -9.5123e+00  -9.0484e+00  -8.1873e+00  -7.4082e+00  -6.7032e+00  -6.0653e+00  -5.3259e+00
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mtimes')" style="font-weight:bold"> * </a>
+Incorrect dimensions for matrix multiplication. Check that the number of columns in the first matrix matches the number of rows
+in the second matrix. To operate on each element of the matrix individually, use TIMES (.*) for elementwise multiplication.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 120)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',120,0)">line 120</a>)
+gradf_beta = norm(Jres'*res);
+
+<a href="matlab:helpview('matlab','error_innerdim')" style="font-weight:bold">Related documentation</a>
+} 
+C14_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01  -6.7032e-01  -6.0653e-01  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01  -6.7032e-01  -6.0653e-01  -5.3259e-01
+  -9.5123e+00  -9.0484e+00  -8.1873e+00  -7.4082e+00  -6.7032e+00  -6.0653e+00  -5.3259e+00
+
+            0   8.0630e+01   4.8070e+01
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01  -6.7032e-01  -6.0653e-01  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01  -6.7032e-01  -6.0653e-01  -5.3259e-01
+  -9.5123e+00  -9.0484e+00  -8.1873e+00  -7.4082e+00  -6.7032e+00  -6.0653e+00  -5.3259e+00
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mtimes')" style="font-weight:bold"> * </a>
+Incorrect dimensions for matrix multiplication. Check that the number of columns in the first matrix matches the number of rows
+in the second matrix. To operate on each element of the matrix individually, use TIMES (.*) for elementwise multiplication.
+
+Error in GN_ref
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+  [beta, norm_gradf_beta, f_beta, res, norms, k, exitflag] = GN_ref(@(beta) res_C14_ref(beta,Ti,Ai), ...
+
+<a href="matlab:helpview('matlab','error_innerdim')" style="font-weight:bold">Related documentation</a>
+} 
+C14_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+{Unrecognized function or variable 'f'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('diff_finies_avant', '/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m', 25)" style="font-weight:bold">diff_finies_avant</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m',25,0)">line 25</a>)
+    for i=1:size(f(x), 1)
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 112)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',112,0)">line 112</a>)
+	    Jres = diff_finies_avant( @(beta) res_C14_ref(beta,Ti,Ai), beta0, ndigits);
+} 
+C14_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  Columns 1 through 4
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01
+
+  Columns 5 through 7
+
+  -6.7032e-01  -6.0653e-01  -5.3259e-01
+
+
+Jac =
+
+  Columns 1 through 4
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01
+  -9.5123e+00  -9.0484e+00  -8.1873e+00  -7.4082e+00
+
+  Columns 5 through 7
+
+  -6.7032e-01  -6.0653e-01  -5.3259e-01
+  -6.7032e+00  -6.0653e+00  -5.3259e+00
+
+
+Jac =
+
+  Columns 1 through 4
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01
+  -9.5123e+00  -9.0484e+00  -8.1873e+00  -7.4082e+00
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01
+
+  Columns 5 through 7
+
+  -6.7032e-01  -6.0653e-01  -5.3259e-01
+  -6.7032e+00  -6.0653e+00  -5.3259e+00
+  -6.7032e-01  -6.0653e-01  -5.3259e-01
+
+
+Jac =
+
+  Columns 1 through 4
+
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01
+  -9.5123e+00  -9.0484e+00  -8.1873e+00  -7.4082e+00
+  -9.5123e-01  -9.0484e-01  -8.1873e-01  -7.4082e-01
+  -9.5123e+00  -9.0484e+00  -8.1873e+00  -7.4082e+00
+
+  Columns 5 through 7
+
+  -6.7032e-01  -6.0653e-01  -5.3259e-01
+  -6.7032e+00  -6.0653e+00  -5.3259e+00
+  -6.7032e-01  -6.0653e-01  -5.3259e-01
+  -6.7032e+00  -6.0653e+00  -5.3259e+00
+
+{Index exceeds the number of array elements. Index must not
+exceed 4.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('diff_finies_avant', '/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m', 26)" style="font-weight:bold">diff_finies_avant</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/diff_finies_avant.m',26,0)">line 26</a>)
+        Jac(i, :) = (fun(x+h .* I) - fun(x) ) ./ h(i)
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 112)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',112,0)">line 112</a>)
+	    Jres = diff_finies_avant( @(beta) res_C14_ref(beta,Ti,Ai), beta0, ndigits);
+} 
+C14_diff_finies
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+            0   1.9791e+02   4.8070e+01
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+   1.0000e+00   1.1733e-11   1.1527e-01   4.8702e+00   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+   1.0000e+00   1.1733e-11   1.1527e-01   4.8702e+00   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+   1.0000e+00   1.1733e-11   1.1527e-01   4.8702e+00   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+   1.0000e+00   1.1733e-11   1.1527e-01   4.8702e+00   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+   1.0000e+00   1.1733e-11   1.1527e-01   4.8702e+00   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+   1.0000e+00   1.1733e-11   1.1527e-01   4.8702e+00   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+   1.0000e+00   1.1733e-11   1.1527e-01   4.8702e+00   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+   1.0000e+00   1.1733e-11   1.1527e-01   4.8702e+00   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+   1.0000e+00   1.1733e-11   1.1527e-01   4.8702e+00   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+   1.0000e+00   1.1733e-11   1.1527e-01   4.8702e+00   1.0000e+00
+
+------------------------------------------------------------------
+betak
+  Columns 1 through 9
+
+   1.0000e+01   1.4870e+01   1.4870e+01   1.4870e+01   1.4870e+01   1.4870e+01   1.4870e+01   1.4870e+01   1.4870e+01
+   1.0000e-04   1.0000e-04   1.0000e-04   1.0000e-04   1.0000e-04   1.0000e-04   1.0000e-04   1.0000e-04   1.0000e-04
+
+  Columns 10 through 11
+
+   1.4870e+01   1.4870e+01
+   1.0000e-04   1.0000e-04
+
+Algorithme de Gauss-Newton
+ndigits 4 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+            0   1.9791e+02   4.8070e+01
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+     1   NaN   NaN   NaN     4
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+     2   NaN   NaN   NaN     4
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+     3   NaN   NaN   NaN     4
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+     4   NaN   NaN   NaN     4
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+     5   NaN   NaN   NaN     4
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+     6   NaN   NaN   NaN     4
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+     7   NaN   NaN   NaN     4
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+     8   NaN   NaN   NaN     4
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+     9   NaN   NaN   NaN     4
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+   NaN
+
+
+Jac =
+
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+   NaN   NaN
+
+    10   NaN   NaN   NaN     4
+
+------------------------------------------------------------------
+betak
+  Columns 1 through 4
+
+   1.0000e+01          NaN          NaN          NaN
+   1.0000e-04          NaN          NaN          NaN
+
+  Columns 5 through 8
+
+          NaN          NaN          NaN          NaN
+          NaN          NaN          NaN          NaN
+
+  Columns 9 through 11
+
+          NaN          NaN          NaN
+          NaN          NaN          NaN
+
+Algorithme de Gauss-Newton
+ndigits 6 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+            0   1.9791e+02   4.8070e+01
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+Jac =
+
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+
+  Columns 1 through 4
+
+   1.0000e+00            0   4.4718e+02   5.1656e-01
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+Jac =
+
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+
+  Columns 1 through 4
+
+   1.0000e+00            0   4.4718e+02   5.1656e-01
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+Jac =
+
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+
+  Columns 1 through 4
+
+   1.0000e+00            0   4.4718e+02   5.1656e-01
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+Jac =
+
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+
+  Columns 1 through 4
+
+   1.0000e+00            0   4.4718e+02   5.1656e-01
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+Jac =
+
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+
+  Columns 1 through 4
+
+   1.0000e+00            0   4.4718e+02   5.1656e-01
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+Jac =
+
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+
+  Columns 1 through 4
+
+   1.0000e+00            0   4.4718e+02   5.1656e-01
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+Jac =
+
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+
+  Columns 1 through 4
+
+   1.0000e+00            0   4.4718e+02   5.1656e-01
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+Jac =
+
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+
+  Columns 1 through 4
+
+   1.0000e+00            0   4.4718e+02   5.1656e-01
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+Jac =
+
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+
+  Columns 1 through 4
+
+   1.0000e+00            0   4.4718e+02   5.1656e-01
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+Jac =
+
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+     0     0
+
+  Columns 1 through 4
+
+   1.0000e+00            0   4.4718e+02   5.1656e-01
+
+  Column 5
+
+   1.0000e+00
+
+------------------------------------------------------------------
+betak
+  Columns 1 through 4
+
+   1.0000e+01   9.8702e+00   9.8702e+00   9.8702e+00
+   1.0000e-04   5.0010e-01   5.0010e-01   5.0010e-01
+
+  Columns 5 through 8
+
+   9.8702e+00   9.8702e+00   9.8702e+00   9.8702e+00
+   5.0010e-01   5.0010e-01   5.0010e-01   5.0010e-01
+
+  Columns 9 through 11
+
+   9.8702e+00   9.8702e+00   9.8702e+00
+   5.0010e-01   5.0010e-01   5.0010e-01
+
+Algorithme de Gauss-Newton
+ndigits 8 
+Vraie Jacobienne = 0
+Methode diff finies = avants
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+            0   1.9791e+02   4.8070e+01
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+  Columns 1 through 4
+
+   1.0000e+00   5.2072e-12   1.1527e-01   4.8702e+00
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+  Columns 1 through 4
+
+   1.0000e+00   5.2072e-12   1.1527e-01   4.8702e+00
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+  Columns 1 through 4
+
+   1.0000e+00   5.2072e-12   1.1527e-01   4.8702e+00
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+  Columns 1 through 4
+
+   1.0000e+00   5.2072e-12   1.1527e-01   4.8702e+00
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+  Columns 1 through 4
+
+   1.0000e+00   5.2072e-12   1.1527e-01   4.8702e+00
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+  Columns 1 through 4
+
+   1.0000e+00   5.2072e-12   1.1527e-01   4.8702e+00
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+  Columns 1 through 4
+
+   1.0000e+00   5.2072e-12   1.1527e-01   4.8702e+00
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+  Columns 1 through 4
+
+   1.0000e+00   5.2072e-12   1.1527e-01   4.8702e+00
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+  Columns 1 through 4
+
+   1.0000e+00   5.2072e-12   1.1527e-01   4.8702e+00
+
+  Column 5
+
+   1.0000e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -9.5123e+00
+  -9.0484e-01  -9.0484e+00
+  -8.1873e-01  -8.1873e+00
+  -7.4082e-01  -7.4082e+00
+  -6.7032e-01  -6.7032e+00
+  -6.0653e-01  -6.0653e+00
+  -5.3259e-01  -5.3259e+00
+
+[Warning: Matrix is close to singular or badly scaled.
+Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 133)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',133,0)">line 133</a>)
+] 
+
+I =
+
+     1
+     0
+
+
+Jac =
+
+  -9.5123e-01
+  -9.0484e-01
+  -8.1873e-01
+  -7.4082e-01
+  -6.7032e-01
+  -6.0653e-01
+  -5.3259e-01
+
+
+Jac =
+
+  -9.5123e-01  -1.4145e+01
+  -9.0484e-01  -1.3455e+01
+  -8.1873e-01  -1.2175e+01
+  -7.4082e-01  -1.1016e+01
+  -6.7032e-01  -9.9678e+00
+  -6.0653e-01  -9.0193e+00
+  -5.3259e-01  -7.9198e+00
+
+  Columns 1 through 4
+
+   1.0000e+00   5.2072e-12   1.1527e-01   4.8702e+00
+
+  Column 5
+
+   1.0000e+00
+
+------------------------------------------------------------------
+betak
+  Columns 1 through 4
+
+   1.0000e+01   1.4870e+01   1.4870e+01   1.4870e+01
+   1.0000e-04   1.0000e-04   1.0000e-04   1.0000e-04
+
+  Columns 5 through 8
+
+   1.4870e+01   1.4870e+01   1.4870e+01   1.4870e+01
+   1.0000e-04   1.0000e-04   1.0000e-04   1.0000e-04
+
+  Columns 9 through 11
+
+   1.4870e+01   1.4870e+01   1.4870e+01
+   1.0000e-04   1.0000e-04   1.0000e-04
+
+Algorithme de Gauss-Newton
+ndigits 9 
+Vraie Jacobienne = 0
+Methode diff finies = centrees
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+            0   1.9791e+02   4.8070e+01
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+     1   NaN   NaN   NaN     4
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+     2   NaN   NaN   NaN     4
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+     3   NaN   NaN   NaN     4
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+     4   NaN   NaN   NaN     4
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+     5   NaN   NaN   NaN     4
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+     6   NaN   NaN   NaN     4
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+     7   NaN   NaN   NaN     4
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+     8   NaN   NaN   NaN     4
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+     9   NaN   NaN   NaN     4
+
+[Warning: Matrix is singular to working precision.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+[Warning: Matrix is singular, close to singular or badly
+scaled. Results may be inaccurate. RCOND = NaN.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+    10   NaN   NaN   NaN     4
+
+------------------------------------------------------------------
+betak
+  Columns 1 through 4
+
+   1.0000e+01          NaN          NaN          NaN
+   1.0000e-04          NaN          NaN          NaN
+
+  Columns 5 through 8
+
+          NaN          NaN          NaN          NaN
+          NaN          NaN          NaN          NaN
+
+  Columns 9 through 11
+
+          NaN          NaN          NaN
+          NaN          NaN          NaN
+
+Algorithme de Gauss-Newton
+ndigits 15 
+Vraie Jacobienne = 0
+Methode diff finies = centrees
+------------------------------------------------------------------
+         k     ||f'(beta)||   f(beta)      ||s||       exitflag 
+------------------------------------------------------------------
+            0   1.9791e+02   4.8070e+01
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+   1.0000e+00            0   4.4718e+02   5.1656e-01   1.0000e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+   1.0000e+00            0   4.4718e+02   5.1656e-01   1.0000e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+   1.0000e+00            0   4.4718e+02   5.1656e-01   1.0000e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+   1.0000e+00            0   4.4718e+02   5.1656e-01   1.0000e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+   1.0000e+00            0   4.4718e+02   5.1656e-01   1.0000e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+   1.0000e+00            0   4.4718e+02   5.1656e-01   1.0000e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+   1.0000e+00            0   4.4718e+02   5.1656e-01   1.0000e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+   1.0000e+00            0   4.4718e+02   5.1656e-01   1.0000e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+   1.0000e+00            0   4.4718e+02   5.1656e-01   1.0000e+00
+
+[Warning: Matrix is close to singular or badly scaled. Results may be inaccurate. RCOND =  1.452248e-18.] 
+[> In GN_ref
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('C14_diff_finies', '/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m', 136)" style="font-weight:bold">C14_diff_finies</a> (<a href="matlab: opentoline('/home/louis/src/N7/Optimisation/TP3-diff-finies/C14_diff_finies.m',136,0)">line 136</a>)
+] 
+   1.0000e+00            0   4.4718e+02   5.1656e-01   1.0000e+00
+
+------------------------------------------------------------------
+betak
+  Columns 1 through 9
+
+   1.0000e+01   9.8702e+00   9.8702e+00   9.8702e+00   9.8702e+00   9.8702e+00   9.8702e+00   9.8702e+00   9.8702e+00
+   1.0000e-04   5.0010e-01   5.0010e-01   5.0010e-01   5.0010e-01   5.0010e-01   5.0010e-01   5.0010e-01   5.0010e-01
+
+  Columns 10 through 11
+
+   9.8702e+00   9.8702e+00
+   5.0010e-01   5.0010e-01
+

@@ -42,7 +42,7 @@ true_jac = @(x)  sin(x);
 % Variables pour le choix de la methode de difference finie
 list_diff_finies = {'avants','centrees','complexes'};
 %%%%% MODIFIER LE NUMERO APRES AVOIR CODE LA FONCTION ASSOCIEE %%%%%%%%%%%
-methode_finite_diff = list_diff_finies{1};
+methode_finite_diff = list_diff_finies{3};
 
 % Calcul de l'erreur sur la fonction dans le cas bruité et non bruité
 omega_true_fun = eps((1));
@@ -170,7 +170,11 @@ function Jac = forwardfiniteDiff(fun,x,h)
 % Jac : Matrice jacobienne approximé par les différences finies
 %        real(m,n)
 % ------------------------------------
-Jac = 0;
+
+I = eye(size(fun(x), 1), size(x, 1));
+
+        Jac= (fun(x + h*I) - fun(x)) / h;
+
 end
 
 function Jac = centredfiniteDiff(fun, x, h)
@@ -186,7 +190,11 @@ function Jac = centredfiniteDiff(fun, x, h)
 % Jac : Matrice jacobienne approximé par les différences finies
 %        real(m,n)
 % ------------------------------------
-Jac = 0;
+
+I = eye(size(fun(x), 1), size(x, 1));
+Jac= (fun(x + h*I) - fun(x-h*I)) / (2*h);
+
+
 end
 
 function Jac = derivee_complexe(fun, x,h)
@@ -203,7 +211,9 @@ function Jac = derivee_complexe(fun, x,h)
 % Jac : Matrice jacobienne approximé par les différences finies
 %        real(m,n)
 % ------------------------------------
-Jac = 0;
+I = eye(size(fun(x), 1), size(x, 1));
+Jac = imag( fun(x + 1i * h*I)) / h;
+
 end
 
 

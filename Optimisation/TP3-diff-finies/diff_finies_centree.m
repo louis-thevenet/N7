@@ -18,7 +18,12 @@ function Jac= diff_finies_centree(fun, x, option)
 % Jac : Matrice jacobienne approximé par les différences finies
 %        real(m,n)
 % ------------------------------------
-Jac = 0;
+    w = max(power(10, -16), power(10, -option(1)));
+    h = power(w, 1/3) * max(ones(size(x, 1)), abs(x))  .*sgn(x);
+    I = eye(size(x, 1), 1);
+    for i=1:size(x, 1)
+        Jac(:, i) = (fun(x+h .* I) - fun(x-h .* I) ) ./ (2*h(i));
+    end
 end
 
 function s = sgn(x)

@@ -78,7 +78,7 @@ True_Jacobienne = false; % false : approximation par différence finies
 % Liste pour le choix de la méthode de différences
 list_diff_finies = {'avants','centrees'};
 %%%%% MODIFIER LE NUMERO APRES AVOIR CODE LA FONCTION ASSOCIEE DANS LE FICHIER ASSOCIE %%%%%%%%%%%
-methode_finite_diff = list_diff_finies{1};
+methode_finite_diff = list_diff_finies{2};
 
 
 % On trace la courbe de départ
@@ -94,7 +94,7 @@ text(beta0(1),beta0(2),'o point de depart')
 % 
 disp('Algorithme de Gauss-Newton')
 if ~True_Jacobienne
-	ndigits = 9; % précision ndigits
+	ndigits = 15; % précision ndigits
 	fprintf("ndigits %d \n", ndigits)
 end
 disp( strcat('Vraie Jacobienne = ' , sprintf(' %d', True_Jacobienne) ) )

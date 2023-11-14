@@ -106,19 +106,108 @@ Solution
 ]
 
 
-
-
-
 = Tests Statistiques
+
+#definition[ Tests statistiques
+
+- Observations :
+    -  $X_1, dots, X_n$ $n$ VA ie.d.
+    - #vraisemblance
+
+- Hypothèses
+ - Hypothèses simples : $H_0 : theta=theta_0$, $H_1 : theta=theta_1$
+ - Hypotyhèse composites $H_0 : theta = theta_0$, $H_1 : theta>theta_0$
+
+Constuire une statistique de test $T(X_1, dots, X_n)$
+Règle de test : $cases("si" T(x_1, dots, x_n) in Delta : "rejet" H_0, "sinon accepter" H_0)$
+
+$Delta$ : zone critique de test = zone de rejet de $H_0$
+]
+
 #definition[
     - Risque de première espèce (fausse alarme) : $alpha="PFA"=P["Rejeter" H_0 bar H_0 "vraie"]$
     - Risque de seconde espèce (non détection) : $beta = "PND" = P["Rejeter" H_1 bar H_1 "vraie"]$
     - Puissance du test (proba de détection) : $pi = 1-beta$
 ]
-Pour faire un test, on a $H_0, H_1$ etc bien posées
 
-Statistique du test ? $T(x_1, dots, x_n)$
+#definition[ p-valeur
 
-Règle du test : $equiv$ zone critique
+La proba de fausse alarme la plus petite telle qu'on rejette le test, i.e. la plus petite valeur de $alpha$ telle que $H_0$ est rejetée.
 
-ex1 : si $T(x_1, dots, x_n) cases(> S_alpha : "rejet" H_0, < S_alpha : "accepte" H_0)$
+$ p(x) = inf { alpha in ]0, 1[ bar x in cal(R)_alpha} $
+]
+
+#theorem[ Théorème de Neyman-Pearson
+
+Test paramétrique à hypothèses simples : $H_0 : theta=theta_0$, $H_1 : theta=theta_1$
+
+
+Rejet de $H_0$ si :
+#table(columns:2,[Cas $X_i$ continues], [Cas $X_i$ discètes],[
+
+$ L(x_1, dots, x_n bar H_1) / L(x_1, dots, x_n bar H_0) \ = p(x_1, dots, x_n bar theta_1) / p(x_1, dots, x_n bar theta_0)> S_alpha $
+],
+
+[
+$ L(x_1, dots, x_n bar H_1) / L(x_1, dots, x_n bar H_0) \ = P[X_1=x_1, dots, X_n=x_n bar theta_1]/P[X_1=x_1, dots, X_n=x_n bar theta_0] > S_alpha $
+
+])
+]
+
+#example[ $X_i tilde cal(P)(lambda)$
+
+    Règle du test : si $T = Sigma X_i > S_alpha$ alors rejet $H_0$ \
+    $arrow.squiggly$ zone critique du test : $Delta =]S_alpha, + infinity[$
+
+    Détermination du seuil :  \
+    $alpha = P["rejeter" H_0 bar H_0 "vraie"]=P[T=Sigma X_i > S_alpha bar space quest]$ \
+    où ? représente la loi de $T$ sous $H_0$ (on aurait $lambda = lambda_0$)
+
+    Loi de $T$ ? \
+    avec $T = Sigma X_i$, $X_i tilde cal(P)(lambda)$ iid
+
+    On calcule la F.C. :
+    $ Phi_T (u) &= E[e^(i T u)] \
+    &=product_(i=1)^n E[e^( j u Sigma X_i)] \
+    &= e^(n lambda (e^(j u) - 1))
+    $
+
+    Ainsi $ T tilde cal(P) (n lambda) $
+    Donc :
+    - Sous $H_0$ : $T tilde cal(P) (n lambda_0)$
+    - Sous $H_10$ : $T tilde cal(P) (n lambda_1)$
+
+    Puis
+    #grid(columns : 2, gutter : 15%,
+        [$ alpha &= P[T > S_alpha bar T tilde cal(P) (n lambda_0)] \
+        &= 1 - P[T < S_alpha  bar T tilde cal(P) (n lambda_0)] \
+        &= 1 - Sigma(k=0)^("Plan"(S_alpha)) (( n lambda_0)^k / k!) e^(-n lambda_0) $],
+        [
+            Et avec $alpha = 5%$
+
+            $95% ? space +cases(k=0 : e^(-lambda_0 n), k=1 : (n lambda_0)/1 e^(-lambda_0 n), k=2 : (n lambda_0)^2 / 2!   e^(n lambda_0))$
+
+            Généralement on utilise un calculateur
+        ]
+    )
+]
+
+
+#theorem[ Test du rapport de vraisemblance généralisé (Neyman Pearson pour hypothèses composites)
+
+    #sub("Très compliqué à la main, on le fera sûrement pas en TD (ni partiel en théorie)")
+
+    Test paramétrique à hypothèses composites : $H_0 : theta in Theta_0$, $H_1 : theta in Theta_1$
+
+
+    Rejet de $H_0$ si :
+
+    $ L(x_1, dots, x_n bar hat(theta)_1^op("MV")) / L(x_1, dots, x_n bar hat(theta)_0^op("MV")) > S_alpha $
+
+    où $hat(theta)_0^op("MV")$ et $hat(theta)_1^op("MV")$ sont les estimateurs du maximum de vraisemblance de $theta$ sous les hypothèses $H_0$ et $H_1$
+
+    $L(x_1, dots, x_n bar hat(theta)_i^op("MV")) = sup_(theta in Theta_i) L(x_1, dots, x_n bar theta)$
+]
+
+= Au partiel
+- Faire un test de Neymann Pearson, consuire une stat etc

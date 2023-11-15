@@ -62,6 +62,11 @@ La tribu trace de $cal(B)(E)$ sur $X$ définie par $tr(cal(B))={B sect X bar B i
     - Si $(E_2, cal(A)_2) = (RR, cal(B)(RR))$, on parle de fonctions *mesurables*
 ]
 
+#method[
+    $f$ est mesurable de $(E_1, cal(A)_1)$ dans $(E_2, cal(A)_2)$ si
+    $ forall B in cal(A)_2, f^(-1)(B) = {x in E_1 bar f(x) in B} in cal(A)_1 $
+]
+
 #theorem[ Critères de mesurabilité
 
 - $cal(C)$ une classe de parties d'un ensemble $F$, i.e. $cal(C) subset cal(P)(F)$, $B := sigma(cal(C))$
@@ -75,7 +80,7 @@ $ f:(E, cal(A)) -> (F, cal(B)) "mesurable" <=> f^(-1) (cal(C)) subset cal(A) $
 - $f : [a,b] -> RR$ cpm $(a<b in RR)$, alors $f$ mesurable de $([a,b], cal(B)([a,b]))$ dans $(RR, cal(B)(RR))$
 ]
 
-// #example[ Preuve du 3
+// #example[ Preuve de point 3 (que je laisse juste pour Nouloun)
 
 //     On sait que $f$ est $cal(C)^(0)(cal(O)_2) subset cal(O)_1$ \
 //     On veut montrer que $f(sigma(cal(O)_2)) subset sigma(cal(O)_1)$ \
@@ -105,6 +110,13 @@ Soit $(E, cal(A))$ un espace mesurable. on appelle *mesure* sur $(E, cal(A))$ un
 + $forall A_1, A_2, dots, A_n in cal(A)$ 2 à 2 disjoints : $mu(limits(union.sq.big)_n A_n) = limits(sum)_n mu(A_n)$ ($sigma$-additivité)
 ]
 
+#method[ Montrer que $mu$ est une mesure
+
+- existence
+- $mu(emptyset)=0$
+- $sigma$-additivité
+]
+
 #definition[ Espace mesuré
 
 Soit $(E, cal(A))$ un espace mesurable et $mu$ une mesure dessus.\
@@ -118,16 +130,16 @@ On appelle Soit $(E, cal(A), mu)$ *espace mesuré*.
 + *$sigma$-finie* si $ exists (A_n)_n in cal(A)^(NN) bar E = union.big_n A_n $ et $mu(A_n)< + infinity forall n$
 ]
 
-// #example[ Exercice 2.3.3.
+#example[ Exercice 2.3.3. du cours que je laisse pour Nouloun
 
-//     - $mu(emptyset) = 1$ car $emptyset$ est dénombrable
-//     - Soient $A_1, dots, A_n in cal(A)$ 2 à 2 disjoints \
-//         On a $A_i$ et $A_j$ dénombrables et disjoints donc $A_i union A_j$ dénombrable \
-//         Donc $mu(A_i union A_j) = 0 = 0 + 0 = mu(A_i) + mu(A_j)$ \
-//         Donc $mu(union.big_n (A_n)) = sum_n (mu(A_n))$
+    - $mu(emptyset) = 1$ car $emptyset$ est dénombrable
+    - Soient $A_1, dots, A_n in cal(A)$ 2 à 2 disjoints \
+        On a $A_i$ et $A_j$ dénombrables et disjoints donc $A_i union A_j$ dénombrable \
+        Donc $mu(A_i union A_j) = 0 = 0 + 0 = mu(A_i) + mu(A_j)$ \
+        Donc $mu(union.big_n (A_n)) = sum_n (mu(A_n))$
 
-//     Donc $mu$ est une mesure
-// ]
+    Donc $mu$ est une mesure
+]
 
 #let espace_mesure = $(E, cal(A), mu)$
 #definition[ Pour #espace_mesure un espace mesuré.
@@ -213,12 +225,28 @@ Si $integral_E phi dd(mu) < + infinity$, on dit que *$f$ est intégrable*
 
 Si $(f_n)_n$ est une suite croissante de $cal(M)_+ (cal(A))$, alors $f := lim_(n -> infinity) f_n in cal(M)_+ (cal(A))$ et
 
-$ integral_E f dd(mu) = lim_(n -> infinity) integral_E f_n dd(mu) $
+$ integral_E f dd(mu) = integral_E (lim_(n-> + infinity) f_n) dd(mu) = lim_(n -> infinity) integral_E f_n dd(mu) $
 
 Utilité : On veut calculer l'intégrale de $f$, on sait pas faire, on peut faire l'intégrale des $f_n$ puis passer à la limite.
 ]
 
+#corollary[
+    Pour toute suite $(f_n) in cal(M)_+$ : $sum_n f_n in cal(M)_+$ et
+    $ integral_E (sum_n f_n) dd(mu) = sum_n (integral_E f_n dd(mu)) $
+]
 
+#proposition[
+    $forall f in cal(M)_+ : integral_E f dd(mu)=0 <=> mu({f != 0})=0$
+]
 
+= Intégration
+#let int(f) = $integral_E f dd(mu)$
+#definition[ Intégrale d'une fonction de $cal(M)(cal(A), cal(B)(RR))$
+
+$ #int($f$) = #int($f^+$) + #int($f^-$) $
+]
+
+#proposition[ $f in cal(L)^1 <=> abs(#int($f$)) <= #int($abs(f)$) < + infinity$
+]
 = Au partiel (d'après le prof)
 - à l'examen, est-ce que l'indicatrice est mesurable pour un $(E, cal(A))$ donné (voir exemple 2.2.1)

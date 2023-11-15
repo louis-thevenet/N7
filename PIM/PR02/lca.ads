@@ -70,9 +70,9 @@ private
     type T_Cellule;
 	type T_LCA is access T_Cellule;
     type T_Cellule is record
-        Cle : T_Cle;
+        Cle : T_Cle;  -- Cle > 0
         Valeur: T_Valeur;
         Suivant: T_LCA;
     end record;
-
+    -- Invariant : les clées sont toutes différentes
 end LCA;

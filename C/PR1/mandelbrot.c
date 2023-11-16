@@ -26,4 +26,5 @@ int mandelbrot(complexe_t z0, complexe_t c, double seuil, int maxit)
         ajouter(&zn, zn, c);
         i++;
     }
+    return i;
 }

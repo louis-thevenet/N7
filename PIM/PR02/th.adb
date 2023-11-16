@@ -66,7 +66,9 @@ procedure Afficher_Debug (Sda : in T_TH) is
     procedure Afficher_Debug_LCA is new LCA_TH.Afficher_Debug(Afficher_Cle, Afficher_Donnee);
 begin
     for I in 1..Taille_TH+1 loop
+        Put(I);
         Afficher_Debug_LCA(Sda(I));
+        New_Line;
     end loop;
 end Afficher_Debug;
 

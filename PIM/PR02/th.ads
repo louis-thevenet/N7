@@ -1,3 +1,5 @@
+with Ada.Text_IO;           use Ada.Text_IO;
+with Ada.Integer_Text_IO;   use Ada.Integer_Text_IO; -- Pour Afficher_Debug
 with LCA;
 -- Définition de structures de données associatives sous forme d'un tableau contenant des LCA
 generic

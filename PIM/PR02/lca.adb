@@ -124,6 +124,7 @@ package body LCA is
    	procedure Afficher_Debug (Sda : in T_LCA) is
     begin
         if (Est_Vide(Sda)) then
+            Put("--E");
             return;
         end if;
         Put("-->[");

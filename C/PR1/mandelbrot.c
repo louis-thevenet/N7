@@ -20,7 +20,7 @@ int mandelbrot(complexe_t z0, complexe_t c, double seuil, int maxit)
 {
     complexe_t zn = z0;
     int i = 0;
-    while (module(zn) - seuil < 1e-6 || i > maxit)
+    while (module(zn) - seuil < 1e-6 && i < maxit)
     {
         multiplier(&zn, zn, zn);
         ajouter(&zn, zn, c);

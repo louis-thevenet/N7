@@ -1,5 +1,5 @@
-Groupe   :
-Nom 1    :
-Prénom 1 :
+Groupe   : F
+Nom 1    : Thevenet
+Prénom 1 : Louis
 Nom 2    :
 Prénom 2 :

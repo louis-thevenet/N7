@@ -51,22 +51,36 @@ procedure Test_TH is
 		New_Line;
 	end Afficher;
 
-	-- Afficher la Sda.
-	procedure Afficher is
-		new Pour_Chaque (Afficher);
-	--
+    -- Afficher la Sda.
+    procedure Afficher is
+        new Pour_Chaque (Afficher);
 
-	Nb_Cles : constant Integer := 7;
-	Cles : constant array (1..Nb_Cles) of Unbounded_String
-			:= (+"un", +"deux", +"trois", +"quatre", +"cinq",
-				+"quatre-vingt-dix-neuf", +"vingt-et-un");
-	Inconnu : constant  Unbounded_String := To_Unbounded_String ("Inconnu");
 
-	Donnees : constant array (1..Nb_Cles) of Integer
-			:= (1, 2, 3, 4, 5, 99, 21);
-	Somme_Donnees : constant Integer := 135;
-	Somme_Donnees_Len4 : constant Integer := 7; -- somme si Length (Cle) = 4
-	Somme_Donnees_Q: constant Integer := 103; -- somme si initiale de Cle = 'q'
+    procedure Afficher_Avec_Guillemets (S : in Unbounded_String) is
+    begin
+        Put (Avec_Guillemets (S));
+    end Afficher_Avec_Guillemets;
+
+    procedure Afficher (N: in Integer) is
+    begin
+        Put (N, 1);
+    end;
+
+    procedure Afficher_Interne is
+        new Afficher_Debug(Afficher_Avec_Guillemets, Afficher);
+    --
+
+    Nb_Cles : constant Integer := 7;
+    Cles : constant array (1..Nb_Cles) of Unbounded_String
+            := (+"un", +"deux", +"trois", +"quatre", +"cinq",
+                +"quatre-vingt-dix-neuf", +"vingt-et-un");
+    Inconnu : constant  Unbounded_String := To_Unbounded_String ("Inconnu");
+
+    Donnees : constant array (1..Nb_Cles) of Integer
+            := (1, 2, 3, 4, 5, 99, 21);
+    Somme_Donnees : constant Integer := 135;
+    Somme_Donnees_Len4 : constant Integer := 7; -- somme si Length (Cle) = 4
+    Somme_Donnees_Q: constant Integer := 103; -- somme si initiale de Cle = 'q'
 
 
 	-- Initialiser l'annuaire avec les Donnees et Cles ci-dessus.

@@ -248,5 +248,25 @@ $ #int($f$) = #int($f^+$) + #int($f^-$) $
 
 #proposition[ $f in cal(L)^1 <=> abs(#int($f$)) <= #int($abs(f)$) < + infinity$
 ]
+
+= Théorèmes limites et applications
+#theorem[ Convergence monotone
+
+Soit $(E, cal(A), mu) $ un espace mesuré et $(f_n) in cal(M)(cal(A), cal(B)(RR)^(NN))$
+
+On suppose que :
+- $exists g in cal(M)_+$ intégrable sur $E$ telle que $forall n in NN : abs(f_n) <= g$ $mu$-pp
+
+- $f_n limits(-->)^"p.p." f$, $f$ mesurable
+
+Alors, on a :
++ $#int($abs(f_n)$) < + infinity$, i.e. $f in L^1 (E, cal(A), mu)$
++ $lim_n #int($abs(f_n -f )$) = lim_n norm(f_n-f)_1=0$
++ $#int($f$) = lim_n #int($f_n$)$
+
+]
+
 = Au partiel (d'après le prof)
 - à l'examen, est-ce que l'indicatrice est mesurable pour un $(E, cal(A))$ donné (voir exemple 2.2.1)
+- il peut mettre des exemples du cours mais surtout des exos de TD
+- il a déjà mis exemple 5.3.1 par exemple

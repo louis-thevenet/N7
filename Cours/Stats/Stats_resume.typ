@@ -195,7 +195,7 @@ $ L(x_1, dots, x_n bar H_1) / L(x_1, dots, x_n bar H_0) \ = P[X_1=x_1, dots, X_n
 
 #theorem[ Test du rapport de vraisemblance généralisé (Neyman Pearson pour hypothèses composites)
 
-    #sub("Très compliqué à la main, on le fera sûrement pas en TD (ni partiel en théorie)")
+    _#sub("Très compliqué à la main, on le fera sûrement pas en TD (ni partiel en théorie)")_
 
     Test paramétrique à hypothèses composites : $H_0 : theta in Theta_0$, $H_1 : theta in Theta_1$
 
@@ -206,8 +206,10 @@ $ L(x_1, dots, x_n bar H_1) / L(x_1, dots, x_n bar H_0) \ = P[X_1=x_1, dots, X_n
 
     où $hat(theta)_0^op("MV")$ et $hat(theta)_1^op("MV")$ sont les estimateurs du maximum de vraisemblance de $theta$ sous les hypothèses $H_0$ et $H_1$
 
-    $L(x_1, dots, x_n bar hat(theta)_i^op("MV")) = sup_(theta in Theta_i) L(x_1, dots, x_n bar theta)$
+    Remarque : $L(x_1, dots, x_n bar hat(theta)_i^op("MV")) = sup_(theta in Theta_i) L(x_1, dots, x_n bar theta)$
 ]
 
+
+
 = Au partiel
-- Faire un test de Neymann Pearson, consuire une stat etc
+- Faire un test de Neymann Pearson, construire une statistique etc

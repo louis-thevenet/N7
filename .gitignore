@@ -32,7 +32,7 @@ octave-workspace
 # Coq
 .*.aux
 .*.d
-*.a
+#*.a
 *.cma
 *.cmi
 *.cmo

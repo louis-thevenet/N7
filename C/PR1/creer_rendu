@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 filename="rendu"
 fichiers=("complexe.h" "complexe.c" "mandelbrot.c" "A-COMPLETER.txt")

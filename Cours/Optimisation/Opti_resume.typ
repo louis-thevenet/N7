@@ -7,6 +7,7 @@
   date: "October 18, 2023",
 )
 
+
 = Rappels
 == Différentielle d'une composée
 #theorem[ $f, g$ telles que $g compose f$ soit dérivable en $x in Omega$, on a :
@@ -18,10 +19,12 @@ $ forall h in E, (g compose f)'(x).dot h = g'(f(x)) times (f'(x) dot h) $
 #definition[ $a in Omega$, $f : Omega subset bb(R)^n arrow bb(R)$ doublement
 dérivable sur $Omega$:
 
-$ Delta f(a) &= mat(pdv(f, x_1)(a);dots.v;pdv(f, x_n)(a)) \
+$ nabla f(a) &= mat(pdv(f, x_1)(a);dots.v;pdv(f, x_n)(a)) \
 
- Delta²f(a) &= mat(
+ nabla²f(a) &= mat(
   pdv(f, x_1, [2])(a), pdv(f, x_1, x_2)(a), dots, pdv(f, x_1, x_n)(a);dots.v, dots.v, dots.down, dots.v;pdv(f, x_n, x_1)(a), pdv(f, x_n, x_2)(a), dots, pdv(f, x_n, [2])(a)) $
+
+  Voir@cincotti
 ]
 
 == Un autre truc
@@ -45,6 +48,11 @@ $ Delta f(a) &= mat(pdv(f, x_1)(a);dots.v;pdv(f, x_n)(a)) \
 $ f "est convexe " &<==> forall x,y in D_0, f(y)-f(x) >= f'(x)(y-x) \
 f "est strictement convexe" &<==> forall x,y in D_0, x eq.not y, f(y)-f(x) > f'(x)(y-x)\
 f "est uniformément convexe" &<==> forall x,y in D_0, f(y)-f(x) >= f'(x)(y-x) + c norm(y-x)_E^2 $
+
+$ f "est convexe " &<==> forall x in D_0 : f''(x) "est semi-définie postivive" \
+&<==>forall x in D_0 : nabla^2 f(x) "semi-def. pos."\ $
+
+$ forall x in D_0 : f''(x) "ou" nabla^2 f(x) "est définie postivive" => f "est strictement convexe" $
 ]
 
 = Définitions
@@ -143,3 +151,5 @@ Alors $ f''(x^*)$ est *semi-définie positive*
     - $f'(x^*)=0$
    Alors $x^*$ est un *minimum local* de $f$
 ]
+
+#bibliography("bib_opti_resume.yml")

@@ -67,16 +67,6 @@ Le problème est
 - Convexe si $f$ et $C$ sont convexes
 ]
 
-#definition[ Problème aux moindres carrés
-
-C'est un problème d'optimisation *sans contrainte* où $f$ est de la forme suivante :
-$ f(beta)= 1/2 norm(r(beta))^2 = 1/2 (r(beta) bar r(beta))=1/2 sum_(i=1)^n r_i^2 (beta) $
-
-Le problème est dit *aux moindres carrés linéaires* si $r$ est affine :
-$ r : cases(RR^p &--> RR^n, beta &|-> y - X beta) $
-où $X$ est de taille $(n,p)$ et $y in RR^n$
-
-]
 
 = Existence de solutions
 == Problème avec contraintes $C$
@@ -151,5 +141,39 @@ Alors $ f''(x^*)$ est *semi-définie positive*
     - $f'(x^*)=0$
    Alors $x^*$ est un *minimum local* de $f$
 ]
+
+= Problèmes aux moindres carrés
+#definition[ Problème aux moindres carrés
+
+C'est un problème d'optimisation *sans contrainte* où $f$ est de la forme suivante :
+$ f(beta)= 1/2 norm(r(beta))^2 = 1/2 (r(beta) bar r(beta))=1/2 sum_(i=1)^n r_i^2 (beta) $
+
+Le problème est dit *aux moindres carrés linéaires* si $r$ est affine :
+$ r : cases(RR^p &--> RR^n, beta &|-> y - X beta) $
+où $X$ est de taille $(n,p)$ et $y in RR^n$
+
+]
+== Méthode de Newton
+
+Avec
+$ f(beta)= 1/2 norm(r(beta))^2 = 1/2 sum_(k=1)^n r_i^2 (beta) $
+$ nabla f (beta) &= sum_i r_i (beta) nabla r_i (beta)=J_r (beta)^T r(beta) \
+nabla^2 f(beta) &= sum_i r_i (beta) nabla^2 r_i (beta) + sum_i nabla r_i (beta) nabla r_i (beta)^T \
+&= S(beta)+J_r (beta)^T J_r (beta)
+$
+Algo de Newton :
+- Initialisation
+    - choisir $beta^((0)) in RR^n$
+    - choisir $epsilon > 0$ et `MaxIter`
+    - $k:=0$
+- Corps
+    - Répéter
+        - $beta^((k+1)):=beta^((k)) - [S(beta^((k)))+J_r (beta^((k)))^T J_r (beta^((k)))]^(-1) J_r (beta^((k)))^T r(beta^((k)))$
+        - $k:=k+1$
+    - Jusqu'à ($norm(f(beta^((k)))) < epsilon (norm(f(beta^((0)))+1))$) `ou` ($k=$ `MaxIter`)
+
+== Méthode de Gau\u{DF}-Newton
+La formule de récurrence pour l'algo de Gau\u{DF}-Newton change :
+$ beta^((k+1)) := beta^((k)) - [J_r (beta^((k)))^T J_r (beta^((k)))]^(-1) J_r (beta^((k)))^T r(beta^((k))) $
 
 #bibliography("bib_opti_resume.yml")

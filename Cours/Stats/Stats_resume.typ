@@ -43,14 +43,22 @@ $ L(x_1, dots, x_n; theta) = cases(X_i "VA discrète" P[X_1=x_1, dots, X_n=x_n; 
         + log-vraisemblance deux fois dérivable
         + suport de la loi indépendant de $theta$
 
+BCR d'un estimateur non biaisé : $op("BCR") =1/ E[pdv(ln(L(X_1, dots, X_n; theta)), theta, [2]))]$
 ]
+
+#method[Efficacité
+
+    Un estimateur est *efficace* ssi $"Var"(hat(theta)_n)= op("BCR")$
+]
+
+
 == Maximum de vraisemblance
 #definition[ Maximum de vraisemblance
 
 $ hat(theta)_(op("MV")) = limits(arg max)_theta space L(X_1, dots, X_n; theta) $
 ]
 
-#theorem[ Recherche de $hat(theta)_op("MV")$
+#method[ Recherche de $hat(theta)_op("MV")$
 
 - On cherche $theta$ tel que $pdv(#vraisemblance, theta) = 0$ ou $pdv(ln vraisemblance, theta)=0$
 
@@ -72,11 +80,15 @@ Pour celà on minimise une fonction de coût $c(theta, hat(theta))$ qui représe
 Deux estimateurs principaux :
 - MMSE : moyenne de la loi à posteriori $ hat(theta)_(op("MSEE"))=E[theta bar X_1, dots, X_n] $
 - MAP : estimateur du maximum à posteriori de $theta$ est définie par
-        $ hat(theta)_(op("MAP")) = limits(arg max)_theta space  p(theta bar X_1, dots, X_n) $
+        $ hat(theta)_(op("MAP")) = limits(arg max)_theta space  p(theta bar x_1, dots, x_n) $
 
 On appelle
 - $p(theta)$ loi à *priori* de $theta$
 - $p(theta bar X_1, dots, X_n)$ loi à *posteriori* de $theta$
+]
+
+#method[
+    On peut utiliser $f(theta bar t_1, dots, t_1=n) prop f(t_1, dots, t_n bar theta)f(theta)$
 ]
 
 #theorem[ MMSE

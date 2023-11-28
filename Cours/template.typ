@@ -31,3 +31,5 @@
   body
 }
 
+#let nuplet(x, n) = $#x _1, dots, #x _#n$
+//#let int(f, mes: $mu$) = $integral_E #f dd(mes)$

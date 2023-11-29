@@ -17,10 +17,11 @@ package body LCA is
 	procedure Detruire (Sda : in out T_LCA) is
 	begin
         if Est_Vide(Sda) then
-            return;
+            null;
+        else
+            Detruire(Sda.All.Suivant);
+            Free(Sda);
         end if;
-        Detruire(Sda.All.Suivant);
-        Free(Sda);
     end Detruire;
 
 
@@ -34,8 +35,9 @@ package body LCA is
 	begin
         if Est_Vide(Sda) then
             return 0;
+        else
+            return 1 + Taille(Sda.All.Suivant);
         end if;
-        return 1 + Taille(Sda.All.Suivant);
 	end Taille;
 
 
@@ -51,29 +53,38 @@ package body LCA is
 	end Enregistrer;
 
 
-	function Cle_Presente (Sda : in T_LCA ; Cle : in T_Cle) return Boolean is
-	begin
-		if Est_Vide(Sda) then
-            return false;
+    function Maillon_Existe(Sda : in T_LCA; Cle : in T_Cle) return T_LCA is
+    begin
+        if Est_Vide(Sda) then
+            return Null;
+        elsif Sda.All.Cle = Cle then
+            return Sda;
+        else
+            return Maillon_Existe(Sda.All.Suivant,Cle);
         end if;
-        if Sda.All.Cle = Cle then
+    end Maillon_Existe;
+
+	function Cle_Presente (Sda : in T_LCA ; Cle : in T_Cle) return Boolean is
+    Tmp : T_LCA;
+	begin
+		Tmp := Maillon_Existe(Sda, Cle);
+        if Est_Vide(Tmp) then
+            return false;
+        else
             return true;
         end if;
-
-        return Cle_Presente(Sda.All.Suivant,Cle);
-	end;
+	end Cle_Presente;
 
 
 	function La_Valeur (Sda : in T_LCA ; Cle : in T_Cle) return T_Valeur is
+    Tmp : T_LCA;
 	begin
-		if Est_Vide(Sda) then
+		Tmp := Maillon_Existe(Sda, Cle);
+        if Est_Vide(Tmp) then
             raise Cle_Absente_Exception;
+        else
+            return La_Valeur(Sda.All.Suivant, Cle);
         end if;
-        if Sda.All.Cle = Cle then
-            return Sda.All.Valeur;
-        end if;
-
-        return La_Valeur(Sda.All.Suivant, Cle);
 	end La_Valeur;
 
 
@@ -109,6 +120,8 @@ package body LCA is
 	begin
 		if Est_Vide(Sda) then
             return;
+        else
+            null;
         end if;
 
         begin

@@ -32,4 +32,6 @@
 }
 
 #let nuplet(x, n) = $#x _1, dots, #x _#n$
+#let esp_mes(E, A, mu) = $(#E, cal(#A), #mu)$
+
 //#let int(f, mes: $mu$) = $integral_E #f dd(mes)$

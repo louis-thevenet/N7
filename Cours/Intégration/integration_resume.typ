@@ -266,6 +266,65 @@ Alors, on a :
 
 ]
 
+
+= Intégrales multiples $integral_(E_1 times E_2) f dd((mu_1 times.circle mu_2))$
+== Tribu et mesure produit
+
+#definition[ Mesure produit
+
+    Pour #esp_mes($E_1$,$A_1$, $mu_1$), #esp_mes($E_2$,$A_2$, $mu_2$), on appelle tribu produit sur $E_1 times E_2$ notée $cal(A)_1 times cal(A)_2$ la plus petite tribu contenant les ensembles de la forme $A_1 times A_2$ avec $forall i in {1,2} A_i subset cal(A)_i$
+]
+#let intro_double_esp_mes = $"Pour" #esp_mes($E_1$,$A_1$, $mu_1$), #esp_mes($E_2$,$A_2$, $mu_2$)","$
+#theorem[
+
+#intro_double_esp_mes il existe une unique mesure $m$ sur $(E_1 times E_2, cal(A_1)times.circle cal(A_2))$ vérifiant :
+$ forall (A_1, A_2) in cal(A_1)times cal(A_2) : m(A_1 times A_2)=mu_1 (A_1) mu_2 (A_2) $
+
+Cette mesure est *$sigma$-finie* et est appelée *mesure produit*
+
+On note $m := mu_1 times.circle mu_2$
+]
+== Théorèmes de Fubini
+#theorem[ Fubini-Tonelli
+
+#intro_double_esp_mes où les mesures sont $sigma$-finies. Soit $f : E_1 times E_2 -> RR_+ union {+ infinity}$ *mesurable positive*. On défninit :
+$ phi(x) = integral_E_2 f(x,y) dd(mu_2)(y), psi(y) = integral_E_1 f(x,y) dd(mu_1)(x) $
+
+Elles sont mesurables et positives et on a :
+
+$ integral_E_1 phi dd(mu_1) = integral_(E_1 times E_2) f dd((mu_1 times.circle( mu_2))) = integral_E_2 psi dd(mu_2) $
+
+]
+
+#theorem[ Fubini-Lebesgue
+
+#intro_double_esp_mes où les mesures sont $sigma$-finies. Soit $f : E_1 times E_2 -> RR_+ union {+ infinity}$ *mesurable positive*. On défninit :
+$ phi(x) = integral_E_2 f(x,y) dd(mu_2)(y), psi(y) = integral_E_1 f(x,y) dd(mu_1)(x) $
+
+Si $f$ est $mu_1 times.circle mu_2$ intégrable alors $phi$ et $psi$ sont resp. $mu_1$ intégrable et $mu_2$-intégrable et on a :
+$ integral_E_1 phi dd(mu_1) = integral_(E_1 times E_2) f dd((mu_1 times.circle( mu_2))) = integral_E_2 psi dd(mu_2) $
+
+]
+== Changement de variables
+#theorem[
+
+    $U$ ouvert de $RR^d$ et $phi : U -> RR^d$
+
+    $phi$ réalise un $cal(C)^1$-difféomorphisme de $U$ sur $V=phi(U)$ ssi
+    - $phi$ est $cal(C)^1$ sur $U$
+    - $phi$ est injective
+    - $forall u in U : det(J_phi (u)) != 0$
+]
+#theorem[ Changement de variables
+Pour $U, V$ ouverts de $RR^d$, $phi : U -> V$ un $cal(C)^1$-difféomorphisme et $f : V -> RR$ borélienne sur $V$ intégrable. Alors $f compose phi : U -> RR$ est intégrable et
+$ integral_V f dd(lambda) = integral_U (f compose phi) abs(det(J_phi)) dd(lambda) $
+
+Ne pas oublier la valeur absolue !
+]
+
+= Liens entre dérivée et intégrale
+
+
 = Au partiel (d'après le prof)
 - à l'examen, est-ce que l'indicatrice est mesurable pour un $(E, cal(A))$ donné (voir exemple 2.2.1)
 - il peut mettre des exemples du cours mais surtout des exos de TD

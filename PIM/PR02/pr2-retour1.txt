@@ -1,0 +1,13 @@
+    • Initialiser : OK
+    • Detruire : ATTENTION il faut mettre un else au if pour respecter les règles de programmation. De plus, il s’agit d’une procédure donc il ne faut pas mettre de return, une instruction null est suffisante.
+    • Afficher_Debug : OK mais tu aurais pu utiliser le traitement Pour_Chaque
+    • Est_Vide : OK
+    • Taille : OK
+    • Enregistrer : OK
+    • Cle_Presente : OK mais tu peux utiliser des elsif et else pour respecter les règles de programmation.
+    • La_Valeur : OK mais si tu regardes ta fonction La_Valeur, tu vois que c’est une fonction assez proche de Cle_Presente. 
+Il pourrait alors être intéressant de créer une fonction auxiliaire pour factoriser le code. 
+Par exemple une fonction La_Clef qui te renvoie la valeur de la clef. 
+Cela te permet donc de traiter Cle_Presente et La_Valeur
+    • Supprimer : OK
+    • Pour_Chaque : OK

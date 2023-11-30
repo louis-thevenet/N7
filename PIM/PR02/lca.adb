@@ -53,6 +53,8 @@ package body LCA is
 	end Enregistrer;
 
 
+	-- Renvoie Null si la Cle n'est pas présente dans la liste
+    -- Renvoie le maillon correspondant à la Cle si la Cle est présente
     function Maillon_Existe(Sda : in T_LCA; Cle : in T_Cle) return T_LCA is
     begin
         if Est_Vide(Sda) then

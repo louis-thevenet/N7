@@ -53,40 +53,29 @@ package body LCA is
 	end Enregistrer;
 
 
-	-- Renvoie Null si la Cle n'est pas présente dans la liste
-    -- Renvoie le maillon correspondant à la Cle si la Cle est présente
-    function Maillon_Existe(Sda : in T_LCA; Cle : in T_Cle) return T_LCA is
-    begin
-        if Est_Vide(Sda) then
-            return Null;
-        elsif Sda.All.Cle = Cle then
-            return Sda;
-        else
-            return Maillon_Existe(Sda.All.Suivant,Cle);
-        end if;
-    end Maillon_Existe;
-
 	function Cle_Presente (Sda : in T_LCA ; Cle : in T_Cle) return Boolean is
-    Tmp : T_LCA;
 	begin
-		Tmp := Maillon_Existe(Sda, Cle);
-        if Est_Vide(Tmp) then
+		if Est_Vide(Sda) then
             return false;
-        else
+        end if;
+        if Sda.All.Cle = Cle then
             return true;
         end if;
-	end Cle_Presente;
+
+        return Cle_Presente(Sda.All.Suivant,Cle);
+	end;
 
 
 	function La_Valeur (Sda : in T_LCA ; Cle : in T_Cle) return T_Valeur is
-    Tmp : T_LCA;
 	begin
-		Tmp := Maillon_Existe(Sda, Cle);
-        if Est_Vide(Tmp) then
+		if Est_Vide(Sda) then
             raise Cle_Absente_Exception;
-        else
-            return La_Valeur(Sda.All.Suivant, Cle);
         end if;
+        if Sda.All.Cle = Cle then
+            return Sda.All.Valeur;
+        end if;
+
+        return La_Valeur(Sda.All.Suivant, Cle);
 	end La_Valeur;
 
 

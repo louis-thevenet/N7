@@ -108,15 +108,16 @@ Le problème est
 === Cas $f$ convexe sur $C$
 #proposition[
 - $forall y in C, f'(x^*)(y-x) >=0$ si
-    - $f$ définie sur un ouvert convexe C
+    - $f$ convexe sur un ouvert convexe C
     - $x^*$ minimum local sur $C$
     - $f$ dérivable en $x^*$
 
 
-- Si $f$ est dérivable en tout point de $C$, ces conditions sont *équivalentes* :
+- Si $f$ est dérivable et convexe en tout point de $C$, ces conditions sont *équivalentes* :
   + $x^*$ minimum local sur $C$
   + $x^*$ minimum global sur $C$
   + $forall y in C, f'(x^*)(y-x)>=0$
+(la condition devient suffisante)
 ]
 == Second ordre
 === Condition nécessaire

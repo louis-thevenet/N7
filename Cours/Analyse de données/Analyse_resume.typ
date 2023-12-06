@@ -61,5 +61,34 @@ $ d^* (x) = a_j <=> forall k in [|1, dots, K|] : P(w_j bar x)>=P(w_k bar x) $
     $ P_e = sum_(k=1)^K P[d(x) = a_k sect x in.not w_k] $
 ]
 
-= ACP - Analyse en Composantes Principales
+= Support Vector Machine (SVM)
 
+Ici on associe des $1$et $-1$ et on définit un hyperplan (une droite par exemple)
+#definition[
+    $ cal(B) = {(x_1, _1), dots, (x_n, y_n)} $
+    où $x_1, dots, x_n in (RR^p)^n$ et $y_1, dots, y_n$ sont booléens tels que
+
+    $ forall i in [|1, dots, n|] y_i = cases(1 "si" x_i in w_1, -1 "si" x_i in w_2) $
+
+    L'hyperplan : $g_(w,b) (x) = w^T x - b =0$
+
+    avec $ g_(w,b) (x_i) cases(> 0 "si" x_i in w_1, <0 "si" x_i in w_2) $
+
+    On classifie de la manière suivante : $f(x)= op("sign") [g_(w,b) (x)]$
+]
+
+#definition[ Formulation du problème (hyperplan séparateur optimal)
+
+Marge de $x_i$ avec label $y_i$ (distance à l'hyperplan) :
+$ gamma_i (tilde(w)) = gamma_i(w,b) = (y_i (w^T x_i - b) / norm(w)) $
+
+Marge du set de donnée : $gamma_(cal(B)) (tilde(w))= min_i gamma_i (tilde(w))$
+]
+#theorem[ Primal formulation
+
+$ cases(min_(w in RR^n, b in RR) 1/2 norm(w)^2, forall i in [|1, dots, n|] : y_i (w^T x_i - b )>= 1) $
+
+Car on veut maximiser $gamma_(cal(B)) (tilde(w)) = 1/norm(w)$
+
+On maximise le min des distances à l'hyperplan
+]

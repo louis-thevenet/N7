@@ -8,6 +8,7 @@
     "MARTIN Nolann",
   ),
 )
+#let mettre_en_grille(fig1, fig2) = grid(columns: 2, gutter: 20pt,fig1,fig2)
 
 = Introduction
 *à toi de jouer nouloun*
@@ -28,6 +29,8 @@ avec
 - $u(t) = u_e + K (x(t) - x_e)$
 - $K=(k_1, k_2)$
 
+#pagebreak()
+
 === Contrôle par retour d'état
 Le *contrôle par retour d'état* $u(t) = u_e + K (x(t) - x_e)$ évalue l'écart entre $x(t)$ et le point d'équilibre recherché $x_e$, $u_e$ représente la consigne au point d'équilibre et $K=(k_1, k_2)$ sont les paramètres du contrôle.
 
@@ -40,36 +43,44 @@ Le *contrôle par retour d'état* $u(t) = u_e + K (x(t) - x_e)$ évalue l'écart
 
 #let caption_fig_1(x0, tf, K, int) = $#square(fill: orange, size: 10pt) : alpha(t)$+", " + $#square(fill: blue, size: 10pt) : u(t)$ + table(columns: 4, [$x_0$], [$t_f$], [$K$], [Intégrateur], [#x0], [#tf], [#K], [#int])
 
-#figure(image("FigsTP2/Fig1.1.png"), caption : caption_fig_1($(pi/20,0)$, $10$, $(30, 10)$, "ode45"))
-
-Sur cette première image, on constate que le temps de simulation est trop court pour que le système converge.
-
-
-#figure(image("FigsTP2/Fig1.2.png"), caption : caption_fig_1($(pi/20,0)$, $100$, $(10, 1)$, "ode45")) <tp2-1.2>
-
-Avec un temps de simulation plus long, et des valeurs de $k_1$ et $k_2$ inférieures, le système converge vers le point d'équilibre $x_e = (0,0)$.
-
 On sait qu'il suffit d'avoir $cases(k_1 > g, k_2 > 0)$ afin de contrôler asymptomatiquement le système lorsque $(alpha_0, dot(alpha_0))$ est suffisamment proche de $x_e$.
 
 
-#figure(image("FigsTP2/Fig1.3.png"), caption : caption_fig_1($(pi/20,0)$, $100$, $(10,1)$, "Euler, ode1"))
+#mettre_en_grille([
+
+#figure(image("FigsTP2/Fig1.1.png"), caption : caption_fig_1($(pi/20,0)$, $10$, $(30, 10)$, "ode45"))
+
+Sur cette première image, on constate que le temps de simulation est trop court pour que le système converge.
+],
+[
+#figure(image("FigsTP2/Fig1.2.png"), caption : caption_fig_1($(pi/20,0)$, $100$, $(10, 1)$, "ode45")) <tp2-1.2>
+
+Avec un temps de simulation plus long, et des valeurs de $k_1$ et $k_2$ inférieures, le système converge vers le point d'équilibre $x_e = (0,0)$.
+])
+
+
+#mettre_en_grille([#figure(image("FigsTP2/Fig1.3.png"), caption : caption_fig_1($(pi/20,0)$, $100$, $(10,1)$, "Euler, ode1"))
 
 L'intégrateur `ode1 (Euler)` trouve une solution proche de celle de l'intégrateur `ode45` pour les mêmes $x_0$ et $K$ (voir @tp2-1.2). Cependant, on constate que l'intégrateur `ode1` est moins précis que `ode45` et il faut un temps de simulation plus long pour qu'il soit asymptotiqment contrôlé.
-
+],
+[
 
 
 #figure(image("FigsTP2/Fig1.4.png"), caption : caption_fig_1($(pi/20,0)$, $1000$, $(10, 1)$, "Euler, ode1"))
 
 Pour un temps de simulation plus long $t_f = 1000$, on constate que l'intégrateur `ode1` produit une erreur numérique en fin de simulation, le système diverge.
+])
 
+
+#mettre_en_grille([
 #figure(image("FigsTP2/Fig1.5.png"), caption : caption_fig_1($(pi/10,0)$, $100$, $(10,1)$, "ode45"))
 
 Pour cette condition initiale, on constate une neouvelle fois une erreur numérique dans la solution, le pendule peut tourner sur lui-même dans ce cas et le système n'est jamais contrôlé asymptotiquement.
-
+],[
 #figure(image("FigsTP2/Fig1.6.png"), caption : caption_fig_1($(pi/10,0)$, $100$, $(30, 10)$, "ode45"))
 
 En augmentant les valeurs de $k_1$ et $k_2$, le système est de nouveau contrôlé asymptotiquement.
-
+])
 
 
 
@@ -77,25 +88,34 @@ En augmentant les valeurs de $k_1$ et $k_2$, le système est de nouveau contrôl
 === Simulation d'un capteur et d'un prédicteur
 #let caption_fig_2(x0, tf, K, pas,int) = $#square(fill: orange, size: 10pt) : alpha(t)$+", " + $#square(fill: blue, size: 10pt) : u(t)$ + table(columns: 5, [$x_0$], [$t_f$], [$K$], [Pas], [Intégrateur], [#x0], [#tf], [#K], [#pas], [#int])
 
-Ici on suppose que l'on a accès qu'à $dot(alpha)$ et on reconstruit $alpha$ grâce à des sous systèmes capteur et prédicteur
+Ici on suppose que l'on a accès qu'à $dot(alpha)(t)$ et on reconstruit $alpha(t)$ grâce à des sous-systèmes capteur et prédicteur
 
 #figure(image("FigsTP2/System2.png"), caption: "Schéma Simulink du système contrôlé par retour d'état avec capteur et prédicteur")
 
-Le bloc Capteur ne garde que la composante $dot(alpha)$ de $x$ et le bloc Prédicteur reconstruit $alpha$ à partir de $dot(alpha)$. On peut alors utiliser le même contrôle par retour d'état que précédemment.
+Le bloc Capteur ne garde que la composante $dot(alpha)(t)$ de $x(t)$ et le bloc Prédicteur reconstruit $alpha(t)$ à partir de $dot(alpha)(t)$. On peut alors utiliser le même contrôle par retour d'état que précédemment.
 
 ==== Résultats pour le contrôle par retour d'état avec capteur et prédicteur
 
-#figure(image("FigsTP2/Fig2.1.png"), caption : caption_fig_2($(pi/20,0)$, $100$, $(10, 1)$, "par défaut", "ode45"))
+#caption_fig_2($(pi/20,0)$, $100$, $(10, 1)$, "Pas", "Euler, ode1")
 
-On retrouve une solution semblable à celle obtenue à sur la @tp2-1.2 avec un nombre de points limité.
+#grid(columns: 2, gutter : 15pt,[
+#figure(image("FigsTP2/Fig2.1.png"), caption : "Pas = par défaut") <fig2.1>
+],
+[
 
+#figure(image("FigsTP2/Fig2.2.png"), caption : "Pas " + $=0.001$) <fig2.2>
 
-#figure(image("FigsTP2/Fig2.2.png"), caption : caption_fig_2($(pi/20,0)$, $100$, $(10, 1)$, $0.001$, "Euler, ode1"))
+])
 
-Pour un pas très faible, l'intégrateur `ode1 (Euler)` renvoie une solution visuellement proche de la solution continue
+#figure(image(height : 10%,"FigsTP2/Fig2.3.png"), caption : "Pas " + $=5$) <fig2.3>
 
-#figure(image("FigsTP2/Fig2.3.png"), caption : caption_fig_2($(pi/20,0)$, $100$, $(10, 1)$,$5$, "Euler, ode1"))
-Avec un tel pas, le nombre de points qui forment la solution est très faible. On perd en précision mais on gagne en temps de calcul. L'allure de la solution est toujours reconnaissable.
+Dans la @fig2.1, on retrouve une solution semblable à celle obtenue à sur @tp2-1.2 avec un nombre de points limité.
+
+Dans la @fig2.2, le pas est très faible, l'intégrateur `ode1 (Euler)` renvoie une solution visuellement proche de la solution continue
+
+Dans la @fig2.3, le nombre de points qui forment la solution est très faible. On perd en précision mais on gagne en temps de calcul. L'allure de la solution est toujours reconnaissable.
+
+Le cas @fig2.1 est le plus pertinent pour une simulation numérique, il permet d'avoir une solution précise et rapide à calculer.
 
 #pagebreak()
 

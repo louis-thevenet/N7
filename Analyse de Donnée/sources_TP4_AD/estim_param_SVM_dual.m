@@ -5,16 +5,17 @@ n = size(X, 1);
 H = diag(Y)*(X*X')*diag(Y);
 A = [];
 b = [];
-Aeq = ones(n,1)';
-beq = 1;
+Aeq = Y';
+beq = 0;
 [alpha,~,code_retour] = quadprog(H, -ones(n, 1),A,b,Aeq, beq, zeros(n,1), []);
 
 
-w = X' * diag(Y)* alpha;
 
 
-X_VS = (alpha > 1e-6).*X;
-X_VS(X_VS>1e-6)=[];
+X_VS = X(alpha > 1e-6, :);
+Y_VS = Y(alpha > 1e-6);
+alpha_VS = alpha(alpha > 1e-6);
+w = X_VS' * diag(Y_VS)* alpha_VS;
 
-c=w'*X(1)-Y(1);
+c=w'*X_VS(1,:)'-Y_VS(1);
 end

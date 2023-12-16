@@ -6,7 +6,7 @@
   set document(author: authors, title: title)
   set page(numbering: "1", number-align: center)
   set text(font: "New Computer Modern", lang: "fr")
-    set heading(numbering: "1.1.")
+    set heading(numbering: "I - 1.1")
   show math.equation: set text(weight: 400)
 
   // Title row.
@@ -26,7 +26,8 @@
     ),
   )
 
-  outline(depth: 3, indent: true)
+  outline(depth: 4, indent: true)
+pagebreak()
   // Main body.
   set par(justify: true)
 

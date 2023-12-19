@@ -30,15 +30,17 @@ $ (S'): cases(
   x_2 (0) = x_(0,2) = dot(alpha_0),
 ) $
 
-Et
-$ (S') <=> A x + B u, space space  A = mat(0,1; g/l, 0), space B = mat(0;-1/l) $
+Et se réécrit
+$ (S') : cases(A x + B u,  x_0 = mat(alpha_0; dot(alpha_0))) $
+avec $ A = mat(0,1; g/l, 0), B = mat(0;-1/l) $
 
 On peut alors calculer les valeurs propres de $A$.
 $ cases(tr(A) = 0,det(A) =-g/l) => "Sp"(A) = {-sqrt(g/l), sqrt(g/l)} $
 
+Ainsi, pour $K=(k_1, k_2) in RR^2$,
 $ A-B K = mat(0,1; g/l,0) - mat(0;-1/l) mat(k_1,k_2) = mat(0,1; g/l - k_1, -k_2/l) $
 
-Les paramètres $k_1$ et $k_2$ du contrôle par retour d'état sont choisis tels que les valeurs propres de $A-B K$ soient à parties réelles strictement négatives afin que le système soit asymptotiquement contrôlé.
+Les paramètres $k_1$ et $k_2$ du contrôle par retour d'état sont choisis tels que les valeurs propres de $A-B K$ soient à *parties réelles strictement négatives* afin que le système soit asymptotiquement contrôlé.
 
 Après calcul des valeurs propres de $A-B K$ on obtient donc la condition suivante :
 #align(center)[#rect(stroke: red)[$ k_1 >g "et" k_2 > 0 $]]
@@ -121,6 +123,7 @@ Le *contrôle par retour d'état* $u(t) = u_e + K (x(t) - x_e)$ évalue l'écart
     système diverge.],
 )
 
+#pagebreak()
 #mettre_en_grille(
   [
     #figure(
@@ -144,6 +147,7 @@ Le *contrôle par retour d'état* $u(t) = u_e + K (x(t) - x_e)$ évalue l'écart
 )
 
 Ces courbes confirment les résultats théoriques obtenus précédemment. En effet, on constate que lorsque $k_1 >g "et" k_2 > 0 $, le système est asymptotiquement contrôlé. On a aussi pu explorer les limites du modèle continu structuré en rencontrant quelques cas d'erreurs numériques.
+
 
 === Simulation d'un capteur et d'un prédicteur
 #let caption_fig_2(x0, tf, K, pas, int) = $#square(fill: orange, size: 10pt) : alpha(t)$ + ", " + $#square(fill: blue, size: 10pt) : u(t)$ + table(
@@ -223,7 +227,7 @@ K = -place(A,B,V);
 ```
 //typstfmt::on
 ]
-
+#pagebreak()
 ==== Résultats pour le contrôle par retour d'état
 #let caption_fig_3(x0, tf, K, int) = $x(t)$ + table(columns: 4, [$x_0$], [$t_f$], [$K$], [Intégrateur], [#x0], [#tf], [#K], [#int])
 
@@ -242,7 +246,6 @@ Lorsque $dot(theta)(0)=pi/5$, le système converge rapidement vers l'équilibre.
 
 Lorsque $dot(theta)(0)=pi/10$, l'allure de la solution reste la même et le système est toujours contrôlé asymptomatiquement.
 
-#pagebreak()
 === Introduction du capteur et du prédicteur
 On suppose que l'on a accès qu'à $dot(psi)(t)$ et $theta(t)$ et on reconstruit $x(t)=(theta(t), dot(theta)(t), psi(t), dot(psi)(t))$ par un sous-système prédicteur.
 
@@ -250,7 +253,6 @@ On suppose que l'on a accès qu'à $dot(psi)(t)$ et $theta(t)$ et on reconstruit
 
 Le capteur est modélisé par le bloc `Demux` qui permet de sélectionner les composantes $dot(psi)(t)$ et $theta(t)$ de $x(t)$. Le bloc `Mux` permet de reconstruire $x(t)$ avec les composantes déduites par intégration et dérivation. On peut alors utiliser le même contrôle par retour d'état que précédemment.
 
-#pagebreak()
 ==== Résultats avec capteur et prédicteur
 #figure(image("FigsTP3/Fig2.1.jpg"), caption : caption_fig_3($(0,0,0,0)$, $2$, $K$, "ode45"))
 #figure(image("FigsTP3/Fig2.1u.jpg"), caption : $u(t)$)
@@ -265,7 +267,6 @@ On remarque une différence avec la @fig3.1.2u, $u(t)$ reste positif et converge
 
 On retrouve un comportement similaire comparativement à la @fig3.1.3u.
 
-#pagebreak()
 === Modèle hybride
 Le modèle hybride est obtenu en recréant les variables $dot(theta)$ et $psi$ de manière discète.
 On modifie notre schéma Simulink :

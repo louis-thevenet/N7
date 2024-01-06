@@ -6,7 +6,13 @@
   authors: ("THEVENET Louis",),
   date: "November 28, 2023",
 )
+// #theorem[ Solution moindres carrés carc'est important à priori
 
+//     Si $A$ est de rang $n$ alors elle est inversible et
+//     Le problème $min_(x in RR^n) norm(A x - b)_2^2$ admet une unique solution overline(x)
+// $ overline(x) = (A^T A)^(-1) A^T b $
+
+// ]
 = Introduction - Evaluating classifiers
 #definition[ Confusion Matrix
 
@@ -55,17 +61,18 @@ possibles.
   $ P(w_k bar x) = (f(x bar w_k) P(w_k)) / f(x) $
   avec $f(x) = sum_(k=1)^K f(x bar w_k) P(w_k)$ ]
 
+
 == MAP Classifier
 
 On calcule les probabilités que $x$ appartiennent à la classe $w_k$ $forall k in [|1, dots, n|]$ et
 on choisit la classe qui maximise cette probabilité.
 
-#definition[
-  $ d^* (x) = a_j <=> forall k in [|1, dots, K|] : P(w_j bar x)>=P(w_k bar x) $
-]
-#definition[
+#method[ Classification rule
+$ d^*(x)=a_j <=> P(omega_j bar x)>= P(omega_k bar x), forall k in {1, ..., K} $
 
-  Classes équiprobables : classificateur de maximum de vraisemblance $ d^* (x) = a_j <=> forall k in [|1, dots, K|] : P(x bar w_j)>=P(x bar w_k) $
+Dans le cas où les classes sont équiprobables, on a :
+$ d^*(x)=a_j <=> f(x bar w_j)>= f(x bar w_k), forall k in {1, ..., K} $
+où $f(x bar w_k)$ maximum de vraisemblance
 ]
 
 #proposition[
@@ -88,6 +95,20 @@ on choisit la classe qui maximise cette probabilité.
   distribution des données.
 ]
 #theorem[ $k$-NN est non-paramétrique ]
+
+= ACP (Analyse en Composantes Principales)
+#definition[
+  On cherche à projeter les données dans un espace de dimension inférieure tout en conservant le maximum d'information.
+]
+
+#method[
+    + Calculer la matrice de covariance des données (centrées réduites ? : $Y_(i,j) = (X_(i,j) - overline(v_j))/sigma_j$ ($overline(v_j)$ : moyenne des colonnes))
+    + Calculer les vecteurs propres de la matrice de covariance
+    + les trier par ordre décroissant de valeur propre (i.e. le niveau de variance)
+    + on obtient les nouvelles données : $Y' = Y V$ où $V$ est la matrice des vecteurs propres
+
+]
+
 = Support Vector Machine (SVM)
 
 Ici on associe des $1$et $-1$ et on définit un hyperplan (une droite par
@@ -141,3 +162,22 @@ exemple)
   + Assign each vector $x_i$ to $omega_j$ such as $ d(x_i, g_j) = inf_k d(x_i, g_k) $
   + Update the centroids $g_k^*$ of new classes $omega_k^*$
   + Repeat until convergence ]
+
+= Decision Trees
+
+#definition[ Entropie
+
+$ i_n = - sum_j n_j/n log_2 (n_j/n) $
+]
+#definition[ Indice de Gini
+
+$ i_n = sum_j n_j / n (1-n_j/n) = 1 - sum_j (n_j/n)^2 $
+]
+
+#definition[ Gain
+
+$ Delta_i_n = i_n - (n_L/n) i_L - (n_R/n) i_R $
+
+On choisit le split qui le maximise.
+
+]

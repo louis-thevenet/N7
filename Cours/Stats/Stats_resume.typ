@@ -2,7 +2,7 @@
 #import "@preview/physica:0.8.0": *
 
 #show: project.with(
-  title: "Intégration - Résumé",
+  title: "Statistiques - Résumé",
   authors: ("THEVENET Louis",),
   date: "October 25, 2023",
 )
@@ -88,7 +88,7 @@ On appelle
 ]
 
 #method[
-    On peut utiliser $f(theta bar t_1, dots, t_1=n) prop f(t_1, dots, t_n bar theta)f(theta)$
+    On peut utiliser $f(theta bar t_1, dots, t_n) prop f(t_1, dots, t_n bar theta)p(theta)$
 ]
 
 #theorem[ MMSE
@@ -123,7 +123,7 @@ Solution
 #definition[ Tests statistiques
 
 - Observations :
-    -  $X_1, dots, X_n$ $n$ VA ie.d.
+    -  $X_1, dots, X_n$ $n$ VA i.i.d.
     - #vraisemblance
 
 - Hypothèses

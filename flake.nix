@@ -34,21 +34,33 @@
             gtksourceview
             coqPackages.coqide
             coq
+
             # PIM
             gnat
             gprbuild
+            valgrind
+            gdb
+            hyperfine
 
             # C
             python310Packages.jupyter-c-kernel
             jupyter
+            cmake
+            clang-tools
+
+            # Nix
+            nil
+            alejandra
+
+            # Typst
+            typst
+            typst-lsp
+            typst-fmt
 
             # Utilitaires
             unzip
             vpnc
             filezilla
-            typst
-            typst-lsp
-            typst-fmt
             x2goclient
           ];
         };

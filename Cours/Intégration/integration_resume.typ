@@ -54,7 +54,7 @@ La tribu trace de $cal(B)(E)$ sur $X$ définie par $tr(cal(B))={B sect X bar B i
 == Applications mesurables
 #definition[
 
-    $f$ est mesurable de $(E_1, cal(A)_1)$ dans $(E_2, cal(A)_2)$ si $f^(-1) (cal(A)_2) subset cal(A)_1$ i.e.
+    $f$ est mesurable de $(E_1, cal(A)_1)$ dans $(E_2, cal(A)_2) <==> f^(-1) (cal(A)_2) subset cal(A)_1$ i.e.
     $ forall B in cal(A)_2, f^(-1)(B) = {x in E_1 bar f(x) in B} in cal(A)_1 $
 
     - Si $E_1$ et $E_2$ sont des espaces topologiques et $cal(A)_1$, $cal(A)_2$ des tribus de Borel correspondantes, alors $f$ est *borélienne*
@@ -63,7 +63,7 @@ La tribu trace de $cal(B)(E)$ sur $X$ définie par $tr(cal(B))={B sect X bar B i
 ]
 
 #method[
-    $f$ est mesurable de $(E_1, cal(A)_1)$ dans $(E_2, cal(A)_2)$ si
+    $f$ est mesurable de $(E_1, cal(A)_1)$ dans $(E_2, cal(A)_2)$ ssi
     $ forall B in cal(A)_2, f^(-1)(B) = {x in E_1 bar f(x) in B} in cal(A)_1 $
 ]
 

@@ -1,0 +1,6 @@
+{
+    "typst-lsp.experimentalFormatterMode": "on",
+    "[typst]": {
+        "editor.defaultFormatter": "nvarner.typst-lsp"
+    }
+}

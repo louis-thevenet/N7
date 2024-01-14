@@ -16,7 +16,7 @@
     in {
       devShells = {
         default = pkgs.mkShell {
-          # Matlab
+          # Matlab (needs a working matlab install elsewhere)
           buildInputs = with nix-matlab.packages.x86_64-linux; [
             matlab
             matlab-mlint
@@ -55,7 +55,7 @@
             # Typst
             typst
             typst-lsp
-            typst-fmt
+            #typst-fmt
 
             # Utilitaires
             unzip

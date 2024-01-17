@@ -61,19 +61,17 @@ possibles.
   $ P(w_k bar x) = (f(x bar w_k) P(w_k)) / f(x) $
   avec $f(x) = sum_(k=1)^K f(x bar w_k) P(w_k)$ ]
 
-
 == MAP Classifier
 
 On calcule les probabilités que $x$ appartiennent à la classe $w_k$ $forall k in [|1, dots, n|]$ et
 on choisit la classe qui maximise cette probabilité.
 
 #method[ Classification rule
-$ d^*(x)=a_j <=> P(omega_j bar x)>= P(omega_k bar x), forall k in {1, ..., K} $
+  $ d^*(x)=a_j <=> P(omega_j bar x)>= P(omega_k bar x), forall k in {1, ..., K} $
 
-Dans le cas où les classes sont équiprobables, on a :
-$ d^*(x)=a_j <=> f(x bar w_j)>= f(x bar w_k), forall k in {1, ..., K} $
-où $f(x bar w_k)$ maximum de vraisemblance
-]
+  Dans le cas où les classes sont équiprobables, on a :
+  $ d^*(x)=a_j <=> f(x bar w_j)>= f(x bar w_k), forall k in {1, ..., K} $
+  où $f(x bar w_k)$ maximum de vraisemblance ]
 
 #proposition[
   Le MAP classifier minimise la probabilité d'erreur :
@@ -97,23 +95,25 @@ où $f(x bar w_k)$ maximum de vraisemblance
 #theorem[ $k$-NN est non-paramétrique ]
 
 = ACP (Analyse en Composantes Principales)
-#definition[
-  On cherche à projeter les données dans un espace de dimension inférieure tout en conservant le maximum d'information.
-]
+
+On cherche à projeter les données dans un espace de dimension inférieure tout en
+conservant le maximum d'information.
 
 #method[
-    + Calculer la matrice de covariance des données (centrées réduites ? : $Y_(i,j) = (X_(i,j) - overline(v_j))/sigma_j$ ($overline(v_j)$ : moyenne des colonnes))
-    + Calculer les vecteurs propres de la matrice de covariance
-    + les trier par ordre décroissant de valeur propre (i.e. le niveau de variance)
-    + on obtient les nouvelles données : $Y' = Y V$ où $V$ est la matrice des vecteurs propres
+  + Calculer la matrice de covariance des données (centrées réduites ? : $Y_(i,j) = (X_(i,j) - overline(v_j))/sigma_j$ ($overline(v_j)$ :
+    moyenne des colonnes))
+  + Calculer les vecteurs propres de la matrice de covariance
+  + les trier par ordre décroissant de valeur propre (i.e. le niveau de variance)
+  + on obtient les nouvelles données : $Y' = Y V$ où $V$ est la matrice des vecteurs
+    propres
 
 ]
 
 = Support Vector Machine (SVM)
 
-Ici on associe des $1$et $-1$ et on définit un hyperplan (une droite par
+Ici on associe des $1$ et $-1$ et on définit un hyperplan (une droite par
 exemple)
-#definition[
+#method[
   $ cal(B) = {(x_1, _1), dots, (x_n, y_n)} $
   où $x_1, dots, x_n in (RR^p)^n$ et $y_1, dots, y_n$ sont booléens tels que
 
@@ -167,17 +167,13 @@ exemple)
 
 #definition[ Entropie
 
-$ i_n = - sum_j n_j/n log_2 (n_j/n) $
-]
+  $ i_n = - sum_j n_j/n log_2 (n_j/n) $ ]
 #definition[ Indice de Gini
 
-$ i_n = sum_j n_j / n (1-n_j/n) = 1 - sum_j (n_j/n)^2 $
-]
+  $ i_n = sum_j n_j / n (1-n_j/n) = 1 - sum_j (n_j/n)^2 $ ]
 
 #definition[ Gain
 
-$ Delta_i_n = i_n - (n_L/n) i_L - (n_R/n) i_R $
+  $ Delta_i_n = i_n - (n_L/n) i_L - (n_R/n) i_R $
 
-On choisit le split qui le maximise.
-
-]
+  On choisit le split qui le maximise. ]

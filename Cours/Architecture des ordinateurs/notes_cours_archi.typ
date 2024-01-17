@@ -9,11 +9,12 @@
 
 = Minimisation des fonctions booléennes
 $ mat(
-    space,00, 01, 11, 10, arrow.dotted a overline(c);
-    00, 1, space, space, 1, arrow.dotted a b d ;
-    01, space, space, 1, space, arrow.dotted b c d;
-    11, 1, 1, 1, space,  arrow.dotted overline(a) overline(b)  space.hair overline(d);
-    10, 1, 1, space, space,  arrow.dotted overline(b) overline(c)  overline(d)
+  space, 00, 01, 11, 10, arrow.dotted a overline(c);00, 1, space, space, 1, arrow.dotted a b d;01, space, space, 1, space, arrow.dotted b c d;11,
+    1,
+    1,
+    1,
+    space,
+    arrow.dotted overline(a) overline(b) space.hair overline(d);10, 1, 1, space, space, arrow.dotted overline(b) overline(c) overline(d),
 ) $
 
-$ f(a,b,c,d) = a overline(c) + b c d +  overline(a) overline(b) overline(d)$
+$ f(a,b,c,d) = a overline(c) + b c d + overline(a) overline(b) overline(d)$

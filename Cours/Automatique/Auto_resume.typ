@@ -41,7 +41,7 @@
   - Si $"Sp"_bb(R)(A) sect bb(R^*_+) eq.not emptyset$, alors l'origine n'est pas un
     *équilibre stable*
 
-Avec $op("Sp")_RR (A) = {op("Re")(lambda) bar lambda in op("SP")(A)}$
+  Avec $op("Sp")_RR (A) = {op("Re")(lambda) bar lambda in op("SP")(A)}$
 ]
 
 #theorem[
@@ -50,7 +50,6 @@ Avec $op("Sp")_RR (A) = {op("Re")(lambda) bar lambda in op("SP")(A)}$
     stable*
   - Si $"Sp"_bb(R)(f'(x_e)) sect bb(R^*_+) eq.not emptyset$, alors $x_e$ n'est pas
     un *équilibre stable*
-
 
   Avec $op("Sp")_RR (f'(x_e)) = {op("Re")(lambda) bar lambda in op("SP")(f'(x_e))}$ \
   Attention, ce n'est pas parce que toutes les valeurs propres sont à partie

@@ -7,11 +7,10 @@
 
 #let method = thmbox("method", "Méthode", fill: rgb("#FF00003B"))
 
-#let definition = thmbox("definition", "Définition", fill:rgb("#ffffbc"))
+#let definition = thmbox("definition", "Définition", fill: rgb("#ffffbc"))
 #let example = thmbox("example", "Exemple", fill: rgb("#eeffee")).with(numbering: none)
 #let corollary = thmbox("corollary", "Corollaire", fill: rgb("#e3e3e3"))
 #let exercice = thmplain("exercice", "Exercice", breakable: true).with(numbering: none)
-
 
 #let proof = thmplain(
   "proof",

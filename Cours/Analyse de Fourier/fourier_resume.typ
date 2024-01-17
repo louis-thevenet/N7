@@ -11,7 +11,7 @@
 == Espaces de fonctions
 #definition[ Espaces $L^p$
 
-  Pour $p>=1$ et $I$ intervalle bornée ou non de $RR$, on pose :
+  Pour $p>=1$ et $I$ intervalle borné ou non de $RR$, on pose :
 
   $ L^p (I)={x : I -> RR bar integral_I abs(x(t))^p dd(t) < + infinity} $
   $ L^infinity (I) {x : I -> RR " est bornée p.p. sur " I} $ ]
@@ -24,7 +24,7 @@
 == Transformée de Fourier dans $L^1(RR)$
 #definition[ Transformée de Fourier
 
-  Soit une fonciton $x$ in $L^1(RR)$, on définit sa transformée de Fourier par :
+  Soit une fonction $x$ in $L^1(RR)$, on définit sa transformée de Fourier par :
 
   $ forall f in RR, hat(x)(f) = integral_RR x(t) e^(-2j pi f t) dd(t) $
 

@@ -3,7 +3,7 @@
 # typst auto compiler output
 template.pdf
 theorems.pdf
-
+template_rendu.pdf
 # MATLAB
 # Windows default autosave extension
 *.asv

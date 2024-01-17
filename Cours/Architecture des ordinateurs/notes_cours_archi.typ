@@ -14,7 +14,17 @@ $ mat(
     1,
     1,
     space,
-    arrow.dotted overline(a) overline(b) space.hair overline(d);10, 1, 1, space, space, arrow.dotted overline(b) overline(c) overline(d),
+    arrow.dotted overline(a) overline(b) space.hair overline(d);10,
+    1,
+    1,
+    space,
+    space,
+    arrow.dotted overline(b) overline(c) overline(d),
+    ,
+    ,
+    ,
+    ,
+,
 ) $
 
 $ f(a,b,c,d) = a overline(c) + b c d + overline(a) overline(b) overline(d)$

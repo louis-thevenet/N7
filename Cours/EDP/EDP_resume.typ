@@ -75,7 +75,7 @@
   schéma à $m + l$ niveaux de la forme
   $ sum_(p=-m)^l B_p u_h ^(n+p) = C^n $
 
-  avec $n>=m, l>=0, m>=0, I+m>=1, B_p in cal(M)_N (bb(R)) forall p in [|-m:l|]), B_l in cal(M)_N (bb(R))$ inversible,
+  avec $n>=m, l>=0, m>=0, I+m>=1, B_p in cal(M)_N (bb(R)) forall p in [|-m:l|], B_l in cal(M)_N (bb(R))$ inversible,
   et $C^n in bb(R)^N$
 ]
 

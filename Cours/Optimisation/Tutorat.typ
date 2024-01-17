@@ -19,7 +19,7 @@
   - Convexe $->$ unicité
 ]
 
-#exercice[ 1 du TD4
+#exercise[ 1 du TD4
 
   + Déjà, on montre que $C$ est *fermé borné*
     - Borné

@@ -25,28 +25,28 @@
           shellHook = nix-matlab.shellHooksCommon;
 
           packages = with pkgs; [
-            # Modélisation
-            opam # il faut installer les packages why3-coq, why3
-            # et run : eval $(opam env)
-            autoconf
-            pkg-config
-            gtk3
-            gtksourceview
-            coqPackages.coqide
-            coq
+            # # Modélisation
+            # opam # il faut installer les packages why3-coq, why3
+            # # et run : eval $(opam env)
+            # autoconf
+            # pkg-config
+            # gtk3
+            # gtksourceview
+            # coqPackages.coqide
+            # coq
 
-            # PIM
-            gnat
-            gprbuild
-            valgrind
-            gdb
-            hyperfine
+            # # PIM
+            # gnat
+            # gprbuild
+            # valgrind
+            # gdb
+            # hyperfine
 
-            # C
-            python310Packages.jupyter-c-kernel
-            jupyter
-            cmake
-            clang-tools
+            # # C
+            # python310Packages.jupyter-c-kernel
+            # jupyter
+            # cmake
+            # clang-tools
 
             # Nix
             nil

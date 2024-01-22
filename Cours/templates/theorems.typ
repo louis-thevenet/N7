@@ -15,7 +15,13 @@
 
 #let solution = thmplain("solution", "Solution", base: "exercise", inset: 0em).with(numbering: none)
 
-#let exercise = thmbox("exercise", "Exercise", stroke: rgb("#ffaaaa") + 1pt, base: none, breakable:true).with(numbering: "I")
+#let exercise = thmbox(
+  "exercise",
+  "Exercise",
+  stroke: rgb("#aaaaff") + 2pt,
+  base: none,
+  breakable: true,
+).with(numbering: "I")
 
 #let example = thmplain("example", "Exemple").with(numbering: none)
 #let remark = thmplain("remark", "Remarque", inset: 0em).with(numbering: none)

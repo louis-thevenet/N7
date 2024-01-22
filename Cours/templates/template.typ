@@ -1,6 +1,6 @@
 #import "theorems.typ": *
 
-#let project(title: "", authors: ("Louis Thevenet",), date: none, body) = {
+#let project(title: "", authors: ("Louis Thevenet",), date: none, body, toc: true) = {
   // Set the document's basic properties.
   set document(author: authors, title: title)
   set page(numbering: "1", number-align: center)
@@ -23,7 +23,10 @@
     ..authors.map(author => align(center, strong(author))),
   ))
 
-  outline(depth: 3, indent: true)
+  if toc {
+    outline(depth: 2, indent: true)
+    pagebreak()
+  }// Main body.
 
   // Main body.
   set par(justify: true)

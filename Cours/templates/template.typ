@@ -1,4 +1,7 @@
 #import "theorems.typ": *
+#import "@preview/physica:0.8.0": *
+#import "@preview/codelst:1.0.0": sourcecode
+#import "@preview/fletcher:0.3.0" as fletcher:node, edge
 
 #let project(title: "", authors: ("Louis Thevenet",), date: none, body, toc: true) = {
   // Set the document's basic properties.

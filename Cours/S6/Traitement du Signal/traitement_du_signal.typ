@@ -13,7 +13,7 @@
   + Déterministes *non périodique à puissance finie*
   + Aléatoires *stationnaires* ]
 
-== Déterministes à *énergie finie*
+=== Déterministes à *énergie finie*
 #theorem[ Signaux à énergie finie
 
   / Définition: $E = integral_RR abs(x(t))^2 dd(t) = integral_RR abs(X(f))^2 dd(f) < infinity$
@@ -47,15 +47,15 @@
 - Méthode 2
   - Calcul de $s_x (f) = abs(x(f))^2$
     $ x(tau) &-->^("TF") X(f) = T op("sinc") (pi tau f) \
-    &-->^(abs(space)^2) s_x(f) = abs(X(f))^2 = T^2 op("sinc")^2 (pi tau f) $
+           &-->^(abs(space)^2) s_x(f) = abs(X(f))^2 = T^2 op("sinc")^2 (pi tau f) $
 
     - Calcul de $R_x (tau)$
       $ R_x (tau) &= op("TF")^(-1) s_x (f) \
-      &= op("T")^(-1
+                &= op("T")^(-1
       ) (op("sinc") (pi tau f)) \
-      &= T Lambda_T (tau) $
+                &= T Lambda_T (tau) $
 
-== Déterministes *périodiques*
+=== Déterministes *périodiques*
 #definition[
   / Definition: $P = 1/T_0 integral_(-T_0 / 2)^(T_0/2) abs(x(t))^2 dd(t) < infinity$
 
@@ -73,23 +73,93 @@
 #example[ $x(t) = A cos(2 pi f_0 t)$
 
   $ R_x (tau) &= 1/T_0 integral_(-T_0/2)^(T_0/2) A cos(2 pi f_0 t) A cos(2 pi f_0 (t-tau)) dd(t) \
-  &= 1/T_0 integral_(-T_0/2)^(T_0/2) A^2/2 underbrace(
+            &= 1/T_0 integral_(-T_0/2)^(T_0/2) A^2/2 underbrace(
     cos(4 pi f_0 t - 2 pi f_0 tau) + cos(2 pi f_0 tau),
     cos(a) cos(b) = 1/2 (cos(a+b)) + cos(a-b),
+
   ) dd(t) \
-  &= 0 + 1/T_0 A^2/2 (integral_(-T_0/2)^(T_0/2) dd(t)) cos(2 pi f_0 tau)\
-  &= A^2 / 2 cos(2 pi f_0 tau) $ ]
-- Méthode 1
-  $ s_x (f) &= op("TF") (R_x (tau)) \
-  &= underbrace(A^2 / 4 (delta(f-f_0) + delta(f+f_0)), "Deux fréquences pures") $
-- Méthode 2
+            &= 0 + 1/T_0 A^2/2 (integral_(-T_0/2)^(T_0/2) dd(t)) cos(2 pi f_0 tau)\
+            &= A^2 / 2 cos(2 pi f_0 tau) $
+  - Méthode 1
+    $ s_x (f) &= op("TF") (R_x (tau)) \
+            &= underbrace(A^2 / 4 (delta(f-f_0) + delta(f+f_0)), "Deux fréquences pures") $
+  - Méthode 2
 
-  On a $ x(t) = A cos(2 pi f_0 t) = underbrace(A/2, c_1) e^(j 2 pi f_0 t) + underbrace(A/2, c_(-1)) e^(-j 2 pi f_0 t) $
+    On a $ x(t) = A cos(2 pi f_0 t) = underbrace(A/2, c_1) e^(j 2 pi f_0 t) + underbrace(A/2, c_(-1)) e^(-j 2 pi f_0 t) $
 
-$ R_x (tau) &= A^2 / 4 underbrace(op("TF")^(-1) [delta(f-f_0)], e^(j 2 pi f_0 tau)) + A^2 / 4 underbrace(op("TF")^(-1) [delta(f+f_0)], e^(-j 2pi f_0 tau)) \
-&= A^2 /2 cos(2 pi f_0 tau) $
+  $ R_x (tau) &= A^2 / 4 underbrace(op("TF")^(-1) [delta(f-f_0)], e^(j 2 pi f_0 tau)) + A^2 / 4 underbrace(op("TF")^(-1) [delta(f+f_0)], e^(-j 2pi f_0 tau)) \
+            &= A^2 /2 cos(2 pi f_0 tau) $ ]
+#remark[$R_x (0) = "puissance" = A^2 / 2$]
 
-Remarque : $R_x (0) = "puissance" = A^2 / 2$
+=== Déterministes à *puissance finie*
+#theorem[
+  / Définition: $P = lim_(T_0 -> infinity) 1/T_0 integral_(-T_0/2)^(T_0/2) abs(x(t))^2 dd(t) <
+    infinity$
+
+  / Produit scalaire: $angle.l x, y angle.r = lim_(t -> infinity) integral_(-T/2)^(T/2) x(t) y^* (t) dd(t)$
+
+  / Fonction d'autocorrélation: $R_x (tau) = angle.l (x(t), x(t-tau)) angle.r$
+
+  / Fonction d'intercorrélation: $R_(x y) (tau) = angle.l (x(t), y(t-tau)) angle.r$
+
+]
+
+#definition[ On définit la densité spectrale de puissance par $ s_x (f) = op("TF") R_x (tau) $ ]
+
+#proposition[ $ s_x (f) = lim_(t -> infinity) integral_(-T/2)^(T/2) abs(X_T(f))^2 dd(f) $
+
+  avec $ X_T (f) = integral_(-T/2)^(T/2) x(t) e^(-j 2 pi f t) dd(t) $ ]
+
+=== Aléatoires *stationnaires*
+#theorem[
+  / Moyenne: $E[x(t)]$ indépendant de $t$
+  / Moment d'ordre 2: $E[x(t) x^* (t-tau)]$ indépendant de $t$
+
+    / Produit scalaire: $angle.l x, y angle.r = E[x(t) y^* (t)]$
+
+    / Fonction d'autocorrélation: $R_x (tau) = angle.l x(t) , x(t-tau) angle.r = E[x(t) x^* (t-tau)]$
+
+    / Fonction d'intercorrélation: $R_(x y) (tau) = angle.l x (t), y(t-tau) angle.r = E[x(t) y^* (t-tau)]$
+]
+
+#definition[
+  / Puissance moyenne: $P = R_x (0) = E[abs(x(t)^2)] = integral_RR s_x (f) dd(f)$
+  / Densité spectrale de puissance: $s_x (f) = op("TF") R_x (tau) = lim_(t -> infinity) 1/T E[abs(X_T (f))^2]$
+]
+
+#remark[ En général $X(f)$ n'existe pas ! ]
+
+#example[ $x(t) = A cos(2 pi f_0 t + theta)$ avec $theta tilde cal(U)([0,2 pi])$
+
+  $ m_x (t) = E_theta (x(t)) = 0 $ ]
+
+== Propriétés de $R_x (tau)$ et de $s_x (f)$
+#theorem[ Propriétés de $R_x (tau)$
+  / Symétrie hermitienne: $R_x (tau) = R_x^* (-tau)$
+  / Valeur maximale: $abs(R_x (tau)) <= R_x (0)$
+  / Distance entre $x(t)$ et $x(t-tau)$ : Si $x(t)$ est un signal réel :
+    $ d^2 [x(t), x(t-tau)] = 2 [R_x (0) - R_x] (tau) $
+    Donc $R_x (tau)$ mesure le lien entre $x(t)$ et $x(t-tau)$
+  / Décomposition de Lebesgue: on a $ R_x (tau) = R_1 (tau) + R_2 (tau) $
+    où
+    - $R_1 (tau)$ est une somme de fonctions périodiques
+    - $R_2 (tau) ->_(tau -> + infinity) 0$ ]
+
+#theorem[ Propriétés de $s_x (f)$
+
+  / DSP réelle: $s_x (f) in RR$
+  / Si $x(t)$ est un signal réel: $s_x (f)$ est paire
+  / Positivité: $s_x (f) >= 0$
+  / Lien entre DSP et puissance/énergie: $P "ou" E = integral_RR s_x (f) dd(f)$
+  / Décomposition: $s_x (f) = s_1 (f) + s_2 (f)$
+    où
+    - $s_1 (f)$ est un spectre de raies
+    - $s_2 (f)$ est un spectre continu ]
+
 = Filtrage Linéaire
 
 = Traitements non linéaires
+
+= Partiel
++ stationarité à l'ordre 1
++ vérifier à l'ordre 2 et démontrer que ça dépend que de $tau$

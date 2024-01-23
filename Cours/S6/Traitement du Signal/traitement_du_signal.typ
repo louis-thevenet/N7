@@ -16,7 +16,7 @@
 == Déterministes à *énergie finie*
 #theorem[ Signaux à énergie finie
 
-  / Definition: $E = integral_RR abs(x(t))^2 dd(t) = integral_RR abs(X(f))^2 dd(f) < infinity$
+  / Définition: $E = integral_RR abs(x(t))^2 dd(t) = integral_RR abs(X(f))^2 dd(f) < infinity$
 
   / Fonction d'autocorrélation: $R_x (tau) = integral_RR x(t) x^* (t-tau) dd(t) = angle.l x(t), x(t-tau) angle.r$
 

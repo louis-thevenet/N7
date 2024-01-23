@@ -2,7 +2,7 @@
 #import "@preview/physica:0.8.0": *
 
 #show: project.with(title: "Résumé - Traitement du Signal", date: "22 Janvier, 2024")
-
+#set page(height: auto)
 = Corrélations et Spectres
 == Transformée de Fourier
 == Classes de signaux déterministes et aléatoires
@@ -47,12 +47,13 @@
 - Méthode 2
   - Calcul de $s_x (f) = abs(x(f))^2$
     $ x(tau) &-->^("TF") X(f) = T op("sinc") (pi tau f) \
-           &-->^(abs(space)^2) s_x(f) = abs(X(f))^2 = T^2 op("sinc")^2 (pi tau f) $
+    &-->^(abs(space)^2) s_x(f) = abs(X(f))^2 = T^2 op("sinc")^2 (pi tau f) $
 
     - Calcul de $R_x (tau)$
       $ R_x (tau) &= op("TF")^(-1) s_x (f) \
-                &= op("T"^(-1)) (op("sinc") (pi tau f)) \
-                &= T Lambda_T (tau) $
+      &= op("T")^(-1
+      ) (op("sinc") (pi tau f)) \
+      &= T Lambda_T (tau) $
 
 == Déterministes *périodiques*
 #definition[
@@ -72,22 +73,21 @@
 #example[ $x(t) = A cos(2 pi f_0 t)$
 
   $ R_x (tau) &= 1/T_0 integral_(-T_0/2)^(T_0/2) A cos(2 pi f_0 t) A cos(2 pi f_0 (t-tau)) dd(t) \
-            &= 1/T_0 integral_(-T_0/2)^(T_0/2) A^2/2 underbrace(
+  &= 1/T_0 integral_(-T_0/2)^(T_0/2) A^2/2 underbrace(
     cos(4 pi f_0 t - 2 pi f_0 tau) + cos(2 pi f_0 tau),
     cos(a) cos(b) = 1/2 (cos(a+b)) + cos(a-b),
-
   ) dd(t) \
-            &= 0 + 1/T_0 A^2/2 (integral_(-T_0/2)^(T_0/2) dd(t)) cos(2 pi f_0 tau)\
-            &= A^2 / 2 cos(2 pi f_0 tau) $ ]
+  &= 0 + 1/T_0 A^2/2 (integral_(-T_0/2)^(T_0/2) dd(t)) cos(2 pi f_0 tau)\
+  &= A^2 / 2 cos(2 pi f_0 tau) $ ]
 - Méthode 1
   $ s_x (f) &= op("TF") (R_x (tau)) \
-          &= underbrace(A^2 / 4 (delta(f-f_0) + delta(f+f_0)), "Deux fréquences pures") $
+  &= underbrace(A^2 / 4 (delta(f-f_0) + delta(f+f_0)), "Deux fréquences pures") $
 - Méthode 2
 
   On a $ x(t) = A cos(2 pi f_0 t) = underbrace(A/2, c_1) e^(j 2 pi f_0 t) + underbrace(A/2, c_(-1)) e^(-j 2 pi f_0 t) $
 
 $ R_x (tau) &= A^2 / 4 underbrace(op("TF")^(-1) [delta(f-f_0)], e^(j 2 pi f_0 tau)) + A^2 / 4 underbrace(op("TF")^(-1) [delta(f+f_0)], e^(-j 2pi f_0 tau)) \
-          &= A^2 /2 cos(2 pi f_0 tau) $
+&= A^2 /2 cos(2 pi f_0 tau) $
 
 Remarque : $R_x (0) = "puissance" = A^2 / 2$
 = Filtrage Linéaire

@@ -57,6 +57,9 @@
             typst-lsp
             #typst-fmt
 
+            # Java
+            jdk21
+
             # Utilitaires
             unzip
             vpnc

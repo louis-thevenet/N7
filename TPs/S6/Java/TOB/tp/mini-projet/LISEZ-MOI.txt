@@ -1,0 +1,38 @@
+Nom       : Thevenet
+Prénom    : Louis
+Groupe TP : F
+
+
+Consigne :  Ci-dessous, répondre à la place des « ... ».
+
+
+=====[ Temps ]==================================================================
+
+Temps passé sur la V1 : 3 heures 0 minutes
+Temps passé sur la V2 : ... heures ... minutes
+Pour la V2 on ne tiendra pas compte du temps passé sur la V1.
+Bien sûr, les temps renseignés ici ne sont pas pris en compte dans la notation.
+
+
+=====[ Questions ]==============================================================
+
+Indiquer la relation UML entre Cercle et le Point centre du cercle.
+-------------------------------------------------------------------
+
+Cercle contient un attribut de type Point.
+
+
+Comment est réalisée l'exigence E18 ?
+-------------------------------------
+
+
+On réaliste des copies des points pour éviter que les opérations extérieures à la classe Cercle n'affecte l'instance.
+
+
+
+=====[ Explications ]===========================================================
+
+(Facultatif) Donner ici les explications supplémentaires utiles à la
+compréhension du travail rendu.
+
+...

@@ -1,6 +1,6 @@
 #import "../../templates/template.typ": *
-#show: project.with(title: "Internet - Cours", date: "22 Janvier, 2024")
 #set page(height: auto)
+#show: project.with(title: "Internet - Cours", date: "22 Janvier, 2024")
 
 = Généralités
 == Internet
@@ -132,22 +132,13 @@ Le chemin est un ensemble de routes regroupées en table de routage.
     [options et bourrage],
   )
 
-  #image("format.png")
+  #image("Ipv4_header.svg")
 
-  / Version: Version d'IP
+  / Version: Version du IP
   / IHL: Internet header length
-  / ToS: ...
+  / ToS: Type of Service
   / Total Length: Longueur totale du message
 
   / Identification: ...
-  / R: ...
-  / DF: ...
-  / MF: ...
-  / Fragment offset: ...
-
-  / TTL: ...
-  / Protocol: ...
-  / Header checksum: ...
-
-  / Source IP: IP Source
-  / Dest IP: IP Dest ]
+  / Flags: R, DF, MF
+  / Fragment offset: ... ]

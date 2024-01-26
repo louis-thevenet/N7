@@ -1,8 +1,8 @@
 #import "../../templates/template.typ": *
 #import "@preview/physica:0.8.0": *
+#set page(height: auto)
 
 #show: project.with(title: "Résumé - Traitement du Signal", date: "22 Janvier, 2024")
-#set page(height: auto)
 = Corrélations et Spectres
 == Transformée de Fourier
 == Classes de signaux déterministes et aléatoires

@@ -24,8 +24,22 @@
 
   / Produit scalaire: $angle.l x, y angle.r = integral_RR x(t) y^* (t) dd(t)$ ]
 
+#remark[
+  - La fonction d'autocorrélation mesure la similarité entre $x(t)$ et $x(t-tau)$ (similarité
+    entre un singal et sa version décalée dans le temps)
+
+  - La fonction d'intercorrélation (corrélation croisée) mesure la similarité entre $x(t)$ et $y(t-tau)$ (similarité
+    entre deux signaux décalés dans le temps)
+
+]
+
 #definition[ On définit la densité spectrale d'énergie par $ s_x (f) = op("TF") R_x (tau) $ ]
 
+#remark[
+  - La densité spectrale d'énergie mesure la répartition de l'énergie du signal dans
+    le domaine fréquentiel
+
+]
 #proposition[ $s_x (f) = abs(X (f))^2$ ]
 
 #example[ $x(t) = Pi_T (t)$ avec $T$ la largeur de la fenêtre
@@ -135,6 +149,7 @@
 
 == Propriétés de $R_x (tau)$ et de $s_x (f)$
 #theorem[ Propriétés de $R_x (tau)$
+
   / Symétrie hermitienne: $R_x (tau) = R_x^* (-tau)$
   / Valeur maximale: $abs(R_x (tau)) <= R_x (0)$
   / Distance entre $x(t)$ et $x(t-tau)$ : Si $x(t)$ est un signal réel :

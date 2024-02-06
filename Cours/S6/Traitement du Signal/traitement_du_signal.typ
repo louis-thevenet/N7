@@ -177,6 +177,14 @@
     - $s_2 (f)$ est un spectre continu ]
 
 = Filtrage Linéaire
+#method[ [jsp où le mettre] Identifier une relation de filtrage linéaires
+
+  + Signaux déterministes
+    $y(t) = x(t) times h(t) <=> Y(f) = X(f) H(f)$ (i.e. on a tout identifié)
+  + signaux aléatoires Si $x(t) <->^I e^(j 2 pi f t)$, alors $y(t) <-> e^(j 2 pi f t) H(f)$ (on
+    va montrer qu'on peut faire une correspondance à l'aide d'une isométrie) ]
+
+== Introduction
 #remark[
   Une opération de filtrage est comme une boîte noire qui prend un signal en
   entrée et qui produit un signal en sortie.
@@ -189,48 +197,69 @@
   / Invariance dans le temps: Si $y(t) = T(x(t))$, alors $T(x(t-t_0)) = y(t-t_0)$
   / Stabilité BIBO: Si $x(t)$ est borné, alors $T(x(t))$ est borné ]
 
-#definition[ Réponse impulsionnelle On définit la réponse impulsionnelle d'un filtre par $ H(f) = op("TF")(h(t)) = integral_RR h(t) e^(-j 2 pi f t) dd(t) $
+#definition[ Système causal
 
-  si $x(t) = delta(t)$, alors $y(t) = h(t)$, ceci permet d'obtenir la seule
-  réponse impulsionnelle possible. ]
+  Un système est dit causal si la sortie à l'instant $t$ ne dépend de l'entrée que
+  pour des instants $t' <= t$ (la sortie ne dépend pas du futur) ]
 
-== Réalisation d'un filtre
-#definition[
-  - Domaine temporel
-    + $h(t)$ réelle
-    + $h(t) in L^1$ (stabilité)
-    + $h(t)$ causale (filtre sans mémoiré)
+#theorem[ Système stable
 
-  - Domaine spectral
-    + $H^* (-f) = H(f)$ (symétrie hermitienne)
-    + ne peut se traduire
-    + $H(f) = - j tilde(H)(f)$, où $tilde(H)(f) = H(f) 1/(pi f)$ est la transformée de
-      Hilbert de $H$
+  Un système est stable si et seulement si $x in cal(L)_infinity (RR) => y = T[x] in cal(L)_infinity$
 
+  Ce qui se signifie que si $abs(x(t))<= M_x$, alors $exists M_y bar abs(y(t)) = abs(T[x(t)]) <= M_y$ ]
+
+== Filtrage des signaux déterministes
+=== Définitions
+#definition[ Réponse impulsionnelle
+
+  Par définition, la réponse impulsionnelle d'un système notée est la fonction
+  obtenue en sortie d'un système quand on applique une impulsion de Dirac à
+  l'entrée. Formellement, on a donc la caractérisation suivante :
+
+  $ forall t in RR, space h(t) = T[delta(t)] $ ]
+
+#remark[ C'est une définition large qui s'adapte à tout système, on verra que dans le
+  cas des systèmes linéaires invariants par décalage, le système est entièrement
+  caractérisé par sa réponse impulsionnelle. ]
+
+=== CNS de stabilité des FLID (Filtres Linéaires Invariants par Décalage)
+#theorem[
+  Un FLID est stable si et seulement si $h in L^1 <=> integral_RR abs(h(t)) dd(t) < infinity$
 ]
 
-#method[ Identifier une relation de filtrage linéaires
+#theorem[ Une opération définit un filtrage linéaire si et seulement $ y(t) = x(t) star h(t) <=> Y(f) = X(f) H(f) $
 
-  + Signaux déterministes
-    $y(t) = x(t) times h(t) <=> Y(f) = X(f) H(f)$ (i.e. on a tout identifié)
-  + signaux aléatoires Si $x(t) <->^I e^(j 2 pi f t)$, alors $y(t) <-> e^(j 2 pi f t) H(f)$ (on
-    va montrer qu'on peut faire une correspondance à l'aide d'une isométrie) ]
+  où $X(f) = op("TF")[x(t)]$ et $H(f) = op("TF")[h(t)]$ ]
 
-== Relations de Wiener Lee
-#definition[
+#definition[ On définit la *fonction de transfert* ou *transmittance* (ou *réponse
+  fréquentielle*) par $H(f) = op("TF")[h(t)] = abs(H(f)) e^(j arg(H(f)))$ ]
+
+=== Relations entrée-sortie de Wiener Lee
+#theorem[
+
+  Pour les signaux déterministe (ie. à énergie finie, à puissance finie et
+  périodiques), on peut caractériser analytiquement la fonction d'autocorrélation
+  et la densité spectrale de la sortie du système en fonction des caractéristiques
+  de l'entrée. Ainsi, les relations entre les fonctions d'autocorrélation et
+  densités spectrales de et de appelées relations de Wiener-Lee sont données
+  ci-après
+
   / Densité spectrale de puissance: $s_y (f) = abs(H(f))^2 s_x (f)$
+
   / Fonction d'intercorrélation: $R_(y x) (tau) = h(tau) R_x (tau)$
-  / Fonction d'autocorrélation: $R_y (tau) = h(tau) h^* (-tau) R_x (tau)$
+
+  / Fonction d'autocorrélation: $R_y (tau) = h(tau) h^* (-tau) R_x (tau)=R_h (tau) R_x (tau)$
 ]
-== Interférences
 
-#theorem[ Formule
+=== Interférences et intercorrélation entrée-sortie
+#theorem[ On considère $y_1 (t) = x(t) times h_1 (t)$ et $y_2 (t) = x(t) times h_2 (t)$
 
-  - Hypothèses
-    $y_1 (t) = x(t) times h_1 (t)$ et $y_2 (t) = x(t) times h_2 (t)$
+  (i.e. on a deux signaux obtenus par filtrage linéaire d'un même signal $x(t)$)
 
-  - Formule
-    $R_(y_1 y_2) (tau) = integral_RR s_x (t) H_1 (f) H_2^* (f) e^(j 2 pi f tau) dd(f)$ ]
+  On a alors
+  $ R_(y_1 y_2) (tau) = integral_RR s_x (t) H_1 (f) H_2^* (f) e^(j 2 pi f tau) dd(f) = h_1 (tau) star h_2^* (-tau) star R_x (tau) $
+
+  Dans le domaine fréquentiel : $s_(y_1 y_2) = H_1 (f) H_2^* (f) s_x (f)$ (l'*inter-spectre*) ]
 
 = Partiel
 + stationarité à l'ordre 1

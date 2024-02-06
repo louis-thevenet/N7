@@ -261,7 +261,83 @@
 
   Dans le domaine fréquentiel : $s_(y_1 y_2) = H_1 (f) H_2^* (f) s_x (f)$ (l'*inter-spectre*) ]
 
+= Traitements non linéaires
+== Cas déterministe
+#example[ Quadrateur $y() = x^2 (t)$
+
+  On a donc dans le domaine fréquentiel $Y(f) = X(f) star X(f)$
+
+  Il suffira de calculer la transformée de Fourrier de $x$ ]
+
+== Cas aléatoires
+Ici on veut montrer que le signal d'entrée suit une loi de probabilité et que le
+signal de sortie suit une autre loi de probabilité.
+
+#definition[ Signal aléatoire gaussien
+
+  On dit qu'un singal aléatoire $X(t)$ est gaussien si pour tout ensemble
+  d'instants $t_1, dots, t_n$, $mat(X(t_1), dots, X(t_n))^T$ est un vecteur
+  gaussien de $RR^n$ ]
+
+#definition[ Loi univariée de $X(t)$
+
+  La loi de $X(t)$ est alors une loi gaussienne de densité
+
+  $ p[X(t)] = 1/(sqrt(2 pi sigma^2 (t))) e^((X(t)-m(t))^2 / (2 sigma^2 (t))) $
+
+  De plus, si $X(t)$ est stationnaire au sens large alors
+  - $m(t) = E[X(t)]$
+  - $sigma^2 (t) = E[(X(t)-m(t))^2] = R_X (0) - m^2$ ]
+
+#definition[ Loi bivariée de $mat(X(t), X(t-tau))$
+
+  La loi du vecteur $V(t) = mat(X(t), X(t-tau))$ est une loi gaussienne de densité
+  $ p[x(t), x(t-tau)] = 1/(2 pi sqrt(abs(Sigma(t)))) exp(-1/2 [V(t)-m(t)]^T Sigma^(-1) (t) [V(t)-m(t)]) $
+
+  où $ m(t) = mat(E[X(t)], E[X(t-tau)]) $
+
+  $ Sigma(t) &= mat(
+    sigma_1^2 (t,tau), sigma_(1,2) (t,tau);sigma_(1,2) (tau), sigma_2^2 (t,tau)
+  )
+  =_(X(t) "stat. sens large") mat(R_X (0) - m^2, R_X (tau) - m^2;R_X (tau) - m^2, R_X (0) - m^2) $ ] <partiel_gauss>
+
+#theorem[ Théorème de Price
+
+  Pour tout vecteur gaussien centré $(X_1, X_2)$, pour toute fonction
+  *non-linéaire* $g$, on a
+
+  $ pdv(E(Y_1 Y_2), E(X_1 X_2)) = E(pdv(Y_1, X_2) pdv(Y_2, X_2)) $
+
+  Avec $Y_1 = g(X_1)$ et $Y_2 = g(X_2)$
+
+  Puis avec
+  - $X_1 =x(t)$
+  - $X_2 = x(t-tau)$
+
+  On a
+  - $Y_1 = y(t) = g(x(t))$
+  - $Y_2 = y(t-tau) = g(x(t-tau))$
+  Et aipnsi
+  $ pdv(R_y (tau), R_x (tau)) = E [ pdv(y(t), x(t)) pdv(y(t-tau), x(t-tau))] $ ]
+
+= Quantification
+#definition[ $star$ Quantification
+
+  $ x_Q (t) = i delta_q_i = x_i $
+  et
+  $ x_i -Delta_q_i /2 <= x(t) <= x_i + Delta_q_i / 2 $
+
+  Avec
+  / $Delta_q_i$: pas de quantification (si $Delta_q_i = Delta_q$, on parle de quantification
+    uniforme)
+  / $x_i$: niveau de quantification
+  / $N = 2^n$: nombre de niveaux de quantification ]
+
 = Partiel
 + stationarité à l'ordre 1
 + vérifier à l'ordre 2 et démontrer que ça dépend que de $tau$
-
++ savoir reprouver $Sigma(t)$ dans @partiel_gauss
++ savoir faire #link(
+    "https://ch-poulliat.github.io/Cours-Signal-Part-I/slides/Slides.html#/summary",
+  )[ça] (déterminer DSP et autocorrélation d'un signal non linéaire (carré, cube,
+  exponentielle, etc)

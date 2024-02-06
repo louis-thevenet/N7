@@ -79,3 +79,73 @@
               &= R_A (tau)/4 EE[1+cos(2 theta + dots)+cos(2 theta + dots) + 1/2 cos(4 pi f_0 tau) + cos(4 theta + dots)] \
               &= R_A (tau)/4 (1+1/2 cos (4 pi f_0 tau)) $
 ]
+
+= TD2
+
+#exercise[
+
+  + $ y(t) &= 1/T integral_(t-T)^(t) e^(j pi 2 f u) dd(u) \
+         &= 1/T [e^(j pi 2 f u) / (j 2 pi f)]_(t-T)^T \
+         &= 1/(T 2 pi f j ) (e^(2 j pi f t) - e^(2 j pi f (t-T)))\
+         &= 1/(2 pi f j T) e^(2 pi j f t) (1-e^(- 2 pi j f T)) \
+         &= x(t) H(f) $
+
+    On a $H(f) = 1/(2 pi f j T) (1-e^(- 2 pi j f T))$, donc le filtre est linéaire.
+
+    De plus, $ H(f) &=_("angle moitié") e^(-j pi f T)/(2 pi j f T) (e^( j pi f T) - e^(- j pi f T)) \
+         &= e^(-j pi f T) sin(pi f T)/(T pi f) \
+         &= e^(- j pi f T) op("sinc") (pi f T) $
+
+    Ainsi,
+    $ h(t) &= op("TF")^(-1) (H(f)) \
+         &= delta(t-T/2) star Pi_(T) (f) 1/T \
+         &= 1/T Pi_T (t-T/2) $
+
+  + La réponse impulsionnelle est :
+    - réelle
+    - causale ($<=> h(t)=0, forall t>=0$)
+    - stable ($<=> integral h(f) dd(f) < infinity$)
+]
+
+#exercise[
+  + On a $s_y (f) = abs(H(f))^2 s_x(f)$
+
+    $ P_Y_s &= integral_RR s_y_s (f)dd(f) \
+          &= integral_RR S(f) abs(H(f))^2 dd(f) $
+
+    $ S(f) = A^2 / 4 (delta(f-f_0) - delta(f+f_0)) $
+
+    $ P_Y_s &= integral_RR A^2 / 4 (delta(f-f_0) - delta(f+f_0))/abs(theta + j 2 pi f)^2 \
+          &= integral_RR A^2 / 4 (delta(f-f_0) - delta(f+f_0))/(theta^2 + (2 pi f)^2) dd(f) \
+          &= A^2 / 4 (1/theta^2 + 4 pi^2 f^2) $
+
+    $ P_Y_B &= integral_RR N_0 / 2 1/(theta^2 + 4 (pi f)^2) dd(f) \
+          &= N_0 / 2 integral_RR 1/(theta^2 + 4 pi^2 f^2) dd(f) \
+          &= N_0/(2 theta) integral_RR 1/( 1 + ( 2 pi f / theta)^2 ) dd(f) \
+          &=_(cases(u = 2 pi f/theta, dd(u) = 2 pi dd(f)/theta)) N_0 / (2 theta) integral_RR (1/(1 + u^2)) dd(u) \
+          &= N_0/(4 pi theta) [arctan(u)]_RR \
+          &= N_0 / (4 pi theta) (pi/2 - (-pi/2)) \
+          &= N_0 /(4 theta) $
+
+    Ainsi $ "RSB" = P_Y_s / P_y_B &= A^2 / 2 (1/(theta^2 + 4 pi^2 f_0^2)) / (N_0/(4 theta)) \
+                          &= 2A^2 theta / N_0 1/(theta^2 + 4 pi^2 f_0^2) $
+
+  + $ "RSB"' (theta) &= 0 \
+    <=> theta      &= 2 pi f_0 $
+]
+
+#exercise[
+  + $ Y(t)         &= e^(X(t)) \
+    <=> EE[Y(t)] &= EE[e^(X(t))] $
+    On a $EE[e^(u Z)] = e^(m u + sigma^2 u^2 / 2)$
+
+    Ici $Z = X(t)$ et $u=1$
+
+    Puis
+    $ Y(t)         &= e^(X(t)) \
+    <=> EE[Y(t)] &= e^(sigma^2 /2) $
+
+  + $ V &= EE[Y(t) - EE(Y(t))] \
+      &= EE[e^X(t) ] - EE[e^(sigma^2 / 2)]^2 \
+      &= EE[e^(2 X(t))] - e^(sigma^2) $
+]

@@ -102,3 +102,137 @@ class Point {
 ]
 ]
 //typstfmt::on
+
+= TD2
+#exercise[
++ #let ensemble_interface = align(
+    center,
+    table(columns: 1, [#text(size: 1.3em, "Ensemble")], [*Requête*], [#grid(
+      columns: 2,
+      gutter: 1em,
+      [`nombres : List<int>`],
+      [`bool estVide()`],
+      [`bool appartient(n:int)`],
+        [`int cardinal()`],
+      [`int min()`],
+    )], [*Commande*], [#grid(
+      columns: 1,
+      gutter: 1em,
+      [`ajouter`(n : int)],
+      [`supprimer(n:int)`],
+    )],
+    ),
+
+  )
+
+    #ensemble_interface
+
+
+    #sourcecode()[    ```java
+        interface Ensemble {
+            boolean estVide();
+            boolean appartient(int n);
+            int cardinal();
+            int min();
+            void ajouter(int n);
+            void supprimer(int n);
+        }
+
+        ```]
+
++ #sourcecode()[```java
+Ensemble ensemble = new Ensemble(MAX);
+Tantque !ensemble.estVide Faire
+    afficher(ensemble.min());
+    pour k de 1 à MAX Faire
+        ensemble.supprimer(ensemble.min() * k);
+    fin pour
+Fin Tantque
+```]
+
+
+
++
+    + #let ensemble_tab = align(
+        center,
+        table(columns: 1, [#text(size: 1.3em, "EnsembleTab")], [*Attributs*], [#grid(
+        columns: 2,
+        gutter: 1em,
+        [`nombres : List<int>`]
+        )],
+        [*Méthodes*], [#grid(
+        columns: 1,
+        gutter: 1em,
+        )], [*Constructeurs*], [#grid(
+        columns: 1,
+        gutter: 1em,
+        [`EnsembleTab(int max)`],
+        )
+        ]),
+    )
+
+        #let ensemble_list_chain = align(
+        center,
+        table(columns: 1, [#text(size: 1.3em, "EnsembleChaine")], [*Attributs*], [#grid(
+            columns: 1,
+            gutter: 1em,
+            [`suivant : EnsembleChaine`], [`valeur : int`]
+        )],
+            [*Méthodes*], [#grid(
+            columns: 1,
+            gutter: 1em,
+        )], [*Constructeurs*], [#grid(
+            columns: 1,
+            gutter: 1em,
+            [`EnsembleChaine(int max)`],
+        )
+        ]),
+        )
+
+        #fletcher.diagram(
+        node((0, 0), ensemble_tab),
+        node((3, 0), ensemble_list_chain),
+        node((3,-1), ensemble_interface),
+        edge((0,0), (3,-1), $"impl."$, "-->", bend: -20deg),
+        edge((3,0),(3,-1), $"impl."$, "-->", bend:-70deg)
+        )
+
+
+    + On utilise ```java implements```
+
+    +
+        - Cas Tableau
+
+            On ajoute au tableau
+
+        - Cas Liste Chainée
+
+            On ajoute un maillon à la fin de la liste chaînée
+    + ```java
+// Cas Tableau
+int min() {
+    return this.nombres.get(0);
+}
+
+// Cas Liste Chainée
+int min() {
+    return this.valeur;
+}
+    ```
+
+    + Le cas `List` est plus efficace car le cas Liste Chainée est plus coûteux pour ajouter un élément.
+]
+
+#exercise[
+    ```java
+
+    public interface Ensemble<TypeDonnee> {
+        boolean estVide();
+        boolean appartient(TypeDonnee n);
+        int cardinal();
+        TypeDonnee min();
+        void ajouter(TypeDonnee n);
+        void supprimer(TypeDonnee n);
+    }
+    ```
+]

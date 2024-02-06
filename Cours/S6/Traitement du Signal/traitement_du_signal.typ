@@ -3,6 +3,11 @@
 #set page(height: auto)
 
 #show: project.with(title: "Résumé - Traitement du Signal", date: "22 Janvier, 2024")
+
+#remark[#link(
+    "https://ch-poulliat.github.io/Cours-TS-SN1A-N7/intro.html",
+    "Cours en ligne",
+  )]
 = Corrélations et Spectres
 == Transformée de Fourier
 == Classes de signaux déterministes et aléatoires
@@ -172,9 +177,62 @@
     - $s_2 (f)$ est un spectre continu ]
 
 = Filtrage Linéaire
+#remark[
+  Une opération de filtrage est comme une boîte noire qui prend un signal en
+  entrée et qui produit un signal en sortie.
 
-= Traitements non linéaires
+]
+
+#definition[ On cherche une opération $T$ qui a les propriétés suivantes
+
+  / Linéarité: $T(a x (t) + b y (t)) = a T(x (t)) + b T(y(t))$
+  / Invariance dans le temps: Si $y(t) = T(x(t))$, alors $T(x(t-t_0)) = y(t-t_0)$
+  / Stabilité BIBO: Si $x(t)$ est borné, alors $T(x(t))$ est borné ]
+
+#definition[ Réponse impulsionnelle On définit la réponse impulsionnelle d'un filtre par $ H(f) = op("TF")(h(t)) = integral_RR h(t) e^(-j 2 pi f t) dd(t) $
+
+  si $x(t) = delta(t)$, alors $y(t) = h(t)$, ceci permet d'obtenir la seule
+  réponse impulsionnelle possible. ]
+
+== Réalisation d'un filtre
+#definition[
+  - Domaine temporel
+    + $h(t)$ réelle
+    + $h(t) in L^1$ (stabilité)
+    + $h(t)$ causale (filtre sans mémoiré)
+
+  - Domaine spectral
+    + $H^* (-f) = H(f)$ (symétrie hermitienne)
+    + ne peut se traduire
+    + $H(f) = - j tilde(H)(f)$, où $tilde(H)(f) = H(f) 1/(pi f)$ est la transformée de
+      Hilbert de $H$
+
+]
+
+#method[ Identifier une relation de filtrage linéaires
+
+  + Signaux déterministes
+    $y(t) = x(t) times h(t) <=> Y(f) = X(f) H(f)$ (i.e. on a tout identifié)
+  + signaux aléatoires Si $x(t) <->^I e^(j 2 pi f t)$, alors $y(t) <-> e^(j 2 pi f t) H(f)$ (on
+    va montrer qu'on peut faire une correspondance à l'aide d'une isométrie) ]
+
+== Relations de Wiener Lee
+#definition[
+  / Densité spectrale de puissance: $s_y (f) = abs(H(f))^2 s_x (f)$
+  / Fonction d'intercorrélation: $R_(y x) (tau) = h(tau) R_x (tau)$
+  / Fonction d'autocorrélation: $R_y (tau) = h(tau) h^* (-tau) R_x (tau)$
+]
+== Interférences
+
+#theorem[ Formule
+
+  - Hypothèses
+    $y_1 (t) = x(t) times h_1 (t)$ et $y_2 (t) = x(t) times h_2 (t)$
+
+  - Formule
+    $R_(y_1 y_2) (tau) = integral_RR s_x (t) H_1 (f) H_2^* (f) e^(j 2 pi f tau) dd(f)$ ]
 
 = Partiel
 + stationarité à l'ordre 1
 + vérifier à l'ordre 2 et démontrer que ça dépend que de $tau$
+

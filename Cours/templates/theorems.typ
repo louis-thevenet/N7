@@ -19,9 +19,9 @@
   "exercise",
   "Exercise",
   stroke: rgb("#aaaaff") + 2pt,
-  base: none,
+  base: "heading",
   breakable: true,
-).with(numbering: "I")
+)
 
 #let example = thmplain("example", "Exemple").with(numbering: none)
 #let remark = thmplain("remark", "Remarque", inset: 0em).with(numbering: none)

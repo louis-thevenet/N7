@@ -236,3 +236,114 @@ int min() {
     }
     ```
 ]
+
+= TD3
+#exercise[
+    #let compte-simple = align(
+    center,
+    table(columns: 1, [#text(size: 1.3em, "CompteSimple")], [*Requête*], [#grid(
+      columns: 2,
+      gutter: 1em,
+      [`solde : double`],
+    )], [*Commande*], [#grid(
+      columns: 2,
+      gutter: 1em,
+      [`créditer(s : double)` $cases("Pré: " s>=0, "post: " "solde" = "old_solde"+s)$],
+      [`débiter(s : double)` $cases("Pré: " s>=0, "post: " "solde" = "old_solde"-s)$],
+    )], [#grid(
+      columns: 1,
+      gutter: 1em,
+      [CompteSimple(soldeInitial : double)],
+      [CompteSimple()],
+    )
+    ]),
+  )
+
+#let personne = align( center,
+    table(columns: 1, [#text(size: 1.3em, "Personne")], [*Requête*], [#grid(
+      columns: 2,
+      gutter: 1em,
+      [`nom : String`],
+      [`prenom : String`],
+      [estFemme() : boolean],
+      [estHomme() : boolean],
+    )], [*Commande*], [#grid(
+      columns: 2,
+      gutter: 1em,
+    )], [#grid(
+      columns: 1,
+      gutter: 1em,
+      [Personne(nom : String, prenom : String)],
+    )
+    ]),
+  )
+
+#let compte-courant =  align(
+    center,
+    table(columns: 1, [#text(size: 1.3em, "CompteCourant")], [*Requête*], [#grid(
+      columns: 2,
+      gutter: 1em,
+      [`solde : double`],
+    )], [*Commande*], [#grid(
+      columns: 2,
+      gutter: 1em,
+      [`créditer(s : double)` $cases("Pré: " s>=0, "post: " "solde" = "old_solde"+s)$],
+      [`débiter(s : double)` $cases("Pré: " s>=0, "post: " "solde" = "old_solde"-s)$],
+      [`afficherReleve()`],
+      [`afficherReleveDebits()`],
+      [`afficherReleveCredits()`],
+    )], [#grid(
+      columns: 1,
+      gutter: 1em,
+      [CompteCourant(soldeInitial : double)],
+      [CompteCourant()],
+    )
+    ]),
+  )
+  #let historique = align(
+    center,
+    table(columns: 1, [#text(size: 1.3em, "Historique")], [*Requête*], [#grid(
+      columns: 2,
+      gutter: 1em,
+      [dots],
+    )], [*Commande*], [#grid(
+      columns: 1,
+      gutter: 1em,
+      [dots],
+
+    )], [#grid(
+      columns: 1,
+      gutter: 1em,
+      [Historique()],
+    )
+    ]),
+  )
+
+ + #fletcher.diagram(
+        node((0, 0), compte-simple),
+        node((0.3,-1), personne),
+        edge((0,0),(0.3,-1), $"titulaire"$, "->"),
+
+        node((0,-2), compte-courant),
+        node((0.3,-3), historique),
+        edge((0,0),(0,-2),  "->", bend: -20deg),
+        edge((0,-2),(0.3,-3),  $"historique"$,"->"),
+        )
+
++ #sourcecode()[```java
+
+c = new CS(100)
+testCrediter1():
+    c.crediter(0)
+    c.getSole() == 100
+
+testCrediter2():
+    c.crediter(100)
+    c.getSole() == 200
+
+testTitulaire():
+    p = new Personne("Doe", "John")
+    c = new CS(100, p)
+    c.getTitulaire() eq p
+```]
+]

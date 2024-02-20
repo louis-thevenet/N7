@@ -11,6 +11,7 @@
 = Corrélations et Spectres
 == Transformée de Fourier
 == Classes de signaux déterministes et aléatoires
+
 #theorem[ Classes de signaux
 
   + Déterministes à *énergie finie*
@@ -74,7 +75,7 @@
       ) (op("sinc") (pi tau f)) \
                 &= T Lambda_T (tau) $
 
-=== Déterministes *périodiques*
+=== Déterministes *périodiques* à *puissance finie*
 #definition[
   / Definition: $P = 1/T_0 integral_(-T_0 / 2)^(T_0/2) abs(x(t))^2 dd(t) < infinity$
 
@@ -110,7 +111,7 @@
             &= A^2 /2 cos(2 pi f_0 tau) $ ]
 #remark[$R_x (0) = "puissance" = A^2 / 2$]
 
-=== Déterministes à *puissance finie*
+=== Déterministes *non périodique* à *puissance finie*
 #theorem[
   / Définition: $P = lim_(T_0 -> infinity) 1/T_0 integral_(-T_0/2)^(T_0/2) abs(x(t))^2 dd(t) <
     infinity$

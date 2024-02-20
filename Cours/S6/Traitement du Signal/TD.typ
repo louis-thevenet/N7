@@ -1,4 +1,6 @@
 #import "../../templates/template.typ": *
+#import "@preview/cetz:0.2.0"
+
 #set page(height: auto)
 #show: project.with(title: "TDs - Traitement du Signal", date: "23 Janvier, 2024")
 
@@ -148,4 +150,38 @@
   + $ V &= EE[Y(t) - EE(Y(t))] \
       &= EE[e^X(t) ] - EE[e^(sigma^2 / 2)]^2 \
       &= EE[e^(2 X(t))] - e^(sigma^2) $
+]
+
+= TD3
+#exercise[
+  + #figure(image("td3ex1.png"))
+  + Oui si l'on respecte le critère de Shannon : $F_e >= 2 f_0 = 20 "kHz"$
+  + #figure(image("td3ex1_2.png"))
+    #figure(image("td3ex1_3.png"))
+  + On filtre avec un filtre passe-bas à $F_e / 2$
+    - $F_e = 30 "kHz"$
+      $cos(2 pi f_0)$
+
+    #cetz.canvas(length: 3cm, {
+      import cetz.plot
+
+      plot.plot(
+        axis-style: "school-book",
+        x-label: $f$,
+        x-tick-step: none,
+        x-ticks: ((-10, $-f_0$), (10, $f_0$)),
+        y-label: none,
+        y-tick-step: none,
+        y-max: 20,
+        {
+          plot.add(((-10, 0), (-10, 10)), style: (stroke: blue))
+          plot.add(((10, 0), (10, 10)), style: (stroke: blue))
+        },
+      )
+    })
+
+]
+
+#exercise[
+
 ]

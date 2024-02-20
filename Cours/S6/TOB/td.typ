@@ -347,3 +347,48 @@ testTitulaire():
     c.getTitulaire() eq p
 ```]
 ]
+
+= TD4
+#exercise[
+    +
+        - `java ClassePrincipale un` $arrow.squiggly$ `[(<un>)F`
+        - `java ClassePrincipale ""` $arrow.squiggly$ ```m1("")
+        [(<IF]```
+        - `java ClassePrincipale x` $arrow.squiggly$ ```m1("x")
+        [(<xF ERREUR```
+
+    + #sourcecode()[```java
+     public static void main(String[] args) {
+        double somme = 0;
+        int counter = 0;
+        for (String arg : args) {
+            try {
+                somme += Double.parseDouble(arg);
+            } catch (NumberFormatException e) {
+                counter++;
+                System.out.println("ERREUR");
+            }
+        }
+        System.out.println(somme);
+        System.out.println("Nombre d'erreurs ignorées : " + counter);
+        ```
+    ]
+
+
++ #sourcecode()[```java
+class LivretA extends CompteCourant {
+    double taux;
+    double plafond;
+
+    LivretA(double soldeInitial, double taux, double plafond) {
+        super(soldeInitial);
+        this.taux = taux;
+        this.plafond = plafond;
+    }
+
+    void capitaliser() {
+        this.crediter(this.solde * this.taux);
+    }
+}
+```]
+]

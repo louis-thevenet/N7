@@ -191,3 +191,110 @@ end module
 
 ]
 
+= TD2
+#exercise[
+- TQ $A!=B$
+  - Si $A>B$ Alors
+    - $A <- A-B$
+  - Sinon
+    - $B <- B-A$
+  - FinSi
+- FinTQ
+
+#sourcecode()[
+```yasm
+            set A, %r1      # r1 vaut l'adresse de A
+            ld [%r1], %r1   # r1 vaut maintenant la valeur de A
+
+            set B, %r2
+            ld [%r2], %r2
+
+TantQue :   cmp %r1 %r2
+            beq FinTantQue
+
+            cmp %r1 %r2
+            blu AsupB
+
+AinfEqB :   sub %r1, %r2, %r1
+            ba TantQue
+
+AsupB :     sub %r2, %r1, %r2
+            ba TantQue
+
+FinTantQue : Stop
+
+A : .word 21
+B : .word 35
+        ```
+]
+]
+
+#exercise[
+- $"Fact" <- 1$
+- $"i" <- N$
+- TQ $i > 1$
+  - $"Fact" <- "Fact" times i$
+  - $i <- i - 1$
+- FinTQ
+#sourcecode()[
+```yasm
+ Debut :    set 1, %r1      # r1 = Fact
+            set N, %r2      # r2 = i
+
+TQ :        cmp %r2, 1
+            bleu finTQ
+
+            umulcc %r1, %r2, %r1
+            sub %r2, 1, %r2
+            ba TQ
+
+finTQ :     set fact, %r3
+            st %r1, [%r3]
+Stop :      ba stop
+
+
+N : .word 5
+fact : .word 0
+```
+]
+]
+
+#exercise[
+
+- somme $<- 0$
+- pour $i$ de $0$ à $N-1$ faire
+  - somme $<-$ somme $+ "tab[i]"$
+- finpour
+$<==>$
+- somme $<- 0$
+- $i<-0$
+- tq $i<N$ faire
+  - somme $<-$ somme $ + "tab[i]"$
+  - $i<-i+1$
+- fintq
+// typstfmt::off
+  #sourcecode()[
+```yasm
+Debut : clr %r12        # somme <- 0
+        set Tab, %r2           # r2 <- @debut
+        clr %r3 # i <- 0
+
+tq :    cmp %r3, N
+        bgeu fintq
+        ld [%r2 + %r3], %r4    # %r4 <- tab[i]
+        add %r1, %r4, %r1      # somme <- somme + tab[i]
+        add %r3, 1, %r3
+        ba tq
+
+fintq : set somme, %r4
+        st %r1, [%r4]
+stop :      ba stop
+
+Tab :   .word 1,5,3,6,5,8,10,2,8,5
+somme : .word 0
+
+        ```
+// typstfmt::on
+
+  ]
+]

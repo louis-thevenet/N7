@@ -296,5 +296,48 @@ somme : .word 0
         ```
 // typstfmt::on
 
-  ]
+ ]
 ]
+
+ = TD3
+ == Entrées / Sorties
+#exercise[
+
+#sourcecode()[
+```yasm
+LEDS = 0xB0000000
+
+Afficher_LEDS_7_0:
+    push %r1
+    push %r20
+
+    set LEDS, %r20
+
+    and %r1, 0xFF, %r1
+
+    st  %r1, [%r20]
+    pop %r20
+    pop %r1
+    ret
+```]
+
+
+  #sourcecode()[
+```yasm
+LEDS = 0xB0000000
+
+Afficher_LEDS_15_8:
+    push %r1
+    push %r20
+
+    set LEDS, %r20
+
+    and %r1, 0xFF, %r1
+    sll %r1, 8, %r1 # décalage de 8 bits (shift left logical)
+    st  %r1, [%r20]
+    pop %r20
+    pop %r1
+    ret
+```]
+
+  ]

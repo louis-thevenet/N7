@@ -3,13 +3,13 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    # nix-matlab.url = "gitlab:doronbehar/nix-matlab";
+    nix-matlab.url = "gitlab:doronbehar/nix-matlab";
   };
   outputs = {
     self,
     nixpkgs,
     flake-utils,
-    # nix-matlab,
+    nix-matlab,
   }:
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
@@ -17,12 +17,12 @@
       devShells = {
         default = pkgs.mkShell {
           # Matlab (needs a working matlab install elsewhere)
-          # buildInputs = with nix-matlab.packages.x86_64-linux; [
-          #   matlab
-          #   matlab-mlint
-          #   matlab-mex
-          # ];
-          # shellHook = nix-matlab.shellHooksCommon;
+          buildInputs = with nix-matlab.packages.x86_64-linux; [
+            matlab
+            matlab-mlint
+            matlab-mex
+          ];
+          shellHook = nix-matlab.shellHooksCommon;
 
           packages = with pkgs; [
             # # Modélisation

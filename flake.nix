@@ -22,6 +22,7 @@
             matlab-mlint
             matlab-mex
           ];
+
           shellHook = nix-matlab.shellHooksCommon;
 
           packages = with pkgs; [
@@ -47,6 +48,13 @@
             # jupyter
             # cmake
             # clang-tools
+
+            (pkgs.python3.withPackages (python-pkgs: [
+              python-pkgs.jupyter
+              python-pkgs.numpy
+              python-pkgs.matplotlib
+              python-pkgs.scikit-learn
+            ]))
 
             # Nix
             nil

@@ -392,3 +392,80 @@ class LivretA extends CompteCourant {
 }
 ```]
 ]
+
+
+= TD9
+
+#exercise[
+      #let monnaie = align(
+    center,
+    table(columns: 1, [#text(size: 1.3em, "Monnaie")], [*Requête*], [#grid(
+      columns: 2,
+      gutter: 1em,
+      [valeur : Integer],
+      [devise : String],
+    )], [*Commande*], [#grid(
+      columns: 1,
+      gutter: 1em,
+      [`Ajouter(m: Monnaie)`],
+      [`Retirer(m: Monnaie)`],
+
+    )], [#grid(
+      columns: 1,
+      gutter: 1em,
+      [`Monnaie(valeur : int, devise : String)`],
+    )
+    ]),
+  )
+#let devise-exception = align(
+    center,
+    table(columns: 1, [#text(size: 1.3em, "`DeviseInvalideException`")], [*Exception*], [#grid(
+      columns: 2,
+      gutter: 1em,
+      [valeur : Integer],
+      [devise : String],
+    )]),
+  )
+   + #fletcher.diagram(
+        node((0, 0), monnaie),
+        node((0.3,-1), devise-exception),
+        edge((0,0),(0.3,-1), $"throws"$, "->"),
+
+        )
+
+
+
+#sourcecode()[
+    ```java
+
+    public class Monnaie() {
+        int valeur;
+        String devise;
+
+        public Monnaie(int vlauer, String devise) {
+            this.valeur=valeur;
+            this.devise = devise;
+        }
+
+        private Boolean MemeDevise(Monnaie m) {
+            return devise== m.devise;
+        }
+
+        public Ajouter(Monnaie m) throws DeviseInvalideException {
+            if (m.devise!= devise)
+                throw new DeviseInvalideException();
+
+            valeur += m.valeur;
+        }
+
+        public Retirer(Monnaie m) throws DeviseInvalideException {
+            if (m.devise != devise)
+                throw new DeviseInvalideException();
+
+            valeur -= m.valeur;
+        }
+    }
+    ```
+        ]
+]
+

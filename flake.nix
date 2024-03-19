@@ -54,6 +54,9 @@
               python-pkgs.numpy
               python-pkgs.matplotlib
               python-pkgs.scikit-learn
+              python-pkgs.tensorflow
+              python-pkgs.keras
+              python-pkgs.treelib
             ]))
 
             # Nix

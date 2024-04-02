@@ -3,5 +3,5 @@
     "[typst]": {
         "editor.defaultFormatter": "nvarner.typst-lsp"
     },
-    //"continue.enableTabAutocomplete": false
+    "continue.enableTabAutocomplete": false
 }

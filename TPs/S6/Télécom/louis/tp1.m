@@ -2,7 +2,7 @@
 %                   TP1 de Télécommunications
 %                   SCIENCES DU NUMERIQUE 1A
 %                           Avril 2024 
-%                        Albin Morisseau
+%                         Louis Thevenet
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear all
@@ -11,7 +11,7 @@ close all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %PARAMETRES GENERAUX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Nb=20;       %nombres de bits générés
+Nb=200;         %nombres de bits générés
 Fe=24000;       %fréquence d'échantillonnage en Hz
 Te=1/Fe;        %période d'échantillonnage en secondes
 Rb=3000;        %débit binaire en bits par secondes
@@ -19,7 +19,8 @@ Tb=1/Rb;        %période binaire
 
 % suite de bits à transmettre
 bits = randi([0,1],1,Nb); % renvoie un vecteur de taille 1xNb avec des valeurs suivant une loin uniforme entre O et 1
- 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %MODULATEUR 1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -167,14 +168,14 @@ Rs_3 = 1/Ts_3;      %débit symbole
 Ns_3 = Ts_3/Te;
 Nsb_3 = Nb/log2(M);
 
-alpha = 0.4;
+alpha = 0.5;
 L = 50;
 h = rcosdesign(alpha,L,Ns_3);
 
 % même mapping que pour le premier modulateur
 
 %mise en place du filtre
-x3=filter(B,1,suite_diracs1);
+x3=filter(h,1,suite_diracs1);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %TRACE DU SIGNAL 3

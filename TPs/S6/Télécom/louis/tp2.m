@@ -2,7 +2,7 @@
 %                   TP2 de Télécommunications
 %                   SCIENCES DU NUMERIQUE 1A
 %                           Avril 2024 
-%                        Albin Morisseau
+%                        Louis Thevenet
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear all
@@ -11,7 +11,7 @@ close all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %PARAMETRES GENERAUX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Nb=10000;       %nombres de bits générés
+Nb=50;       %nombres de bits générés
 Fe=24000;       %fréquence d'échantillonnage en Hz
 Te=1/Fe;        %période d'échantillonnage en secondes
 Rb=3000;        %débit binaire en bits par secondes
@@ -28,7 +28,7 @@ M=2;
 Ts_1 = Tb*log2(M);  %période symbole
 Rs_1 = 1/Ts_1;      %débit symbole
 Ns_1 = Ts_1/Te;
-Nsb_1 = Nb/log2(M);
+Nsb_1 = Nb/log2(M)
 
 %mapping
 ak1 = 2*bits-1;
@@ -84,12 +84,12 @@ title('Tracé en échelle temporelle du signal 1 démodulé');
 % REPONSE IMPULSIONELLE DE LA CHAINE DE TRANSMISSION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-g = conv(x1,x1_demodule);
-
+g = conv(B1,B1);
+g_reponse_temporelle = filter(g,1, suite_diracs1);
 echelle_temporelle_g = [0:Te:(length(g)-1)*Te];
 
 figure
-plot(echelle_temporelle_g,g);
+plot(g_reponse_temporelle);
 title('Réponse impulsionelle globale de la chaine de transmission')
 
 G=fft(g);
@@ -112,7 +112,7 @@ title('Tracé de la réponse impusionelle globale en fréquence')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure
 plot(reshape(x1_demodule,Ns_1,length(x1_demodule)/Ns_1))
-title('Diagramme de l oeil')
+%eyediagram( x1_demodule, Ns_1,Ts_1*2);
 
 % Après l'analyse du diagra&mme de l'oeil, on constate qu'il faut prendre
 % n0=8 car c'est l'endroit où les droites s'y croisent. 
@@ -121,9 +121,9 @@ title('Diagramme de l oeil')
 x1_demodule_decalage = x1_demodule(8:Ns_1:end);
 
 %tracé en échelle temporelle
-temps_decalage = [0:Te:(length(x1_demodule_decalage)-1)*Te];
+temps_decalage = [0:Te:(length(x1_demodule)-1)*Te];
 figure 
-plot(temps_decalage,x1_demodule_decalage)
+plot(temps_decalage,x1_demodule)
 grid
 xlabel('Temps (s)')
 ylabel('signal')

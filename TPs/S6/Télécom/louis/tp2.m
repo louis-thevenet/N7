@@ -11,7 +11,7 @@ close all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %PARAMETRES GENERAUX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Nb=50;       %nombres de bits générés
+Nb=20;       %nombres de bits générés
 Fe=24000;       %fréquence d'échantillonnage en Hz
 Te=1/Fe;        %période d'échantillonnage en secondes
 Rb=3000;        %débit binaire en bits par secondes
@@ -89,7 +89,7 @@ g_reponse_temporelle = filter(g,1, suite_diracs1);
 echelle_temporelle_g = [0:Te:(length(g)-1)*Te];
 
 figure
-plot(g_reponse_temporelle);
+plot(g);
 title('Réponse impulsionelle globale de la chaine de transmission')
 
 G=fft(g);
@@ -148,7 +148,7 @@ TEB
 % TAUX D'ERREUR BINAIRE BIAISE (TEBB)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-x1_demodule_decalage_biaise = x1_demodule(3:Ns_1:end);
+x1_demodule_decalage_biaise = x1_demodule(5:Ns_1:end);
 
 bits_sortis_biaise = x1_demodule_decalage_biaise > K;
 nb_bits_erreur_biaise = sum(bits_sortis_biaise ~= bits);

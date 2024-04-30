@@ -1,257 +1,148 @@
-clear all;
-close all;
-
-Fe = 24000;
-Te = 1/Fe;
-Rb = 3000;
-Tb = 1/Rb;
-n=1;
-M = 2^n;
-Ts = log2(M)*Tb;
-Rs = Rb/log2(M);
-nb_bits = 2048;
-S = randi([0 1],nb_bits,1);
-
-SNR = 8;
-
-%% modulateur 1 :
-% Mapping
-
-Ns = Fe * Ts; % Nombre d'échantillons! par bits
-
-SE = (2*S - 1)';
-At = kron(SE, [1 zeros(1, Ns-1)]);
-
-% Filtre
-T1 = 0:Te:(nb_bits*Ns-1)*Te; % Echelle temporelle
-h1 = ones(1, Ns); % Reponse impulsionnelle du filtre
-y = filter(h1, 1, At);
-
-% Tracés
-figure('name', 'Modulateur ')
-
-    % Signal généré
-    nexttile
-    stem(T1,At)
-    ylim([-1.5, 1.5])
-    xlabel("temps (s)")
-    ylabel("Signal temporel")
-    title('Tracé du signal temporel');
-    
-    nexttile
-    plot(T1,y)
-    ylim([-1.5, 1.5])
-    xlabel("temps (s)")
-    ylabel("Signal filtré")
-    title('Tracé du signal temporel filtré')
-%bruit 
-Px = mean(abs(y).^2);
-sigma2 = (Px * Ns)/(2*log2(M)*SNR);
-bruit = sqrt(sigma2) * randn(1, length(y));
-y = y+bruit;
-
-% filtre récéption
-y = filter(h1,1,y);
-    plot(T1,y)
-    ylim([-10,10]);
-    xlabel("temps (s)")
-    ylabel("Signal filtré")
-    title('Tracé du signal temporel filtré à la récéption')
-% réponse globale impulsion
-
-g = conv(h1,h1);
-t_g = linspace(0,2*Ns,length(g));
-figure ('name','réponse impulsionelle globale')
-plot(t_g,g)
-    ylim([-10,10])
-    xlabel("temps (s)")
-    ylabel("g(t)")
-    title('réponse impulsionelle globale')
-
+%% Chaine 1
+N=20;
+M = 2; % Code 2 symboles (2^n)
+Rs1 = Rb/log2(M);
+Ns1 = 1/(Te*Rs1); % Nombre d'échantillons par symbole
+Ts1 = 1/Rs1;
+ 
+% Bits
+bits1 = randi([0,1], 1, N); % Entre 0 et 1
+ 
+% Mapping binaire à moyenne nulle
+map1 = (bits1.*2) - 1; % Entre -1 et 1
+ 
+% Suréchantillonnage
+B = zeros(length(temps), 1);
+B(1:Ns1:end) = map;
+ 
+% Filtre de  mise en forme rectangulaire de durée égale à la période symbole
+h1 = ones(1, Ns1);
+x1 = filter(h1, 1, B);
+ 
+% Filtre de réception
+hr1 = ones(1, Ns1);
+yr1 = filter(hr1,1,x1);
+ 
+% Chaine de transmission
+figure;
+g1 = conv(h1 ,hr1); % Pas de canal
+ 
+% Convolution de 2 portes ==> Triangle
+t_g1 = linspace(0,2*Ns1,length(g1));
+subplot(2, 1, 1);
+plot(t_g1,g1)
+ylim([-10,10])
+title("Réponse impulsionnelle globale de la chaine 1");
+xlabel('Temps ');
+ylabel("g1(t)");
+axis([0 2*Ns1 0 10]);
+ 
 % Diagramme de l'oeil
-oeil = reshape(y,Ns,length(y)/Ns);
-to= linspace(0,Ns,size(oeil,1));
-figure 
-plot(to,oeil)
-xlabel('temps')
-ylabel('amplitude')
-title('diagramme de l''oeil')
-
-N0=floor(Ts*Fe);
-xe = y(N0:Ns:length(y));
-xr = zeros(1,length(S));
-xr(xe>0)=1;
-xr(xe<0)=0;
-
-
-TEB = mean(S' ~= xr)
-
-%% modulateur 2 :
-% Mapping
-
-Ns = Fe * Ts; % Nombre d'échantillons! par bits
-
-SE = (2*S - 1)';
-At = kron(SE, [1 zeros(1, Ns-1)]);
-
-% Filtre
-T1 = 0:Te:(nb_bits*Ns-1)*Te; % Echelle temporelle
-h1 = ones(1, Ns); % Reponse impulsionnelle du filtre
-y = filter(h1, 1, At);
-
-% Tracés
-figure('name', 'Modulateur 1 ')
-
-    % Signal généré
-    nexttile
-    stem(T1,At)
-    ylim([-1.5, 1.5])
-    xlabel("temps (s)")
-    ylabel("Signal temporel")
-    title('Tracé du signal temporel');
-    
-    nexttile
-    plot(T1,y)
-    ylim([-1.5, 1.5])
-    xlabel("temps (s)")
-    ylabel("Signal filtré")
-    title('Tracé du signal temporel filtré')
-
-%bruit 
-Px = mean(abs(y).^2);
-sigma2 = (Px * Ns)/(2*log2(M)*SNR);
-bruit = sqrt(sigma2) * randn(1, length(y));
-y = y+bruit;
-
-% filtre récéption
-hr = ones(1,Ns/2);
-y = filter(hr,1,y);
-    plot(T1,y)
-    ylim([-10,10]);
-    xlabel("temps (s)")
-    ylabel("Signal filtré")
-    title('Tracé du signal temporel filtré à la récéption')
-% réponse globale impulsion
-
-g = conv(h1,hr);
-t_g = linspace(0,2*Ns,length(g));
-figure ('name','réponse impulsionelle globale')
-plot(t_g,g)
-    ylim([-10,10])
-    xlabel("temps (s)")
-    ylabel("g(t)")
-    title('réponse impulsionelle globale')
-
-% Diagramme de l'oeil
-oeil = reshape(y,Ns,length(y)/Ns);
-to= linspace(0,Ns,size(oeil,1));
-figure 
-plot(to,oeil)
-xlabel('temps')
-ylabel('amplitude')
-title('diagramme de l''oeil')
-
-N0=floor(Ts*Fe);
-xe = y(N0:Ns:length(y));
-xr = zeros(1,length(S));
-xr(xe>0)=1;
-xr(xe<0)=0;
-
-
-TEB = mean(S' ~= xr)
-
-%% modulateur 3 :
-% Mapping
-n=2;
-M=2^2;
-Ns = Fe * 2*Ts; % Nombre d'échantillons par bits
-
-S2 = reshape(S',2,nb_bits/2);
-S2E = [1, nb_bits/2];
-Choix = [-3 -1; 1 3];
-for i=1:size(S2,2)
-    S2E(i) = Choix(S2(1,i)+1,S2(2,i)+1);
-end
-At = kron(S2E, [1, zeros(1, Ns-1)]);
-
-% Filtre
-T1 = 0:Te:(nb_bits*Ns-1)*Te/2; % Echelle temporelle
-h1 = ones(1, Ns); % Reponse impulsionnelle du filtre
-y = filter(h1, 1, At);
-
-% Tracés
-figure('name', 'Modulateur 2 ')
-
-    % Signal généré
-    nexttile
-    stem(T1,At)
-    ylim([-3.5, 3.5])
-    xlabel("temps (s)")
-    ylabel("Signal temporel")
-    title('Tracé du signal temporel');
-    
-    nexttile
-    plot(T1,y)
-    ylim([-3.5, 3.5])
-    xlabel("temps (s)")
-    ylabel("Signal filtré")
-    title('Tracé du signal temporel filtré')
-
-%bruit 
-Px = mean(abs(y).^2);
-sigma2 = (Px * Ns)/(2*log2(M)*SNR);
-bruit = sqrt(sigma2) * randn(1, length(y));
-y = y+bruit;
-
-% filtre récéption
-hr = ones(1,Ns);
-y = filter(hr,1,y);
-    plot(T1,y)
-    ylim([-64,64]);
-    xlabel("temps (s)")
-    ylabel("Signal filtré")
-    title('Tracé du signal temporel filtré à la récéption')
-
-% réponse globale impulsion
-g = conv(h1,hr);
-t_g = linspace(0,2*Ns,length(g));
-figure ('name','réponse impulsionelle globale')
-plot(t_g,g)
-    
-    xlabel("temps (s)")
-    ylabel("g(t)")
-    title('réponse impulsionelle globale')
-
-% Diagramme de l'oeil
-oeil = reshape(y,Ns,length(y)/Ns);
-to= linspace(0,Ns,size(oeil,1));
-figure 
-plot(to,oeil)
-xlabel('temps')
-ylabel('amplitude')
-title('diagramme de l''oeil')
-
-N0=floor(2*Ts*Fe);
-
-xe = y(N0:Ns:length(y))/16;
-xr_temp = zeros(1,length(S)/2);
-xr_temp(xe>2)=3;
-xr_temp(xe<=2 & xe>0)=1;
-xr_temp(xe<=0 & xe>-2)=-1;
-xr_temp(xe<=-2)=-3;
-
-xr = [];
-for i=1:length(S)/2
-    if xr_temp(i)== -3
-        xr = [xr 0 0];
-    elseif xr_temp(i)== -1
-        xr = [xr 0 1];
-    elseif xr_temp(i)== 1
-        xr = [xr 1 0];
-    else
-        xr = [xr 1 1];
-    end
-    
-end
-
-TEB = mean(S' ~= xr)
+oeil1 = reshape(yr1,Ns1,length(yr1)/Ns1);
+to1 = linspace(0,Ns1,size(oeil1,1));
+subplot(2, 1, 2);
+plot(to1,oeil1)
+xlabel('Temps ')
+ylabel('Amplitude')
+title("Diagramme de l'oeil 1");
+ 
+%% Chaine 2 
+ 
+M = 2; % Code 2 symboles (2^n)
+Rs2 = Rb/log2(M);
+Ns2 = 1/(Te*Rs2); % Nombre d'échantillons par symbole
+Ts2 = 1/Rs2;
+ 
+% Bits
+bits2 = randi([0,1], 1, N); % Entre 0 et 1
+ 
+% Mapping binaire à moyenne nulle
+map2 = (bits2.*2) - 1; % Entre -1 et 1
+ 
+% Suréchantillonnage
+B = zeros(length(temps), 1);
+B(1:Ns1:end) = map;
+ 
+% Filtre de  mise en forme rectangulaire de durée égale à la période symbole
+h2 = ones(1, Ns2);
+x2 = filter(h2, 1, B);
+ 
+% Filtre de réception
+hr2 = ones(1, Ns2/2);
+yr2 = filter(hr2,1,x2);
+ 
+% Chaine de transmission
+figure;
+g2 = conv(h2 ,hr2); % Pas de canal
+ 
+% Convolution de 2 portes ==> Triangle
+t_g2 = linspace(0,2*Ns2,length(g2));
+subplot(2, 1, 1);
+plot(t_g2,g2)
+ylim([-10,10])
+title("Réponse impulsionnelle globale de la chaine 2");
+xlabel('Temps ');
+ylabel("g2(t)");
+axis([0 2*Ns2 0 10]);
+ 
+% Diagramme de l'oeil 2
+oeil2 = reshape(yr2,Ns2,length(yr2)/Ns2);
+to2 = linspace(0,Ns2,size(oeil2,1));
+subplot(2, 1, 2);
+plot(to2, oeil2);
+xlabel('Temps ');
+ylabel('Amplitude');
+title("Diagramme de l'oeil 2");
+ 
+ 
+%% Chaine 3
+ 
+M = 4; % Code 2 symboles (2^n)
+Rs3 = Rb/log2(M);
+Ns3 = 1/(Te*Rs3); % Nombre d'échantillons par symbole
+Ts3 = 1/Rs3;
+ 
+% Bits
+bits3 = randi([0,1], 1, N); % Entre 0 et 1
+ 
+% Mapping binaire à moyenne nulle
+map3 = reshape(bits3, N/2, 2);
+map3 = bi2de(map3);
+map3 = map3*2 - 3;
+ 
+% Suréchantillonnage
+B = zeros(length(temps), 1);
+B(1:Ns3:end) = map3;
+ 
+% Filtre de mise en forme
+h3 = ones(1, Ns3);
+y3 = filter(h3, 1, B);
+ 
+%%%%%%%%%%%% A FINIR DEPUIS ICI
+ 
+% Filtre de réception
+hr3 = ones(1, Ns3);
+yr3 = filter(hr3,1,x3);
+ 
+% Chaine de transmission
+figure;
+g3 = conv(h3 ,hr3); % Pas de canal
+ 
+% Convolution de 2 portes ==> Triangle
+t_g3 = linspace(0,2*Ns3,length(g3));
+subplot(2, 1, 1);
+plot(t_g3,g3)
+ylim([-10,10])
+title("Réponse impulsionnelle globale de la chaine 3");
+xlabel('Temps ');
+ylabel("g3(t)");
+axis([0 2*Ns3 0 10]);
+ 
+% Diagramme de l'oeil 3
+oeil3 = reshape(yr3,Ns3,length(yr3)/Ns3);
+to3 = linspace(0,Ns3,size(oeil3,1));
+subplot(2, 1, 2);
+plot(to3, oeil3);
+xlabel('Temps ');
+ylabel('Amplitude');
+title("Diagramme de l'oeil 3");

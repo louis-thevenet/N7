@@ -76,6 +76,9 @@
             vpnc
             filezilla
             x2goclient
+
+            arduino-core
+            arduino-ide
           ];
         };
       };

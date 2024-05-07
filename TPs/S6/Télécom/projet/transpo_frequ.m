@@ -1,8 +1,14 @@
 clear all
 close all
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                   PROJET TÉLÉCOM/SIGNAL                                        %
+%      Étude dÉune chaine de transmission sur porteuse pour une transmission satellite fixe      %
+%                   THEVENET Louis & LÉCUYER Simon 1A SN ENSEEIHT 2023/2024                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%PARAMETRES GENERAUX
+%% PARAMETRES GENERAUX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Nb=2000;       %nombres de bits générés
 Fe=24000;       %fréquence d'échantillonnage en Hz
@@ -11,81 +17,74 @@ Rb=3000;        %débit binaire en bits par secondes
 Tb=1/Rb;        %période binaire
 Fp = 2000;      %fréquence porteuse
 
-% suite de bits
+% Suite de bits / Information à transmettre 
 bits = randi([0,1],1,Nb);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%MODULATEUR
+%% MODULATEUR QPSK
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% Mapping
+%Paramètres du Modulateur 
 M = 4;
 Ts = Tb*log2(M);  %période symbole
 Rs = 1/Ts;      %débit symbole
 Ns = Ts/Te;
 Nsb = Nb/log2(M);
 
-%mapping
+%Mapping QPSK
 
-dk = zeros(1, Nb/2);
-for k=1:Nb/log2(M)
-   if bits(2*k-1)==0 && bits(2*k)==0
-      dk(k) = -1-1i;
-   elseif bits(2*k-1)==1 && bits(2*k)==0
-       dk(k) = 1-1i;
-   elseif bits(2*k-1)==0 && bits(2*k)==1
-       dk(k) = -1+1i;
-   else
-       dk(k) = 1+1i;
-   end
-end
+dk = 1-2*bits(1:2:Nb)+1i*(1-2*bits(2:2:Nb));
 
-
-%surréchantillonage des bits
+%Surréchantillonage des bits
 
 suite_diracs_ak = kron(real(dk),[1 zeros(1,Ns-1)]);
 suite_diracs_bk = kron(imag(dk),[1 zeros(1,Ns-1)]);
 
-% Filter
-alpha = 0.35;
-L = 3;
+%Filtrage
+alpha = 0.35; %roll-off factor
+L = 6;
 h = rcosdesign(alpha,L,Ns);
 
 I = filter(h, 1,suite_diracs_ak );
 Q = filter(h, 1,suite_diracs_bk );
-temps_phase = [0:Te:(length(I)-1)*Te];
+temps_phase = 0:Te:(length(I)-1)*Te;
 
-x =real(( I + Q*1i) .* exp(2*pi*1i*Fp*temps_phase));
+x = real(( I + Q*1i) .* exp(2*pi*1i*Fp*temps_phase));
 
 
-T= [0:Te:(length(x)-1)*Te];
+Echelle_Temporelle= 0:Te:(length(x)-1)*Te;
 
-% Tracés
-figure('name', 'Modulateur')
-
-    % Signal généré
+% Tracés des Signaux Générés/Transmis
+figure('Name','Signaux Générés/Transmis')
+ 
+%2.1
 subplot(3,1,1)
-    plot(T,I)
-    xlabel("temps (s)")
-    ylabel("I(t)")
+plot(Echelle_Temporelle,I)
+xlabel("temps (s)")
+ylabel("I(t)")
+title("Signal généré sur la voie en phase")
+
+
+subplot(3,1,2)
+plot(Echelle_Temporelle,Q)
+xlabel("temps (s)")
+ylabel("Q(t)")
+title("Signal généré sur la voie en quadrature")
+
+%2.2
+subplot(3,1,3)
+plot(Echelle_Temporelle,x)
+xlabel("temps (s)")
+ylabel("x(t)")
+title("Signal transmis sur fréquence porteuse")
+
     
-    subplot(3,1,2)
-    plot(T,Q)
-    xlabel("temps (s)")
-    ylabel("Q(t)")
 
-    subplot(3,1,3)
-    plot(T,x)
-    xlabel("temps (s)")
-    ylabel("x(t)")
-    title("Signal transmis sur fréquence porteuse")
-
-    
-
-% Transformée de fourier
+% Calcul et Tracé de la DSP
+%2.3
 X=fft(x, 512);
 echelle_frequentielle=linspace(-Fe/2,Fe/2,length(X));
-figure
+figure('Name','DSP')
 semilogy(echelle_frequentielle,fftshift(abs(X).^2/length(X)),'b')
 grid
 legend('DSP')
@@ -93,5 +92,78 @@ xlabel('Fréquences (Hz)')
 ylabel('DSP')
 title('Tracés de la DSP du signal transmis sur fréquence porteuse');
 
+%2.4
+%TODO : EXPLICATION DE LA DSP
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% INTRODUCTION DU BRUIT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+SNR = 300000000; %(Eb/N0)
+
+Px = mean(abs(x).^2);
+sigma2 = (Px*Nsb)./(2*log2(M)*SNR);
+bruit = sqrt(sigma2)*randn(1,length(x));
+
+r=x+bruit; %signal bruité
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DEMODULATEUR 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Signal auquelle on enlève la fréquence porteuse
+y=r.*cos(2*pi*Fp*Echelle_Temporelle)-1i*r.*sin(2*pi*Fp*Echelle_Temporelle);
+
+%Signal demodulé par le filtre de reception (meme que celui de mise en forme)
+z = filter(h,1,y);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Diagramme de l'oeil/Determination de N0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure('Name','Diagramme de l oeil 1')
+plot(reshape(z,Ns,length(z)/Ns))
+title('Diagramme de l oeil')
+
+N0=16;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TEB SIMULÉ/THÉORIQUE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Calcul et Tracé du TEB
+%2.5 :Comparaison du TEB simulé avec le TEB théorique
+
+%TEB simulé
+
+%décalage avec l'instant optimal
+z_decalage = z(N0:Ns:end);
+
+%seuils optimaux de décision
+K = 0;
+
+%détection de seuil
+
+bits_sortis = z_decalage > K;
+nb_bits_erreur = sum(bits_sortis ~= bits);
+
+%Taux d'erreur binaire
+TEB = nb_bits_erreur/Nb;
+
+%TEB théorique
+
+%TEB = Q(sqrt(2*Eb/N0))
+SNR = 1:1:6;
+Eb_n0=10.^(SNR/10);
+TEBT = qfunc(sqrt(4/5*Eb_n0));
+
+%Tracé
+figure('Name','Comparaison du TEB simulé/théorique')
+semilogy(SNR,TEBT,'b')
+hold on
+semilogy(SNR,TEB,'r')
+grid
+legend('TEB théorique', 'TEB simulé')
+xlabel('Eb/N0')
+title('Tracé des TEB du signal avec le modulateur 3')
 

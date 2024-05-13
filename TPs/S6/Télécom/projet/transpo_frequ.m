@@ -143,14 +143,27 @@ z_decalage = z(N0:Ns:end);
 K = 0;
 
 %détection de seuil
+xr = zeros(1,Nb);
+xr(1:2:Nb) = (real(z_decalage) <0);
+xr(2:2:Nb) = (imag(z_decalage) <0);
 
-bits_sortis = z_decalage > K;
-nb_bits_erreur = sum(bits_sortis ~= bits);
+% ir = real(z_decalage);
+% iq = imag(z_decalage);
+% 
+% bits_sortis_i = ir > K;
+% bits_sortis_q = iq > K;
+% 
+% nb_bits_erreur_i = sum(bits_sortis_i ~= bits);
+% nb_bits_erreur_q = sum(bits_sortis_q ~= bits);
+% 
+% nb_bits_erreur = nb_bits_erreur_i+nb_bits_erreur_q;
 
 %Taux d'erreur binaire
-TEB = nb_bits_erreur/Nb;
+
+    TEB = mean(xr ~= bits)
 
 %TEB théorique
+
 
 %TEB = Q(sqrt(2*Eb/N0))
 SNR = 1:1:6;

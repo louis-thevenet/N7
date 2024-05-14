@@ -99,10 +99,10 @@ title('Tracés de la DSP du signal transmis sur fréquence porteuse');
 %% INTRODUCTION DU BRUIT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-SNR = 300; %(Eb/N0)
+SNR = 10; %(Eb/N0)
 
 Px = mean(abs(x).^2);
-sigma2 = (Px*Nsb)./(2*log2(M)*SNR);
+sigma2 = (Px*Ns)./(2*log2(M)*SNR);
 bruit = sqrt(sigma2)*randn(1,length(x));
 
 r=x+bruit; %signal bruité
@@ -146,13 +146,46 @@ xr(2:2:Nb-2*L) = (imag(z_decalage) <0);
 
 %Taux d'erreur binaire
 
-TEB = mean(xr ~= bits);
+TEB = mean(xr ~= bits)
+
+SNRmax=6;
+
+TEBS=zeros(SNRmax,1);
+
+for SNR=1:1:SNRmax
+    sigma2 = (Px*Ns)./(2*log2(M)*SNR);
+    bruit = sqrt(sigma2)*randn(1,length(x));
+
+    r=x+bruit; %signal bruité
+    
+    %Signal auquelle on enlève la fréquence porteuse
+    y=r.*cos(2*pi*Fp*Echelle_Temporelle)-1i*r.*sin(2*pi*Fp*Echelle_Temporelle);
+
+    %Signal demodulé par le filtre de reception (meme que celui de mise en forme)
+    z = filter(h,1,y);
+
+    %décalage avec l'instant optimal
+    z_decalage = z(length(h):Ns:end);
+    
+    %seuil optimal de décision
+    K = 0;
+    
+    %détection de seuil
+    xr = zeros(1,Nb);
+    xr(1:2:Nb-2*L) = (real(z_decalage) <0);
+    xr(2:2:Nb-2*L) = (imag(z_decalage) <0);
+
+    TEBS(SNR)=mean(xr ~= bits);
+end
+
+
+
 
 %TEB théorique
 
 
 %TEB = Q(sqrt(2*Eb/N0))
-SNR = 1:1:6;
+SNR = 1:1:SNRmax;
 Eb_n0=10.^(SNR/10);
 TEBT = qfunc(sqrt(4/5*Eb_n0));
 
@@ -160,7 +193,7 @@ TEBT = qfunc(sqrt(4/5*Eb_n0));
 figure('Name','Comparaison du TEB simulé/théorique')
 semilogy(SNR,TEBT,'b')
 hold on
-semilogy(SNR,TEB,'r')
+semilogy(SNR,TEBS,'r')
 grid
 legend('TEB théorique', 'TEB simulé')
 xlabel('Eb/N0')

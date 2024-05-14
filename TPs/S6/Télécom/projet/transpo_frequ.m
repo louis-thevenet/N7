@@ -10,7 +10,7 @@ close all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PARAMETRES GENERAUX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Nb=2000;       %nombres de bits générés
+Nb=200000;       %nombres de bits générés
 Fe=24000;       %fréquence d'échantillonnage en Hz
 Te=1/Fe;        %période d'échantillonnage en secondes
 Rb=3000;        %débit binaire en bits par secondes
@@ -121,7 +121,7 @@ z = filter(h,1,y);
 %% Diagramme de l'oeil/Determination de N0
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-eyediagram(z,2*Ns,2*Ns)
+% eyediagram(z,2*Ns,2*Ns)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% TEB SIMULÉ/THÉORIQUE
@@ -148,12 +148,12 @@ xr(2:2:Nb-2*L) = (imag(z_decalage) <0);
 
 TEB = mean(xr ~= bits)
 
-SNRmax=6;
+EbN0dB=[1:20];
+EbN0=10.^(EbN0dB./10);
+TEBS=zeros(1,length(EbN0));
 
-TEBS=zeros(SNRmax,1);
-
-for SNR=1:1:SNRmax
-    sigma2 = (Px*Ns)./(2*log2(M)*SNR);
+for k=1:length(EbN0)
+    sigma2 = (Px*Ns)./(2*log2(M)*EbN0(k));
     bruit = sqrt(sigma2)*randn(1,length(x));
 
     r=x+bruit; %signal bruité
@@ -168,14 +168,14 @@ for SNR=1:1:SNRmax
     z_decalage = z(length(h):Ns:end);
     
     %seuil optimal de décision
-    K = 0;
+   
     
     %détection de seuil
-    xr = zeros(1,Nb);
+    
     xr(1:2:Nb-2*L) = (real(z_decalage) <0);
     xr(2:2:Nb-2*L) = (imag(z_decalage) <0);
 
-    TEBS(SNR)=mean(xr ~= bits);
+    TEBS(k)=mean(xr ~= bits);
 end
 
 
@@ -185,15 +185,14 @@ end
 
 
 %TEB = Q(sqrt(2*Eb/N0))
-SNR = 1:1:SNRmax;
-Eb_n0=10.^(SNR/10);
-TEBT = qfunc(sqrt(4/5*Eb_n0));
+TEBT=qfunc(sqrt(2*EbN0));
+TEST = 2*TEBT;
 
 %Tracé
 figure('Name','Comparaison du TEB simulé/théorique')
-semilogy(SNR,TEBT,'b')
+semilogy(EbN0dB,TEBT,'r','LineWidth',3)
 hold on
-semilogy(SNR,TEBS,'r')
+semilogy(EbN0dB,TEBS,'gd','LineWidth',3)
 grid
 legend('TEB théorique', 'TEB simulé')
 xlabel('Eb/N0')

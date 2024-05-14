@@ -10,7 +10,7 @@ close all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PARAMETRES GENERAUX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Nb=2000;       %nombres de bits générés
+Nb=200000;       %nombres de bits générés
 Fe=24000;       %fréquence d'échantillonnage en Hz
 Te=1/Fe;        %période d'échantillonnage en secondes
 Rb=3000;        %débit binaire en bits par secondes
@@ -30,6 +30,9 @@ Ts = Tb*log2(M);  %période symbole
 Rs = 1/Ts;      %débit symbole
 Ns = Ts/Te;
 Nsb = Nb/log2(M);
+alpha = 0.35; %roll-off factor
+L = 6;
+h = rcosdesign(alpha,L,Ns);
 
 %Mapping QPSK
 
@@ -41,9 +44,6 @@ suite_diracs_ak = kron(real(dk),[1 zeros(1,Ns-1)]);
 suite_diracs_bk = kron(imag(dk),[1 zeros(1,Ns-1)]);
 
 %Filtrage
-alpha = 0.35; %roll-off factor
-L = 6;
-h = rcosdesign(alpha,L,Ns);
 
 I = filter(h, 1,suite_diracs_ak );
 Q = filter(h, 1,suite_diracs_bk );
@@ -99,10 +99,10 @@ title('Tracés de la DSP du signal transmis sur fréquence porteuse');
 %% INTRODUCTION DU BRUIT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-SNR = 300000000; %(Eb/N0)
+SNR = 10; %(Eb/N0)
 
 Px = mean(abs(x).^2);
-sigma2 = (Px*Nsb)./(2*log2(M)*SNR);
+sigma2 = (Px*Ns)./(2*log2(M)*SNR);
 bruit = sqrt(sigma2)*randn(1,length(x));
 
 r=x+bruit; %signal bruité
@@ -121,11 +121,7 @@ z = filter(h,1,y);
 %% Diagramme de l'oeil/Determination de N0
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-figure('Name','Diagramme de l oeil 1')
-plot(reshape(z,Ns,length(z)/Ns))
-title('Diagramme de l oeil')
-
-N0=16;
+% eyediagram(z,2*Ns,2*Ns)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% TEB SIMULÉ/THÉORIQUE
@@ -137,44 +133,66 @@ N0=16;
 %TEB simulé
 
 %décalage avec l'instant optimal
-z_decalage = z(N0:Ns:end);
+z_decalage = z(length(h):Ns:end);
 
-%seuils optimaux de décision
+%seuil optimal de décision
 K = 0;
 
 %détection de seuil
 xr = zeros(1,Nb);
-xr(1:2:Nb) = (real(z_decalage) <0);
-xr(2:2:Nb) = (imag(z_decalage) <0);
+xr(1:2:Nb-2*L) = (real(z_decalage) <0);
+xr(2:2:Nb-2*L) = (imag(z_decalage) <0);
 
-% ir = real(z_decalage);
-% iq = imag(z_decalage);
-% 
-% bits_sortis_i = ir > K;
-% bits_sortis_q = iq > K;
-% 
-% nb_bits_erreur_i = sum(bits_sortis_i ~= bits);
-% nb_bits_erreur_q = sum(bits_sortis_q ~= bits);
-% 
-% nb_bits_erreur = nb_bits_erreur_i+nb_bits_erreur_q;
 
 %Taux d'erreur binaire
 
-    TEB = mean(xr ~= bits)
+TEB = mean(xr ~= bits)
+
+EbN0dB=[1:20];
+EbN0=10.^(EbN0dB./10);
+TEBS=zeros(1,length(EbN0));
+
+for k=1:length(EbN0)
+    sigma2 = (Px*Ns)./(2*log2(M)*EbN0(k));
+    bruit = sqrt(sigma2)*randn(1,length(x));
+
+    r=x+bruit; %signal bruité
+    
+    %Signal auquelle on enlève la fréquence porteuse
+    y=r.*cos(2*pi*Fp*Echelle_Temporelle)-1i*r.*sin(2*pi*Fp*Echelle_Temporelle);
+
+    %Signal demodulé par le filtre de reception (meme que celui de mise en forme)
+    z = filter(h,1,y);
+
+    %décalage avec l'instant optimal
+    z_decalage = z(length(h):Ns:end);
+    
+    %seuil optimal de décision
+   
+    
+    %détection de seuil
+    
+    xr(1:2:Nb-2*L) = (real(z_decalage) <0);
+    xr(2:2:Nb-2*L) = (imag(z_decalage) <0);
+
+    TEBS(k)=mean(xr ~= bits);
+end
+
+
+
 
 %TEB théorique
 
 
 %TEB = Q(sqrt(2*Eb/N0))
-SNR = 1:1:6;
-Eb_n0=10.^(SNR/10);
-TEBT = qfunc(sqrt(4/5*Eb_n0));
+TEBT=qfunc(sqrt(2*EbN0));
+TEST = 2*TEBT;
 
 %Tracé
 figure('Name','Comparaison du TEB simulé/théorique')
-semilogy(SNR,TEBT,'b')
+semilogy(EbN0dB,TEBT,'r','LineWidth',3)
 hold on
-semilogy(SNR,TEB,'r')
+semilogy(EbN0dB,TEBS,'gd','LineWidth',3)
 grid
 legend('TEB théorique', 'TEB simulé')
 xlabel('Eb/N0')

@@ -30,6 +30,9 @@ Ts = Tb*log2(M);  %période symbole
 Rs = 1/Ts;      %débit symbole
 Ns = Ts/Te;
 Nsb = Nb/log2(M);
+alpha = 0.35; %roll-off factor
+L = 6;
+h = rcosdesign(alpha,L,Ns);
 
 %Mapping QPSK
 
@@ -41,9 +44,6 @@ suite_diracs_ak = kron(real(dk),[1 zeros(1,Ns-1)]);
 suite_diracs_bk = kron(imag(dk),[1 zeros(1,Ns-1)]);
 
 %Filtrage
-alpha = 0.35; %roll-off factor
-L = 6;
-h = rcosdesign(alpha,L,Ns);
 
 I = filter(h, 1,suite_diracs_ak );
 Q = filter(h, 1,suite_diracs_bk );
@@ -99,7 +99,7 @@ title('Tracés de la DSP du signal transmis sur fréquence porteuse');
 %% INTRODUCTION DU BRUIT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  
-SNR = 300000000; %(Eb/N0)
+SNR = 300; %(Eb/N0)
 
 Px = mean(abs(x).^2);
 sigma2 = (Px*Nsb)./(2*log2(M)*SNR);
@@ -121,11 +121,7 @@ z = filter(h,1,y);
 %% Diagramme de l'oeil/Determination de N0
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-figure('Name','Diagramme de l oeil 1')
-plot(reshape(z,Ns,length(z)/Ns))
-title('Diagramme de l oeil')
-
-N0=16;
+eyediagram(z,2*Ns,2*Ns)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% TEB SIMULÉ/THÉORIQUE
@@ -137,30 +133,20 @@ N0=16;
 %TEB simulé
 
 %décalage avec l'instant optimal
-z_decalage = z(N0:Ns:end);
+z_decalage = z(length(h):Ns:end);
 
-%seuils optimaux de décision
+%seuil optimal de décision
 K = 0;
 
 %détection de seuil
 xr = zeros(1,Nb);
-xr(1:2:Nb) = (real(z_decalage) <0);
-xr(2:2:Nb) = (imag(z_decalage) <0);
+xr(1:2:Nb-2*L) = (real(z_decalage) <0);
+xr(2:2:Nb-2*L) = (imag(z_decalage) <0);
 
-% ir = real(z_decalage);
-% iq = imag(z_decalage);
-% 
-% bits_sortis_i = ir > K;
-% bits_sortis_q = iq > K;
-% 
-% nb_bits_erreur_i = sum(bits_sortis_i ~= bits);
-% nb_bits_erreur_q = sum(bits_sortis_q ~= bits);
-% 
-% nb_bits_erreur = nb_bits_erreur_i+nb_bits_erreur_q;
 
 %Taux d'erreur binaire
 
-    TEB = mean(xr ~= bits)
+TEB = mean(xr ~= bits);
 
 %TEB théorique
 

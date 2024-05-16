@@ -1,5 +1,6 @@
 clear all
 close all
+addpath(genpath("./fig2svg"));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   PROJET TÉLÉCOM/SIGNAL                                        %
 %      Étude dÉune chaine de transmission sur porteuse pour une transmission satellite fixe      %
@@ -10,21 +11,29 @@ close all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PARAMETRES GENERAUX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Nb=200000;       %nombres de bits générés
+Nb=50;       %nombres de bits générés
 Fe=24000;       %fréquence d'échantillonnage en Hz
 Te=1/Fe;        %période d'échantillonnage en secondes
 Rb=3000;        %débit binaire en bits par secondes
 Tb=1/Rb;        %période binaire
 Fp = 2000;      %fréquence porteuse
 
-% Suite de bits / Information à transmettre 
+% Suite de bits / Information à transmettre
 bits = randi([0,1],1,Nb);
+
+% Tracés des Signaux Générés/Transmis
+figure('Name','Message à transmettre')
+
+%2.1
+bar(bits)
+title("Message généré")
+fig2svg("2_message.svg");
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% MODULATEUR QPSK
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%Paramètres du Modulateur 
+%Paramètres du Modulateur
 M = 4;
 Ts = Tb*log2(M);  %période symbole
 Rs = 1/Ts;      %débit symbole
@@ -56,7 +65,7 @@ Echelle_Temporelle= 0:Te:(length(x)-1)*Te;
 
 % Tracés des Signaux Générés/Transmis
 figure('Name','Signaux Générés/Transmis')
- 
+
 %2.1
 subplot(3,1,1)
 plot(Echelle_Temporelle,I)
@@ -77,8 +86,8 @@ plot(Echelle_Temporelle,x)
 xlabel("temps (s)")
 ylabel("x(t)")
 title("Signal transmis sur fréquence porteuse")
+fig2svg("2_signal.svg");
 
-    
 
 % Calcul et Tracé de la DSP
 %2.3
@@ -87,10 +96,11 @@ echelle_frequentielle=linspace(-Fe/2,Fe/2,length(X));
 figure('Name','DSP')
 semilogy(echelle_frequentielle,fftshift(abs(X).^2/length(X)),'b')
 grid
-legend('DSP')
+[~,legendIcons] =legend('DSP');
 xlabel('Fréquences (Hz)')
 ylabel('DSP')
 title('Tracés de la DSP du signal transmis sur fréquence porteuse');
+fig2svg("2_dsp.svg", '', '', legendIcons);
 
 %2.4
 %TODO : EXPLICATION DE LA DSP
@@ -98,7 +108,7 @@ title('Tracés de la DSP du signal transmis sur fréquence porteuse');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% INTRODUCTION DU BRUIT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- 
+
 SNR = 10; %(Eb/N0)
 
 Px = mean(abs(x).^2);
@@ -108,7 +118,7 @@ bruit = sqrt(sigma2)*randn(1,length(x));
 r=x+bruit; %signal bruité
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% DEMODULATEUR 
+%% DEMODULATEUR
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Signal auquelle on enlève la fréquence porteuse
@@ -148,7 +158,7 @@ xr(2:2:Nb-2*L) = (imag(z_decalage) <0);
 
 TEB = mean(xr ~= bits)
 
-EbN0dB=[1:20];
+EbN0dB=[1:6];
 EbN0=10.^(EbN0dB./10);
 TEBS=zeros(1,length(EbN0));
 
@@ -157,7 +167,7 @@ for k=1:length(EbN0)
     bruit = sqrt(sigma2)*randn(1,length(x));
 
     r=x+bruit; %signal bruité
-    
+
     %Signal auquelle on enlève la fréquence porteuse
     y=r.*cos(2*pi*Fp*Echelle_Temporelle)-1i*r.*sin(2*pi*Fp*Echelle_Temporelle);
 
@@ -166,12 +176,12 @@ for k=1:length(EbN0)
 
     %décalage avec l'instant optimal
     z_decalage = z(length(h):Ns:end);
-    
+
     %seuil optimal de décision
-   
-    
+
+
     %détection de seuil
-    
+
     xr(1:2:Nb-2*L) = (real(z_decalage) <0);
     xr(2:2:Nb-2*L) = (imag(z_decalage) <0);
 
@@ -189,12 +199,16 @@ TEBT=qfunc(sqrt(2*EbN0));
 TEST = 2*TEBT;
 
 %Tracé
-figure('Name','Comparaison du TEB simulé/théorique')
+
+
+
+
+figure('Name','Comparaison du TEB simulé/théorique');
 semilogy(EbN0dB,TEBT,'r','LineWidth',3)
 hold on
 semilogy(EbN0dB,TEBS,'gd','LineWidth',3)
 grid
-legend('TEB théorique', 'TEB simulé')
+[~,legendIcons] = legend('TEB théorique', 'TEB simulé');
 xlabel('Eb/N0')
-title('Tracé des TEB du signal avec le modulateur 3')
-
+title('Tracé des TEB du signal')
+fig2svg("2_comparaison_teb.svg", '', '', legendIcons);

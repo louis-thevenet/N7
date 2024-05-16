@@ -12,12 +12,21 @@
 
 = Implantation d'une transmission avec transposition de fréquence
 
-#figure(caption: "Signaux générés en phase et en quadrature")[
-  #grid(columns: 2, "image1", "image2")
+#figure(caption: "Signaux générés pour " + $50$ + " bits")[
+  #grid(columns: 1, image("assets/2_message.svg", height: 40%))[
+    #image("assets/2_signal.svg")
+
+  ]
 ]
 
-#figure(caption: "Signal transmis sur fréquence porteuse")[]
-#figure(caption: "DSP su signal transmis sur fréquence porteuse")[]
-EXPLICATION ICI
-#figure(caption: "TEB en fonction du SNR à l'entrée du récepteur")[]
+#figure(
+  caption: [DSP du signal transmis sur fréquence porteuse $(20000$ bits)],
+)[
+  #image("./assets/2_dsp.svg")
+]
+#figure(
+  caption: [TEB en fonction du SNR à l'entrée du récepteur $(20000$ bits)],
+)[
+  #image("./assets/2_comparaison_teb.svg")
+]
 

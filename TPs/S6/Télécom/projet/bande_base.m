@@ -96,7 +96,7 @@ title('Signal généré sur la voie en quadrature (Bande de Base)');
 figure('Name', 'DSP de l''enveloppe complexe - Bande de Base');
 X_baseband = fft(x_baseband);
 echelle_frequentielle = linspace(-Fe/2, Fe/2, length(X_baseband));
-plot(echelle_frequentielle, fftshift(abs(X_baseband).^2 / length(X_baseband)));
+semilogy(echelle_frequentielle, fftshift(abs(X_baseband).^2 / length(X_baseband)));
 grid;
 xlabel('Fréquences (Hz)');
 ylabel('DSP');

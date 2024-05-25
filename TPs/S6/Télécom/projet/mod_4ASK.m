@@ -35,9 +35,6 @@ alpha = 0.35;             % Facteur de roll-off
 L = 6;                    % Longueur du filtre en durées de symboles
 h = rcosdesign(alpha, L, Ns);  % Filtre en cosinus surélevé
 
-% FILTRE DE MISE EN FORME
-h = rcosdesign(alpha, L, M);
-
 % Conversion du signal en symboles
 symboles = zeros(1, Nsb);
 for i = 1:Nsb
@@ -54,8 +51,36 @@ symboles_sur_echantillonnes = kron(symboles_mapped, [1 zeros(1, Ns-1)]);
 signal_module = filter(h, 1, symboles_sur_echantillonnes);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% INTRODUCTION DU BRUIT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Px = mean(abs(signal_module).^2);
+
+% Rapport signal à bruit par bit à l'entrée du récepteur (en dB)
+EbN0dB = 6;
+EbN0 = 10.^(EbN0dB ./ 10);
+
+% Calcul de la variance du bruit 
+sigma2 = (Px * Ns) ./ (2 * log2(M) * 10.^(EbN0dB/10));
+
+% Génération du bruit
+bruit = sqrt(sigma2') .* randn(length(EbN0), length(signal_module));
+
+% Signal bruité
+signal_bruite = signal_module + bruit;
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% TRACÉS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Démodulation
+signal_recupere = filter(h, 1, signal_bruite);
+
+% Échantillonnage pour extraire les symboles individuels
+signal_echantillonne = signal_recupere(L:Ns:end);  % L est la longueur du filtre
+
+% Démodulation des symboles échantillonnés
+symboles_recuperes = pamdemod(signal_echantillonne, M);
 
 % Tracé des constellations en sortie du mapping
 figure('Name', 'Constellations en sortie du mapping - 4-ASK');
@@ -66,39 +91,9 @@ title('Constellations en sortie du mapping - 4-ASK');
 
 % Tracé des constellations en sortie de l’échantillonneur
 figure('Name', 'Constellations en sortie de l’échantillonneur - 4-ASK');
-plot(real(signal_module), imag(signal_module), 'o');
+plot(real(signal_echantillonne), imag(signal_echantillonne), 'o');
 xlabel('Partie réelle');
 ylabel('Partie imaginaire');
 title('Constellations en sortie de l’échantillonneur - 4-ASK');
 
-% Tracé du taux d’erreur binaire en fonction du rapport signal à bruit par bit (Eb/N0)
-EbN0dB = 0:0.2:6;
-EbN0 = 10.^(EbN0dB ./ 10);
 
-% Calcul du TEB en fonction du rapport signal à bruit par bit (Eb/N0)
-TES_simule_4ASK = zeros(size(EbN0dB));
-for k = 1:length(EbN0dB)
-    % Démodulation
-    signal_recupere = filter(h, 1, signal_module + sqrt(1/(2*EbN0(k))) * randn(size(signal_module)));
-    signal_echantillonne = downsample(signal_recupere, M);
-
-    % Démapping
-    symboles_recuperes = pamdemod(signal_echantillonne, M);
-    
-    % Calcul du TEB simulé
-    TES_simule_4ASK(k) = mean(symboles_recuperes ~= symboles);
-end
-
-% Tracé du TES simulé en fonction de Eb/N0
-figure('Name', 'TES Simulé en fonction de Eb/N0 - 4-ASK');
-semilogy(EbN0dB, TES_simule_4ASK, 'b', 'LineWidth', 2);
-grid on;
-xlabel('Eb/N0 (dB)');
-ylabel('TES');
-title('TES Simulé en fonction de Eb/N0 - 4-ASK');
-
-% Comparaison du TEB simulé au TEB théorique de la chaîne étudiée
-% Calcul du TEB théorique (TODO)
-
-% Tracé de la comparaison entre TEB simulé et TEB théorique
-% TODO

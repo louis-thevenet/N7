@@ -104,7 +104,7 @@ end
 
 % TEB simulé
 % Décalage avec l'instant optimal
-
+z = filter(h,1,x_baseband);
 z_decalage = z(length(h):Ns:end);
 
 % Détection de seuil
@@ -112,21 +112,10 @@ xr = zeros(1, Nb);
 z_decalage_reel=real(z_decalage);
 
 symboles_recuperes = pamdemod(z_decalage, M);
-xr = decimalToBinaryVector(symboles_recuperes);
+for i =1:length(symboles_recuperes)
+    xr(2*i:2*i+1) = binary2vector(symboles_recuperes(i),2);
+end
 
-% for i = 1:2:Nb-2*L
-% 
-%     index = int8(i/2);
-%     if abs(z_decalage_reel(index) - (-3)) < 1.5
-%         xr(i:i+1) = [0 0]; 
-%     elseif abs(z_decalage_reel(index) - (-1)) < 1.5
-%         xr(i:i+1) = [0 1]; 
-%      elseif abs(z_decalage_reel(index) - 1) < 1.5
-%         xr(i:i+1) = [1 0]; 
-%     else
-%         xr(i:i+1) = [1 1]; 
-%     end
-% end
 
 % Taux d'erreur binaire
 TEB = mean(xr ~= bits);
@@ -148,14 +137,14 @@ num_symbols = floor((length(zs) - length(h)) / Ns);
 z_decalages = zs(:, length(h):Ns:(length(h) + Ns*num_symbols - 1));
 
 % Détection de seuil
-xr_reals = real(z_decalages) < 0;
-xr_imags = imag(z_decalages) < 0;
+xr = zeros(length(EbN0), 2*num_symbols);
+z_decalages_reel=real(z_decalages);
 
-xr_matrix = zeros(length(EbN0), 2*num_symbols);
-xr_matrix(:, 1:2:end) = xr_reals;
-xr_matrix(:, 2:2:end) = xr_imags;
-
-TEBS = mean(xr_matrix ~= bits(1:2*num_symbols), 2);
+symboles_recuperes = pamdemod(z_decalages_reel, M);
+for i =1:num_symbols
+    xr(:,2*i-1:2*i) = binary2vector(symboles_recuperes(:,i),2);
+end
+TEBS = mean(xr ~= bits(1:2*num_symbols), 2);
 
 
 % TEB théorique

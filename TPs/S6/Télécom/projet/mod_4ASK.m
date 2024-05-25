@@ -45,55 +45,133 @@ end
 symboles_mapped = pammod(symboles, M);
 
 % Suréchantillonnage
-symboles_sur_echantillonnes = kron(symboles_mapped, [1 zeros(1, Ns-1)]);
+suite_dirac = kron(symboles_mapped, [1 zeros(1, Ns-1)]);
 
 % Filtrage de mise en forme
-signal_module = filter(h, 1, symboles_sur_echantillonnes);
+x_baseband = filter(h, 1, suite_dirac);
+
+
+
+
+Px = mean(abs(x_baseband).^2);
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% INTRODUCTION DU BRUIT
+%% TRACÉS CONSTELLATIONS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Px = mean(abs(signal_module).^2);
 
-% Rapport signal à bruit par bit à l'entrée du récepteur (en dB)
-EbN0dB = 6;
+% Plage de valeurs Eb/N0
+EbN0dB_range = [0, 6, 600, 60000];
+EbN0_range = 10.^(EbN0dB_range / 10);
+
+sigma2 = (Px * Ns) ./ (2 * log2(M) * 10.^(EbN0dB_range/10));
+% Boucle sur les valeurs Eb/N0
+for i = 1:length(EbN0_range)
+    % Générer le signal bruité
+    
+
+    bruit_I = sqrt(sigma2(i)) * randn(1, length(x_baseband));
+    bruit_Q = sqrt(sigma2(i)) * randn(1, length(x_baseband));
+
+    x_bruit = x_baseband + bruit_I + 1i * bruit_Q;
+
+
+      %Signal demodulé par le filtre de reception (meme que celui de mise en forme)
+    z = filter(h,1,x_bruit);
+
+    %décalage avec l'instant optimal
+    z_decalage = z(length(h):Ns:end);
+
+    % Constellation des symboles reçus après échantillonnage
+    %2.5
+    figure('Name', ['Constellations - Échantillonneur - Eb/N0 = ' num2str(EbN0dB_range(i)) ' dB']);
+    plot(real(z_decalage), imag(z_decalage), 'bo'); % Constellation des symboles reçus
+    hold on
+    plot(real(symboles_mapped), imag(symboles_mapped), 'ro');
+    xlabel('Partie réelle');
+    ylabel('Partie imaginaire');
+    [~, legendIcons] = legend("Constellation en sortie de l'échantilloneur",'Constellation en sortie de mapping');
+    title(['Constellation - 4-ASK - Eb/N0 = ' num2str(EbN0dB_range(i)) ' dB']);
+    grid on;
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% TRACES TEB SIMULÉ/THÉORIQUE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Calcul et tracé du TEB
+% Comparaison du TEB simulé avec le TEB théorique
+%3.5
+
+% TEB simulé
+% Décalage avec l'instant optimal
+
+z_decalage = z(length(h):Ns:end);
+
+% Détection de seuil
+xr = zeros(1, Nb);
+z_decalage_reel=real(z_decalage);
+
+symboles_recuperes = pamdemod(z_decalage, M);
+xr = decimalToBinaryVector(symboles_recuperes);
+
+% for i = 1:2:Nb-2*L
+% 
+%     index = int8(i/2);
+%     if abs(z_decalage_reel(index) - (-3)) < 1.5
+%         xr(i:i+1) = [0 0]; 
+%     elseif abs(z_decalage_reel(index) - (-1)) < 1.5
+%         xr(i:i+1) = [0 1]; 
+%      elseif abs(z_decalage_reel(index) - 1) < 1.5
+%         xr(i:i+1) = [1 0]; 
+%     else
+%         xr(i:i+1) = [1 1]; 
+%     end
+% end
+
+% Taux d'erreur binaire
+TEB = mean(xr ~= bits);
+
+% Calcul du TEB simulé pour différentes valeurs de Eb/N0
+EbN0dB = 0:0.2:6;
 EbN0 = 10.^(EbN0dB ./ 10);
 
-% Calcul de la variance du bruit 
-sigma2 = (Px * Ns) ./ (2 * log2(M) * 10.^(EbN0dB/10));
+% Utilisation de vecteurs pour le calcul
+sigma2_vals = (Px * Ns) ./ (2 * log2(M) * EbN0);
+bruits_I = sqrt(sigma2_vals') .* randn(length(EbN0), length(x_baseband));
+bruits_Q = sqrt(sigma2_vals') .* randn(length(EbN0), length(x_baseband));
 
-% Génération du bruit
-bruit = sqrt(sigma2') .* randn(length(EbN0), length(signal_module));
+rs = x_baseband + bruits_I + 1i * bruits_Q;
+zs = filter(h, 1, rs')';
 
-% Signal bruité
-signal_bruite = signal_module + bruit;
+% Ajustement de la taille pour correspondre au nombre de symboles
+num_symbols = floor((length(zs) - length(h)) / Ns);
+z_decalages = zs(:, length(h):Ns:(length(h) + Ns*num_symbols - 1));
+
+% Détection de seuil
+xr_reals = real(z_decalages) < 0;
+xr_imags = imag(z_decalages) < 0;
+
+xr_matrix = zeros(length(EbN0), 2*num_symbols);
+xr_matrix(:, 1:2:end) = xr_reals;
+xr_matrix(:, 2:2:end) = xr_imags;
+
+TEBS = mean(xr_matrix ~= bits(1:2*num_symbols), 2);
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% TRACÉS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TEB théorique
+%3.6
+TEBT = qfunc(sqrt(2 * EbN0));
+TEST = 2 * TEBT;
 
-% Démodulation
-signal_recupere = filter(h, 1, signal_bruite);
-
-% Échantillonnage pour extraire les symboles individuels
-signal_echantillonne = signal_recupere(L:Ns:end);  % L est la longueur du filtre
-
-% Démodulation des symboles échantillonnés
-symboles_recuperes = pamdemod(signal_echantillonne, M);
-
-% Tracé des constellations en sortie du mapping
-figure('Name', 'Constellations en sortie du mapping - 4-ASK');
-plot(real(symboles_mapped), imag(symboles_mapped), 'o');
-xlabel('Partie réelle');
-ylabel('Partie imaginaire');
-title('Constellations en sortie du mapping - 4-ASK');
-
-% Tracé des constellations en sortie de l’échantillonneur
-figure('Name', 'Constellations en sortie de l’échantillonneur - 4-ASK');
-plot(real(signal_echantillonne), imag(signal_echantillonne), 'o');
-xlabel('Partie réelle');
-ylabel('Partie imaginaire');
-title('Constellations en sortie de l’échantillonneur - 4-ASK');
-
+%Tracé
+%3.6
+figure('Name','Comparaison du TEB simulé/théorique')
+semilogy(EbN0dB, TEBT, 'r', 'LineWidth', 3)
+hold on
+semilogy(EbN0dB, TEBS, 'gd', 'LineWidth', 3)
+grid
+[~, legendIcons] = legend('TEB théorique', 'TEB simulé');
+xlabel('Eb/N0 (dB)')
+title('Tracé des TEB du signal')
+fig2svg("2_comparaison_teb.svg", '', '', legendIcons);
 

@@ -1,24 +1,27 @@
-clear all
-close all
-addpath(genpath("./fig2svg"));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                   PROJET TÉLÉCOM/SIGNAL                                        %
 %      Étude d'une chaîne de transmission sur porteuse pour une transmission satellite fixe      %
 %                   THEVENET Louis & LÉCUYER Simon 1A SN ENSEEIHT 2023/2024                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+clear all
+close all
+addpath(genpath("./fig2svg"));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PARAMÈTRES GÉNÉRAUX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Nb = 5000;       % Nombre de bits générés
+Nb_bits = 5000;       % Nombre de bits générés
 Fe = 24000;      % Fréquence d'échantillonnage en Hz
 Te = 1/Fe;       % Période d'échantillonnage en secondes
 Rb = 3000;       % Débit binaire en bits par seconde
 Tb = 1/Rb;       % Période binaire
 Fp = 2000;       % Fréquence porteuse
 
-% Suite de bits / Information à transmettre
-bits = randi([0,1], 1, Nb);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% GENERATION D'UNE INFORMATION BINAIRE ALEATOIRE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+bits = randi([0,1], 1, Nb_bits);
 
 % Tracé du signal binaire généré
 % 2.1
@@ -33,29 +36,32 @@ fig2svg("2_message.svg");
 
 % Paramètres du Modulateur
 M = 4;                    % Ordre de modulation
-Ts = Tb * log2(M);        % Période symbole
+n = log2(M);               % Nombre de bits par symbole
+Ts = Tb * n;        % Période symbole
 Rs = 1/Ts;                % Débit symbole
 Ns = Ts/Te;               % Nombre d'échantillons par symbole
-Nsb = Nb / log2(M);       % Nombre de symboles
+Nsb = Nb_bits / n;       % Nombre de symboles
 alpha = 0.35;             % Facteur de roll-off
 L = 6;                    % Longueur du filtre en durées de symboles
+
 h = rcosdesign(alpha, L, Ns);  % Filtre en cosinus surélevé
 
 % Mapping QPSK
-dk = 1 - 2*bits(1:2:Nb) + 1i*(1-2*bits(2:2:Nb));
+mapping = [-1-1i, -1+1i, 1-1i, 1+1i];        %mapping constellation QPSK 
+
+%génération des symboles complexes dk
+dk = mapping(bin2dec(int2str([bits(1:2:Nb_bits-1)', bits(2:2:Nb_bits)']))+1);
 
 % Suréchantillonnage des bits
-suite_diracs_ak = kron(real(dk), [1 zeros(1, Ns-1)]);
-suite_diracs_bk = kron(imag(dk), [1 zeros(1, Ns-1)]);
+diracs = kron(dk,[1 zeros(1,Ns-1)]);
 
-% Filtrage
-I = filter(h, 1, suite_diracs_ak);
-Q = filter(h, 1, suite_diracs_bk);
-temps_phase = 0:Te:(length(I)-1)*Te;
+% Génération de l'enveloppe complexe associée au signal à transmettre
+xe = filter(h,1,diracs);
 
-x = real((I + Q*1i) .* exp(2*pi*1i*Fp*temps_phase));
+I = real(xe);       %voie en phase
+Q = imag(xe);       %voie en quadrature
 
-Echelle_Temporelle = 0:Te:(length(x)-1)*Te;
+Echelle_Temporelle = 0:Te:(length(xe)-1)*Te; % Echelle temporelle
 
 % Tracés des Signaux Générés/Transmis
 figure('Name','Signaux Générés/Transmis')
@@ -77,6 +83,8 @@ ylabel("Q(t)")
 title("Signal généré sur la voie en quadrature")
 
 % Signal transmis sur fréquence porteuse
+x = real(xe.*exp(1i*2*pi*Fp*Echelle_Temporelle));
+
 %2.2
 subplot(3,1,3)
 plot(Echelle_Temporelle, x)
@@ -85,17 +93,25 @@ ylabel("x(t)")
 title("Signal transmis sur fréquence porteuse")
 fig2svg("2_signal.svg");
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% DSP (Densité Spectrale de Puissance)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %2.3
-X= fft(x, 512);
+% Calcul de la DSP du signal transmis sur fréquence porteuse
+[S_x] = pwelch(x, [], [], [], Fe, 'twosided');
 
-echelle_frequentielle = linspace(-Fe/2, Fe/2, length(X));
+% Échelle de fréquence
+taille_S_x = length(S_x);
+Echelle_Frequentielle = (-taille_S_x/2:taille_S_x/2-1)*Fe/taille_S_x;
 
 figure('Name','DSP')
-semilogy(echelle_frequentielle, fftshift(abs(X).^2/length(X)), 'b')
-grid
+semilogy(Echelle_Frequentielle, fftshift(S_x), 'b')
+xline(Fp,'k', LineWidth=0.7, LineStyle='-.')
+text(Fp, 10^(-10), 'f_p')
+xline(-Fp,'k', LineWidth=0.7, LineStyle='-.');
+text(-Fp, 10^(-10), '-f_p')
+grid on
 [~, legendIcons] = legend('DSP');
 xlabel('Fréquences (Hz)')
 ylabel('DSP')
@@ -103,83 +119,78 @@ title('Tracé de la DSP du signal transmis sur fréquence porteuse')
 fig2svg("2_dsp.svg", '', '', legendIcons);
 
 %2.4
-%TODO : EXPLICATION DE LA DSP
+%EXPLICATION DE LA DSP
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% INTRODUCTION DU BRUIT
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-SNR = 10;  % (Eb/N0)
-
-Px = mean(abs(x).^2);
-sigma2 = (Px * Ns) / (2 * log2(M) * SNR);
-bruit = sqrt(sigma2) * randn(1, length(x));
-
-r = x + bruit;  % Signal bruité
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% DÉMODULATEUR
+%% CALCUL DU TEB EN FONCTION DE E_b/N_0
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Signal auquel on enlève la fréquence porteuse
-y = r .* cos(2*pi*Fp*Echelle_Temporelle) - 1i * r .* sin(2*pi*Fp*Echelle_Temporelle);
+% Génération du filtre de réception adapté
+hr = fliplr(h);
 
-% Signal démodulé par le filtre de réception (même que celui de mise en forme)
-z = filter(h, 1, y);
+% Prise en compte du retard introduit par le filtrage
+retard = (length(h) - 1)/2 + (length(hr) - 1)/2;
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% DIAGRAMME DE L'ŒIL
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-eyediagram(z, 2*Ns, 2*Ns)
+% Instant d'échantillonnage.
+n0=1;
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% TEB SIMULÉ/THÉORIQUE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+EbN0dB = (0:0.2:6);                               %choix de Eb/N0
+TEBS = zeros(1, length(EbN0dB));                  %tableau des TEB calculés
 
-% Calcul et tracé du TEB
-% Comparaison du TEB simulé avec le TEB théorique
-%2.5
+% Pourcentage d'erreur voulu sur la mesure du TEB
+epsilon = 0.05;
 
-% TEB simulé
-% Décalage avec l'instant optimal
-z_decalage = z(length(h):Ns:end);
+for i = 1:length(EbN0dB)
+    nbr_erreurs = 0;
+    N = length(bits);
+    while nbr_erreurs < 1/(epsilon^2)       %tant que le nombre d'erreurs est trop petit pour obtenir epsilon
+                                            
+        xe = filter(h,1,diracs);
+        t = (0:Te:(length(xe)-1)*Te);
+        x = real(xe.*exp(1i*2*pi*Fp*t));
 
-% Détection de seuil
-xr = zeros(1, Nb);
-xr(1:2:Nb-2*L) = (real(z_decalage) < 0);
-xr(2:2:Nb-2*L) = (imag(z_decalage) < 0);
+        % Introduction du bruit
+        Px = mean(abs(x).^2);
+        Pn = Px*Ns/(2*n*10^(EbN0dB(i)/10));
+        bruit = sqrt(Pn)*randn(1,length(x));
+        x_bruite = x + bruit;
+        
+        % Retour en bande de base
+        z1 = filter(hr, 1, x_bruite.* cos(2*pi*Fp*t));
+        z2 = filter(hr, 1, x_bruite.* sin(2*pi*Fp*t));
+            
+        % Échantillonnage à n0+mNs en prenant en compte le retard induit
+        zm1 = z1(retard+n0:Ns:end);
+        zm2 = z2(retard+n0:Ns:end);
+        
+        % Décisions sur les symboles
+        am1 = sign(zm1);
+        am2 = -sign(zm2);
+        
+        % Demapping
+        bm=[(am1+1)/2; (am2+1)/2];
+        bm = bm(:)';
 
-% Taux d'erreur binaire
-TEB = mean(xr ~= bits);
+        % Calcul du TEB
+        nbr_erreurs = length(find((bm-bits(1:length(bm))) ~=0));
+        TEBS(i) = nbr_erreurs/length(bm);
 
-% Calcul du TEB simulé pour différentes valeurs de Eb/N0
-EbN0dB = 0:0.2:6;
-EbN0 = 10.^(EbN0dB ./ 10);
-
-% Utilisation de vecteurs pour le calcul
-sigma2_vals = (Px * Ns) ./ (2 * log2(M) * EbN0);
-bruits = sqrt(sigma2_vals') .* randn(length(EbN0), length(x));
-rs = x + bruits;
-
-ys = rs .* cos(2*pi*Fp*Echelle_Temporelle) - 1i * rs .* sin(2*pi*Fp*Echelle_Temporelle);
-zs = filter(h, 1, ys')';
-
-% Ajustement de la taille pour correspondre au nombre de symboles
-num_symbols = floor((length(zs) - length(h)) / Ns);
-z_decalages = zs(:, length(h):Ns:(length(h) + Ns*num_symbols - 1));
-
-% Détection de seuil
-xr_reals = real(z_decalages) < 0;
-xr_imags = imag(z_decalages) < 0;
-
-xr_matrix = zeros(length(EbN0), 2*num_symbols);
-xr_matrix(:, 1:2:end) = xr_reals;
-xr_matrix(:, 2:2:end) = xr_imags;
-
-TEBS = mean(xr_matrix ~= bits(1:2*num_symbols), 2);
+        new_bits = randi([0,1],1,Nb_bits);       %ajout de Nb_bits bits;
+        bits = [bits, new_bits];
+        N = N + Nb_bits;
+        dk = [dk, mapping(bin2dec(int2str([new_bits(1:2:(Nb_bits-1))', ...
+                                           new_bits(2:2:Nb_bits)']))+1)];
+        diracs = kron(dk,[1 zeros(1,Ns-1)]);
+    end
+    
+     
+end
 
 
 % TEB théorique
 %2.6
+EbN0 = 10.^(EbN0dB ./ 10);
 TEBT = qfunc(sqrt(2 * EbN0));
 TEST = 2 * TEBT;
 
@@ -194,6 +205,9 @@ grid
 xlabel('Eb/N0 (dB)')
 title('Tracé des TEB du signal')
 fig2svg("2_comparaison_teb.svg", '', '', legendIcons);
+
+%Sauvegarde du tableau des TEB pour la comparaison avec la partie 3
+save('TEB_partie_2', 'TEBS');
 
 %2.6
 

@@ -60,6 +60,8 @@ grid on
 xlabel('I')
 ylabel('Q')
 title("Constellation observée en sortie du mapping");
+[~, legendIcons] = legend("Constellation observée en sortie du mapping");
+fig2svg("rapport/assets/4_constellation.svg", '','', legendIcons);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% DSP (Densité Spectrale de Puissance)
@@ -94,6 +96,7 @@ xlabel('f (Hz)')
 ylabel('S_x (dB)')
 title("Tracé de la DSP de l'enveloppe complexe associée au signal à transmettre");
 legend('4-ASK', 'QPSK');
+%fig2svg("rapport/assets/4_2_dsp_comparaison.svg", '','', legendIcons);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CALCUL DU TEB EN FONCTION DE E_b/N_0
@@ -120,25 +123,25 @@ epsilon = 0.05;
 for i = 1:length(EbN0dB)
     nbr_erreurs = 0;
     N = length(bits);
-    while nbr_erreurs < 1/(epsilon^2)       
+    while nbr_erreurs < 1/(epsilon^2)
 
         xe = filter(h,1,diracs);
-                                    
+
         Pxe = mean(abs(xe).^2);
 
         % Calcul de la puissance du bruit
         Pne = Pxe*Ns/(2*n*10^(EbN0dB(i)/10));
-        
+
         % Génération du bruit
         bruit = sqrt(Pne)*randn(1,length(xe));
-        
+
         % Ajout du bruit
         xe_bruite = xe + bruit;
-        
+
         % Filtrage adapté du signal entrant
         z = filter(hr, 1, xe_bruite);
 
-        
+
         % Choix de l'instant d'échantillonnage.
         n0=1;
 
@@ -151,12 +154,12 @@ for i = 1:length(EbN0dB)
         am = 3 * (zm > portion_seuil) - 3 * (-zm > portion_seuil) ...
            + (zm > 0 & zm < portion_seuil) ...
            - (zm < 0 & -zm < portion_seuil);
-        
-        
+
+
         % Demapping
         bm = dec2bin((am==-1) + 3*(am==1) + 2*(am==3), 2)';
         bm = str2num(bm(:))';
-        % Calcul du TEB        
+        % Calcul du TEB
         nbr_erreurs = length(find((bm-bits(1:length(bm))) ~=0));
         TEBS(i) = nbr_erreurs/length(bm);
 
@@ -167,8 +170,8 @@ for i = 1:length(EbN0dB)
         dk = [dk, mapping(bin2dec(int2str([new_bits(1:2:(Nb_bits-1))', new_bits(2:2:Nb_bits)'])) + 1)];
         diracs = kron(dk,[1 zeros(1,Ns-1)]);
     end
-    
-     
+
+
 end
 
 % TEB théorique
@@ -185,8 +188,8 @@ semilogy(EbN0dB, TEBS, 'gd', 'LineWidth', 3)
 grid
 [~, legendIcons] = legend('TEB théorique', 'TEB simulé');
 xlabel('Eb/N0 (dB)')
-title('Tracé des TEB du signal')
-fig2svg("2_comparaison_teb.svg", '', '', legendIcons);
+title('Tracé du TEB - 4-ASK')
+fig2svg("rapport/assets/4_teb.svg", '', '', legendIcons);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -201,14 +204,15 @@ hold on
 % Tracé du TEB obtenu avec QPSK
 load('TEB_partie_3');
 semilogy(EbN0dB, TEBS);
-legend('TEB avec 4-ASK', 'TEB avec QPSK');
+[~, legendIcons] = legend('TEB avec 4-ASK', 'TEB avec QPSK');
 xlabel('E_b/N_0 (dB)')
 ylabel('TEB')
 grid on
 title("Graphe du TEB en fonction de E_b/N_0");
+fig2svg("rapport/assets/4_comparaison_eff_puiss.svg", '','', legendIcons);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%TRACE DES CONSTELLATIONS 
+%TRACE DES CONSTELLATIONS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Constellation en sortie de l'échantilloneur
@@ -221,4 +225,6 @@ for i = 1:5:length(EbN0dB)
     xlabel('I')
     ylabel('Q')
     title(["Constellation observée en sortie de l'échantillonneur pour E_b/N_0 = ", EbN0dB(i), "dB"]);
+    [~, legendIcons] = legend('Constellation en sortie de mapping', "Constellation observée en sortie de l'échantillonneur pour E_b/N_0 = "+ EbN0dB(i)+ "dB");
+    fig2svg("rapport/assets/4_constellation_"+num2str(EbN0dB(i))+".svg", '','', legendIcons);
 end

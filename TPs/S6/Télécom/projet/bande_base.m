@@ -91,7 +91,7 @@ xlabel('Temps (s)');
 ylabel('Q(t)');
 title('Signal généré sur la voie en quadrature (Bande de Base)');
 [~, legendIcons] = legend('Signal généré sur la voie en phase', 'Signal généré sur la voie en quadrature');
-fig2svg("3_signal.svg", '','', legendIcons);
+fig2svg("rapport/assets/3_signal.svg", '','', legendIcons);
 
 % Tracé de la densité spectrale de puissance de l'enveloppe complexe
 %2.2
@@ -104,7 +104,7 @@ xlabel('Fréquences (Hz)');
 ylabel('DSP');
 title('DSP de l''enveloppe complexe (Bande de Base)');
 [~, legendIcons] = legend("DSP de l\'enveloppe complexe - Bande de Base");
-fig2svg("3_dsp.svg", '','', legendIcons);
+fig2svg("rapport/assets/3_dsp.svg", '','', legendIcons);
 
 constellation_dk = dk; % Garder la constellation de départ
 
@@ -118,7 +118,7 @@ ylabel('Partie imaginaire');
 title(['Constellation des symboles modulés']);
 grid on;
 [~, legendIcons] = legend("Constellation des symboles modulés");
-fig2svg("3_constellation.svg", '','', legendIcons);
+fig2svg("rapport/assets/3_constellation.svg", '','', legendIcons);
 
 % Plage de valeurs Eb/N0
 EbN0dB_range = 0:2:6;
@@ -148,7 +148,7 @@ for i = 1:length(EbN0_range)
     ylabel('Partie imaginaire');
     title(['Constellation des symboles reçus - Eb/N0 = ' num2str(EbN0dB_range(i)) ' dB']);
     [~, legendIcons] = legend(['Constellation des symboles reçus - Eb/N0 = ' num2str(EbN0dB_range(i)) ' dB']);
-    fig2svg("3_constellation_"+num2str(EbN0dB_range(i))+".svg", '','', legendIcons);
+    fig2svg("rapport/assets/3_constellation_"+num2str(EbN0dB_range(i))+".svg", '','', legendIcons);
     grid on;
 end
 
@@ -214,4 +214,4 @@ grid
 [~, legendIcons] = legend('TEB théorique', 'TEB simulé');
 xlabel('Eb/N0 (dB)')
 title('Tracé des TEB du signal')
-fig2svg("3_comparaison_teb.svg", '', '', legendIcons);
+fig2svg("rapport/assets/3_comparaison_teb.svg", '', '', legendIcons);

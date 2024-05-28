@@ -17,16 +17,14 @@
 = Implantation d'une transmission avec transposition de fréquence
 == Signaux
 
-#figure(caption: "Signaux générés pour " + $50$ + " bits")[
-  #grid(columns: 1, image("assets/2_message.svg", height: 40%))[
-    #image("assets/2_signal.svg")
+#figure(caption: "Signaux générés pour " + $3000$ + " bits")[
+  #image("assets/2_signal.svg")
 
-  ]
 ]
 == Densité spectrale de puissance
 
 #figure(
-  caption: [DSP du signal transmis sur fréquence porteuse $(20000$ bits)],
+  caption: [DSP du signal transmis sur fréquence porteuse $(3000$ bits)],
 )[
   #image("./assets/2_dsp.svg")
 ]
@@ -37,15 +35,15 @@ JUSTIFIER DSP (forme position)
 
 == TEB
 #figure(
-  caption: [TEB en fonction du SNR à l'entrée du récepteur $(20000$ bits)],
+  caption: [TEB en fonction du SNR à l'entrée du récepteur $(3000$ bits)],
 )[
-  #image("./assets/2_comparaison_teb.svg")
+  #image("./assets/2_teb.svg")
 ]
 
 On constate que le TEB simulé est très proche du TEB théorique, ce qui confirme
 la validité de la chaîne de transmission avec transposition de fréquence.
 
-= Implantation d'une transmission avec transposition de fréquence
+= Implantation de la chaine passe-bas équivalente à la chaine de transmission sur porteuse précédente
 == Signaux
 #figure(caption: "Signaux générés pour " + $3000$ + " bits")[
   #image("assets/3_signal.svg")
@@ -67,6 +65,9 @@ On retrouve la constellation usuelle de la modulation `QPSK` :
 
 #figure(caption: "Constellation
 en sortie du mapping", image("assets/3_constellation.svg"))
+
+#pagebreak()
+
 #grid(
   columns: 2,
   image("assets/3_constellation_0.svg", height: 30%),
@@ -93,7 +94,7 @@ de phase ou d'amplitude.
 #figure(
   caption: "Comparaison des TEB transmission avec transposition de fré́quence et chaine équivalente passe-bas",
 )[
-  #image("assets/3_6_comparaison_teb.svg")
+  #image("assets/3_comparaison_eff_puiss.svg")
 ]
 
 On constate que les TEB sont très proches, cependant il est plus judicieux
@@ -101,4 +102,49 @@ d'implanter la chaîne équivalente passe-bas car elle permet de réduire le co�
 en puissance du fait que l'on peut utiliser des filtres à réponse impulsionnelle
 finie (FIR) pour les démodulateurs.
 
-= Comparaison du modulateur DVS-S avec un modulateur 4-ASK
+= Comparaison du modulateur DVS-S avec le 4-ASK
+== Implantation de la modulation 4-ASK
+=== Constellations
+
+#figure(caption: "Constellation de la chaîne équivalente passe-bas")[
+  #image("assets/4_constellation.svg")
+]
+#pagebreak()
+#grid(
+  columns: 2,
+  image("assets/4_constellation_0.svg", height: 30%),
+  image("assets/4_constellation_2.svg", height: 30%),
+  image("assets/4_constellation_4.svg", height: 30%),
+  image("assets/4_constellation_6.svg", height: 30%),
+)
+
+=== TEB
+
+#figure(
+  caption: "TEB en fonction du SNR à l'entrée du récepteur pour 3000 bits",
+)[
+  #image("assets/4_teb.svg")
+]
+
+== Comparaison du modulateur QPSK du DVB-S avec le modulateur 4-ASK
+
+#figure(caption: "Comparaison en efficacité en puissance")[
+  #image("assets/4_comparaison_eff_puiss.svg")
+]
+
+*ICI EN EFFICACITE SPECTRALE ON L'A PAS FAIT*
+
+= Comparaison du modulateur DVS-S avec un des modulateurs proposés par le DVB-S2
+== Implantation de la modulation DVB-S2
+=== Constellations
+#figure(caption: "Constellation
+en sortie du mapping", image("assets/5_constellation.svg"))
+
+#pagebreak()
+#grid(
+  columns: 2,
+  image("assets/5_constellation_0.svg", height: 30%),
+  image("assets/5_constellation_2.svg", height: 30%),
+  image("assets/5_constellation_4.svg", height: 30%),
+  image("assets/5_constellation_6.svg", height: 30%),
+)

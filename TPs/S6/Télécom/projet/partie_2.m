@@ -10,7 +10,7 @@ addpath(genpath("./fig2svg"));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PARAMÈTRES GÉNÉRAUX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Nb_bits = 5000;       % Nombre de bits générés
+Nb_bits = 3000;       % Nombre de bits générés
 Fe = 24000;      % Fréquence d'échantillonnage en Hz
 Te = 1/Fe;       % Période d'échantillonnage en secondes
 Rb = 3000;       % Débit binaire en bits par seconde
@@ -28,7 +28,7 @@ bits = randi([0,1], 1, Nb_bits);
 figure('Name','Message à transmettre')
 stem(bits, 'filled')
 title("Message généré")
-fig2svg("2_message.svg");
+fig2svg("rapport/assets/2_message.svg");
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% MODULATEUR QPSK
@@ -47,7 +47,7 @@ L = 6;                    % Longueur du filtre en durées de symboles
 h = rcosdesign(alpha, L, Ns);  % Filtre en cosinus surélevé
 
 % Mapping QPSK
-mapping = [-1-1i, -1+1i, 1-1i, 1+1i];        %mapping constellation QPSK 
+mapping = [-1-1i, -1+1i, 1-1i, 1+1i];        %mapping constellation QPSK
 
 %génération des symboles complexes dk
 dk = mapping(bin2dec(int2str([bits(1:2:Nb_bits-1)', bits(2:2:Nb_bits)']))+1);
@@ -91,7 +91,7 @@ plot(Echelle_Temporelle, x)
 xlabel("Temps (s)")
 ylabel("x(t)")
 title("Signal transmis sur fréquence porteuse")
-fig2svg("2_signal.svg");
+fig2svg("rapport/assets/2_signal.svg");
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -116,7 +116,7 @@ grid on
 xlabel('Fréquences (Hz)')
 ylabel('DSP')
 title('Tracé de la DSP du signal transmis sur fréquence porteuse')
-fig2svg("2_dsp.svg", '', '', legendIcons);
+fig2svg("rapport/assets/2_dsp.svg", '', '', legendIcons);
 
 %2.4
 %EXPLICATION DE LA DSP
@@ -145,7 +145,7 @@ for i = 1:length(EbN0dB)
     nbr_erreurs = 0;
     N = length(bits);
     while nbr_erreurs < 1/(epsilon^2)       %tant que le nombre d'erreurs est trop petit pour obtenir epsilon
-                                            
+
         xe = filter(h,1,diracs);
         t = (0:Te:(length(xe)-1)*Te);
         x = real(xe.*exp(1i*2*pi*Fp*t));
@@ -155,19 +155,19 @@ for i = 1:length(EbN0dB)
         Pn = Px*Ns/(2*n*10^(EbN0dB(i)/10));
         bruit = sqrt(Pn)*randn(1,length(x));
         x_bruite = x + bruit;
-        
+
         % Retour en bande de base
         z1 = filter(hr, 1, x_bruite.* cos(2*pi*Fp*t));
         z2 = filter(hr, 1, x_bruite.* sin(2*pi*Fp*t));
-            
+
         % Échantillonnage à n0+mNs en prenant en compte le retard induit
         zm1 = z1(retard+n0:Ns:end);
         zm2 = z2(retard+n0:Ns:end);
-        
+
         % Décisions sur les symboles
         am1 = sign(zm1);
         am2 = -sign(zm2);
-        
+
         % Demapping
         bm=[(am1+1)/2; (am2+1)/2];
         bm = bm(:)';
@@ -183,8 +183,8 @@ for i = 1:length(EbN0dB)
                                            new_bits(2:2:Nb_bits)']))+1)];
         diracs = kron(dk,[1 zeros(1,Ns-1)]);
     end
-    
-     
+
+
 end
 
 
@@ -204,7 +204,7 @@ grid
 [~, legendIcons] = legend('TEB théorique', 'TEB simulé');
 xlabel('Eb/N0 (dB)')
 title('Tracé des TEB du signal')
-fig2svg("2_comparaison_teb.svg", '', '', legendIcons);
+fig2svg("rapport/assets/2_teb.svg", '', '', legendIcons);
 
 %Sauvegarde du tableau des TEB pour la comparaison avec la partie 3
 save('TEB_partie_2', 'TEBS');

@@ -68,7 +68,7 @@ sigma2 = (Px * Ns) ./ (2 * log2(M) * 10.^(EbN0dB_range/10));
 % Boucle sur les valeurs Eb/N0
 for i = 1:length(EbN0_range)
     % Générer le signal bruité
-    
+
 
     bruit_I = sqrt(sigma2(i)) * randn(1, length(x_baseband));
     bruit_Q = sqrt(sigma2(i)) * randn(1, length(x_baseband));
@@ -162,5 +162,5 @@ grid
 [~, legendIcons] = legend('TEB théorique', 'TEB simulé');
 xlabel('Eb/N0 (dB)')
 title('Tracé des TEB du signal')
-fig2svg("2_comparaison_teb.svg", '', '', legendIcons);
+fig2svg("rapport/assets/2_comparaison_teb.svg", '', '', legendIcons);
 

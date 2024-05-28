@@ -10,7 +10,7 @@ addpath(genpath("./fig2svg"));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PARAMETRES GENERAUX
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Nb_bits = 6000;       % Nombre de bits générés
+Nb_bits = 3000;       % Nombre de bits générés
 Fe = 6000;       % Fréquence d'échantillonnage en Hz
 Te = 1 / Fe;     % Période d'échantillonnage en secondes
 Rb = 3000;       % Débit binaire en bits par seconde
@@ -80,33 +80,33 @@ for i = 1:length(EbN0dB)
                                             %obtenir epsilon
 
         xe = filter(h,1,diracs);
-                                    
+
         Pxe=mean(abs(xe).^2);
 
         %Calcul de la puissance du bruit complexe commune aux deux voies
         Pne = Pxe*Ns/(2*log2(M)*10^(EbN0dB(i)/10));
-        
+
         %Génération du bruit dans chaque voie
         bruit_I = sqrt(Pne)*randn(1,length(xe));
         bruit_Q = sqrt(Pne)*randn(1,length(xe));
-        
+
         %Ajout du bruit
         xe_bruite = xe + bruit_I + 1i*bruit_Q;
-        
+
         %Filtrage adapté du signal entrant
         z = filter(hr, 1, xe_bruite);
-        
+
         %Choix de l'instant d'échantillonnage.
         n0=1;
-        
+
         % Échantillonnage à n0+mNs en prenant en compte le retard induit
         zm = z(retard+n0:Ns:end);
         tab_zm(i, :) = zm(1:taille_max_zm);
-        
+
         % Démodulateur
         bm = pskdemod(zm, M, OutputType='bit');
         bm = bm(:)';
-        
+
         nbr_erreurs = length(find((bm-bits(1:length(bm))) ~=0));
         TEBS(i) = nbr_erreurs/length(bm);
 
@@ -116,8 +116,8 @@ for i = 1:length(EbN0dB)
         dk = [dk, pskmod(reshape(new_bits, n, Nb_bits/n), M, InputType='bit')];
         diracs = kron(dk,[1 zeros(1,Ns-1)]);
     end
-    
-     
+
+
 end
 
 % TEB théorique
@@ -135,10 +135,10 @@ grid
 [~, legendIcons] = legend('TEB théorique', 'TEB simulé');
 xlabel('Eb/N0 (dB)')
 title('Tracé des TEB du signal')
-fig2svg("2_comparaison_teb.svg", '', '', legendIcons);
+fig2svg("rapport/assets/5_teb.svg", '', '', legendIcons);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%TRACE DES CONSTELLATIONS 
+%TRACE DES CONSTELLATIONS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %constellation en sortie du mapping
@@ -148,6 +148,8 @@ grid on
 xlabel('I')
 ylabel('Q')
 title("Constellation observée en sortie du mapping");
+[~, legendIcons] = legend('Constellation en sortie de mapping');
+fig2svg("rapport/assets/5_constellation.svg", '','', legendIcons);
 
 %constellation en sortie de l'échantilloneur
 for i = 1:5:length(EbN0dB)
@@ -159,4 +161,6 @@ for i = 1:5:length(EbN0dB)
     xlabel('I')
     ylabel('Q')
     title(["Constellation observée en sortie de l'échantillonneur pour E_b/N_0 = ", EbN0dB(i), "dB"] );
+    [~, legendIcons] = legend('Constellation en sortie de mapping', "Constellation observée en sortie de l'échantillonneur pour E_b/N_0 = "+ EbN0dB(i)+ "dB");
+    fig2svg("rapport/assets/5_constellation_"+num2str(EbN0dB(i))+".svg", '','', legendIcons);
 end

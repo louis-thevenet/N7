@@ -42,7 +42,7 @@ for i = 1:Nsb
 end
 
 % Mapping des symboles
-symboles_mapped = pammod(symboles, M);
+symboles_mapped = pammod(symboles, M,0,'gray');
 
 % Suréchantillonnage
 suite_dirac = kron(symboles_mapped, [1 zeros(1, Ns-1)]);
@@ -111,7 +111,7 @@ z_decalage = z(length(h):Ns:end);
 xr = zeros(1, Nb);
 z_decalage_reel=real(z_decalage);
 
-symboles_recuperes = pamdemod(z_decalage, M);
+symboles_recuperes = pamdemod(z_decalage_reel, M,0,'gray');
 for i =1:length(symboles_recuperes)
     xr(2*i:2*i+1) = binary2vector(symboles_recuperes(i),2);
 end
@@ -137,14 +137,14 @@ num_symbols = floor((length(zs) - length(h)) / Ns);
 z_decalages = zs(:, length(h):Ns:(length(h) + Ns*num_symbols - 1));
 
 % Détection de seuil
-xr = zeros(length(EbN0), 2*num_symbols);
+xr_vec = zeros(length(EbN0), 2*num_symbols);
 z_decalages_reel=real(z_decalages);
 
 symboles_recuperes = pamdemod(z_decalages_reel, M);
-for i =1:num_symbols
-    xr(:,2*i-1:2*i) = binary2vector(symboles_recuperes(:,i),2);
+for i =1:num_symbols-1
+    xr_vec(:,2*i:2*i+1) = binary2vector(symboles_recuperes(:,i),2);
 end
-TEBS = mean(xr ~= bits(1:2*num_symbols), 2);
+TEBS = mean(xr_vec ~= bits(1:2*num_symbols), 2);
 
 
 % TEB théorique

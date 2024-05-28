@@ -1,262 +1,262 @@
 <?xml version = "1.0" encoding = "utf-8" standalone = "no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg preserveAspectRatio = "xMinYMin meet" width = "100%" height = "100%" fill = "none" viewBox = "0 0 560.000 420.000"  version = "1.1" xmlns = "http://www.w3.org/2000/svg" xmlns:xlink = "http://www.w3.org/1999/xlink">
+<svg preserveAspectRatio = "xMinYMin meet" width = "100%" height = "100%" fill = "none" viewBox = "0 0 746.667 560.000"  version = "1.1" xmlns = "http://www.w3.org/2000/svg" xmlns:xlink = "http://www.w3.org/1999/xlink">
   <desc>Matlab Figure Converted by FIG2SVG</desc>
   <g id = "topgroup">
-  <rect x = "0" y = "0" width = "560.000" height = "420.000" fill = "#ffffff" stroke = "none" />
+  <rect x = "0" y = "0" width = "746.667" height = "560.000" fill = "#ffffff" stroke = "none" />
   <g id  = "ID000000">
 </g>
   <g id  = "ID000001">
-      <polygon fill = "#ffffff" fill-opacity = "1.000" stroke = "none" points = "72.800,373.800 506.800,373.800 506.800,31.500 72.800,31.500 "/>
-      <polygon fill = "#ffffff" fill-opacity = "1.000" stroke = "none" points = "72.800,31.500 506.800,31.500 506.800,31.500 72.800,31.500 "/>
-      <polygon fill = "#ffffff" fill-opacity = "1.000" stroke = "none" points = "72.800,373.800 72.800,373.800 72.800,31.500 72.800,31.500 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "145.133,373.800 145.133,31.500 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "217.467,373.800 217.467,31.500 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "289.800,373.800 289.800,31.500 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "362.133,373.800 362.133,31.500 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "434.467,373.800 434.467,31.500 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,302.627 506.800,302.627 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,248.992 506.800,248.992 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,207.389 506.800,207.389 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,173.398 506.800,173.398 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,144.658 506.800,144.658 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,119.763 506.800,119.763 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,97.803 506.800,97.803 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,78.160 506.800,78.160 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,60.391 506.800,60.391 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,44.168 506.800,44.168 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.250,6.000" stroke-opacity = "1.000" points = "72.800,369.125 506.800,369.125 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.250,6.000" stroke-opacity = "1.000" points = "72.800,344.229 506.800,344.229 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.250,6.000" stroke-opacity = "1.000" points = "72.800,322.270 506.800,322.270 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.250,6.000" stroke-opacity = "1.000" points = "72.800,173.398 506.800,173.398 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.250,6.000" stroke-opacity = "1.000" points = "72.800,97.803 506.800,97.803 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.250,6.000" stroke-opacity = "1.000" points = "72.800,44.168 506.800,44.168 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "145.133,31.500 145.133,31.500 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "217.467,31.500 217.467,31.500 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "289.800,31.500 289.800,31.500 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "362.133,31.500 362.133,31.500 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "434.467,31.500 434.467,31.500 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,31.500 506.800,31.500 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,302.627 72.800,302.627 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,248.992 72.800,248.992 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,207.389 72.800,207.389 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,173.398 72.800,173.398 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,144.658 72.800,144.658 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,119.763 72.800,119.763 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,97.803 72.800,97.803 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,78.160 72.800,78.160 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,60.391 72.800,60.391 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,44.168 72.800,44.168 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.250,6.000" stroke-opacity = "1.000" points = "72.800,369.125 72.800,369.125 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.250,6.000" stroke-opacity = "1.000" points = "72.800,344.229 72.800,344.229 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.250,6.000" stroke-opacity = "1.000" points = "72.800,322.270 72.800,322.270 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.250,6.000" stroke-opacity = "1.000" points = "72.800,173.398 72.800,173.398 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.250,6.000" stroke-opacity = "1.000" points = "72.800,97.803 72.800,97.803 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.250,6.000" stroke-opacity = "1.000" points = "72.800,44.168 72.800,44.168 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "72.800,373.800 72.800,31.500 "/>
+      <polygon fill = "#ffffff" fill-opacity = "1.000" stroke = "none" points = "97.067,498.400 675.733,498.400 675.733,42.000 97.067,42.000 "/>
+      <polygon fill = "#ffffff" fill-opacity = "1.000" stroke = "none" points = "97.067,42.000 675.733,42.000 675.733,42.000 97.067,42.000 "/>
+      <polygon fill = "#ffffff" fill-opacity = "1.000" stroke = "none" points = "97.067,498.400 97.067,498.400 97.067,42.000 97.067,42.000 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "193.511,498.400 193.511,42.000 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "289.956,498.400 289.956,42.000 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "386.400,498.400 386.400,42.000 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "482.844,498.400 482.844,42.000 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "579.289,498.400 579.289,42.000 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,403.094 675.733,403.094 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,331.273 675.733,331.273 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,275.565 675.733,275.565 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,230.047 675.733,230.047 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,191.563 675.733,191.563 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,158.226 675.733,158.226 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,128.821 675.733,128.821 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,102.518 675.733,102.518 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,78.723 675.733,78.723 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,57.001 675.733,57.001 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.333,8.000" stroke-opacity = "1.000" points = "97.067,492.139 675.733,492.139 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.333,8.000" stroke-opacity = "1.000" points = "97.067,458.803 675.733,458.803 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.333,8.000" stroke-opacity = "1.000" points = "97.067,429.398 675.733,429.398 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.333,8.000" stroke-opacity = "1.000" points = "97.067,230.047 675.733,230.047 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.333,8.000" stroke-opacity = "1.000" points = "97.067,128.821 675.733,128.821 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.333,8.000" stroke-opacity = "1.000" points = "97.067,57.001 675.733,57.001 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "193.511,42.000 193.511,42.000 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "289.956,42.000 289.956,42.000 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "386.400,42.000 386.400,42.000 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "482.844,42.000 482.844,42.000 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "579.289,42.000 579.289,42.000 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,42.000 675.733,42.000 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,403.094 97.067,403.094 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,331.273 97.067,331.273 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,275.565 97.067,275.565 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,230.047 97.067,230.047 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,191.563 97.067,191.563 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,158.226 97.067,158.226 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,128.821 97.067,128.821 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,102.518 97.067,102.518 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,78.723 97.067,78.723 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,57.001 97.067,57.001 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.333,8.000" stroke-opacity = "1.000" points = "97.067,492.139 97.067,492.139 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.333,8.000" stroke-opacity = "1.000" points = "97.067,458.803 97.067,458.803 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.333,8.000" stroke-opacity = "1.000" points = "97.067,429.398 97.067,429.398 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.333,8.000" stroke-opacity = "1.000" points = "97.067,230.047 97.067,230.047 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.333,8.000" stroke-opacity = "1.000" points = "97.067,128.821 97.067,128.821 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "0.333,8.000" stroke-opacity = "1.000" points = "97.067,57.001 97.067,57.001 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "0.150" points = "97.067,498.400 97.067,42.000 "/>
     <g>
 <g id = "ID000003" >
 </g>
 <g id = "ID000004" >
-  <g transform = "translate(289.800,397.418)">
+  <g transform = "translate(386.400,521.720)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.9em" font-family = "Helvetica" text-anchor = "middle" dominant-baseline = "auto" font-size = "11.000pt" fill = "#262626"><tspan>Eb/N0 (dB)</tspan></text>
     </g>
   </g>
 </g>
 <g id = "ID000005" >
-  <g transform = "translate(289.800,28.756)">
+  <g transform = "translate(386.400,40.168)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "-0.2em" font-family = "Helvetica" text-anchor = "middle" dominant-baseline = "auto" font-size = "11.000pt" font-weight = "bold" fill = "#000000"><tspan>Trac&#233; des TEB du signal</tspan></text>
     </g>
   </g>
 </g>
 <g id = "ID000006" clip-path = "url(#ID000002)" >
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "round" stroke = "#ff0000" stroke-width = "3.000pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,50.187 87.267,56.228 101.733,62.482 116.200,68.959 130.667,75.668 145.133,82.618 159.600,89.820 174.067,97.282 188.533,105.017 203.000,113.036 217.467,121.351 231.933,129.973 246.400,138.916 260.867,148.194 275.333,157.821 289.800,167.811 304.267,178.180 318.733,188.944 333.200,200.121 347.667,211.728 362.133,223.784 376.600,236.308 391.067,249.321 405.533,262.843 420.000,276.899 434.467,291.509 448.933,306.701 463.400,322.498 477.867,338.928 492.333,356.019 506.800,373.800 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "round" stroke = "#ff0000" stroke-width = "3.000pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,65.060 116.356,73.149 135.644,81.524 154.933,90.197 174.222,99.181 193.511,108.488 212.800,118.131 232.089,128.124 251.378,138.482 270.667,149.220 289.956,160.353 309.244,171.899 328.533,183.875 347.822,196.298 367.111,209.189 386.400,222.566 405.689,236.451 424.978,250.866 444.267,265.832 463.556,281.375 482.844,297.518 502.133,314.289 521.422,331.714 540.711,349.822 560.000,368.642 579.289,388.207 598.578,408.549 617.867,429.703 637.156,451.704 656.444,474.590 675.733,498.400 "/>
 </g>
 <g id = "ID000007" clip-path = "url(#ID000002)" >
 <g>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "68.982,31.500 72.800,36.900 76.618,31.500 72.800,26.100 68.982,31.500 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "83.448,49.929 87.267,55.329 91.085,49.929 87.267,44.529 83.448,49.929 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "97.915,47.985 101.733,53.385 105.552,47.985 101.733,42.585 97.915,47.985 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "112.382,52.364 116.200,57.764 120.018,52.364 116.200,46.964 112.382,52.364 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "126.848,64.626 130.667,70.026 134.485,64.626 130.667,59.226 126.848,64.626 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "141.315,71.160 145.133,76.560 148.952,71.160 145.133,65.760 141.315,71.160 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "155.782,79.516 159.600,84.916 163.418,79.516 159.600,74.116 155.782,79.516 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "170.248,86.198 174.067,91.598 177.885,86.198 174.067,80.798 170.248,86.198 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "184.715,96.913 188.533,102.313 192.352,96.913 188.533,91.513 184.715,96.913 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "199.182,103.513 203.000,108.913 206.818,103.513 203.000,98.113 199.182,103.513 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "213.648,111.373 217.467,116.773 221.285,111.373 217.467,105.973 213.648,111.373 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "228.115,122.935 231.933,128.335 235.752,122.935 231.933,117.535 228.115,122.935 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "242.582,127.549 246.400,132.949 250.218,127.549 246.400,122.149 242.582,127.549 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "257.048,139.326 260.867,144.726 264.685,139.326 260.867,133.926 257.048,139.326 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "271.515,144.761 275.333,150.161 279.152,144.761 275.333,139.361 271.515,144.761 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "285.982,152.118 289.800,157.518 293.618,152.118 289.800,146.718 285.982,152.118 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "300.448,168.877 304.267,174.277 308.085,168.877 304.267,163.477 300.448,168.877 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "314.915,183.384 318.733,188.784 322.552,183.384 318.733,177.984 314.915,183.384 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "329.382,187.667 333.200,193.067 337.018,187.667 333.200,182.267 329.382,187.667 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "343.848,199.663 347.667,205.063 351.485,199.663 347.667,194.263 343.848,199.663 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "358.315,213.534 362.133,218.934 365.952,213.534 362.133,208.134 358.315,213.534 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "372.782,226.480 376.600,231.880 380.418,226.480 376.600,221.080 372.782,226.480 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "387.248,239.782 391.067,245.182 394.885,239.782 391.067,234.382 387.248,239.782 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "401.715,246.821 405.533,252.221 409.352,246.821 405.533,241.421 401.715,246.821 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "416.182,258.445 420.000,263.845 423.818,258.445 420.000,253.045 416.182,258.445 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "430.648,276.873 434.467,282.273 438.285,276.873 434.467,271.473 430.648,276.873 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "445.115,286.920 448.933,292.320 452.752,286.920 448.933,281.520 445.115,286.920 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "459.582,305.946 463.400,311.346 467.218,305.946 463.400,300.546 459.582,305.946 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "474.048,319.787 477.867,325.187 481.685,319.787 477.867,314.387 474.048,319.787 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "488.515,337.412 492.333,342.812 496.152,337.412 492.333,332.012 488.515,337.412 "/>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "502.982,346.124 506.800,351.524 510.618,346.124 506.800,340.724 502.982,346.124 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "93.248,42.000 97.067,47.400 100.885,42.000 97.067,36.600 93.248,42.000 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "112.537,56.597 116.356,61.997 120.174,56.597 116.356,51.197 112.537,56.597 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "131.826,61.875 135.644,67.275 139.463,61.875 135.644,56.475 131.826,61.875 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "151.115,67.432 154.933,72.832 158.752,67.432 154.933,62.032 151.115,67.432 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "170.404,78.423 174.222,83.823 178.041,78.423 174.222,73.023 170.404,78.423 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "189.693,89.428 193.511,94.828 197.329,89.428 193.511,84.028 189.693,89.428 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "208.982,116.112 212.800,121.512 216.618,116.112 212.800,110.712 208.982,116.112 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "228.271,121.120 232.089,126.520 235.907,121.120 232.089,115.720 228.271,121.120 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "247.559,134.686 251.378,140.086 255.196,134.686 251.378,129.286 247.559,134.686 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "266.848,136.562 270.667,141.962 274.485,136.562 270.667,131.162 266.848,136.562 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "286.137,148.626 289.956,154.026 293.774,148.626 289.956,143.226 286.137,148.626 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "305.426,174.677 309.244,180.077 313.063,174.677 309.244,169.277 305.426,174.677 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "324.715,171.845 328.533,177.245 332.352,171.845 328.533,166.445 324.715,171.845 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "344.004,182.122 347.822,187.522 351.641,182.122 347.822,176.722 344.004,182.122 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "363.293,194.012 367.111,199.412 370.929,194.012 367.111,188.612 363.293,194.012 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "382.582,210.051 386.400,215.451 390.218,210.051 386.400,204.651 382.582,210.051 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "401.871,217.779 405.689,223.179 409.507,217.779 405.689,212.379 401.871,217.779 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "421.159,235.417 424.978,240.817 428.796,235.417 424.978,230.017 421.159,235.417 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "440.448,253.209 444.267,258.609 448.085,253.209 444.267,247.809 440.448,253.209 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "459.737,264.979 463.556,270.379 467.374,264.979 463.556,259.579 459.737,264.979 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "479.026,282.893 482.844,288.293 486.663,282.893 482.844,277.493 479.026,282.893 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "498.315,296.725 502.133,302.125 505.952,296.725 502.133,291.325 498.315,296.725 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "517.604,316.968 521.422,322.368 525.241,316.968 521.422,311.568 517.604,316.968 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "536.893,335.495 540.711,340.895 544.529,335.495 540.711,330.095 536.893,335.495 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "556.182,341.491 560.000,346.891 563.818,341.491 560.000,336.091 556.182,341.491 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "575.471,366.849 579.289,372.249 583.107,366.849 579.289,361.449 575.471,366.849 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "594.759,389.054 598.578,394.454 602.396,389.054 598.578,383.654 594.759,389.054 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "614.048,402.843 617.867,408.243 621.685,402.843 617.867,397.443 614.048,402.843 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "633.337,416.201 637.156,421.601 640.974,416.201 637.156,410.801 633.337,416.201 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "652.626,445.803 656.444,451.203 660.263,445.803 656.444,440.403 652.626,445.803 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "671.915,467.287 675.733,472.687 679.552,467.287 675.733,461.887 671.915,467.287 "/>
 </g>
 </g>
   <clipPath id = "ID000002">
-    <rect x = "72.800" y = "31.500" width = "434.000" height = "342.300"/>
+    <rect x = "97.067" y = "42.000" width = "578.667" height = "456.400"/>
   </clipPath>
     </g>
     <g>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "145.133,373.800 145.133,369.460 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "217.467,373.800 217.467,369.460 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "289.800,373.800 289.800,369.460 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "362.133,373.800 362.133,369.460 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "434.467,373.800 434.467,369.460 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,373.800 506.800,373.800 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "145.133,31.500 145.133,35.840 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "217.467,31.500 217.467,35.840 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "289.800,31.500 289.800,35.840 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "362.133,31.500 362.133,35.840 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "434.467,31.500 434.467,35.840 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,31.500 506.800,31.500 "/>
-  <g transform = "translate(72.800,380.646)">
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "193.511,498.400 193.511,492.613 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "289.956,498.400 289.956,492.613 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "386.400,498.400 386.400,492.613 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "482.844,498.400 482.844,492.613 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "579.289,498.400 579.289,492.613 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,498.400 675.733,498.400 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "193.511,42.000 193.511,47.787 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "289.956,42.000 289.956,47.787 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "386.400,42.000 386.400,47.787 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "482.844,42.000 482.844,47.787 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "579.289,42.000 579.289,47.787 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,42.000 675.733,42.000 "/>
+  <g transform = "translate(97.067,507.528)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.9em" font-family = "Helvetica" text-anchor = "middle" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>0</tspan></text>
     </g>
   </g>
-  <g transform = "translate(145.133,380.646)">
+  <g transform = "translate(193.511,507.528)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.9em" font-family = "Helvetica" text-anchor = "middle" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>1</tspan></text>
     </g>
   </g>
-  <g transform = "translate(217.467,380.646)">
+  <g transform = "translate(289.956,507.528)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.9em" font-family = "Helvetica" text-anchor = "middle" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>2</tspan></text>
     </g>
   </g>
-  <g transform = "translate(289.800,380.646)">
+  <g transform = "translate(386.400,507.528)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.9em" font-family = "Helvetica" text-anchor = "middle" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>3</tspan></text>
     </g>
   </g>
-  <g transform = "translate(362.133,380.646)">
+  <g transform = "translate(482.844,507.528)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.9em" font-family = "Helvetica" text-anchor = "middle" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>4</tspan></text>
     </g>
   </g>
-  <g transform = "translate(434.467,380.646)">
+  <g transform = "translate(579.289,507.528)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.9em" font-family = "Helvetica" text-anchor = "middle" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>5</tspan></text>
     </g>
   </g>
-  <g transform = "translate(506.800,380.646)">
+  <g transform = "translate(675.733,507.528)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.9em" font-family = "Helvetica" text-anchor = "middle" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>6</tspan></text>
     </g>
   </g>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,302.627 77.140,302.627 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,248.992 77.140,248.992 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,207.389 77.140,207.389 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,173.398 77.140,173.398 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,144.658 77.140,144.658 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,119.763 77.140,119.763 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,97.803 77.140,97.803 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,78.160 77.140,78.160 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,60.391 77.140,60.391 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,44.168 77.140,44.168 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,373.800 72.800,31.500 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,302.627 502.460,302.627 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,248.992 502.460,248.992 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,207.389 502.460,207.389 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,173.398 502.460,173.398 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,144.658 502.460,144.658 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,119.763 502.460,119.763 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,97.803 502.460,97.803 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,78.160 502.460,78.160 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,60.391 502.460,60.391 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,44.168 502.460,44.168 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,373.800 506.800,31.500 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,369.125 74.970,369.125 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,344.229 74.970,344.229 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,322.270 74.970,322.270 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,173.398 74.970,173.398 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,97.803 74.970,97.803 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,44.168 74.970,44.168 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,369.125 504.630,369.125 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,344.229 504.630,344.229 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,322.270 504.630,322.270 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,173.398 504.630,173.398 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,97.803 504.630,97.803 "/>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "506.800,44.168 504.630,44.168 "/>
-  <g transform = "translate(64.120,302.627)">
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,403.094 102.853,403.094 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,331.273 102.853,331.273 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,275.565 102.853,275.565 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,230.047 102.853,230.047 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,191.563 102.853,191.563 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,158.226 102.853,158.226 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,128.821 102.853,128.821 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,102.518 102.853,102.518 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,78.723 102.853,78.723 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,57.001 102.853,57.001 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,498.400 97.067,42.000 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,403.094 669.947,403.094 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,331.273 669.947,331.273 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,275.565 669.947,275.565 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,230.047 669.947,230.047 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,191.563 669.947,191.563 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,158.226 669.947,158.226 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,128.821 669.947,128.821 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,102.518 669.947,102.518 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,78.723 669.947,78.723 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,57.001 669.947,57.001 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,498.400 675.733,42.000 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,492.139 99.960,492.139 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,458.803 99.960,458.803 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,429.398 99.960,429.398 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,230.047 99.960,230.047 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,128.821 99.960,128.821 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,57.001 99.960,57.001 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,492.139 672.840,492.139 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,458.803 672.840,458.803 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,429.398 672.840,429.398 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,230.047 672.840,230.047 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,128.821 672.840,128.821 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "675.733,57.001 672.840,57.001 "/>
+  <g transform = "translate(85.493,403.094)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.3em" font-family = "Helvetica" text-anchor = "end" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>0.03</tspan></text>
     </g>
   </g>
-  <g transform = "translate(64.120,248.992)">
+  <g transform = "translate(85.493,331.273)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.3em" font-family = "Helvetica" text-anchor = "end" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>0.04</tspan></text>
     </g>
   </g>
-  <g transform = "translate(64.120,207.389)">
+  <g transform = "translate(85.493,275.565)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.3em" font-family = "Helvetica" text-anchor = "end" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>0.05</tspan></text>
     </g>
   </g>
-  <g transform = "translate(64.120,173.398)">
+  <g transform = "translate(85.493,230.047)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.3em" font-family = "Helvetica" text-anchor = "end" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>0.06</tspan></text>
     </g>
   </g>
-  <g transform = "translate(64.120,144.658)">
+  <g transform = "translate(85.493,191.563)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.3em" font-family = "Helvetica" text-anchor = "end" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>0.07</tspan></text>
     </g>
   </g>
-  <g transform = "translate(64.120,119.763)">
+  <g transform = "translate(85.493,158.226)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.3em" font-family = "Helvetica" text-anchor = "end" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>0.08</tspan></text>
     </g>
   </g>
-  <g transform = "translate(64.120,97.803)">
+  <g transform = "translate(85.493,128.821)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.3em" font-family = "Helvetica" text-anchor = "end" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>0.09</tspan></text>
     </g>
   </g>
-  <g transform = "translate(64.120,78.160)">
+  <g transform = "translate(85.493,102.518)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.3em" font-family = "Helvetica" text-anchor = "end" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>0.1</tspan></text>
     </g>
   </g>
-  <g transform = "translate(64.120,60.391)">
+  <g transform = "translate(85.493,78.723)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.3em" font-family = "Helvetica" text-anchor = "end" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>0.11</tspan></text>
     </g>
   </g>
-  <g transform = "translate(64.120,44.168)">
+  <g transform = "translate(85.493,57.001)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.3em" font-family = "Helvetica" text-anchor = "end" dominant-baseline = "auto" font-size = "10.000pt" fill = "#262626"><tspan>0.12</tspan></text>
     </g>
   </g>
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "72.800,373.800 72.800,373.800 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "97.067,498.400 97.067,498.400 "/>
     </g>
   </g>
   <g id  = "ID000008">
   <clipPath id = "ID000009">
-    <rect x = "360.333" y = "41.667" width = "136.000" height = "34.500"/>
+    <rect x = "534.000" y = "52.667" width = "131.333" height = "35.333"/>
   </clipPath>
   <g id = "ID000010">
-    <rect fill = "#ffffff" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" x = "360.333" y = "41.667" width = "136.000" height = "34.500"/>
+    <rect fill = "#ffffff" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#262626" stroke-width = "0.500pt" stroke-dasharray = "none" stroke-opacity = "1.000" x = "534.000" y = "52.667" width = "131.333" height = "35.333"/>
   </g>
 <g id = "ID000011" clip-path = "url(#ID000009)" >
 <g>
-      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "380.515,66.667 384.333,72.067 388.152,66.667 384.333,61.267 380.515,66.667 "/>
+      <polygon fill = "none" stroke-linecap = "square" stroke-linejoin = "miter" stroke = "#00ff00" stroke-width = "3.000pt" stroke-opacity = "1.000" stroke-dasharray = "none" points = "555.515,78.000 559.333,83.400 563.152,78.000 559.333,72.600 555.515,78.000 "/>
 </g>
 </g>
 <g id = "ID000012" clip-path = "url(#ID000009)" >
@@ -264,17 +264,17 @@
 <g id = "ID000013" clip-path = "url(#ID000009)" >
 </g>
 <g id = "ID000014" clip-path = "url(#ID000009)" >
-      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "round" stroke = "#ff0000" stroke-width = "3.000pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "364.333,51.167 404.333,51.167 "/>
+      <polyline fill = "none" stroke-linecap = "square" stroke-linejoin = "round" stroke = "#ff0000" stroke-width = "3.000pt" stroke-dasharray = "none" stroke-opacity = "1.000" points = "539.333,62.667 579.333,62.667 "/>
 </g>
 <g id = "ID000015" >
-  <g transform = "translate(407.333,66.667)">
+  <g transform = "translate(583.333,78.000)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.3em" font-family = "Helvetica" text-anchor = "start" dominant-baseline = "auto" font-size = "9.000pt" fill = "#000000"><tspan>TEB simul&#233;</tspan></text>
     </g>
   </g>
 </g>
 <g id = "ID000016" >
-  <g transform = "translate(407.333,51.167)">
+  <g transform = "translate(583.333,62.667)">
     <g transform = "rotate(-0.000)">
       <text x = "0.000" y = "0.3em" font-family = "Helvetica" text-anchor = "start" dominant-baseline = "auto" font-size = "9.000pt" fill = "#000000"><tspan>TEB th&#233;orique</tspan></text>
     </g>

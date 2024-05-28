@@ -141,22 +141,13 @@ fig2svg("rapport/assets/5_teb.svg", '', '', legendIcons);
 %TRACE DES CONSTELLATIONS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%constellation en sortie du mapping
-figure
-plot(dk, 'rx', 'Linewidth', 2)
-grid on
-xlabel('I')
-ylabel('Q')
-title("Constellation observée en sortie du mapping");
-[~, legendIcons] = legend('Constellation en sortie de mapping');
-fig2svg("rapport/assets/5_constellation.svg", '','', legendIcons);
 
 %constellation en sortie de l'échantilloneur
 for i = 1:5:length(EbN0dB)
     figure
     plot(dk, 'rx', 'Linewidth', 2)
     hold on
-    plot(tab_zm(i, :)./abs(tab_zm(i,:)), 'bo')
+    plot(tab_zm(i, :), 'bo')
     grid on
     xlabel('I')
     ylabel('Q')

@@ -61,16 +61,16 @@ retard = (length(h) - 1)/2 + (length(hr) - 1)/2;
 % Choix de l'instant d'échantillonnage.
 n0=1;
 
-EbN0dB = (0:0.2:6);                                %choix de Eb/N0
+EbN0dB = (0:1:10);                                %choix de Eb/N0
 TEBS = zeros(1, length(EbN0dB));                  %tableau des TEB calculés
 
-taille_max_zm = 80;
+taille_max_zm = 500;
 tab_zm = zeros(length(EbN0dB), taille_max_zm);      %tableau des valeurs des
                                                  %échantillons pour le
                                                  %tracé des constellations
 
 % Pourcentage d'erreur voulu sur la mesure du TEB
-epsilon = 0.1;
+epsilon = 0.05;
 
 for i = 1:length(EbN0dB)
     nbr_erreurs = 0;
@@ -140,7 +140,7 @@ fig2svg("rapport/assets/5_teb.svg", '', '', legendIcons);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %TRACE DES CONSTELLATIONS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+h
 
 %constellation en sortie de l'échantilloneur
 for i = 1:5:length(EbN0dB)

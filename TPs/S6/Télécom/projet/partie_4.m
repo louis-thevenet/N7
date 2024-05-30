@@ -95,8 +95,8 @@ grid("on");
 xlabel('f (Hz)')
 ylabel('S_x (dB)')
 title("Tracé de la DSP de l'enveloppe complexe associée au signal à transmettre");
-legend('4-ASK', 'QPSK');
-%fig2svg("rapport/assets/4_2_dsp_comparaison.svg", '','', legendIcons);
+[~, legendIcons] = legend('4-ASK', 'QPSK');
+fig2svg("rapport/assets/4_2_dsp_comparaison.svg", '','', legendIcons);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CALCUL DU TEB EN FONCTION DE E_b/N_0

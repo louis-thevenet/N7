@@ -140,12 +140,12 @@ fig2svg("rapport/assets/5_teb.svg", '', '', legendIcons);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %TRACE DES CONSTELLATIONS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-h
+
 
 %constellation en sortie de l'échantilloneur
-for i = 1:5:length(EbN0dB)
+for i = 1:3:length(EbN0dB)
     figure
-    plot(dk, 'rx', 'Linewidth', 2)
+    plot(dk(:,1:taille_max_zm), 'rx', 'Linewidth', 2)
     hold on
     plot(tab_zm(i, :), 'bo')
     grid on

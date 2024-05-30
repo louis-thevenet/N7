@@ -56,20 +56,35 @@ Q = imag(xe);       %voie en quadrature
 
 Echelle_Temporelle = 0:Te:(length(xe)-1)*Te; % Echelle temporelle
 
-% Tracé des signaux générés sur les voies en phase et en quadrature
-figure('Name','Signaux Générés/Transmis - Bande de Base');
-subplot(2,1,1)
-plot(Echelle_Temporelle, I);
-xlabel('t (s)')
-ylabel('I(t) ')
-title('Tracé du signal généré en phase');
-subplot(2,1,2)
+% Tracés des Signaux Générés/Transmis
+figure('Name','Signaux Générés/Transmis')
+
+% Signal sur la voie en phase
+%2.1
+subplot(3,1,1)
+plot(Echelle_Temporelle, I)
+xlabel("Temps (s)")
+ylabel("I(t)")
+title("Signal généré sur la voie en phase")
+
+% Signal sur la voie en quadrature
+%2.1
+subplot(3,1,2)
 plot(Echelle_Temporelle, Q)
-xlabel('t (s)')
-ylabel('Q(t)')
-title('Tracé du signal généré sur la voie en quadrature');
-[~, legendIcons] = legend('Signal généré sur la voie en phase', 'Signal généré sur la voie en quadrature');
-fig2svg("rapport/assets/3_signal.svg", '','', legendIcons);
+xlabel("Temps (s)")
+ylabel("Q(t)")
+title("Signal généré sur la voie en quadrature")
+
+% Signal transmis sur fréquence porteuse
+x = real(xe.*exp(1i*2*pi*Fp*Echelle_Temporelle));
+
+%2.2
+subplot(3,1,3)
+plot(Echelle_Temporelle, x)
+xlabel("Temps (s)")
+ylabel("x(t)")
+title("Signal transmis sur fréquence porteuse")
+fig2svg("rapport/assets/3_signal.svg");
 
 % Constellation en sortie du mapping
 figure
@@ -246,7 +261,7 @@ fig2svg("rapport/assets/3_comparaison_eff_puiss.svg", '','', legendIcons);
 % Constellation en sortie de l'échantilloneur
 for i = 1:5:length(EbN0dB)
   figure
-  plot(dk, 'rx', 'LineWidth', 2)
+  plot(dk(:,1:taille_max_zm), 'rx', 'LineWidth', 2)
   hold on
   plot(tab_zm(i, :), 'bo')
   grid on

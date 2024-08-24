@@ -2,28 +2,30 @@
   description = "A Nix flake dev environment for N7 assignements (Matlab, Coq, Gnat, X2GO, ...)";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    systems.url = "github:nix-systems/default";
+
     nix-matlab.url = "gitlab:doronbehar/nix-matlab";
   };
-  outputs = {
-    self,
-    nixpkgs,
-    flake-utils,
-    nix-matlab,
-  }:
-    flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      devShells = {
-        default = pkgs.mkShell {
-          # Matlab (needs a working matlab install elsewhere)
-          buildInputs = with nix-matlab.packages.x86_64-linux; [
-            matlab
-            matlab-mlint
-            matlab-mex
-          ];
-
-          shellHook = nix-matlab.shellHooksCommon;
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = import inputs.systems;
+      perSystem = {
+        config,
+        self',
+        pkgs,
+        lib,
+        system,
+        ...
+      }: {
+        devShells.default = pkgs.mkShell {
+          #   # Matlab (needs a working matlab install elsewhere, see https://gitlab.com/doronbehar/nix-matlab)
+          #   shellHook = nix-matlab.shellHooksCommon;
+          #   buildInputs = with nix-matlab.packages.x86_64-linux; [
+          #     matlab
+          #     matlab-mlint
+          #     matlab-mex
+          #   ];
 
           packages = with pkgs; [
             # # Modélisation
@@ -36,7 +38,7 @@
             # coqPackages.coqide
             # coq
 
-            # # PIM
+            # # PIM (Ada)
             # gnat
             # gprbuild
             # valgrind
@@ -49,15 +51,21 @@
             # cmake
             # clang-tools
 
-            (pkgs.python3.withPackages (python-pkgs: [
-              python-pkgs.jupyter
-              python-pkgs.numpy
-              python-pkgs.matplotlib
-              python-pkgs.scikit-learn
-              python-pkgs.tensorflow
-              python-pkgs.keras
-              python-pkgs.treelib
-            ]))
+            # # Apprentissage (il manque des modules, je conseille pas de l'utiliser)
+            # (pkgs.python3.withPackages (python-pkgs: [
+            #   python-pkgs.jupyter
+            #   python-pkgs.numpy
+            #   python-pkgs.matplotlib
+            #   python-pkgs.scikit-learn
+            #   python-pkgs.tensorflow
+            #   python-pkgs.keras
+            #   python-pkgs.treelib
+            # ]))
+
+            # # Arduino (needs aditionnal udev rules:
+            # # see https://github.com/louis-thevenet/nixos-config/blob/67c87176c875801dd2a65a699189bd9959da4837/hosts/hircine/default.nix#L70C1-L75C6)
+            # arduino-core
+            # arduino-ide
 
             # Nix
             nil
@@ -66,21 +74,26 @@
             # Typst
             typst
             typst-lsp
-            #typst-fmt
+            typst-fmt
 
-            # Java
-            jdk21
+            # # Java
+            # jdk21
+
+            # OCaml
+            # ocaml
+            # ocamlPackages.ocaml-lsp
+            # ocamlformat
+            # ocamlPackages.ocamlformat-rpc-lib
+            # ocamlPackages.utop
+            # ocamlPackages.re
 
             # Utilitaires
             unzip
             vpnc
             filezilla
             x2goclient
-
-            arduino-core
-            arduino-ide
           ];
         };
       };
-    });
+    };
 }

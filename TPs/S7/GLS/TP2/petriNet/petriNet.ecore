@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="petriNet" nsURI="http://petrinet" nsPrefix="petriNet">
+  <eClassifiers xsi:type="ecore:EClass" name="Place">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="jetons" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sucessor" eType="#//Transition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predecessor" eType="#//Transition"
+        eOpposite="#//Transition/sucessor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sucessor" eType="#//Place"
+        eOpposite="#//Place/predecessor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predecessor" eType="#//Place"/>
+  </eClassifiers>
+</ecore:EPackage>

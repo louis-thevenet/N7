@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simplepdl:Process
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:simplepdl="http://simplepdl"
+    xsi:schemaLocation="http://simplepdl SimplePDL.ecore"
+    name="Realisation">
+  <activities
+      linksToPredecessors="//@workSequences.1"
+      linksToSuccessors="//@workSequences.0 //@workSequences.2 //@workSequences.4"
+      name="Concevoir"/>
+  <activities
+      linksToPredecessors="//@workSequences.4"
+      linksToSuccessors="//@workSequences.1"
+      name="Documenter"/>
+  <activities
+      linksToPredecessors="//@workSequences.2"
+      linksToSuccessors="//@workSequences.3"
+      name="Programmer"/>
+  <activities
+      linksToPredecessors="//@workSequences.0 //@workSequences.3"
+      name="Tester"/>
+  <workSequences
+      predecessor="//@activities.0"
+      successor="//@activities.3"/>
+  <workSequences
+      predecessor="//@activities.1"
+      successor="//@activities.0"/>
+  <workSequences
+      linkType="finishToStart"
+      predecessor="//@activities.0"
+      successor="//@activities.2"/>
+  <workSequences
+      linkType="finishToFinish"
+      predecessor="//@activities.2"
+      successor="//@activities.3"/>
+  <workSequences
+      linkType="finishToFinish"
+      predecessor="//@activities.0"
+      successor="//@activities.1"/>
+</simplepdl:Process>

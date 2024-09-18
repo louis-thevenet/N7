@@ -4,7 +4,7 @@
     <semanticResources>petriNet.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_jfPiUHUNEe-__7jo2NYHyw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_jyRzEHUNEe-__7jo2NYHyw" name="petriNet class diagram" repPath="#_jyEXsHUNEe-__7jo2NYHyw" changeId="1726588687151">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_jyRzEHUNEe-__7jo2NYHyw" name="petriNet class diagram" repPath="#_jyEXsHUNEe-__7jo2NYHyw" changeId="1726647592895">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="petriNet.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -47,7 +47,7 @@
         <styles xmi:type="notation:DiagramStyle" xmi:id="_jyU2YnUNEe-__7jo2NYHyw"/>
         <edges xmi:type="notation:Edge" xmi:id="_ksL2nXUNEe-__7jo2NYHyw" type="4001" element="_ksKBYHUNEe-__7jo2NYHyw" source="_ksLPg3UNEe-__7jo2NYHyw" target="_ksL2k3UNEe-__7jo2NYHyw">
           <children xmi:type="notation:Node" xmi:id="_ksMdoHUNEe-__7jo2NYHyw" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ksMdoXUNEe-__7jo2NYHyw" x="-110" y="18"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ksMdoXUNEe-__7jo2NYHyw" x="22" y="23"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_ksMdonUNEe-__7jo2NYHyw" type="6002">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ksMdo3UNEe-__7jo2NYHyw" x="33" y="-266"/>
@@ -63,7 +63,7 @@
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_ksMdqHUNEe-__7jo2NYHyw" type="4001" element="_ksKBZ3UNEe-__7jo2NYHyw" source="_ksL2k3UNEe-__7jo2NYHyw" target="_ksLPg3UNEe-__7jo2NYHyw">
           <children xmi:type="notation:Node" xmi:id="_ksMdrHUNEe-__7jo2NYHyw" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ksMdrXUNEe-__7jo2NYHyw" x="-21" y="62"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ksMdrXUNEe-__7jo2NYHyw" x="-21" y="22"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_ksMdrnUNEe-__7jo2NYHyw" type="6002">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ksMdr3UNEe-__7jo2NYHyw" x="-47" y="10"/>
@@ -82,10 +82,10 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ksMduXUNEe-__7jo2NYHyw" x="156" y="-10"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_ksMdunUNEe-__7jo2NYHyw" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ksMdu3UNEe-__7jo2NYHyw" x="5" y="87"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ksMdu3UNEe-__7jo2NYHyw" x="-59" y="63"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_ksNEsHUNEe-__7jo2NYHyw" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ksNEsXUNEe-__7jo2NYHyw" x="16" y="-94"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ksNEsXUNEe-__7jo2NYHyw" x="48" y="-30"/>
           </children>
           <styles xmi:type="notation:ConnectorStyle" xmi:id="_ksMdtXUNEe-__7jo2NYHyw" routing="Rectilinear"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_ksMdtnUNEe-__7jo2NYHyw" fontName="Ubuntu" fontHeight="8"/>
@@ -134,7 +134,7 @@
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_ksKBYXUNEe-__7jo2NYHyw" routingStyle="manhattan" strokeColor="0,0,0">
         <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']/@style"/>
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_ksKBY3UNEe-__7jo2NYHyw" showIcon="false"/>
-        <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_ksKBYnUNEe-__7jo2NYHyw" showIcon="false" labelColor="39,76,114"/>
+        <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_ksKBYnUNEe-__7jo2NYHyw" labelSize="6" showIcon="false" labelColor="39,76,114"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
@@ -144,7 +144,7 @@
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_ksKocHUNEe-__7jo2NYHyw" routingStyle="manhattan" strokeColor="0,0,0">
         <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']/@style"/>
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_ksKocnUNEe-__7jo2NYHyw" showIcon="false"/>
-        <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_ksKocXUNEe-__7jo2NYHyw" showIcon="false" labelColor="39,76,114"/>
+        <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_ksKocXUNEe-__7jo2NYHyw" labelSize="6" showIcon="false" labelColor="39,76,114"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>

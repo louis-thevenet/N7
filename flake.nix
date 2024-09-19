@@ -28,6 +28,15 @@
           #   ];
 
           packages = with pkgs; [
+            # Nix
+            nil
+            alejandra
+
+            # Typst
+            typst
+            typst-lsp
+            typst-fmt
+
             # # Modélisation
             # opam # il faut installer les packages why3-coq, why3
             # # et run : eval $(opam env)
@@ -67,25 +76,16 @@
             # arduino-core
             # arduino-ide
 
-            # Nix
-            nil
-            alejandra
-
-            # Typst
-            typst
-            typst-lsp
-            typst-fmt
-
             # # Java
             # jdk21
 
             # OCaml
-            # ocaml
-            # ocamlPackages.ocaml-lsp
-            # ocamlformat
-            # ocamlPackages.ocamlformat-rpc-lib
-            # ocamlPackages.utop
-            # ocamlPackages.re
+            ocaml
+            dune_3
+            ocamlPackages.utop
+            ocamlPackages.graphics
+            ocamlPackages.ppx_inline_test
+            ocamlPackages.ppx_expect
 
             # Utilitaires
             unzip

@@ -15,7 +15,18 @@ let alphabet = minuscule | majuscule
 let alphanum = alphabet | chiffre | '_'
 let commentaireBloc = (* A COMPLETER *) "/*" _* "*/" 
 let commentaireLigne = "//" [^'\n']* '\n'
-
+let exponentPart = ('e'|'E') ('+' | '-') ['0'-'9']+
+let integerSuffix = 'l' | 'L' 
+let floatSuffix = 'f' | 'F' | 'd' | 'D'
+let escapeSequence = 
+    '\\' 'b' 
+  | '\\' 't' 
+  | '\\' 'n' 
+  | '\\' 'f' 
+  | '\\' 'r' 
+  | '\\' '"' 
+  | '\\' "'"
+  | '\\' '\\' 
 (* Analyseur lexical : expression reguliere { action CaML } *)
 rule lexer = parse
 (* Espace, tabulation, passage a ligne, etc : consommes par l'analyse lexicale *)
@@ -70,13 +81,27 @@ rule lexer = parse
   | "false"		{ (BOOLEEN false) }
   | "null"		{ VIDE }
 (* Nombres entiers : A COMPLETER *)
-  | ('0' | (['1' - '9'] chiffre*)) as texte   { (ENTIER (int_of_string texte)) }
+  | (
+    '0'
+    | '0' ('x'|'X') ['0'-'9' 'a'-'f' 'A'-'F'] ('_'* ['0'-'9' 'a'-'f' 'A'-'F'])+ integerSuffix?
+    | '0' '_'* ['0'-'7'] (('_'* ['0'-'7'])+) integerSuffix?
+    | (['1' - '9' ] ('_'* chiffre+))* integerSuffix?
+    | ('0' ('b'|'B') ('0' | '1') ('_'? ('0'|'1'))+) integerSuffix?
+    ) as texte   { (ENTIER (int_of_string texte)) }
 (* Nombres flottants : A COMPLETER *)
-  | (chiffre+ "." chiffre+) as texte     { (FLOTTANT (float_of_string texte)) }
+  | (
+  chiffre+ "." chiffre* exponentPart? floatSuffix?
+  | '.' chiffre+ exponentPart? floatSuffix? 
+ | chiffre+ exponentPart? floatSuffix?    
+
+(* EXADECIMAL FLOATING POINT LITERAL PAS FAIT *)
+
+  ) as texte     { (FLOTTANT (float_of_string texte)) }
+
 (* Caracteres : A COMPLETER *)
-  | "'" _ "'" as texte                   { CARACTERE texte.[1] }
+  | "'" ([^ '"' '\\'] | escapeSequence) "'" as texte                   { CARACTERE texte.[1] }
 (* Chaines de caracteres : A COMPLETER *)
-  | '"' _* '"' as texte                  { CHAINE texte }
+  | '"' ([^ '"' '\\'] | escapeSequence)* '"' as texte                  { CHAINE texte }
 (* Identificateurs *)
   | majuscule alphanum* as texte              { TYPEIDENT texte }
   | minuscule alphanum* as texte              { IDENT texte }

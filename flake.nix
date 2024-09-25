@@ -83,6 +83,7 @@
             ocaml
             dune_3
             ocamlPackages.utop
+            ocamlPackages.menhir
             ocamlPackages.graphics
             ocamlPackages.ppx_inline_test
             ocamlPackages.ppx_expect

@@ -144,11 +144,11 @@ let%test _ = arbre_sujet2 = arbre_sujet
 let%test _ = arbre_sujet3 = arbre_sujet
 
 (******************************************************************************)
-(*   fonction de retrait d'un élément dans un arbre                      *)
-(*   signature  : retrait: 'a -> 'a arbre -> 'a arbre                     *)
-(*   paramètres : - un élément (caractères dans le cas d'un dico)   *)
+(*   fonction de retrait d'un élément dans un arbre                           *)
+(*   signature  : retrait: 'a -> 'a arbre -> 'a arbre                         *)
+(*   paramètres : - un élément (caractères dans le cas d'un dico)             *)
 (*                - un arbre n-aire                                           *)
-(*   résultat   : l'arbre n-aire avec le mot retiré *)
+(*   résultat   : l'arbre n-aire avec le mot retiré                           *)
 (******************************************************************************)
 let rec retrait_arbre lc (Noeud (b, lb)) =
   match lc with
@@ -169,10 +169,51 @@ let%test _ =
     (appartient_arbre input
        (retrait_arbre input (ajout_arbre input arbre_sujet)))
 
-let rec get_elem_ordre_lexico (Noeud (b, lb)) =
-  let rec traiter_branche (char, arbres) =
-    List.flatten
-      (List.map (fun list -> char :: list) (get_elem_ordre_lexico arbres))
+(*********************************************************************************)
+(*   Retourne la liste des mots d'un arbre dans l'ordre lexicographique.         *)
+(*   signature  : ordre_lexico: 'a arbre -> 'a list list                         *)
+(*   paramètres : - un arbre n-aire                                              *)
+(*   résultat   : la liste des éléments de l'arbre, dans l'ordre lexicographique *)
+(*********************************************************************************)
+
+let ordre_lexico arbre =
+  let rec aux (Noeud (b, branches)) prefix_actuel res =
+    let res' = if b then prefix_actuel :: res else res in
+    List.fold_left
+      (fun acc (char, arbre) -> aux arbre (char :: prefix_actuel) acc)
+      res' branches
+  in
+  List.rev (List.map List.rev (aux arbre [] []))
+
+let%test _ =
+  ordre_lexico arbre_sujet3
+  = [
+      [ 'b'; 'a'; 's' ];
+      [ 'b'; 'a'; 't' ];
+      [ 'd'; 'e' ];
+      [ 'l'; 'a' ];
+      [ 'l'; 'a'; 'i' ];
+      [ 'l'; 'a'; 'i'; 'd' ];
+      [ 'l'; 'a'; 'i'; 't' ];
+      [ 'l'; 'a'; 'r'; 'd' ];
+      [ 'l'; 'e' ];
+      [ 'l'; 'e'; 's' ];
+      [ 'l'; 'o'; 'n'; 'g' ];
+    ]
+
+let rec normalise (Noeud (b, branches)) =
+  let rec est_valide (Noeud (b, branches)) =
+    b || List.exists (fun (_, arbre) -> est_valide arbre) branches
   in
 
-  List.map traiter_branche lb
+  Noeud
+    ( b,
+      List.filter_map
+        (fun (c, arbre) ->
+          if not (est_valide arbre) then None else Some (c, normalise arbre))
+        branches )
+
+let%test _ =
+  let input = [ 't'; 'e'; 's'; 't' ] in
+  arbre_sujet = normalise (retrait_arbre input (ajout_arbre input arbre_sujet))
+  && arbre_sujet != retrait_arbre input (ajout_arbre input arbre_sujet)

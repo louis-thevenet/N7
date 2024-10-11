@@ -1,0 +1,82 @@
+<h1 id="problème-des-philosophes">Problème des philosophes</h1>
+<h2 id="énoncé">Énoncé</h2>
+<p>N philosophes sont autour d’une table. Il y a une assiette par
+philosophe, et <em>une</em> fourchette entre chaque assiette. Pour
+manger, un philosophe doit utiliser les deux fourchettes adjacentes à
+son assiette (et celles-là seulement).</p>
+<p>Un philosophe peut être dans l’état :</p>
+<ul>
+<li>penseur : il n’utilise pas de fourchettes ;</li>
+<li>mangeur : il utilise les deux fourchettes adjacentes ; aucun de ses
+voisins ne peut manger ;</li>
+<li>demandeur : il souhaite manger mais ne dispose pas des deux
+fourchettes.</li>
+</ul>
+<p>Visuellement les états mangeur/demandeur/penseur sont représentés par
+un rond noir (ou rouge en cas de possible problème) / un rond blanc /
+rien.</p>
+<h2 id="code-fourni">Code fourni</h2>
+<ul>
+<li><p><code>StrategiePhilo.java</code> : interface de la
+synchronisation entre philosophes.</p></li>
+<li><p><code>PhiloEmpty.java</code> : une implantation vide de cette
+interface.</p></li>
+<li><p><code>ProcessusPhilosophe.java</code> : code d’un
+philosophe.</p></li>
+<li><p><code>Main.java</code> : programme principal. Définit aussi les
+<code>PhiloDroite(i)</code>, <code>PhiloGauche(i)</code>,
+<code>FourchetteGauche(i)</code>,
+<code>FourchetteDroite(i)</code>.</p></li>
+<li><p><code>EtatFourchette.java</code> : définition des constantes pour
+fourchette placée sur la table, l’assiette gauche, l’assiette
+droite.</p></li>
+<li><p><code>EtatPhilosophe.java</code> : définition des constantes pour
+philosophe penseur, demandeur ou mangeur.</p></li>
+<li><p><code>IHM*.java</code> : interface utilisateur.</p></li>
+<li><p><code>Synchro/Simulateur.java</code> : le simulateur de
+temps.</p></li>
+<li><p>Compilation:<br />
+<code>javac *.java</code></p></li>
+<li><p>Exécution:<br />
+<code>java Main</code><br />
+<code>java Main PhiloMon 10</code><br />
+(classe implantant l’interface StrategiePhilo) (nb de
+philosophes)</p></li>
+</ul>
+<h2 id="à-faire">À faire</h2>
+<p>Implanter des stratégies de résolution du problème, en utilisant un
+moniteur.</p>
+<h3
+id="approche-1-introduire-explicitement-létat-des-philosophes.">Approche
+1 : introduire explicitement l’état des philosophes.</h3>
+<p>Un philosophe peut manger si aucun de ses voisins ne mange, il doit
+attendre sinon. Réfléchir au déblocage d’un philosophe qui ne pouvait
+pas manger précédemment et qui peut le faire suite aux changements
+d’états d’un ou de ses deux voisins.</p>
+<h3 id="approche-2-équité">Approche 2 : équité</h3>
+<p>Observer que la solution 1 peut conduire à la famine d’un philosophe
+(trouver un exemple avec 4 ou 5 philosophes). Imaginer une solution
+gérant une priorité entre les philosophes permettant de résoudre ce
+problème.</p>
+<h2 id="indications">Indications</h2>
+<ul>
+<li><p><code>PhiloMon.java</code> est la seule classe à modifier. Le
+constructeur de cette classe prend un paramètre correspondant au nombre
+de philosophes lancés. Les variables d’état, verrous, ou variables
+conditions utilisés par les méthodes de cette classes seront (déclarés
+comme) des attributs de cette classe.</p></li>
+<li><p>Il est possible de contrôler la progression des philosophes pas à
+pas, en mettant la simulation en pause, puis en cliquant sur les
+philosophes (voir l’aide de la fenêtre), ce qui peut être très utile
+pour mettre en évidence des scénarios conduisant à des situations
+pathologiques (famine, erreur…)</p></li>
+<li><p>Utiliser <code>Main.java</code> pour les numéros
+(<code>Main.PhiloGauche</code> /
+<code>Main.PhiloDroite</code>).</p></li>
+<li><p>(Optionnel, ce n’est que pour l’affichage) pour poser la
+fourchette n°f sur l’assiette à <em>sa</em> droite, à <em>sa</em> gauche
+ou sur la table, utiliser</p>
+<pre><code>  IHMPhilo.poser (f, EtatFourchette.AssietteDroite);
+  IHMPhilo.poser (f, EtatFourchette.AssietteGauche);
+  IHMPhilo.poser (f, EtatFourchette.Table);</code></pre></li>
+</ul>

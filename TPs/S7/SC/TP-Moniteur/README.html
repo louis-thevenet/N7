@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="tp-sur-les-moniteurs-java">TP sur les moniteurs Java</h1>
+<p>Ce répertoire contient un exemple complet et des sujets concernant
+les moniteurs en Java :</p>
+<ol type="1">
+<li><p><a href="ProdCons">Producteur-consommateur</a> exemple complet
+issu du cours, pour montrer l’implantation des moniteurs en
+Java.</p></li>
+<li><p><a href="LectRed">Lecteurs/Redacteurs</a> qui porte sur le
+problème des lecteurs et des rédacteurs ;</p></li>
+<li><p><a href="Philosophes">Philosophes</a> qui porte sur le problème
+des philosophes avec un moniteur ;</p></li>
+<li><p><a href="Allocateur">Allocateur</a> qui porte sur l’allocation de
+ressources multiples.</p></li>
+</ol>
+<h2 id="moniteur-en-java">Moniteur en Java</h2>
+<ul>
+<li><p>Créer un verrou de type
+<code>java.util.concurrent.locks.Lock</code> (à partir de
+<code>java.util.concurrent.locks.ReentrantLock</code>) :</p>
+<pre><code>  mon_moniteur = new java.util.concurrent.locks.ReentrantLock();</code></pre>
+<p>Cet object réalise le moniteur en fournissant, par son utilisation
+explicite, l’exclusion mutuelle et permet de créer des
+variables-conditions associées au verrou.</p></li>
+<li><p>Créer une ou des variables-conditions
+(<code>java.util.concurrent.locks.Condition</code>) à partir du verrou
+précédemment créé :</p>
+<pre><code>ma_var_condition = mon_moniteur.newCondition();</code></pre></li>
+<li><p>Les procédures doivent explicitement manipuler le verrou pour
+obtenir l’exclusion mutuelle :</p>
+<pre><code>ma_procédure() {
+    mon_moniteur.lock();
+    ...
+    mon_moniteur.unlock();
+}</code></pre></li>
+<li><p>Les variables-conditions s’utilisent avec</p>
+<pre><code>ma_var_condition.await();</code></pre>
+<p>et</p>
+<pre><code>ma_var_condition.signal();
+ma_var_condition.signalAll();</code></pre></li>
+<li><p>La sémantique est celle de « priorité au signaleur » (= pas de
+priorité au signalé = pas de transfert de l’accès exclusif au processus
+débloqué). Il faut donc penser aux boucles “while”.</p></li>
+</ul>
+</body>
+</html>

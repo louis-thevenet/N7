@@ -12,7 +12,7 @@
 *)
 
 let coeff_directeur (x1, y1) (x2, y2) = (y2 -. y1) /. (x2 -. x1)
-let%test _ = coeff_directeur (0., 0.) (1., 2.) = 2.
+ let%test _ = coeff_directeur (0., 0.) (1., 2.) = 2.
 let%test _ = coeff_directeur (1., 2.) (0., 0.) = 2.
 let%test _ = coeff_directeur (0., 0.) (2., 1.) = 0.5
 let%test _ = coeff_directeur (0., 0.) (-2., 1.) = -0.5

@@ -169,10 +169,11 @@ let%test _ =
     (appartient_arbre input
        (retrait_arbre input (ajout_arbre input arbre_sujet)))
 
-let rec get_elem_ordre_lexico (Noeud (b, lb)) =
-  let rec traiter_branche (char, arbres) =
-    List.flatten
-      (List.map (fun list -> char :: list) (get_elem_ordre_lexico arbres))
-  in
+let rec parcourir_en_profondeur (Noeud(b,lb)) acc =
+  let rec parcourir_branche (Noeud(v,bl)) l =
+    if v then l @ [List.hd bl]
+    else List.concat (List.map (fun (c, Noeud(f, bs)) -> parcourir_branche bs (if f then c :: l else l) ) bl) in
+  let resultat = List.concat (List.map (parcourir_branche) lb) in
+  if b then resultat @ [List.hd acc] else resultat
 
-  List.map traiter_branche lb
+let en_ordre_lexicographique arbre = parcourir_en_profondeur arbre []

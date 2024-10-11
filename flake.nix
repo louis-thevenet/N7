@@ -76,13 +76,14 @@
             # arduino-core
             # arduino-ide
 
-            # # Java
-            # jdk21
+            # Java
+            jdk22
 
             # OCaml
             ocaml
             dune_3
             ocamlPackages.utop
+            ocamlPackages.ocamlformat
             ocamlPackages.menhir
             ocamlPackages.graphics
             ocamlPackages.ppx_inline_test

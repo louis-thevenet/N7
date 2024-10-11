@@ -144,11 +144,11 @@ let%test _ = arbre_sujet2 = arbre_sujet
 let%test _ = arbre_sujet3 = arbre_sujet
 
 (******************************************************************************)
-(*   fonction de retrait d'un élément dans un arbre                      *)
-(*   signature  : retrait: 'a -> 'a arbre -> 'a arbre                     *)
-(*   paramètres : - un élément (caractères dans le cas d'un dico)   *)
+(*   fonction de retrait d'un élément dans un arbre                           *)
+(*   signature  : retrait: 'a -> 'a arbre -> 'a arbre                         *)
+(*   paramètres : - un élément (caractères dans le cas d'un dico)             *)
 (*                - un arbre n-aire                                           *)
-(*   résultat   : l'arbre n-aire avec le mot retiré *)
+(*   résultat   : l'arbre n-aire avec le mot retiré                           *)
 (******************************************************************************)
 let rec retrait_arbre lc (Noeud (b, lb)) =
   match lc with

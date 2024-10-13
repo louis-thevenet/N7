@@ -1,3 +1,4 @@
+import java.util.PriorityQueue;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -16,6 +17,12 @@ public class PhiloMon implements StrategiePhilo {
   // État d'un philosophe : pense, mange, demande ?
   private EtatPhilosophe[] etat;
 
+  /**
+   * fourchettePrio[0] = qui a la priorité sur la fourchette 0 entre les
+   * philosophes 0 et 1
+   */
+  private Boolean[] fourchettesPrio;
+
   public PhiloMon(int nbPhilosophes) {
     this.etat = new EtatPhilosophe[nbPhilosophes];
     for (int i = 0; i < nbPhilosophes; i++) {
@@ -24,27 +31,50 @@ public class PhiloMon implements StrategiePhilo {
 
     this.mon = new ReentrantLock();
     this.fourchettesLiberees = mon.newCondition();
+    this.fourchettesPrio = new Boolean[nbPhilosophes];
+    for (int i = 0; i < nbPhilosophes; i++) {
+      fourchettesPrio[i] = true;
+    }
   }
 
   public void demanderFourchettes(int no) throws InterruptedException {
+    mon.lock();
     etat[no] = EtatPhilosophe.Demande;
 
-    while (etat[(no - 1 + etat.length) % etat.length].equals(EtatPhilosophe.Mange)
-        ||etat[(no + 1) % etat.length].equals(EtatPhilosophe.Mange)) {
-          System.out.println("waiting");
+    int nbFourchettes = fourchettesPrio.length;
+    for (int i = 0; i < fourchettesPrio.length; i++) {
+      System.out.print(fourchettesPrio[i]);
+    }
+    System.out.println();
+
+    while (!(fourchettesPrio[(no - 1 + nbFourchettes) % nbFourchettes] == (no % 2 == 0))) {
+      System.out.println("still waiting gauche");
       fourchettesLiberees.await();
     }
-    etat[no] = EtatPhilosophe.Mange;
-    // j'ai les fourchette G et D
+    // normalement ici l'autre philosophe a posé la fourchette en question
     IHMPhilo.poser(Main.FourchetteGauche(no), EtatFourchette.AssietteDroite);
+
+    while (!(fourchettesPrio[(no) % nbFourchettes] == (no % 2 == 0))) {
+      System.out.println("still waiting droite");
+      fourchettesLiberees.await();
+    }
+    // normalement ici l'autre philosophe a posé la fourchette en question
     IHMPhilo.poser(Main.FourchetteDroite(no), EtatFourchette.AssietteGauche);
+
+    etat[no] = EtatPhilosophe.Mange;
+    mon.unlock();
   }
 
   public void libererFourchettes(int no) {
+    mon.lock();
     IHMPhilo.poser(Main.FourchetteGauche(no), EtatFourchette.Table);
     IHMPhilo.poser(Main.FourchetteDroite(no), EtatFourchette.Table);
     etat[no] = EtatPhilosophe.Pense;
+    int nbFourchettes = fourchettesPrio.length;
+    fourchettesPrio[(no - 1 + nbFourchettes) % nbFourchettes] = !(no % 2 == 0);
+    fourchettesPrio[(no) % nbFourchettes] = !(no % 2 == 0);
     fourchettesLiberees.signalAll();
+    mon.unlock();
   }
 
   public String nom() {

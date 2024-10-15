@@ -20,8 +20,13 @@ public class PhiloMon implements StrategiePhilo {
   /**
    * fourchettePrio[0] = qui a la priorité sur la fourchette 0 entre les
    * philosophes 0 et 1
+   * 0: 0-1
+   * 1: 1-2
+   * 2: 2-3
+   * 3: 3-4
+   * 4: 4-0
    */
-  private Boolean[] fourchettesPrio;
+  private int[] fourchettesPrio;
 
   public PhiloMon(int nbPhilosophes) {
     this.etat = new EtatPhilosophe[nbPhilosophes];
@@ -31,9 +36,17 @@ public class PhiloMon implements StrategiePhilo {
 
     this.mon = new ReentrantLock();
     this.fourchettesLiberees = mon.newCondition();
-    this.fourchettesPrio = new Boolean[nbPhilosophes];
+    this.fourchettesPrio = new int[nbPhilosophes];
     for (int i = 0; i < nbPhilosophes; i++) {
-      fourchettesPrio[i] = true;
+      if (i % 2 == 0) {
+
+        fourchettesPrio[i] = (i + 1) % nbPhilosophes;
+      } else {
+
+        fourchettesPrio[i] = i;
+      }
+      System.out.print(
+          "fourchette " + i + " entre " + i + " et " + ((i + 1) % nbPhilosophes) + " : " + fourchettesPrio[i] + "\n");
     }
   }
 
@@ -42,22 +55,19 @@ public class PhiloMon implements StrategiePhilo {
     etat[no] = EtatPhilosophe.Demande;
 
     int nbFourchettes = fourchettesPrio.length;
+    System.out.println("Philosphe " + no);
+    System.out.println("Etat fourchettes");
     for (int i = 0; i < fourchettesPrio.length; i++) {
-      System.out.print(fourchettesPrio[i]);
+      System.out.print(i + " : " + fourchettesPrio[i] + "\n");
     }
     System.out.println();
 
-    while (!(fourchettesPrio[(no - 1 + nbFourchettes) % nbFourchettes] == (no % 2 == 0))) {
-      System.out.println("still waiting gauche");
+    while (!(fourchettesPrio[(no - 1 + nbFourchettes) % nbFourchettes] == no && fourchettesPrio[no] == no)) {
       fourchettesLiberees.await();
     }
     // normalement ici l'autre philosophe a posé la fourchette en question
     IHMPhilo.poser(Main.FourchetteGauche(no), EtatFourchette.AssietteDroite);
 
-    while (!(fourchettesPrio[(no) % nbFourchettes] == (no % 2 == 0))) {
-      System.out.println("still waiting droite");
-      fourchettesLiberees.await();
-    }
     // normalement ici l'autre philosophe a posé la fourchette en question
     IHMPhilo.poser(Main.FourchetteDroite(no), EtatFourchette.AssietteGauche);
 
@@ -71,8 +81,14 @@ public class PhiloMon implements StrategiePhilo {
     IHMPhilo.poser(Main.FourchetteDroite(no), EtatFourchette.Table);
     etat[no] = EtatPhilosophe.Pense;
     int nbFourchettes = fourchettesPrio.length;
-    fourchettesPrio[(no - 1 + nbFourchettes) % nbFourchettes] = !(no % 2 == 0);
-    fourchettesPrio[(no) % nbFourchettes] = !(no % 2 == 0);
+
+    System.out.println(no + " rend gauche à " + ((no - 1 + nbFourchettes) % nbFourchettes) + " ["
+        + ((no - 1 + nbFourchettes) % nbFourchettes) + "]");
+    System.out.println(no + " rend droite à " + ((no + 1 + nbFourchettes) % nbFourchettes) + " ["
+        + ((no + 1 + nbFourchettes) % nbFourchettes) + "]");
+    fourchettesPrio[(no - 1 + nbFourchettes) % nbFourchettes] = (no - 1 + nbFourchettes) % nbFourchettes;
+    fourchettesPrio[(no) % nbFourchettes] = (no + 1 + nbFourchettes) % nbFourchettes;
+
     fourchettesLiberees.signalAll();
     mon.unlock();
   }

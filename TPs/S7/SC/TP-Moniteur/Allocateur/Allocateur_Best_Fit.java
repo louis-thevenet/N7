@@ -10,7 +10,7 @@ import java.util.concurrent.locks.Condition;
  *
  * Implantation: moniteur (java 5), une var condition par taille de demande.
  */
-public class Allocateur_Petits implements Allocateur {
+public class Allocateur_Best_Fit implements Allocateur {
 
   // Nombre total de ressources.
   private final int nbRessources;
@@ -31,7 +31,7 @@ public class Allocateur_Petits implements Allocateur {
   private int[] tailleClasse;
 
   /** Initilialise un nouveau gestionnaire de ressources pour nbRessources. */
-  public Allocateur_Petits(int nbRessources) {
+  public Allocateur_Best_Fit(int nbRessources) {
     this.nbRessources = nbRessources;
     this.nbLibres = nbRessources;
     this.moniteur = new ReentrantLock();
@@ -68,28 +68,28 @@ public class Allocateur_Petits implements Allocateur {
     nbLibres += rendu;
     System.out.println("rendu: " + rendu + ", libre: " + nbLibres);
     if (nbLibres > 0) {
-      wake_up_next(1);
+      wake_up_next(nbRessources);
     }
 
     moniteur.unlock();
   }
 
   public void wake_up_next(int i) {
-    if (i > nbRessources) {
+    if (i <= 0) {
       return;
     }
     if (tailleClasse[i] > 0) {
       classe[i].signal();
       tailleClasse[i]--;
     } else {
-      wake_up_next(i + 1);
+      wake_up_next(i - 1);
     }
 
   }
 
   /** Chaîne décrivant la stratégie d'allocation. */
   public String nomStrategie() {
-    return "Priorité aux petits demandeurs";
+    return "Priorité aux grands demandeurs";
   }
 
 }

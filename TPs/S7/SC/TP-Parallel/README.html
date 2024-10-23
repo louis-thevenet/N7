@@ -1,0 +1,455 @@
+<h1 id="objectifs">Objectifs</h1>
+<ul>
+<li>gérer le parallélisme à gros grain</li>
+<li>paralléliser un algorithme par décomposition en sous-tâches</li>
+<li>connaître les services d’exécution de la plateforme Java</li>
+</ul>
+<h1 id="exercices">Exercices</h1>
+<p>Chaque exercice comporte un calcul séquentiel qu’il faut
+paralléliser.</p>
+<p>Les exercices utilisent des tableaux d’entiers stockés sur disque.
+L’archive fournie comporte une classe <code>LargeIntArray</code>
+permettant de générer, charger en mémoire, sauvegarder, comparer ou
+trier de tels tableaux. La méthode <code>main</code> permet en outre
+d’appeler les méthodes de la classe <code>LargeIntArray</code> depuis la
+console.</p>
+<p>Cette application sera utilisée pour générer les jeux de données
+utiles aux tests. En effet, pour que le gain apporté par les versions
+parallèles soit sensible, il est nécessaire que les volumes de données
+traités soient significatifs (tableaux de 1 à 100 millions d’entrées),
+ce qui aurait alourdi l’archive.</p>
+<ul>
+<li>Génération d’un gros fichier avec des valeurs entre -1000 et 1000
+(<code>foo</code> est le nom du fichier créé) :<br />
+<code>java LargeIntArray -g foo 1000000 1000</code></li>
+<li>Tri du tableau (pour les exercices de comptage) :<br />
+<code>java LargeIntArray -s foo</code></li>
+<li><em>Penser à supprimer les fichiers créés une fois le TP
+passé.</em></li>
+</ul>
+<h3 id="calcul-du-maximum-dun-tableau-répertoire-max.">Calcul du maximum
+d’un tableau (répertoire <code>max</code>).</h3>
+<p>Le but est de trouver l’élément maximal du tableau. La méthode
+<code>LargeIntArray.max(int[] array, int start, int end)</code> calcule
+le max en parcourant séquentiellement le tableau entre les indices
+<code>[start..end[</code>.</p>
+<ol type="1">
+<li><code>MaxTabSequential.java</code> contient une version purement
+séquentielle.</li>
+<li>Compléter <code>MaxTabThread.java</code> en s’inspirant de
+<code>exemples/SommeThreadPlus.java</code>.</li>
+<li>Compléter <code>MaxTabPool.java</code> en s’inspirant de
+<code>exemples/SommePool.java</code>.</li>
+<li>Compléter <code>MaxTabForkJoin.java</code> en s’inspirant de
+<code>exemples/SchemaForkJoin.java</code>.</li>
+<li>Comparer les performances des solutions avec un gros tableau
+<code>foo</code> :<br />
+<code>java MaxTabSequential foo 20</code> – 20 = nombre
+d’expériences<br />
+<code>java MaxTabThread foo 20 4</code> – 4 = nombre de threads<br />
+<code>java MaxTabPool foo 20 4 8</code> – 4 = taille du pool, 8 = nombre
+de jobs<br />
+<code>java MaxTabForJoin foo 20 1000</code> – 1000 = seuil d’arrêt de la
+décomposition</li>
+<li>Faire varier le nombre de threads / taille du pool / seuil
+d’arrêt.</li>
+<li>Analyser les résultats : quelle est la version la plus facile à
+écrire ? Quelle la version la plus efficace ?</li>
+</ol>
+<h3 id="comptage-des-éléments-dans-un-intervalle">Comptage des éléments
+dans un intervalle</h3>
+<p><em>Attention</em> : le tableau doit être trié. Le but est de compter
+le nombre de valeurs dans le tableau entre 0 et 9 (constantes VMIN/VMAX
+arbitrairement fixées). La méthode
+<code>LargeIntArray.count(int[] array, int start, int end, int vmin, int vmax)</code>
+compte le nombre d’éléments entre vmin et vmax (inclus) en parcourant
+séquentiellement le tableau entre les indices <code>[start..end[</code>.
+Observer que vu que le tableau est trié, il est inutile de parcourir un
+tronçon si le premier élément du tronçon est supérieur à VMAX ou si le
+dernier est inférieur à VMIN : il y a nécessairement 0 valeur entre VMIN
+et VMAX. Ceci induit que la décomposition est irrégulière avec certaines
+tâches quasi-instantanées et d’autres longues.</p>
+<ol type="1">
+<li><code>CountSequential.java</code> contient une version purement
+séquentielle.</li>
+<li>Compléter <code>CountThread.java</code>.</li>
+<li>Compléter <code>CountPool.java</code>.</li>
+<li>Compléter <code>CountForkJoin.java</code>.</li>
+<li>Comparer les performances des solutions avec un gros tableau
+<code>foo</code> :<br />
+<code>java CountSequential foo 20</code> – 20 = nombre
+d’expériences<br />
+<code>java CountThread foo 20 4</code> – 4 = nombre de threads<br />
+<code>java CountPool foo 20 4 8</code> – 4 = taille du pool, 8 = nombre
+de jobs<br />
+<code>java CountForJoin foo 20 1000</code> – 1000 = seuil d’arrêt de la
+décomposition</li>
+<li>Faire varier le nombre de threads / taille du pool / seuil
+d’arrêt.</li>
+<li>Analyser les résultats : quelle est la version la plus facile à
+écrire ? Quelle la version la plus efficace ?</li>
+</ol>
+<h3 id="comptage-des-mots-dans-les-fichiers-dune-arborescence">Comptage
+des mots dans les fichiers d’une arborescence</h3>
+<p><strong>Pour aller plus loin</strong> (non demandé pour ce TP),
+l’application de comptage de mots dans une arborescence (répertoire
+<code>wordcount</code>) réalise la commande
+<code>find repertoire -type f -exec grep mot {} \; | wc</code>. Elle
+permet d’illustrer la parallélisation d’un problème irrégulier.</p>
+<ul>
+<li>Paralléliser l’algorithme récursif proposé en utilisant le schéma
+fork/join</li>
+<li>Comparer cette version avec la version séquentielle en termes de
+facilité de conception et de performances. Pour le test, on pourra
+prendre un répertoire contenant des fichiers sources et rechercher un
+mot clé du langage.</li>
+</ul>
+<h2 id="outils">Outils</h2>
+<ul>
+<li><code>System.nanoTime()</code> et
+<code>System.currentTimeMillis()</code> fournissent une durée écoulée
+(en ns et ms) depuis une date d’origine non spécifiée. La différence
+entre les valeurs retournées par deux appels successifs permet d’évaluer
+le temps écoulé entre ces deux appels.</li>
+<li><code>Runtime.getRuntime().availableProcessors()</code> fournit le
+nombre de processeurs disponibles pour la JVM.</li>
+</ul>
+<h2
+id="tester-les-performances-dapplications-concurrentes-en-java">Tester
+les performances d’applications concurrentes en Java</h2>
+<ul>
+<li>sources de perturbation : cache, compilateur à la volée, ramasse
+miettes et optimiseur, charge de l’environnement (matériel, réseau)
+-&gt; répéter les mesures</li>
+<li>tester sur des volumes de données significatifs</li>
+<li>connaître le nombre de processeurs réels disponibles</li>
+<li>éviter les optimisations sauvages
+<ul>
+<li>avoir des tâches suffisamment complexes</li>
+<li>avoir un jeu de données varié (non constant en valeur et dans le
+temps)</li>
+</ul></li>
+<li>arrêter la décomposition en sous-tâches à un seuil raisonnable</li>
+</ul>
+<h1 id="rappel-activités-en-java">Rappel : Activités en Java</h1>
+<p>La présentation qui suit peut être complétée par la lecture de la
+partie correspondante du cours sur les activités (chapitre 6) et par la
+<a
+href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/package-summary.html">documentation
+Java en ligne</a>.</p>
+<h2 id="création-manuelle-des-activités">Création manuelle des
+activités</h2>
+<p>La classe <code>Thread</code> peut être instanciée avec un
+<code>Runnable</code> pour créer une nouvelle activité. Le cycle de vie
+de l’activité est à la charge du programmeur. Si l’activité doit fournir
+un résultat quand elle termine, le programmeur doit prévoir un mécanisme
+de transmission de ce résultat via des variables partagées (ce qui
+induit la nécessité de synchronisation, a minima l’exclusion mutuelle
+pour protéger les accès concurrents).</p>
+<h3 id="un-exemple">Un exemple</h3>
+<pre><code>import java.util.*;
+class Sum implements Runnable {
+    private long from;
+    private long to;
+    
+    Sum(long from, long to) { this.from = from; this.to = to;}
+    
+    @Override
+    public void run() {
+        long s = 0;
+        for (long i = from; i &lt;= to; i++) s = s + i;
+        System.out.println(&quot;Calcul terminé. Sigma(&quot; + from + &quot;,&quot; + to + &quot;) = &quot; + s);
+    }
+}
+
+public class SommeThread {
+    public static void main(String[] args) throws Exception {
+        List&lt;Sum&gt; jobs = Arrays.asList(new Sum(0, 1_000_000_000L),
+                                       new Sum(0, 4_000_000_000L),
+                                       new Sum(900_000, 1_000_000_000L),
+                                       new Sum(1, 100),
+                                       new Sum(0, 3_000_000_000L));
+        Set&lt;Thread&gt; threads = new HashSet&lt;&gt;();
+        for (Sum j : jobs) {
+            Thread t = new Thread(j);
+            threads.add(t);
+            t.start();
+        }
+        for (Thread t : threads) {
+            t.join();
+        }
+    }
+}</code></pre>
+<h3 id="commentaires">Commentaires</h3>
+<ul>
+<li>L’application crée autant d’activités qu’il y a de calculs à faire.
+Ces activités sont démarrées et l’application attend ensuite leur
+terminaison.</li>
+<li>L’archive contient une variante <code>SommeThreadPlus</code> où
+chaque activité fournit un résultat qui est récupéré dans le programme
+principal.</li>
+</ul>
+<h2 id="création-automatique-des-activités">Création automatique des
+activités</h2>
+<p>La plateforme Java fournit la classe <code>Executor</code> destinée à
+séparer la gestion des activités des aspects purement applicatifs. Le
+principe est qu’un objet de la classe <code>Executor</code> (« exécuteur
+») fournit un <em>service</em> de gestion et d’ordonnancement
+d’activités, auquel on soumet des <em>tâches</em> à traiter. Une
+application est donc vue comme un ensemble de tâches qui sont fournies à
+l’exécuteur. L’exécuteur gère l’exécution des tâches qui lui sont
+soumises de manière indépendante et transparente pour l’application.
+L’objectif de ce service est de permettre :</p>
+<ul>
+<li>de simplifier la tâche du programmeur puisqu’il n’a plus à gérer le
+démarrage des activités ni leur ordonnancement ;</li>
+<li>d’adapter le nombre d’activités exécutées à la charge et au nombre
+de processeurs physiques disponibles.</li>
+</ul>
+<p>Le paquetage <code>java.util.concurrent</code> définit trois
+interfaces pour les exécuteurs :</p>
+<ul>
+<li><code>Executor</code> fournit une méthode <code>execute</code>,
+permettant de soumettre une tâche <code>Runnable</code>.</li>
+<li><code>ExecutorService</code> étend <code>Executor</code> avec une
+méthode <code>submit</code> permettant de soumettre une tâche
+<code>Callable</code> et renvoyant un objet <code>Future</code>, lequel
+permet de récupérer la valeur de retour de la tâche
+<code>Callable</code> soumise. Un <code>ExecutorService</code> permet en
+outre de soumettre des ensembles de tâches <code>Callable</code> et de
+gérer la terminaison de l’exécuteur.</li>
+<li><code>ScheduledExecutorService</code> étend
+<code>ExecutorService</code> avec des méthodes permettant de spécifier
+l’ordonnancement des tâches soumises.</li>
+</ul>
+<p>Différentes implantations d’exécuteurs sont fournies. Le principe
+commun est de distribuer les tâches soumises à un ensemble d’ouvriers.
+Chaque ouvrier est un thread cyclique qui traite une par une les tâches
+qui lui sont attribuées.</p>
+<p>Les exécuteurs fournis par le paquetage
+<code>java.util.concurrent</code> sont de deux sortes : les pools
+d’activités et les pools pour fork/join.</p>
+<h2 id="pools-de-threads">Pools de threads</h2>
+<p>La classe <code>java.util.concurrent.Executors</code> fournit des
+méthodes permettant de créer des pools de threads implantant
+<code>ExecutorService</code> avec un nombre d’ouvriers fixe
+(<code>newFixedThreadPool</code>), variable
+(<code>newCachedThreadPool</code>) ou permettant une régulation par vol
+de tâches (<code>newWorkStealingPool</code>). Une variante implantant
+<code>ScheduledExecutorService</code> est proposée pour chacune de ces
+méthodes afin d’intervenir sur l’ordonnancement des tâches. Enfin, les
+classes <code>ThreadPoolExecutor</code> et
+<code>ScheduledThreadPoolExecutor</code> proposent encore davantage
+d’options sur la paramétrage et la supervision de l’ordonnancement.</p>
+<p>Les pools de threads évitent la création de nouveaux threads pour
+chaque tâche à traiter puisque qu’un même ouvrier est réutilisé pour
+traiter une suite de tâches, ce qui présente plusieurs avantages :</p>
+<ul>
+<li>éviter la création de threads apporte un gain (significatif lorsque
+les tâches sont nombreuses) en termes de consommation de ressources
+mémoire et processeur ;</li>
+<li>le délai de prise en charge des requêtes est réduit du temps de la
+création du traitant de la requête ;</li>
+<li>le contrôle du nombre d’ouvriers va permettre de réguler l’exécution
+en fonction des ressources matérielles disponibles au lieu d’avoir une
+exécution directement dépendante du flux de tâches à traiter. Ainsi dans
+le cas d’un flux de tâches augmentant brutalement, les performances se
+dégraderont progressivement (car le délai de prise en charge augmentera
+proportionnellement au nombre de tâches en attente) mais il n’y aura pas
+d’écroulement dû à un épuisement des ressources nécessaires.</li>
+<li>Les pools de threads sont bien adaptés au traitement de problèmes
+réguliers, décomposables en sous-problèmes de « taille » équivalente, ce
+qui garantit une bonne répartition des tâches entre ouvriers.</li>
+</ul>
+<h3 id="classes-et-méthodes-utiles">Classes et méthodes utiles</h3>
+<ul>
+<li>La classe <code>java.util.concurrent.Executors</code> permet de
+créer des pools de threads par appel de
+<code>newFixedThreadPool()</code> ou
+<code>newCachedThreadPool()</code>.</li>
+<li>La classe <code>ExecutorService</code> et sa superclasse
+<code>Executor</code> définissent l’interface d’un exécuteur, avec
+notamment les méthodes <code>submit()</code>, <code>execute()</code> et
+<code>shutdown()</code> (gestion de la terminaison de l’exécuteur).</li>
+<li>La classe <code>Future</code> fournit immédiatement une référence
+vers le résultat à venir d’une tâche <code>Callable</code>soumise à
+l’exécuteur par <code>submit()</code>. L’appel de la méthode
+<code>get()</code> permet d’obtenir le résultat effectif, en bloquant
+s’il n’est pas encore disponible.</li>
+<li>Les tâches ne renvoyant pas de résultat sont des
+<code>Runnable</code>, soumises à l’exécuteur par
+<code>execute()</code>.</li>
+</ul>
+<h3 id="un-exemple-1">Un exemple</h3>
+<pre><code>import java.util.concurrent.Future;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+
+class SigmaC implements Callable&lt;Long&gt; {
+    private long from;
+    private long to;
+    
+    SigmaC(long from, long to) { this.from = from; this.to = to;}
+    
+    @Override
+    public Long call() { // le résultat doit être un objet
+        long s = 0;
+        for (long i = from; i &lt;= to; i++) s = s + i;
+        return s;
+    }
+}
+
+class SigmaR implements Runnable {
+    private long from;
+    private long to;
+    
+    SigmaR(long from, long to) { this.from = from; this.to = to;}
+    
+    @Override
+    public void run() {
+        long s = 0;
+        for (long i = from; i &lt;= to; i++) s = s + i;
+        System.out.println(&quot;Calcul terminé. Sigma(&quot; + from + &quot;,&quot; + to + &quot;) = &quot; + s);
+    }
+}
+
+public class SommePool {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+               
+        Future&lt;Long&gt; f1 = executor.submit(new SigmaC(0L, 1_000_000_000L));
+        Future&lt;Long&gt; f2 = executor.submit(new SigmaC(0L, 4_000_000_000L));
+        executor.execute(new SigmaR(900_000L, 1_000_000_000L));
+        Future&lt;Long&gt; f3 = executor.submit(new SigmaC(1, 100));
+        Future&lt;Long&gt; f4 = executor.submit(new SigmaC(0L, 3_000_000_000L));
+        
+        System.out.println(&quot;Résultat obtenu. f1 = &quot; + f1.get());
+        System.out.println(&quot;Résultat obtenu. f2 = &quot; + f2.get());
+        System.out.println(&quot;Résultat obtenu. f3 = &quot; + f3.get());
+        System.out.println(&quot;Résultat obtenu. f4 = &quot; + f4.get());
+
+        executor.shutdown();
+    }
+}</code></pre>
+<h3 id="commentaires-1">Commentaires</h3>
+<ul>
+<li>L’application crée un pool avec un nombre fixe d’ouvriers (deux)
+puis lance cinq tâches : les deux premières et les deux dernières
+soumises (<code>Callable</code>, soumises par appel à
+<code>submit()</code>) rendent un résultat <code>Future</code>, récupéré
+de manière bloquante par l’appel à la méthode <code>get()</code>. La
+troisième (<code>Runnable</code>, soumise par appel à
+<code>execute()</code>) s’exécute de manière asynchrone.</li>
+<li>L’exécution voit la tâche <code>Runnable</code> terminer après la
+première soumise (<code>f1</code>), car bien que plus courte, elle ne
+peut démarrer tant que l’une des deux premières tâches lancées n’est pas
+terminée, la taille du pool étant de deux. L’appel <code>f2.get()</code>
+entraîne l’attente de la terminaison de <code>f2</code>, plus longue que
+<code>f1</code> et la tâche <code>Runnable</code> cumulées. L’appel de
+<code>f3.get()</code> retourne immédiatement, car <code>f3</code>,
+courte, est déjà terminée. L’appel <code>f4.get()</code> entraîne
+l’attente de la terminaison de <code>f4</code>.</li>
+<li><code>shutdown</code> permet de terminer proprement l’exécuteur qui
+dès lors n’accepte plus de nouvelles tâches. L’application Java termine
+avec la dernière tâche traitée.</li>
+<li>L’archive contient une variante (<code>SommePoolPlus</code>) qui
+illustre l’utilisation de <code>invokeAll()</code> pour soumettre une
+collection de <code>Callable</code>.</li>
+</ul>
+<h2 id="pool-forkjoin-schéma-mapreduce">Pool Fork/Join (Schéma
+Map/Reduce)</h2>
+<p>La classe <code>ForkJoinPool</code> est un exécuteur dont
+l’ordonnancement est adapté à une parallélisation selon le schéma
+<em>fork/join</em> (voir cours). Le principe récursif est</p>
+<ul>
+<li>de traiter directement (séquentiellement) un problème si sa taille
+est suffisamment petite ;</li>
+<li>sinon de diviser le problème en sous-problèmes qui seront traités en
+parallèle (<code>fork</code>) et dont les résultats seront attendus et
+agrégés (<code>join</code>).</li>
+</ul>
+<p>Ce schéma de programmation permet de créer dynamiquement un nombre de
+tâches adapté à la taille de chacun des problèmes rencontrés, chacune
+des tâches créées représentant une charge de travail équivalente. Ce
+schéma est donc bien adapté au traitement de problèmes irréguliers de
+grande taille. L’ordonnanceur de la classe <code>ForkJoinPool</code>
+comporte en outre une régulation (vol de tâches) qui permet l’adaptation
+de l’exécution aux capacités de calcul disponibles.</p>
+<h3 id="classes-et-méthodes-utiles-1">Classes et méthodes utiles</h3>
+<ul>
+<li><code>ForkJoinPool</code>: classe définissant l’exécuteur.</li>
+<li><code>RecursiveTask&lt;V&gt;</code> : définit une tâche soumise à
+l’exécuteur, fournissant un résultat.</li>
+<li><code>RecursiveAction</code> : définit une tâche soumise à
+l’exécuteur, ne fournissant pas de résultat.</li>
+<li><code>ForkJoinTask&lt;V&gt;</code> : superclasse de
+<code>RecursiveTask</code> et <code>RecursiveAction</code>, définissant
+la plupart des méthodes utiles comme <code>fork()</code> et
+<code>join()</code>.</li>
+</ul>
+<h3 id="un-exemple-2">Un exemple</h3>
+<p>Dans cette application, les données à traiter sont représentées par
+un simple entier qui symbolise leur volume.</p>
+<pre><code>import java.util.concurrent.RecursiveTask;
+import java.util.concurrent.ForkJoinPool;
+
+class Problem extends RecursiveTask&lt;Integer&gt; {
+    static private final int SEUIL = 10;
+    private int size;
+    private String indent;
+
+    Problem(int size, String indent) {
+        this.size = size;
+        this.indent = indent;
+    }
+
+    protected Integer compute() {
+        if (this.size &gt; SEUIL) { // la tâche est trop grosse, on la décompose en deux
+            System.out.println(indent + &quot;Fork : &quot; + size);
+            Problem sp1 = new Problem(size / 2, indent + &quot;  &quot;);
+            Problem sp2 = new Problem(size / 2, indent + &quot;  &quot;);
+            sp1.fork();
+            sp2.fork();
+            // en commençant par sp2.join, la jvm va réutiliser ce thread pour exécuter sp2.
+            int result = sp2.join() + sp1.join();
+            return result;
+        } else {
+            System.out.println(indent + &quot;Traitement direct : &quot; + size);
+            return 10 * size;
+        }
+    }
+}
+
+public class SchemaForkJoin {
+    static final int TAILLE = 1024; // Puissance de 2 pour cet exemple naïf
+
+    public static void main(String[] args) throws Exception {
+        RecursiveTask&lt;Integer&gt; pb = new Problem(TAILLE, &quot;&quot;);
+        ForkJoinPool fjp = new ForkJoinPool();
+        long startTime = System.nanoTime();
+        int result = fjp.invoke(pb);
+        long endTime = System.nanoTime();
+        System.out.println(&quot;Résultat final = &quot; + result);
+        System.out.println(&quot;Durée exécution : &quot; + (endTime - startTime) / 1000000L + &quot; ms&quot;);
+    }
+}</code></pre>
+<h3 id="commentaires-2">Commentaires</h3>
+<ul>
+<li>La méthode abstraite <code>compute()</code> définie dans
+<code>RecursiveTask</code> et <code>RecursiveAction</code> contient le
+code du calcul récursif proprement dit. C’est l’analogue de la méthode
+<code>run()</code> pour la classe <code>Runnnable</code> ou de la
+méthode <code>call()</code> pour la classe <code>Callable</code>.</li>
+<li><code>SEUIL</code> est la taille de problème à partir duquel le
+travail n’est plus subdivisé. Sa valeur est un compromis dépendant de la
+nature du problème. Une règle empirique est que le nombre de sous-tâches
+créées devrait être compris entre 100 et 10 000. Il faut aussi savoir
+que le pool ne peut comporter plus de 32K ouvriers.</li>
+<li>Le <code>ForkJoinPool</code> doit être créé une fois et une seule
+pour toute la durée de l’application (ce n’est pas obligatoire mais
+c’est conseillé même pour les experts). On peut aussi utiliser le pool
+par défaut (<code>ForkJoinPool.commonPool()</code>).</li>
+<li>L’appel <code>fjp.invoke(pb);</code> permet de soumettre la tâche
+racine au pool.</li>
+</ul>

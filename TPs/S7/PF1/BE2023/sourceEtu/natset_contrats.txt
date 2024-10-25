@@ -1,0 +1,15 @@
+
+  (* ens : type représentant les ensembles d'entiers *)
+  (* c'est-à-dire un arbre dans la bonne base *)
+
+  (* vide : natset *)
+  (* Représente l'ensemble vide *)
+
+  (* appartient : int -> natset -> bool *)
+  (* teste si un entier x appartient à un ensemble e *)
+
+  (* ajouter : int -> natset -> natset *)
+  (* ajoute un entier x à un ensemble e *)
+
+  (* retirer : int -> natset -> natset *)
+  (* retire un entier x d'un ensemble e *)

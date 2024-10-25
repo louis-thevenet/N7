@@ -1,0 +1,7 @@
+(library
+ (name be)
+ (inline_tests)
+ (libraries graphics)
+ (modules base liste conversion natset arbre)
+ (preprocess
+  (pps ppx_inline_test)))

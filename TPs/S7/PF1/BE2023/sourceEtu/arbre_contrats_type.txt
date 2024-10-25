@@ -1,0 +1,22 @@
+
+  (* Ensemble d'entier naturel encodé par des arbres utilisant la décomposition en base B des entiers naturels. *)
+  type arbre = Noeud of bool * arbre list | Vide
+
+
+  (* conforme : arbre -> bool *)
+  (* Vérifie qu'un arbre est conforme c'est-à-dire que tous les noeuds ont exactement b fils où b est la base de décomposition des entiers *)
+
+
+  (* appartient : int list -> arbre -> bool *)
+  (* Teste l'appartenance d'un entier, décomposé en base B, à un ensemble d'entiers codé avec un arbre *)
+  (* L'ensemble de départ et l'ensemble d'arrivée sont conformes à la base *)
+
+
+  (* ajouter : int list -> arbre -> arbre *)
+  (* Ajoute un entier, décomposé en base B, à un ensemble d'entier codé avec un arbre *)
+  (* L'ensemble de départ et l'ensemble d'arrivée sont conformes à la base *)
+
+
+  (* retirer : int list -> arbre -> arbre *)
+  (* Retire un entier, décomposé en base B, d'un ensemble d'entier avec normalisation de l'ensemble, c'est-à-dire en coupant les branches mortes *)
+  (* L'ensemble de départ et l'ensemble d'arrivée sont conformes à la base *)

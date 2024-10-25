@@ -1,0 +1,8 @@
+  (* decompose : réalise une décomposition dans la base d’un entier supposé naturel*)
+  (* int -> int list *)
+  (* pré-condition : entier est positif *)
+  (* résultat : la décomposition dans la base *)
+
+  (* recompose : réalise la recomposition d'un entien naturel depuis sa représentation dans la base *)
+  (* int list -> int *)
+  (* L'entier représenté par la liste de booléens *)

@@ -1,0 +1,7 @@
+(library
+ (name be)
+ (inline_tests (deps (source_tree .)))
+ (libraries graphics)
+ (modules chaines encodage structureDonnees intuitive testT9 testStupide)
+ (preprocess
+  (pps ppx_inline_test)))

@@ -1,9 +1,15 @@
 #import "theorems.typ": *
 #import "@preview/physica:0.8.0": *
-#import "@preview/codelst:1.0.0": sourcecode
-#import "@preview/fletcher:0.3.0" as fletcher:node, edge
+#import "@preview/codelst:2.0.2": sourcecode
+#import "@preview/fletcher:0.3.0" as fletcher: node, edge
 
-#let project(title: "", authors: ("Louis Thevenet",), date: none, body, toc: true) = {
+#let project(
+  title: "",
+  authors: ("Louis Thevenet",),
+  date: none,
+  body,
+  toc: true,
+) = {
   // Set the document's basic properties.
   set document(author: authors, title: title)
   set page(numbering: "1", number-align: center)
@@ -20,16 +26,21 @@
   ]
 
   // Author information.
-  pad(top: 0.5em, bottom: 0.5em, x: 2em, grid(
-    columns: (1fr,) * calc.min(3, authors.len()),
-    gutter: 1em,
-    ..authors.map(author => align(center, strong(author))),
-  ))
+  pad(
+    top: 0.5em,
+    bottom: 0.5em,
+    x: 2em,
+    grid(
+      columns: (1fr,) * calc.min(3, authors.len()),
+      gutter: 1em,
+      ..authors.map(author => align(center, strong(author))),
+    ),
+  )
 
   if toc {
     outline(depth: 2, indent: true)
     pagebreak()
-  }// Main body.
+  } // Main body.
 
   // Main body.
   set par(justify: true)

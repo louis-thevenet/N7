@@ -5,7 +5,6 @@
  * @author Xavier Cregut
  * @version $Revision$
  */
-import org.junit.assertEquals;
 
 public class AfficheurInfixeMinimalTest extends ExpressionTestSetup {
 

@@ -23,6 +23,17 @@ rule scanner = parse
   | ['\n' '\t' ' ']+					{ (scanner lexbuf) }
   | commentaire						{ (scanner lexbuf) }
   (* A COMPLETER *)
+  | '(' {PAROUV :: (scanner lexbuf)}
+  | ')' {PARFER :: (scanner lexbuf)}
+  | '.' {POINT :: (scanner lexbuf)}
+    | ('0' | (['1'-'9']chiffre*)) as inum
+      { 
+      (ENTIER (int_of_string inum)) :: (scanner lexbuf)
+    }
+  | (majuscule alphabet*)+ as text
+      {
+      (IDENT (text) :: (scanner lexbuf))
+    }
   | eof							{ [UL_FIN] }
   | _ as texte				 		{ (print_string "Erreur lexicale : ");(print_char texte);(print_newline ()); (UL_ERREUR::(scanner lexbuf)) }
 

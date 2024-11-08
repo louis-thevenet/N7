@@ -5,6 +5,11 @@ let printToken t =
   (print_endline
    (match t with
       (* A COMPLETER *)
+      | PAROUV -> "("
+      | PARFER -> ")"
+      | POINT -> "."
+      | ENTIER (texte) -> (string_of_int texte)
+      | IDENT (texte) -> texte 
       | UL_FIN -> "EOF"
 ));;
 

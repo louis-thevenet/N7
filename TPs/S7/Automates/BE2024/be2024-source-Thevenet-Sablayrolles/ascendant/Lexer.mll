@@ -23,6 +23,11 @@ rule lexer = parse
   | ['\n' '\t' ' ']+					{ (lexer lexbuf) }
   | commentaire						{ (lexer lexbuf) }
 (* A COMPLETER *)
+  | "(" {PAROUV}
+  | ")" {PARFER}
+  | "." {POINT}
+  | ('0' | (['1'-'9'] chiffre*)) as texte {(ENTIER (int_of_string texte))}
+  | (majuscule alphabet*)+ as texte {IDENT texte}
   | eof							{ UL_FIN }
   | _ as texte				 		{ (print_string "Erreur lexicale : ");(print_char texte);(print_newline ()); raise LexicalError }
 

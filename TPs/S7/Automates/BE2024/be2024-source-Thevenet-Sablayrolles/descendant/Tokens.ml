@@ -3,7 +3,13 @@ open List
 type token =
     (* A COMPLETER *)
     | UL_FIN
-    | UL_ERREUR;;
+    | UL_ERREUR
+    | PAROUV
+    | PARFER
+    | POINT
+    | ENTIER of int
+    | IDENT of string
+;;
 
 type inputStream = token list;;
 
@@ -11,7 +17,11 @@ type inputStream = token list;;
 (* Converti un token en une chaîne de caractère*)
 let string_of_token token =
      match token with
-       (* A COMPLETER *)
+    | PAROUV -> "("
+    | PARFER -> ")"
+    | POINT -> "."
+    | ENTIER n -> string_of_int n 
+    | IDENT texte -> texte
        | UL_FIN -> "EOF"
        | UL_ERREUR -> "Erreur Lexicale";;
 

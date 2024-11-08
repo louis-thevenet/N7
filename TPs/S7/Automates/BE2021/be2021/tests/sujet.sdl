@@ -1,0 +1,11 @@
+model S {
+	flow f from Ba.ra to HS.pa, HS.pb;
+	block Ba(pa : in float, pb : in float, ra : out float [ 2 ] );
+	system HS(pa : in float [ 2 ], ra : out float, pb : in float [ 2 ] , rb : out float [ 2 ] ) {
+	       block Bb(ra : out float, pa : in float);
+	       flow fa from pa to Bb.pa;
+	       flow fb from pb to rb;
+	}
+	flow fb from HS.ra to Ba.pa, Ba.pb;
+	flow fc from HS.rb to;
+}

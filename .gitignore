@@ -92,6 +92,7 @@ time-of-build-pretty.log
 
 # Package Files #
 *.jar
+!**/junit-4.13.2.jar
 *.war
 *.nar
 *.ear

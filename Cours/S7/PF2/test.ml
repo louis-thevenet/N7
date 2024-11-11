@@ -1,21 +1,20 @@
-(* encapsulation universelle inutile *)
-type univ = Any : 'a -> univ
+type zero = Zero
+type 'n succ = Succ of 'n
 
-(* encapsulation universelle des types pouvant etre convertis en chaine *)
-type stringable = Stringable : 'a * ('a -> string) -> stringable
+let rec print :  zero -> unit =
+  fun (Zero :  zero) ->
+    Printf.printf "Zero\n"
 
-let string_of_stringable (Stringable (v, f)) = f v
-let string_of_char c = String.make 1 c
-let string_of_list f l = "[" ^ String.concat "; " (List.map f l) ^ "]"
+let rec print_succ :
+  ('a -> string) ->
+  'b succ -> unit
+= fun f ->
+  function
+  | Succ x ->
+      let s = f x in
+      Printf.printf "Succ %s" s;
+      print Succ
 
-(* liste heterogene, contenant des int, char et int list *)
-let hliste =
-  [
-    Stringable (42, string_of_int);
-    Stringable ('a', string_of_char);
-    Stringable ([ 1; 2; 3 ], string_of_list string_of_int);
-  ]
-
-let rec string_of_hliste hl = string_of_list string_of_stringable hl;;
-
-string_of_hliste hliste
+(* Example usage:
+print (Zero : int zero);;
+print_succ (fun n -> string_of_int n) (Succ 3);;

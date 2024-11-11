@@ -14,6 +14,27 @@
 
 / RI: Invariant de repérsentation (souvent implémentable)
 
+```ocaml
+module type INT_SET = sig
+  type t
+
+  val empty : t
+  val member : int -> t -> bool
+  val add : int -> t -> t
+end
+
+module NoDupList : INT_SET = struct
+  type t = int list
+
+  let check_rep l =
+    if List.(length (sort_uniq Int.compare l) = length l) then l
+    else failwith "RI"
+
+  let empty = check_rep []
+  let member n l = List.mem n l
+  let add n l = check_rep (n :: check_rep l)
+end
+```
 
 = Types fantômes
 == Définition
@@ -26,6 +47,32 @@ Un type fantôme est un type paramétré :
   $arrow.squiggly$ plutôt pour du code impératif (ou monade d’état, cf. cours 6)
 - ne pénalise pas l’exécution (zero cost abstraction)
 
+```ocaml
+module type FichierLecture1Car = sig
+  type debut
+  type fin
+  type _ fichier
+
+  val _open : string -> debut fichier
+  val lecture : debut fichier -> char * fin fichier
+  val close : fin fichier -> unit
+end
+
+module Impl : FichierLecture1Car = struct
+  type debut
+  type fin
+  type _ fichier = in_channel
+
+  let _open = open_in
+  let lecture fichier = (input_char fichier, fichier)
+  let close = close_in
+end
+
+(* let wrong = *)
+(* let f = Impl._open "toto" in *)
+(* let c, f = Impl.lecture f in *)
+(* Impl.lecture f *)
+```
 = Types non uniformes
 == Définition
 Un type (récursif) non uniforme `'a t` fait apparaître des instances

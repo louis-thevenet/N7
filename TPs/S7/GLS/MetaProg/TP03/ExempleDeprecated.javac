@@ -1,0 +1,10 @@
+ExempleDeprecated.java:12: warning: [deprecation] AA in unnamed package has been deprecated
+		AA a = new AA();
+		^
+ExempleDeprecated.java:12: warning: [deprecation] AA in unnamed package has been deprecated
+		AA a = new AA();
+		           ^
+ExempleDeprecated.java:14: warning: [deprecation] m() in BB has been deprecated
+		b.m();
+		 ^
+3 warnings

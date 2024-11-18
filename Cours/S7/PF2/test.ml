@@ -10,50 +10,10 @@ module type Iter = sig
   val append : 'a t -> 'a t -> 'a t
 end
 
-type 'a t = Tick of (unit -> ('a * 'a t) option)
-
-module Flux = struct
-  let vide = Tick (fun () -> None)
-  let cons t q = Tick (fun () -> Some (t, q))
-  let uncons (Tick fflux) = fflux ()
-
-  let rec unfold f e =
-    Tick
-      (fun () ->
-        match f e with None -> None | Some (t, e') -> Some (t, unfold f e'))
-
-  let rec apply f x =
-    Tick
-      (fun () ->
-        match (uncons f, uncons x) with
-        | None, _ -> None
-        | _, None -> None
-        | Some (tf, qf), Some (tx, qx) -> Some (tf tx, apply qf qx))
-
-  let rec filter p flux =
-    Tick
-      (fun () ->
-        match uncons flux with
-        | None -> None
-        | Some (t, q) ->
-            if p t then Some (t, filter p q) else uncons (filter p q))
-
-  let rec append flux1 flux2 =
-    Tick
-      (fun () ->
-        match uncons flux1 with
-        | None -> uncons flux2
-        | Some (t1, q1) -> Some (t1, append q1 flux2))
-
-  let constant e = unfold (fun () -> Some (e, ())) ()
-  let map f fl = apply (constant f) fl
-  let map2 f fl fl' = apply (map f fl) fl'
-end
-
-type 'a t = Tick of ('a * 'a t) option Lazy.t
+type 'a g = Tick of ('a * 'a g) option Lazy.t
 
 module FluxLazy = struct
-  type 'a t = Tick of ('a * 'a t) option Lazy.t
+  type 'a t = 'a g
 
   let vide = Tick (lazy None)
   let cons t q = Tick (lazy (Some (t, q)))
@@ -102,10 +62,14 @@ let fibonacci =
 let tail f =
   match FluxLazy.uncons f with None -> failwith "" | Some (_, t) -> t
 
-(* let rec fibonacci = *)
-(* Tick *)
-(* (lazy *)
-(* (Some (0, Tick (lazy (Some (1, map2 ( + ) fibonacci (tail fibonacci))))))) *)
+let rec fibonacci =
+  Tick
+    (lazy
+      (Some
+         ( 0,
+           Tick
+             (lazy (Some (1, FluxLazy.map2 ( + ) fibonacci (tail fibonacci))))
+         )))
 
 (* Exercice 3 *)
 let integre dt flux =
@@ -116,8 +80,32 @@ let integre dt flux =
 
 let integre dt flux =
   let iter (acc, flux) =
-    match flux with
+    match FluxLazy.uncons flux with
     | None -> None
     | Some (f, q) -> Some (acc, (acc +. (f *. dt), q))
   in
   FluxLazy.unfold iter (0., flux)
+
+(* let theta theta0 t h= integre dtheta *)
+
+let theta0 = 3.14
+let theta0' = 0.
+let h = 10.
+let dt = 100.
+let g = 9.81
+let l = 0.1
+
+let rec theta =
+  Tick
+    (lazy (FluxLazy.uncons (FluxLazy.map (( +. ) theta0) (integre dt theta'))))
+
+and theta' =
+  Tick
+    (lazy
+      (FluxLazy.uncons (FluxLazy.map (( +. ) theta0') (integre dt theta''))))
+
+and theta'' =
+  Tick
+    (lazy
+      (FluxLazy.uncons
+         (FluxLazy.map (fun thetas -> -.g /. l *. sin thetas) theta)))

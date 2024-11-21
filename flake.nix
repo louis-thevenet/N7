@@ -59,7 +59,7 @@
 
               # # C
               # python310Packages.jupyter-c-kernel
-              # jupyter
+              jupyter
               # cmake
               # clang-tools
 
@@ -91,6 +91,9 @@
               ocamlPackages.graphics
               ocamlPackages.ppx_inline_test
               ocamlPackages.ppx_expect
+
+              # Julia
+              julia_19
 
               # Utilitaires
               unzip

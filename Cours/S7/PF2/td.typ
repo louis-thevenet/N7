@@ -87,3 +87,6 @@ let constant e = Iter.unfold (fun () -> Some(e, ())) ()
 let map f fl = Flux.(apply (constant f) fl)
 let map2 f fl fl' = Flux.(apply (map f fl) fl')
 ```)
+
+= TD7
+

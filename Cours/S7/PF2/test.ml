@@ -1,27 +1,29 @@
+(* interfaces des flux utiles pour toute la séance *)
 module type Iter = sig
   type 'a t
 
   val vide : 'a t
   val cons : 'a -> 'a t -> 'a t
   val uncons : 'a t -> ('a * 'a t) option
-  val apply : ('a -> 'b) t -> 'a t -> 'b t
-  val unfold : ('b -> ('a * 'b) option) -> 'b -> 'a t
+  val unfold : ('s -> ('a * 's) option) -> 's -> 'a t
   val filter : ('a -> bool) -> 'a t -> 'a t
   val append : 'a t -> 'a t -> 'a t
+  val constant : 'a -> 'a t
+  val map : ('a -> 'b) -> 'a t -> 'b t
+  val map2 : ('a -> 'b -> 'c) -> 'a t -> 'b t -> 'c t
+  val apply : ('a -> 'b) t -> 'a t -> 'b t
 end
 
-type 'a g = Tick of ('a * 'a g) option Lazy.t
+(* Module Flux implantant l'interface de flux Iter *)
+(* a l'aide d'une structure de donnees paresseuse  *)
+type 'a flux = Tick of ('a * 'a flux) option Lazy.t
 
-module FluxLazy = struct
-  type 'a t = 'a g
+module Flux : Iter with type 'a t = 'a flux = struct
+  type 'a t = 'a flux = Tick of ('a * 'a t) option Lazy.t
 
   let vide = Tick (lazy None)
   let cons t q = Tick (lazy (Some (t, q)))
   let uncons (Tick flux) = Lazy.force flux
-
-  (* ou bien par filtrage *)
-  (* Ce lazy là force le calcul car il est dans un filtrage *)
-  let uncons (Tick (lazy flux)) = flux
 
   let rec apply f x =
     Tick
@@ -51,61 +53,111 @@ module FluxLazy = struct
         | None -> uncons flux2
         | Some (t1, q1) -> Some (t1, append q1 flux2)))
 
-  let constant e = unfold (fun () -> Some (e, ())) ()
-  let map f fl = apply (constant f) fl
-  let map2 f fl fl' = apply (map f fl) fl'
+  let constant c = unfold (fun () -> Some (c, ())) ()
+
+  (* implantation rapide mais inefficace de map *)
+  let map f i = apply (constant f) i
+  let map2 f i1 i2 = apply (apply (constant f) i1) i2
 end
 
-let fibonacci =
-  FluxLazy.unfold (fun (fn, fn1) -> Some (fn, (fn1, fn + fn1))) (0, 1)
+module type FONCTEUR = sig
+  type 'a t
 
-let tail f =
-  match FluxLazy.uncons f with None -> failwith "" | Some (_, t) -> t
+  val map : ('a -> 'b) -> 'a t -> 'b t
+end
 
-let rec fibonacci =
-  Tick
-    (lazy
-      (Some
-         ( 0,
-           Tick
-             (lazy (Some (1, FluxLazy.map2 ( + ) fibonacci (tail fibonacci))))
-         )))
+module type MONADE = sig
+  include FONCTEUR
 
-(* Exercice 3 *)
-let integre dt flux =
-  let rec acc =
-    Tick (lazy (Some (0., FluxLazy.map2 (fun a f -> a +. (f *. dt)) acc flux)))
-  in
-  acc
+  val return : 'a -> 'a t
 
-let integre dt flux =
-  let iter (acc, flux) =
-    match FluxLazy.uncons flux with
-    | None -> None
-    | Some (f, q) -> Some (acc, (acc +. (f *. dt), q))
-  in
-  FluxLazy.unfold iter (0., flux)
+  (* val ( >>= ) : ('a -> 'b t) -> 'a t -> 'b t *)
+  val ( >>= ) : 'a t -> ('a -> 'b t) -> 'b t (*correct*)
+end
 
-(* let theta theta0 t h= integre dtheta *)
+(* type 'a t = Tick of ('a * 'a t) option Lazy.t *)
 
-let theta0 = 3.14
-let theta0' = 0.
-let h = 10.
-let dt = 100.
-let g = 9.81
-let l = 0.1
+module type MONADE_PLUS = sig
+  include MONADE
 
-let rec theta =
-  Tick
-    (lazy (FluxLazy.uncons (FluxLazy.map (( +. ) theta0) (integre dt theta'))))
+  val zero : 'a t
+  val ( ++ ) : 'a t -> 'a t -> 'a t
+end
 
-and theta' =
-  Tick
-    (lazy
-      (FluxLazy.uncons (FluxLazy.map (( +. ) theta0') (integre dt theta''))))
+(* module NDET : MONADE_PLUS = struct *)
+(* type 'a t = 'a Flux.t *)
 
-and theta'' =
-  Tick
-    (lazy
-      (FluxLazy.uncons
-         (FluxLazy.map (fun thetas -> -.g /. l *. sin thetas) theta)))
+(* let rec map f flux = *)
+(* Tick *)
+(* (lazy *)
+(* (match Flux.uncons flux with *)
+(* | None -> None *)
+(* | Some (h, t) -> Some (f h, map f t))) *)
+
+(* let zero = Tick (lazy None) *)
+(* let return a = Tick (lazy (Some (a, zero))) *)
+
+(* let rec ( ++ ) flux flux' = *)
+(* Tick *)
+(* (lazy *)
+(* (match Flux.uncons flux with *)
+(* | None -> flux' *)
+(* | Some (h, t) -> Some (h, t ++ flux'))) *)
+
+(* let rec ( >>= ) flux f = *)
+(* Tick *)
+(* (lazy *)
+(* (match Flux.uncons flux with *)
+(* | None -> None *)
+(* | Some (h, t) -> Flux.uncons (f h ++ (t >>= f)))) *)
+(* end *)
+
+module Writer (W : sig
+  type t
+end) : MONADE = struct
+  type 'a t = 'a * W.t Flux.t
+
+  let return a = (a, Flux.vide)
+  let tell msg = ((), Flux.cons (msg, Flux.vide))
+  let map f (a, log) = (f a, log)
+
+  let ( >>= ) (a, log) f =
+    let b, log' = f a in
+    (b, Flux.append log log')
+
+  let run (a, log) : 'a t = (a, log)
+end
+
+module Int = struct
+  type t = int
+end
+
+module Log = Writer (Int)
+
+(* renvoie toujours 1 (conjecture) *)
+(* let rec collatz n = *)
+(* let open Log in *)
+(* let rec loop n = *)
+(* tell n >>= fun () -> *)
+(* if n = 1 then 1 *)
+(* else if n mod 2 = 0 then collatz (n / 2) *)
+(* else collatz ((3 * n) + 1) *)
+(* in *)
+(* run (loop n) *)
+
+module State (S : sig
+  type t
+end) =
+struct
+  (*on peut lire et écrire des états qui peuvent dépendre de la valeur*)
+  type 'a t = S.t -> 'a * S.t
+
+  (*(état lu, nouvel état (pas changé))*)
+  let get : S.t -> 'a * S.t = fun spre -> (spre, spre)
+  let put spost = ((), spost) (*(rien produit, nouvel état)*)
+  let return a spre = (a, spre)
+
+  let ( >>= ) c1 f spre =
+    let r1, smid = c1 spre in
+    f r1 smid
+end

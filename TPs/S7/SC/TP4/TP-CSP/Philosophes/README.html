@@ -1,0 +1,68 @@
+<h1 id="problème-des-philosophes">Problème des philosophes</h1>
+<h2 id="énoncé">Énoncé</h2>
+<p>N philosophes sont autour d’une table. Il y a une assiette par
+philosophe, et <em>une</em> fourchette entre chaque assiette. Pour
+manger, un philosophe doit utiliser les deux fourchettes adjacentes à
+son assiette (et celles-là seulement).</p>
+<p>Un philosophe peut être dans l’état :</p>
+<ul>
+<li>penseur : il n’utilise pas de fourchettes ;</li>
+<li>mangeur : il utilise les deux fourchettes adjacentes ; aucun de ses
+voisins ne peut manger ;</li>
+<li>demandeur : il souhaite manger mais ne dispose pas des deux
+fourchettes.</li>
+</ul>
+<p>Visuellement les états mangeur/demandeur/penseur sont représentés par
+un rond noir (ou rouge en cas de possible problème) / un rond blanc /
+rien.</p>
+<h2 id="code-fourni">Code fourni</h2>
+<ul>
+<li><code>StrategiePhilo.java</code> : interface de la synchronisation
+entre philosophes.</li>
+<li><code>PhiloCondition.java</code> et <code>PhiloFork.java</code> :
+deux squelettes incomplet de cette interface.</li>
+<li><code>ProcessusPhilosophe.java</code> : code d’un philosophe.</li>
+<li><code>Main.java</code> : programme principal. Définit aussi les
+<code>PhiloDroite(i)</code>, <code>PhiloGauche(i)</code>,
+<code>FourchetteGauche(i)</code>, <code>FourchetteDroite(i)</code>.</li>
+<li><code>EtatFourchette.java</code> : définition des constantes pour
+fourchette placée sur la table, l’assiette gauche, l’assiette
+droite.</li>
+<li><code>EtatPhilosophe.java</code> : définition des constantes pour
+philosophe penseur, demandeur ou mangeur.</li>
+<li><code>IHM*.java</code> : interface utilisateur.</li>
+<li><code>Synchro/Simulateur.java</code> : le simulateur de temps.</li>
+</ul>
+<h2 id="compilation-et-exécution">Compilation et exécution</h2>
+<pre><code>make compile
+make run</code></pre>
+<hr />
+<h2 id="à-faire">À Faire</h2>
+<h3 id="approche-par-condition">Approche par condition</h3>
+<p>Implanter dans <code>PhiloCondition.java</code> une solution
+construite par l’approche par condition.</p>
+<p>Dans l’approche par condition, un philosophe peut envoyer deux
+requêtes distinctes : une pour demander à manger, une pour indiquer
+qu’il a fini. Les conditions d’acceptation ne sont pas les mêmes, chaque
+philosophe écrit donc sur deux canaux distincts <code>entrer</code> et
+<code>sortir</code>. La condition d’acceptation pour <code>entrer</code>
+est qu’aucun des voisins ne mangent, le scheduler doit donc garder trace
+de l’état des philosophes. Il n’y a pas de condition d’acceptation pour
+<code>sortir</code>. Le scheduler construit une alternative avec
+2*nbphilosophes GuardedChannels.</p>
+<h3 id="approche-ad-hoc">Approche ad-hoc</h3>
+<p>Implanter dans <code>PhiloFork.java</code> une solution construite
+par une approche ad-hoc.</p>
+<p>Dans cette approche ad-hoc, chaque fourchette est une activité qui
+peut recevoir, en boucle, deux messages consécutifs : une prise puis une
+libération. Un philosophe envoie un message de prise à chacune des
+fourchettes qui l’intéressent. Quand les deux sont passés, il mange,
+puis il envoie un message de libération à chacune des fourchettes qu’il
+possède.</p>
+<p>Observer qu’il n’y a pas besoin de <code>select</code> et donc les id
+de channels sont inutiles.</p>
+<ol type="1">
+<li>Faites la version naïve où tous les philosophes prennent gauche puis
+droite (code fourni). Montrer qu’il y a un risque d’interblocage.</li>
+<li>Proposer une solution sans interblocage.</li>
+</ol>

@@ -1,0 +1,7 @@
+Tentative d'API CSP plus simple pour les TP de synchro.
+
+Alternative / select dans JCSP est doublement moche, d'une part en séparant canal et garde, et par ailleurs en utilisant les indices du tableau comme code d'indentification.
+
+TODO
+----
+ - GuardedChannel : le faire hériter de Channel plutôt qu'un attribut ? Ça éviterait de mettre les méthodes de délégation read/write/pending + on pourrait mixer Channel et GuardedChannel dans une Alternative (pas sûr que ça serait une bonne idée - cf LectRedAutomatePrioRed)

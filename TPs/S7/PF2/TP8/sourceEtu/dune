@@ -1,0 +1,6 @@
+(library
+ (name tp8_etu)
+ (libraries unix)
+ (inline_tests)
+ (preprocess
+  (pps ppx_inline_test)))

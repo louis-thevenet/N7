@@ -1,8 +1,6 @@
-Problème de la voie unique
-==========================
+# Problème de la voie unique
 
-Énoncé
-------
+## Énoncé
 
 Deux villes N et S sont reliées par une ligne de chemin de fer qui comprend
 un tronçon à voie unique. La contrainte de sûreté est qu'il ne doit jamais y
@@ -32,8 +30,8 @@ par l'algorithme suivant :
 
 Visuellement, les trains sont représentés par une flèche indiquant leur direction.
 
-Code fourni
------------
+## Code fourni
+
 Seuls `VoieUnique*`, `ProcessusTrain` et `Sens` ont besoin d'être consultés.
 
 - `VoieUnique.java` : interface de la synchronisation entre trains.
@@ -44,32 +42,30 @@ Seuls `VoieUnique*`, `ProcessusTrain` et `Sens` ont besoin d'être consultés.
 - `IHM*.java` : interface utilisateur.
 - `Synchro/Simulateur.java` : le simulateur de temps.
 
-Compilation et exécution
-----------------------
+## Compilation et exécution
+
     make compile
     make run
+
 ou ajouter `../jcsp-core.jar` au classpath
 
-----------------------------------------------------------------
+---
 
-À Faire
--------
+## À Faire
 
 Les deux exercices sont indépendants et peuvent être faits dans un ordre
-quelconque. 
+quelconque.
 
 ### Approche automate
 
 Donner, dans `VoieUniqueAutomate.java`, une solution construite par l'approche automate.
 
-   - pas de limite à la capacité du tronçon à voie unique (il peut y avoir un nombre quelconque de trains, tous dans le même sens bien sûr);
-   - ne pas se préoccuper du risque de famine.
+- pas de limite à la capacité du tronçon à voie unique (il peut y avoir un nombre quelconque de trains, tous dans le même sens bien sûr);
+- ne pas se préoccuper du risque de famine.
 
 ### Approche par condition
 
 Donner, dans `VoieUniqueCondition.java`, une solution construite par l'approche par condition.
 
-   - tronçon unique de capacité limitée à 3 trains simultanément;
-   - ne pas se préoccuper du risque de famine.
-
-
+- tronçon unique de capacité limitée à 3 trains simultanément;
+- ne pas se préoccuper du risque de famine.

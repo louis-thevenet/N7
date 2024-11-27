@@ -60,9 +60,63 @@ function regions_de_confiance(f::Function, gradf::Function, hessf::Function, x0:
     #
     x_sol = x0
     f_sol = f(x_sol)
-    flag  = -1
     nb_iters = 0
     xs = [x0] # vous pouvez faire xs = vcat(xs, [xk]) pour concaténer les valeurs
+
+
+    k=0
+    deltak =Δ0
+    xk = x0
+
+    flag  = 3
+
+    for k in 1:max_iter
+        gk = gradf(xk)
+        hk = hessf(xk)
+        sk= cauchy(gk, hk, deltak, tol_abs=tol_abs)
+
+        m0 = f(xk)
+        mk = f(xk) + transpose(gk) * sk + 1/2 * transpose(sk) * hk * sk
+        rhok = (f(xk)-f(xk+sk)) / (m0 - mk)
+
+        if rhok >= η1
+           xkp1 = xk + sk 
+        end
+
+        # Convergence
+        if norm(gradf(xkp1)) <= max(tol_rel * norm(gradf(x0)), tol_abs)
+            flag=0
+            break
+        end
+        
+        # Stagnation du xk
+        if norm(xkp1-xk) <= epsilon
+            flag = 1
+            break
+        end
+
+        # Stagnation du f
+        if abs(f(xkp1)-f(xk)) <= epsilon
+            flag = 2
+            break
+        end
+
+        if rhok >= η2
+            deltakp1 = min(η2 * deltak,Δmax)        
+        elseif  rhok >= η1
+            deltakp1 = deltak
+        else
+            deltakp1 = η1*deltak
+        end
+        
+        xs = vcat(xs, [xk])
+        xk = xkp1
+        xsol = xk
+        f_sol=f(x_sol)
+        deltak = deltakp1
+        nb_iters += 1
+    end
+    
 
     return x_sol, f_sol, flag, nb_iters, xs
 end

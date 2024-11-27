@@ -32,7 +32,31 @@ Approximation de la solution du problème
 """
 function cauchy(g::Vector{<:Real}, H::Matrix{<:Real}, Δ::Real; tol_abs::Real = 1e-10)
 
+    # 1/2 at²+bt+c
+    
     s = zeros(length(g))
+
+    println(g)
+    println(H)
+
+    a = transpose(g) * H * g 
+    b = - norm(g)^2
+    if b== 0
+        println("b==0")
+        return s
+    end
+    if a > 0
+        println("a>0")
+        s = -(b/a)* g
+        if norm(s) >=Δ 
+            t = Δ / norm(g)
+            s = -t * g    
+        end
+    else
+        println("a<=0")
+        t = Δ / norm(g)
+        s = -t * g    
+    end
 
     return s
 end

@@ -2,11 +2,15 @@ include("../src/newton.jl")
  # votre algorithme de Newton
 include("../test/tester_newton.jl") # la fonction pour tester votre algorithme de Newton
 #
-afficher = false # si true, alors affiche les résultats des algorithmes
+afficher = true # si true, alors affiche les résultats des algorithmes
 #
 tester_newton(newton, afficher); # tester l'algorithme de Newton
 include("../src/newton.jl") # votre algorithme de Newton
 include("../test/fonctions_de_tests.jl") # pour avoir la fonction d'affichage des résultats
+
+
+println("Test du fichier")
+
 # Fonction f0
 # -----------
 f0(x) = sin(x)

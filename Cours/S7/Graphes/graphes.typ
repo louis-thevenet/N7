@@ -103,3 +103,80 @@ Propriété vraie pour $n+1$
 
 
 
+= Graphes eulériens et hamiltoniens
+
+== Exercice 3.1.2
+
++ Non car $4$ sommets de degrés impairs
++ Oui car il y a $2$ sommets de degrés impairs, par théorème il existe une chaîne eulérienne
++ Oui car il y a $0$ sommets de degrés impairs, par théorème il existe un cycle eulérienn
++ Oui car $2$ sommets de degrés impairs
+
+== Théorème 3.1.2
+$[=>]$
+Supposons qu'un graphe $G$ non orienté connexe admette une chaîne eulérienne
+
+Soit $n_i$ le nombre de sommets de degré impair
+
+Soit $v_1, ..., v_n$ les sommets de la chaîne eulérienne
+
+On reconstruit le graphe en suivant la chaîne, le degré de $v_1$ est $1$ car c'est le début de la chaîne.
+
+Puis, $deg(v_2) = 2$ car adjaccent à $v_1$ et $v_3$
+
+Pour $k in [|1, n|]$,
+- Si $v_k = v_1$, puisque la chaîne est eulérienne, elle est simple, on ajoute ainsi deux arêtes et la parité du degré reste la même (impaire)
+
+- Sinon, on ajoute le sommet $v_k$ et deux arrêtes
+
+Finalement, par récurrence, $deg(v_n) eq.triple 0 [2]$, on ajoute une arête finale et il devient impair.
+
+
+Dans le cas du cycle eulérien, $v_1=v_n$ et on fusionne les deux arêtes, le degré devient pair. Ainsi tous les degrés sont pairs.
+
+$[=>]$
+Supposons que tous les degrés soient pairs
+
+Supposons que c'est vrai pour un graphe à $n$ arêtes.
+Soit un graphe à $n+1$ arêtes.
+
+
+== Exercice 3.1.2
+Soit $G$ un graphe dont les sommets sont les ouvertures. Une arrête relie deux ouvertures si et seulement si ces ouvertures sont adjaccentes
++ #raw-render(```dot
+  graph {
+  1 -- 2
+  1 -- 3
+  2 -- 4
+  3 -- 4
+  3 -- 5
+  3 -- 6
+  4 -- 5
+  4 -- 7
+  5 -- 6
+  5 -- 7
+  6 -- 7
+  }
+  ```)
+
+$7$ et $6$ sont les seuls sommets de degré $2$, il existe donc un cycle eulérien.
+
+Chemin :
+$ 7-> 4-> 2-> 1-> 3-> 5-> 6-> 7 $
+
+
++ #raw-render(```dot
+  graph {
+  1 -- 2
+  1 -- 3
+  2 -- 4
+  3 -- 4
+  3 -- 5
+  3 -- 6
+  4 -- 5
+  4 -- 7
+  5 -- 6
+  5 -- 7
+  6 -- 7
+  }
+  ```)

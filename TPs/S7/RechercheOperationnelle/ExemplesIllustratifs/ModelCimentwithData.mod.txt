@@ -1,0 +1,72 @@
+#  GLPK model file created by SUN for RO teaching
+
+
+###############################  Model ###############################
+
+
+
+###############################  Sets  ###############################
+
+set CIMENTS; 
+
+set MACHINES;	
+
+################### Variables ###################
+
+var Q{i in CIMENTS}, >=0;
+
+## To declare integer variables : 
+# var Q{i in CIMENTS}, integer; 
+
+## To declare binary variables : 
+# var Q{i in CIMENTS}, binary; 
+
+
+###################  Constants: Data to load   #########################
+
+param benefparciment{i in CIMENTS}; 
+
+param capacite{i in MACHINES}; 
+
+param dureefab{i in MACHINES, j in CIMENTS};
+
+################### Constraints ###################
+
+
+s.t. RespectCapaciteDeChaqueMachine{j in MACHINES}:
+  sum{i in CIMENTS} dureefab[j,i] * Q[i] <= capacite[j];
+
+
+###### Objective ######
+
+maximize BeneficeTotal: 
+		sum{i in CIMENTS} Q[i]* benefparciment[i]; 
+
+#end;
+
+
+#default data
+
+data;
+
+set CIMENTS := 
+1
+2;
+
+set MACHINES :=
+Four
+Broyeuse;
+
+param dureefab: 1 2 :=
+Four 40 12
+Broyeuse 20 30;
+
+param capacite :=
+Four 360
+Broyeuse 480;
+
+param benefparciment :=
+1 50
+2 70;
+
+end;

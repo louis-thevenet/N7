@@ -95,6 +95,9 @@
               # Julia
               julia_19
 
+              # Recherche opérationnelle
+              glpk
+
               # Utilitaires
               unzip
               vpnc

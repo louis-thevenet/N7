@@ -1,0 +1,24 @@
+\* Problem: Fabrication de ciment *\
+
+Maximize
+Benefice: 50 Q1 + 70 Q2 
+
+Subject To
+CapaciteduFour : 40 Q1 + 12 Q2 <= 360
+CapacitedeBroyage : 20 Q1 + 30 Q2 <= 480
+
+\* To declare integer variables :   
+\* Integer 
+\* Q1 
+\* Q2  
+
+\* To declare binary variables :  
+\* Binary 
+\* Q1 
+\* Q2 
+
+End
+
+
+ 
+

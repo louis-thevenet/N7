@@ -1,0 +1,28 @@
+# Autres données possibles pour 
+# le problème de fabrication 
+# de ciment
+
+data;
+
+set CIMENTS := 
+11
+22;
+
+set MACHINES :=
+Four2
+Broyeuse2;
+
+param dureefab: 11 22 :=
+Four2 40 12
+Broyeuse2 20 30;
+
+param capacite :=
+Four2 360
+Broyeuse2 480;
+
+param benefparciment :=
+11 500
+22 700;
+
+end;
+

@@ -45,18 +45,12 @@ let rec split : 'a. ('a * 'a) perfect_tree -> 'a perfect_tree * 'a perfect_tree
 = TD6
 $
   "fold_right": (alpha -> beta -> beta) -> alpha "list" -> beta -> beta
-  &equiv ((alpha times beta)->beta) -> (
-    "unit" -> beta
-  ) -> alpha "list" -> beta \
+  &equiv ((alpha times beta)->beta) -> ( "unit" -> beta ) -> alpha "list" -> beta \
   &equiv ((alpha times beta ) "option" -> beta )-> alpha "list" -> beta
 $
 
 $
-  "unfold": (
-    underparen(beta,"type générateur") -> (
-      alpha times underparen(beta, "pour la prochaine génération")
-    ) "option"
-  ) -> (beta -> alpha -> alpha "flux")
+  "unfold": ( underparen(beta,"type générateur") -> ( alpha times underparen(beta, "pour la prochaine génération") ) "option" ) -> (beta -> alpha -> alpha "flux")
 $
 #sourcecode(```ocaml
 module type Iter =
@@ -148,3 +142,112 @@ let rec expr flux = var >>= fun v -> return (Var v)
       *> expr *> parf
 >>= fun (((((_, e1), _), e2), _)) -> return (Div(e1,e2)) flux
 )```)
+= TD9
+== Exercice 1
+#sourcecode(```ocaml
+let rec prod_int_list l =
+match l with
+| [] -> 1
+| t::q -> t * prod_int_list q
+
+
+let prod l =
+let p = Delimcc.new_prompt () in
+
+let rec loop l = match l with
+| [] -> 1
+| 0::_ -> Delimcc.shift p (fun k -> 0)
+| hd::tl -> hd * (loop l)
+
+in
+push_prompt p (fun () -> loop l)
+
+```)
+== Exercice 2
+#sourcecode(```ocaml
+type res =
+| Done of string
+| Request of (string -> res)
+
+let p = new_prompt ()
+
+let cas_nominal nom =
+  let f = open_in
+    (if sys.file_exists nom then nom
+    else shift p (fun k -> Request k))
+  in
+  let l = read_line f in
+  close_in f;
+  Done l
+
+let redemande nom k =
+  Format.printf "%s n'existe pas, entrez un nouveau nom" nom;
+  let new = read_line () in
+  k new
+
+let handler nom =  match push_prompt p (fun () -> cas_nominal nom) with
+  | Done l->l
+  | Request k ->
+    begin
+      match redemande nom k with
+        | Done l->l
+        | Request _ -> assert false
+    end
+```)
+
+== Exercice 3
+#sourcecode(```ocaml
+
+type res =
+| Yield of (-> res)
+| Done
+
+let ping () =
+  begin
+    for i = 1 to 10
+      do
+        print_endline "ping !";
+        shift p (fun k  -> Yield k)
+      done;
+      Done
+    end
+let pong () =
+  begin
+    for i = 1 to 10
+    do
+      print_endline "pong !";
+      shift p (fun k  -> Yield k)
+    done
+    Done
+  end
+
+let scheduler () =
+  let p = new_prompt () in
+  let rec loop ps =
+    match ps with
+    | [] -> ()
+    | hd :: ps' ->
+      match push_promp p (fun () -> hd ()) with
+      | Done -> loop ps'
+      | Yield kp -> loop ps'@[kp]
+      in loop [ping; pong]
+
+```)
+
+== Exercice 3
+#sourcecode(```ocaml
+type res =
+| Done
+| Yield of int*(()->res)
+
+let p = new_prompt ()
+
+let yield i = shift p (fun k -> Yield (i,k))
+let foreach f iter t =
+  let rec loop = function
+  | Done -> ()
+  | Yield (i,k) -> f i; k ()
+in loop (push_prompt p (fun () -> iter t; Done))
+
+```)
+

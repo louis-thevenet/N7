@@ -48,7 +48,7 @@ graph {
   Une arrête relie deux sommets si les espions s'espionnent
   $
     mat(
-  ,    s_11, s_12, s_21, s_22, s_31, s_32;
+  ,s_11, s_12, s_21, s_22, s_31, s_32;
   s_11,0 , 0, 1,1,1,1;
   s_12, 0,0 , 1,1,1,1;
   s_21, 1,1 ,0 ,0,1,1;
@@ -180,3 +180,273 @@ $ 7-> 4-> 2-> 1-> 3-> 5-> 6-> 7 $
   6 -- 7
   }
   ```)
+
+== Exercice 4.1.2
+#let f(S, picked) = {
+  for s in S {
+    [ $#s$ ]
+  }
+  for s in picked {
+    [$bb(#s)$ ]
+  }
+}
+#table(
+  columns: 8,
+  [current], [A], [B], [C], [D], [E], [F], [T],
+  f(
+    {
+      "0"
+      "A"
+      "B"
+      "C"
+      "D"
+      "E"
+      "F"
+      "T"
+    },
+    { "" },
+  ),
+  [$(infinity, emptyset)$],
+  [$(infinity, emptyset)$],
+  [$(infinity, emptyset)$],
+  [$(infinity, emptyset)$],
+  [$(infinity, emptyset)$],
+  [$(infinity, emptyset)$],
+  [$(infinity, emptyset)$],
+
+  f(
+    {
+      "A"
+      "B"
+      "C"
+      "D"
+      "E"
+      "F"
+      "T"
+    },
+    { "0" },
+  ),
+  [$(2, 0)$],
+  [$(5, 0)$],
+  [$(4, 0)$],
+  [$(infinity, emptyset)$],
+  [$(infinity, emptyset)$],
+  [$(infinity, emptyset)$],
+  [$(infinity, emptyset)$],
+
+  f(
+    {
+      "B"
+      "C"
+      "D"
+      "E"
+      "F"
+      "T"
+    },
+    {
+      "0"
+      "A"
+    },
+  ),
+  [$crossmark$],
+  [$(4, A)$],
+  [$(4, 0)$],
+  [$(9, A)$],
+  [$(14, A)$],
+  [$(infinity, emptyset)$],
+  [$(infinity, emptyset)$],
+
+  f(
+    {
+      "C"
+      "D"
+      "E"
+      "F"
+      "T"
+    },
+    {
+      "0"
+      "A"
+      "B"
+    },
+  ),
+  [$crossmark$],
+  [$crossmark$],
+  [$(4, 0)$],
+  [$(8, B)$],
+  [$(14, A)$],
+  [$(7, B)$],
+  [$(infinity, emptyset)$],
+
+  f(
+    {
+      "D"
+      "E"
+      "F"
+      "T"
+    },
+    {
+      "0"
+      "A"
+      "B"
+      "C"
+    },
+  ),
+  [$crossmark$],
+  [$crossmark$],
+  [$crossmark$],
+  [$(8, B)$],
+  [$(14, A)$],
+  [$(7, B)$],
+  [$(infinity, emptyset)$],
+
+  f(
+    {
+      "D"
+      "E"
+      "T"
+    },
+    {
+      "0"
+      "A"
+      "B"
+      "C"
+      "F"
+    },
+  ),
+  [$crossmark$],
+  [$crossmark$],
+  [$crossmark$],
+  [$(8, B)$],
+  [$(14, A)$],
+  [$crossmark$],
+  [$(14, F)$],
+
+  f(
+    {
+      "E"
+      "T"
+    },
+    {
+      "0"
+      "A"
+      "B"
+      "C"
+      "F"
+      "D"
+    },
+  ),
+  [$crossmark$],
+  [$crossmark$],
+  [$crossmark$],
+  [$crossmark$],
+  [$(14, A)$],
+  [$crossmark$],
+  [$(13, D)$],
+
+  f(
+    {
+      "T"
+    },
+    {
+      "0"
+      "A"
+      "B"
+      "C"
+      "F"
+      "D"
+      "E"
+    },
+  ),
+  [$crossmark$],
+  [$crossmark$],
+  [$crossmark$],
+  [$crossmark$],
+  [$crossmark$],
+  [$crossmark$],
+  [$(13, D)$],
+
+  f(
+    {
+      ""
+    },
+    {
+      "0"
+      "A"
+      "B"
+      "C"
+      "F"
+      "D"
+      "E"
+      "T"
+    },
+  ),
+  [$crossmark$],
+  [$crossmark$],
+  [$crossmark$],
+  [$crossmark$],
+  [$crossmark$],
+  [$crossmark$],
+  [$crossmark$],
+)
+= Exercice 5.1.2
+#raw-render(```dot
+  graph {
+  overlap=false
+  1 -- 2
+  2 -- 3
+  3 -- 4
+  4 -- 5
+  5--1
+
+  1--11
+  2--22
+  3--33
+  4--44
+  5--11
+
+  12--11
+  12--22
+  23--22
+  23--33
+  34--33
+  34--44
+  45--44
+  45--55
+  51--55
+  51--11
+
+  12--111
+  23--222
+  34--333
+  45--444
+  51--111
+
+  111 -- 222
+  222--333
+  333--444
+  444--555
+  555--111
+  }
+```)
+
+== Preuve 5.4.3
+Soit $G$ d'ordre $n in NN$
+
+- Supposons que $max_(v in V) = 0$, les sommets sont tous indépendants, donc $gamma(G) = 1 <= 0 + 1$
+
+- Supposons que $r = max_(v in V) delta(v)$ et $gamma(G) <= r+1$.
+  Soit $G'$ tel que $max_( v in V') = r+1$.
+
+  $G$ et $G'$ sont différents d'une arête.
+
+  Deux cas possibles:
+  - l'arête relie deux sommets de même couleur
+    Dans ce cas là, on est obligé d'utiliser une autre couleur et $gamma(G') =gamma(G)$ si une couleur déjà utilisée est disponible ou $gamma(G') =gamma(G)+1$ sinon.
+
+    Donc $gamma(G') <= (r+1)+1$.
+
+  - Sinon, $gamma(G')=gamma(G)<=r+1 <= (r+1 )+1$.
+
+  On a bien $underline(gamma(G') <= (r+1)+1)$
+

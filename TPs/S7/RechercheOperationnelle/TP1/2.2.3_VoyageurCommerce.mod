@@ -7,6 +7,7 @@
 ###############################  Sets  ###############################
 
 set CLIENTS;
+set CLIENTS_SANS_ALPHA;
 
 ################### Variables ###################
 
@@ -17,6 +18,7 @@ var u{i in CLIENTS}, integer; # ordre de livraison
 ###################  Constants: Data to load   #########################
 
 param distances{i in CLIENTS, j in CLIENTS};
+param nClients;
 ################### Constraints ###################
 
 s.t. TousClientsServisUneFois{i in CLIENTS}:
@@ -25,14 +27,9 @@ s.t. TousClientsServisUneFois{i in CLIENTS}:
 s.t. TousClientsQuittesUneFois{j in CLIENTS}:
     sum{i in CLIENTS} M[i,j] = 1;
 
-    s.t. UneFoisParClient{j in CLIENTS}:
-    M[j,j] = 0;
 
-s.t. ordrePositif{i in CLIENTS}:
-    u[i] >= 0;
-
-s.t. PasDeDetour{i in CLIENTS, j in CLIENTS}:
-    u[i] + 1 <= (1-M[i,j])*100000 + u[j];
+s.t. PasDeDetour{i in CLIENTS, j in CLIENTS_SANS_ALPHA}:
+    u[j] + (nClients-1) >= u[i] + nClients*M[i,j];
 
 
 ###### Objective ######
@@ -50,6 +47,15 @@ C2
 C3
 C4
 C5;
+
+set CLIENTS_SANS_ALPHA :=
+C1
+C2
+C3
+C4
+C5;
+
+param nClients := 5;
 
 
 param distances: Alpha C1 C2 C3 C4 C5 :=

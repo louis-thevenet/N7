@@ -89,6 +89,8 @@ $ f(C,S) = max(700 C + 300 S) $
 
 On constate que la solution trouvée $(C,S)=(232, 920)$ maximise l'objectif avec $f(C,S) = 438400$€. Le nombre d'heures nécessaires pour ce résultat est $59.92$h et la surface disponible est complètement utilisée. Si on augmente la surface disponible, on peut alors produire plus de vélos, on peut également faire varier le ratio $"Place occupée par un vélo cargo"/"Place occupée par un vélo normal"$, ce qui permettrait de produire plus de vélos cargo (la limite de $700$ n'est pas atteinte car ce n'est pas "rentable" de faire des cargos avec ces paramètres.).
 
+Ce problème se modélise facilement sous forme ".lp" car les contraintes sont explicites et qu'il n'y a que très peu de cas ayant les même contraintes.
+
 === Affectation avec prise en compte des préférences
 ==== Données
 / $n in NN$: nombre de personnes
@@ -166,7 +168,12 @@ Pour $P = mat(9, 5, 1;2, 4, 2;9, 4, 8)$, la solution trouvée est $M = mat(1,0,0
   End of output
   ```]
 
+Nous avons modélisé ce problème sous format ".mod" puisque nous devions faire des sommes sur des éléments de matrices. Le format GMPL étant plus générique, il est donc plus simple de modéliser les contraintes identiques par une forme générique
+
 == Applications en optimisation pour l’e-commerce
+
+Dans la suite des modélisations, nous avons utilisé le format GMPL pour les mêmes raisons que pour le problème de préférences.
+
 === Cas particulier 1.1
 ==== Données
 / $f in NN$ : nombre de fluides

@@ -34,12 +34,12 @@ function cauchy(g::Vector{<:Real}, H::Matrix{<:Real}, Δ::Real; tol_abs::Real = 
     s = zeros(length(g))
 
     a = transpose(g) * H * g 
-    b = - norm(g)^2
-    if b== 0
+    b = norm(g)^2
+    if b== 0 || norm(g) <= tol_abs
         return s
     end
     if a > 0
-        t = -(b/a)
+        t = b/a
         if norm(t) >=Δ/norm(g) 
             t = Δ / norm(g)
         end

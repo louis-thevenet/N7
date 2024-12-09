@@ -104,7 +104,7 @@ $
 
 ==== Fonction objectif
 $
-  f : cases(cal(M)_(n,m)(RR) &-> RR, M &|-> limits(sum)_(i=1)^(n) limits(sum)_(j=1)^m M_(i,j) times P_(i,j)))
+  f : cases(cal(M)_(n,m)(RR) &-> RR, M &|-> max(limits(sum)_(i=1)^(n) limits(sum)_(j=1)^m M_(i,j) times P_(i,j)))
 $
 où $P$ est la matrice des préférences, une donnée du problème.
 ==== Contraintes
@@ -197,7 +197,7 @@ $
 $
   f : cases(
   cal(M)_(f,m,d)(RR) &-> RR,
-  D &|-> limits(sum)_(i=1)^(f) limits(sum)_(i=1)^(m) limits(sum)_(k=1)^d "cout_par_magasin"_(j,i) D_(i,j,k)
+  D &|-> min(limits(sum)_(i=1)^(f) limits(sum)_(i=1)^(m) limits(sum)_(k=1)^d "cout_par_magasin"_(j,i) D_(i,j,k))
   )
 $
 ==== Contraintes
@@ -312,7 +312,7 @@ $
 $
   f : cases(
   cal(M)_(f,m,d)(RR) &-> RR,
-  D &|-> limits(sum)_(i=1)^(f) limits(sum)_(j=1)^(m) limits(sum)_(k=1)^d ("cout_par_magasin"_(j,i) + "cout_variable"_(k,j) )D_(i,j,k) + "cout_fixe"_(k,j)
+  D &|-> min(limits(sum)_(i=1)^(f) limits(sum)_(j=1)^(m) limits(sum)_(k=1)^d ("cout_par_magasin"_(j,i) + "cout_variable"_(k,j) )D_(i,j,k) + "cout_fixe"_(k,j))
   )
 $
 ==== Contraintes
@@ -398,6 +398,7 @@ End of output
 === Cas particulier 2
 ==== Données
 / $D in cal(M)_(n,n)(RR)$ : Matrice des distances
+/ $"nClients"$ : le nombre de clients sans le magasin
 
 ==== Variables
 
@@ -414,8 +415,7 @@ $
 
 et un vecteur $u in cal(M)_(n)(NN)$ avec 
 
-    -$n$ le nombre de clients
-    telle que
+    - $n$ le nombre de clients tel que
 
 $
   u "est une variable intermédiare avec :"
@@ -427,7 +427,7 @@ $
 $
   f : cases(
   cal(M)_(n, n)({0,1}) &-> RR,
-  M &|-> limits(sum)_(i=1)^(n) limits(sum)_(j=1)^(n) M_(i,j) D_(i,j)
+  M &|-> min(limits(sum)_(i=1)^(n) limits(sum)_(j=1)^(n) M_(i,j) D_(i,j))
   )
 $
 ==== Contraintes
@@ -435,15 +435,171 @@ $
 
 / On ne sort d'un client qu'une seule fois : $forall 1<=j<=n, sum_(i=1)^n M_(i,j) = 1$
 
-/ On ne peut rester au même endroit : $forall 1<=i<=n,  M_(i,i)<= 1$
-
-/ Les ordres de visites sont positifs : $forall 1<=i<=n,  u_(i) >= 0$
-
-/ On ne fait pas de détour entre les clients: $forall 1<=i<=n, forall 1<=j<=n  (1-M_(i,j))*100000 + u_(j)$
+/ On ne fait pas de détour entre les clients: $forall 1<=i<=n, forall 1<=j<=n, u_(j) + ("nClients"-1) >= u_(i) + "nClients"*M(i,j)$
 
 ==== Solution
 
-Pour $D = mat(0, 1, 1, 10, 12, 12 ; 1, 0, 1, 8, 10, 10 ; 1, 1, 0, 8, 11, 10 ; 10, 8, 8, 0, 1, 1 ; 12, 10, 11, 1, 0, 1 ; 12, 11, 10, 1, 1, 0)$, la d
+Pour $D = mat(0, 1, 1, 10, 12, 12 ; 1, 0, 1, 8, 10, 10 ; 1, 1, 0, 8, 11, 10 ; 10, 8, 8, 0, 1, 1 ; 12, 10, 11, 1, 0, 1 ; 12, 11, 10, 1, 1, 0)$, la distance optimale résolue est : $"DistanceTotale" = 22 $.
+
+#sourcecode()[
+    ```ruby 
+Problem:    commerce
+Rows:       43
+Columns:    42 (42 integer, 36 binary)
+Non-zeros:  182
+Status:     INTEGER OPTIMAL
+Objective:  DistanceTotale = 22 (MINimum)
+
+   No.   Row name        Activity     Lower bound   Upper bound
+------ ------------    ------------- ------------- -------------
+     1 TousClientsServisUneFois[Alpha]
+                                   1             1             = 
+     2 TousClientsServisUneFois[C1]
+                                   1             1             = 
+     3 TousClientsServisUneFois[C2]
+                                   1             1             = 
+     4 TousClientsServisUneFois[C3]
+                                   1             1             = 
+     5 TousClientsServisUneFois[C4]
+                                   1             1             = 
+     6 TousClientsServisUneFois[C5]
+                                   1             1             = 
+     7 TousClientsQuittesUneFois[Alpha]
+                                   1             1             = 
+     8 TousClientsQuittesUneFois[C1]
+                                   1             1             = 
+     9 TousClientsQuittesUneFois[C2]
+                                   1             1             = 
+    10 TousClientsQuittesUneFois[C3]
+                                   1             1             = 
+    11 TousClientsQuittesUneFois[C4]
+                                   1             1             = 
+    12 TousClientsQuittesUneFois[C5]
+                                   1             1             = 
+    13 PasDeDetour[Alpha,C1]
+                                  -4            -4               
+    14 PasDeDetour[Alpha,C2]
+                                   5            -4               
+    15 PasDeDetour[Alpha,C3]
+                                   2            -4               
+    16 PasDeDetour[Alpha,C4]
+                                   3            -4               
+    17 PasDeDetour[Alpha,C5]
+                                   4            -4               
+    18 PasDeDetour[C1,C1]
+                                   0            -4               
+    19 PasDeDetour[C1,C2]
+                                   4            -4               
+    20 PasDeDetour[C1,C3]
+                                  -4            -4               
+    21 PasDeDetour[C1,C4]
+                                   2            -4               
+    22 PasDeDetour[C1,C5]
+                                   3            -4               
+    23 PasDeDetour[C2,C1]
+                                  -4            -4               
+    24 PasDeDetour[C2,C2]
+                                   0            -4               
+    25 PasDeDetour[C2,C3]
+                                  -3            -4               
+    26 PasDeDetour[C2,C4]
+                                  -2            -4               
+    27 PasDeDetour[C2,C5]
+                                  -1            -4               
+    28 PasDeDetour[C3,C1]
+                                  -1            -4               
+    29 PasDeDetour[C3,C2]
+                                   3            -4               
+    30 PasDeDetour[C3,C3]
+                                   0            -4               
+    31 PasDeDetour[C3,C4]
+                                  -4            -4               
+    32 PasDeDetour[C3,C5]
+                                   2            -4               
+    33 PasDeDetour[C4,C1]
+                                  -2            -4               
+    34 PasDeDetour[C4,C2]
+                                   2            -4               
+    35 PasDeDetour[C4,C3]
+                                  -1            -4               
+    36 PasDeDetour[C4,C4]
+                                   0            -4               
+    37 PasDeDetour[C4,C5]
+                                  -4            -4               
+    38 PasDeDetour[C5,C1]
+                                  -3            -4               
+    39 PasDeDetour[C5,C2]
+                                  -4            -4               
+    40 PasDeDetour[C5,C3]
+                                  -2            -4               
+    41 PasDeDetour[C5,C4]
+                                  -1            -4               
+    42 PasDeDetour[C5,C5]
+                                   0            -4               
+    43 DistanceTotale
+                                  22                             
+
+   No. Column name       Activity     Lower bound   Upper bound
+------ ------------    ------------- ------------- -------------
+     1 M[Alpha,Alpha]
+                    *              0             0             1 
+     2 M[Alpha,C1]  *              1             0             1 
+     3 M[Alpha,C2]  *              0             0             1 
+     4 M[Alpha,C3]  *              0             0             1 
+     5 M[Alpha,C4]  *              0             0             1 
+     6 M[Alpha,C5]  *              0             0             1 
+     7 M[C1,Alpha]  *              0             0             1 
+     8 M[C1,C1]     *              0             0             1 
+     9 M[C1,C2]     *              0             0             1 
+    10 M[C1,C3]     *              1             0             1 
+    11 M[C1,C4]     *              0             0             1 
+    12 M[C1,C5]     *              0             0             1 
+    13 M[C2,Alpha]  *              1             0             1 
+    14 M[C2,C1]     *              0             0             1 
+    15 M[C2,C2]     *              0             0             1 
+    16 M[C2,C3]     *              0             0             1 
+    17 M[C2,C4]     *              0             0             1 
+    18 M[C2,C5]     *              0             0             1 
+    19 M[C3,Alpha]  *              0             0             1 
+    20 M[C3,C1]     *              0             0             1 
+    21 M[C3,C2]     *              0             0             1 
+    22 M[C3,C3]     *              0             0             1 
+    23 M[C3,C4]     *              1             0             1 
+    24 M[C3,C5]     *              0             0             1 
+    25 M[C4,Alpha]  *              0             0             1 
+    26 M[C4,C1]     *              0             0             1 
+    27 M[C4,C2]     *              0             0             1 
+    28 M[C4,C3]     *              0             0             1 
+    29 M[C4,C4]     *              0             0             1 
+    30 M[C4,C5]     *              1             0             1 
+    31 M[C5,Alpha]  *              0             0             1 
+    32 M[C5,C1]     *              0             0             1 
+    33 M[C5,C2]     *              1             0             1 
+    34 M[C5,C3]     *              0             0             1 
+    35 M[C5,C4]     *              0             0             1 
+    36 M[C5,C5]     *              0             0             1 
+    37 u[C1]        *             -4                             
+    38 u[Alpha]     *             -5                             
+    39 u[C2]        *              0                             
+    40 u[C3]        *             -3                             
+    41 u[C4]        *             -2                             
+    42 u[C5]        *             -1                             
+
+Integer feasibility conditions:
+
+KKT.PE: max.abs.err = 0.00e+00 on row 0
+        max.rel.err = 0.00e+00 on row 0
+        High quality
+
+KKT.PB: max.abs.err = 0.00e+00 on row 0
+        max.rel.err = 0.00e+00 on row 0
+        High quality
+
+End of output
+
+
+    ```
+]
 
 
 // = Minimisation des émissions polluantes

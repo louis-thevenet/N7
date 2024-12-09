@@ -1,0 +1,1 @@
+- [ ] PbMagasin faire une version entière

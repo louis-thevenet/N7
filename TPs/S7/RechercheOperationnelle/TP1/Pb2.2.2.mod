@@ -1,4 +1,5 @@
 
+
 ###############################  Model ###############################
 
 
@@ -17,6 +18,8 @@ var D{i in FLUIDES, j in MAGASINS, k in DEMANDES}, >=0;
 param fluides_par_demandes{i in DEMANDES, j in FLUIDES};
 param stock_par_magasin{i in MAGASINS, j in FLUIDES};
 param cout_par_magasin{i in MAGASINS, j in FLUIDES};
+param cout_fixe{k in DEMANDES, j in MAGASINS};
+param cout_variable{k in DEMANDES, j in MAGASINS};
 
 ################### Constraints ###################
 
@@ -29,7 +32,7 @@ sum{j in MAGASINS} D[i,j,k]= fluides_par_demandes[k, i];
 
 ###### Objective ######
 minimize CoutTotal:
-	sum{i in FLUIDES, j in MAGASINS,  k in DEMANDES} cout_par_magasin[j,i] * D[i,j,k];
+	sum{i in FLUIDES, j in MAGASINS,k in DEMANDES} ((cout_variable[k,j] + cout_par_magasin[j,i]) * D[i,j,k] + cout_fixe[k,j]);
 
 #default data
 
@@ -62,5 +65,12 @@ M1 1 1
 M2 2 3
 M3 3 2;
 
+param cout_fixe: M1 M2 M3 :=
+D1 110 90 100
+D2 110 90 100;
+
+param cout_variable: M1 M2 M3 :=
+D1 10 1 5
+D2 2 20 10;
 end;
 

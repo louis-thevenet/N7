@@ -397,16 +397,7 @@ End of output
 
 === Cas particulier 2
 ==== Données
-/ $n in NN$ : nombre de clients et le livreur
 / $D in cal(M)_(n,n)(RR)$ : Matrice des distances
-
-Et cinq matrices:
-- $"TousClientsServisUneFois" in cal(M)_(n) (RR)$
-- $"TousClientsQuittesUneFois" in cal(M)_(n) (RR)$
-- $"UneFoisParClient" in cal(M)_(n) (RR)$
-- $"ordrePositi" in cal(M)_(n) (RR)$
-- $"PasDeDetour" in cal(M)_(n,n) (RR)$
-
 
 ==== Variables
 
@@ -448,8 +439,12 @@ $
 
 / Les ordres de visites sont positifs : $forall 1<=i<=n,  u_(i) >= 0$
 
-/ L'ordre ne diminue pas : $forall 1<=i<=n, forall 1<=j<=n  (1-M_(i,j))*100000 + u_(j)$
+/ On ne fait pas de détour entre les clients: $forall 1<=i<=n, forall 1<=j<=n  (1-M_(i,j))*100000 + u_(j)$
 
 ==== Solution
+
+Pour $D = mat(0, 1, 1, 10, 12, 12 ; 1, 0, 1, 8, 10, 10 ; 1, 1, 0, 8, 11, 10 ; 10, 8, 8, 0, 1, 1 ; 12, 10, 11, 1, 0, 1 ; 12, 11, 10, 1, 1, 0)$, la d
+
+
 // = Minimisation des émissions polluantes
 // PAS FAIT ENCORE

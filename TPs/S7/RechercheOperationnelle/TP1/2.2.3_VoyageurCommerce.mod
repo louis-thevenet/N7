@@ -17,7 +17,6 @@ var u{i in CLIENTS}, integer; # ordre de livraison
 ###################  Constants: Data to load   #########################
 
 param distances{i in CLIENTS, j in CLIENTS};
-param n,integer;
 ################### Constraints ###################
 
 s.t. TousClientsServisUneFois{i in CLIENTS}:
@@ -43,7 +42,6 @@ minimize DistanceTotale:
 #default data
 
 data;
-param n := 6;
 
 set CLIENTS :=
 Alpha

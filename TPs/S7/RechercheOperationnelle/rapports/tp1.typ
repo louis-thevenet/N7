@@ -312,7 +312,7 @@ $
 $
   f : cases(
   cal(M)_(f,m,d)(RR) &-> RR,
-  D &|-> limits(sum)_(i=1)^(f) limits(sum)_(i=1)^(m) limits(sum)_(k=1)^d ("cout_par_magasin"_(j,i) + "cout_variable"_(k,j) )D_(i,j,k) + "cout_fixe"_(k,j)
+  D &|-> limits(sum)_(i=1)^(f) limits(sum)_(j=1)^(m) limits(sum)_(k=1)^d ("cout_par_magasin"_(j,i) + "cout_variable"_(k,j) )D_(i,j,k) + "cout_fixe"_(k,j)
   )
 $
 ==== Contraintes
@@ -396,5 +396,60 @@ End of output
 ]
 
 === Cas particulier 2
+==== Données
+/ $n in NN$ : nombre de clients et le livreur
+/ $D in cal(M)_(n,n)(RR)$ : Matrice des distances
+
+Et cinq matrices:
+- $"TousClientsServisUneFois" in cal(M)_(n) (RR)$
+- $"TousClientsQuittesUneFois" in cal(M)_(n) (RR)$
+- $"UneFoisParClient" in cal(M)_(n) (RR)$
+- $"ordrePositi" in cal(M)_(n) (RR)$
+- $"PasDeDetour" in cal(M)_(n,n) (RR)$
+
+
+==== Variables
+
+
+On utilise une matrice $M in cal(M)_(n, n)({0,1})$ avec
+
+- $n$ le nombre de clients
+  telle que
+
+$
+  forall 1<=i<=n forall 1<=j<=n,\
+  M_(i,j) = 1 "si l'on va du client" i "vers le client" j ", 0 sinon"
+$
+
+et un vecteur $u in cal(M)_(n)(NN)$ avec 
+
+    -$n$ le nombre de clients
+    telle que
+
+$
+  u "est une variable intermédiare avec :"
+  forall 1<=i<=n, \
+    u_(i) = "à la position du client" C(i) "dans l'ordre de visite"
+$
+
+==== Fonction objectif
+$
+  f : cases(
+  cal(M)_(n, n)({0,1}) &-> RR,
+  M &|-> limits(sum)_(i=1)^(n) limits(sum)_(j=1)^(n) M_(i,j) D_(i,j)
+  )
+$
+==== Contraintes
+/ On ne va chez un client qu'une seule fois : $forall 1<=i<=n, sum_(j=1)^n M_(i,j) =  1$
+
+/ On ne sort d'un client qu'une seule fois : $forall 1<=j<=n, sum_(i=1)^n M_(i,j) = 1$
+
+/ On ne peut rester au même endroit : $forall 1<=i<=n,  M_(i,i)<= 1$
+
+/ Les ordres de visites sont positifs : $forall 1<=i<=n,  u_(i) >= 0$
+
+/ L'ordre ne diminue pas : $forall 1<=i<=n, forall 1<=j<=n  (1-M_(i,j))*100000 + u_(j)$
+
+==== Solution
 // = Minimisation des émissions polluantes
 // PAS FAIT ENCORE

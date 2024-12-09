@@ -281,6 +281,120 @@ End of output
 ]
 
 === Cas particulier 1.2
+==== Données
+/ $f in NN$ : nombre de fluides
+/ $m in NN$: nombre de magasins
+/ $d in NN$: nombre de demandes
+
+Et cinq matrices:
+- $"fluides_par_demandes" in cal(M)_(d,f) (RR)$
+- $"stock_par_magasin" in cal(M)_(m,f) (RR)$
+- $"cout_par_magasin" in cal(M)_(m,f) (RR)$
+- $"cout_fixe" in cal(M)_(d,m) (RR)$
+- $"cout_variable" in cal(M)_(d,m) (RR)$
+
+==== Variables
+
+
+On utilise une matrice $D in cal(M)_(f,m,d)(RR)$ avec
+
+- $f$ le nombre de fluides différents
+- $m$ le nombre de magasins
+- $d$ le nombre de demandes réalisées
+  telle que
+
+$
+  forall 1<=i<=f forall 1<=j<=m forall 1<=k<=d,\
+  D_(i,j,k) "est la quantité de fluide" i "demandée au magain" j "lors de la demande" k
+$
+
+==== Fonction objectif
+$
+  f : cases(
+  cal(M)_(f,m,d)(RR) &-> RR,
+  D &|-> limits(sum)_(i=1)^(f) limits(sum)_(i=1)^(m) limits(sum)_(k=1)^d ("cout_par_magasin"_(j,i) + "cout_variable"_(k,j) )D_(i,j,k) + "cout_fixe"_(k,j)
+  )
+$
+==== Contraintes
+/ Le nombre total d'un fluide des demandes ne dépasse pas les stocks : $forall 1<=i<=f, forall 1<=j<=m sum_(k=1)^d D_(i,j,k)<= "stock_par_magasin"_(j,i)$
+
+/ Les fluides par demande sont respectés: $forall 1<=i<=f, forall 1<=k<=d sum_(j=1)^m D_(i,j,k) = "fluides_par_demandes"_(k, i)$
+
+
+==== Solution
+Pour $"fluides_par_demandes" = mat(2, 0; 1, 3)$, $"stock_par_magasin" = mat(2.5, 1 ; 1, 2 ; 2, 1)$, $"cout_par_magasin" = mat(1, 1 ; 2, 3 ; 3, 2)$, $"cout_fixe" = mat(110, 90, 100 ; 110, 90, 100)$ et $"cout_variable" = mat(10, 1, 5 ; 2, 20, 10)$, la solution pour un coût minimum est de : $"CoutTotal" = 1252$ pour la matrice $D = ["D1", "D2"]$ avec $"D1" = mat(0, 1, 1; 0, 0, 0)$ et $"D2" = mat(1, 0, 0; 1, 1, 1)$
+
+#sourcecode()[
+    ```ruby
+Problem:    Pb2
+Rows:       11
+Columns:    12
+Non-zeros:  36
+Status:     OPTIMAL
+Objective:  CoutTotal = 1252 (MINimum)
+
+   No.   Row name   St   Activity     Lower bound   Upper bound    Marginal
+------ ------------ -- ------------- ------------- ------------- -------------
+     1 RespectStock[F1,M1]
+                    B              1                         2.5 
+     2 RespectStock[F1,M2]
+                    NU             1                           1            -5 
+     3 RespectStock[F1,M3]
+                    B              1                           2 
+     4 RespectStock[F2,M1]
+                    NU             1                           1           -20 
+     5 RespectStock[F2,M2]
+                    B              1                           2 
+     6 RespectStock[F2,M3]
+                    NU             1                           1           -11 
+     7 RespectDemande[F1,D1]
+                    NS             2             2             =             8 
+     8 RespectDemande[F1,D2]
+                    NS             1             1             =             3 
+     9 RespectDemande[F2,D1]
+                    B              0            -0             = 
+    10 RespectDemande[F2,D2]
+                    NS             3             3             =            23 
+    11 CoutTotal    B             52                             
+
+   No. Column name  St   Activity     Lower bound   Upper bound    Marginal
+------ ------------ -- ------------- ------------- ------------- -------------
+     1 D[F1,M1,D1]  NL             0             0                           3 
+     2 D[F1,M1,D2]  B              1             0               
+     3 D[F1,M2,D1]  B              1             0               
+     4 D[F1,M2,D2]  NL             0             0                          24 
+     5 D[F1,M3,D1]  B              1             0               
+     6 D[F1,M3,D2]  NL             0             0                          10 
+     7 D[F2,M1,D1]  NL             0             0                          31 
+     8 D[F2,M1,D2]  B              1             0               
+     9 D[F2,M2,D1]  NL             0             0                           4 
+    10 D[F2,M2,D2]  B              1             0               
+    11 D[F2,M3,D1]  NL             0             0                          18 
+    12 D[F2,M3,D2]  B              1             0               
+
+Karush-Kuhn-Tucker optimality conditions:
+
+KKT.PE: max.abs.err = 0.00e+00 on row 0
+        max.rel.err = 0.00e+00 on row 0
+        High quality
+
+KKT.PB: max.abs.err = 0.00e+00 on row 0
+        max.rel.err = 0.00e+00 on row 0
+        High quality
+
+KKT.DE: max.abs.err = 0.00e+00 on column 0
+        max.rel.err = 0.00e+00 on column 0
+        High quality
+
+KKT.DB: max.abs.err = 0.00e+00 on row 0
+        max.rel.err = 0.00e+00 on row 0
+        High quality
+
+End of output
+
+    ```
+]
+
 === Cas particulier 2
 // = Minimisation des émissions polluantes
 // PAS FAIT ENCORE

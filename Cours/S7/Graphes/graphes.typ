@@ -4,9 +4,15 @@
 #show: project.with(title: "Cours - Graphes")
 / Notes: 70% Exam, 30% TP
 / CM émargés: #table(
-    columns: 1,
-    [x],
+    columns: 7,
+    [x], [x], [x], [x], [ ], [x], [x],
   )
+
+#method[
+  Pour les preuves par inductions, on ne _construit_ le graphe de taille $n+1$, on l'obtient en entrée.
+  On doit faire $n+1 -> n -> n+1$
+]
+
 
 = Degré
 == Corollaire 1.2.3
@@ -450,3 +456,73 @@ Soit $G$ d'ordre $n in NN$
 
   On a bien $underline(gamma(G') <= (r+1)+1)$
 
+== Exercice 5.4.4
+
+#raw-render(```dot
+  graph {
+  A_3 -- D_2
+  A_3 -- E_1
+  B_3 -- D_2
+  B_3 -- E_1
+  B_3 -- F_2
+  B_3 -- G_4
+  C_3 -- E_1
+  C_3 -- G_4
+  D_2 -- E_1
+  E_1 -- F_2
+  E_1 -- G_4
+  F_2 -- G_4
+  }
+```)
+
+C'est optimal car $gamma(G) >= 4 = "le nombre de sommets dans la plus grande clique"$
+
+== Exercice 5.4.6
+
+
+#raw-render(```dot
+  graph {
+  A-- B
+  B--C
+  C--D
+  D--A
+
+  A--E
+  B--F
+  C--G
+  D--H
+
+  E--F
+  F--G
+  G--H
+  H--E
+  }
+```)
+
+Comme on trie selon le degré, on peut trouver un ordre qui conduit à une coloration non optimale.
+
+== Exercice 5.4.7
+
+Le nombre d'heures nécessaires pour faire jouer toutes les équipes est la taille du plus grand ensemble de paires de sommets adjacents disjointes.
+
+A la place, on aurait pu construire un graphes des conflits.
+
+#raw-render(```dot
+  graph {
+  AB [color=blue]
+  AC [color=red]
+  BC [color=green]
+  AB -- AC
+  AB -- BC
+  AC -- BC
+
+  }
+```)
+
+
+== Preuve Théorème 5.4.8
+Soit $G$ un graphe planaire à $n+1$ sommets, $m$ arrêtes, $f$ faces.
+
+Supposons qu'un graphe planaire à $n$ sommets est 5-coloriable.
+
+Montrons que, $G$ l'est aussi.

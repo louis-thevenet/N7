@@ -1,0 +1,57 @@
+Problem:    2
+Rows:       11
+Columns:    12 (12 integer, 0 binary)
+Non-zeros:  36
+Status:     INTEGER OPTIMAL
+Objective:  CoutTotal = 1252 (MINimum)
+
+   No.   Row name        Activity     Lower bound   Upper bound
+------ ------------    ------------- ------------- -------------
+     1 RespectStock[F1,M1]
+                                   1                         2.5 
+     2 RespectStock[F1,M2]
+                                   1                           1 
+     3 RespectStock[F1,M3]
+                                   1                           2 
+     4 RespectStock[F2,M1]
+                                   1                           1 
+     5 RespectStock[F2,M2]
+                                   1                           2 
+     6 RespectStock[F2,M3]
+                                   1                           1 
+     7 RespectDemande[F1,D1]
+                                   2             2             = 
+     8 RespectDemande[F1,D2]
+                                   1             1             = 
+     9 RespectDemande[F2,D1]
+                                   0            -0             = 
+    10 RespectDemande[F2,D2]
+                                   3             3             = 
+    11 CoutTotal                  52                             
+
+   No. Column name       Activity     Lower bound   Upper bound
+------ ------------    ------------- ------------- -------------
+     1 D[F1,M1,D1]  *              0             0               
+     2 D[F1,M1,D2]  *              1             0               
+     3 D[F1,M2,D1]  *              1             0               
+     4 D[F1,M2,D2]  *              0             0               
+     5 D[F1,M3,D1]  *              1             0               
+     6 D[F1,M3,D2]  *              0             0               
+     7 D[F2,M1,D1]  *              0             0               
+     8 D[F2,M1,D2]  *              1             0               
+     9 D[F2,M2,D1]  *              0             0               
+    10 D[F2,M2,D2]  *              1             0               
+    11 D[F2,M3,D1]  *              0             0               
+    12 D[F2,M3,D2]  *              1             0               
+
+Integer feasibility conditions:
+
+KKT.PE: max.abs.err = 0.00e+00 on row 0
+        max.rel.err = 0.00e+00 on row 0
+        High quality
+
+KKT.PB: max.abs.err = 0.00e+00 on row 0
+        max.rel.err = 0.00e+00 on row 0
+        High quality
+
+End of output

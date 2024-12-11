@@ -57,19 +57,65 @@ par l'algorithme du lagrangien augmenté.
     x_sol, _ = lagrangien_augmente(f, gradf, hessf, c, gradc, hessc, x0, algo_noc="rc-gct")
 
 """
-function lagrangien_augmente(f::Function, gradf::Function, hessf::Function, 
-        c::Function, gradc::Function, hessc::Function, x0::Vector{<:Real}; 
-        max_iter::Integer=1000, tol_abs::Real=1e-10, tol_rel::Real=1e-8,
-        λ0::Real=2, μ0::Real=10, τ::Real=2, algo_noc::String="rc-gct")
+function lagrangien_augmente(f::Function, gradf::Function, hessf::Function,
+    c::Function, gradc::Function, hessc::Function, x0::Vector{<:Real};
+    max_iter::Integer=1000, tol_abs::Real=1e-10, tol_rel::Real=1e-8,
+    lambda0::Real=2, mu0::Real=10, tau::Real=2, algo_noc::String="rc-gct")
 
     #
     x_sol = x0
     f_sol = f(x_sol)
-    flag  = -1
+    flag = 1
     nb_iters = 0
-    μs = [μ0] # vous pouvez faire μs = vcat(μs, μk) pour concaténer les valeurs
-    λs = [λ0]
+    mus = [mu0] # vous pouvez faire μs = vcat(μs, μk) pour concaténer les valeurs
+    lambdas = [lambda0]
 
-    return x_sol, f_sol, flag, nb_iters, μs, λs
+    beta = 0.9
+    eta_chap = 0.1258925
+    alpha = 0.1
+    eps0 = 1 / mu0
+    epsk = eps0
+    etak = eta_chap / mu0^alpha
+    muk = mu0
+    lambdak = lambda0
+    while nb_iters <= max_iter
+
+        LA(x) = f(x) + transpose(lambdak) * c(x) + norm(c(x))^2 * muk / 2
+        gradLA(x) = gradf(x) + transpose(lambdak) * gradc(x) + muk * gradc(x) * c(x)
+        hessLA(x) = hessf(x) + transpose(lambdak) * hessc(x) + muk * (hessc(x) * c(x) + gradc(x) * transpose(gradc(x)))
+
+        if algo_noc == "rc-gct"
+            x_sol, _, _, _, _ = regions_de_confiance(LA, gradLA, hessLA, x_sol, epsilon=epsk)
+        elseif algo_noc == "rc-cauchy"
+            x_sol, _, _, _, _ = regions_de_confiance(LA, gradLA, hessLA, x_sol, algo_pas="cauchy", epsilon=epsk)
+        else
+            x_sol, _, _, _, _ = newton(LA, gradLA, hessLA, x_sol, epsilon=epsk)
+        end
+
+        if norm(c(x_sol)) <= etak
+            lambdak = lambdak + muk * c(x_sol)
+            muk = muk
+            epsk = epsk / muk
+            etak = etak / muk^beta
+        else
+            lambdak = lambdak
+            muk = tau * muk
+            epsk = eps0 / muk
+            etak = eta_chap / muk^alpha
+        end
+
+        vcat(mus, muk)
+        vcat(lambdas, lambdak)
+        f_sol = f(x_sol)
+
+        if norm(gradLA(x_sol)) <= max(tol_rel * norm(gradLA(x0)), tol_abs)
+            return x_sol, f_sol, 1, nb_iters, mus, lambdas
+        end
+
+        nb_iters += 1
+
+    end
+
+    return x_sol, f_sol, flag, nb_iters, mus, lambdas
 
 end

@@ -42,15 +42,15 @@ function gct(g::Vector{<:Real}, H::Matrix{<:Real}, Δ::Real;
     s0=zeros(length(g))
     sj=s0
 
-p0 = -g
-pj=p0
+    p0 = -g
+    pj=p0
 
 while j <= max_iter && norm(gj) > max(norm(g0)*tol_rel, tol_abs)
 
     kj = transpose(pj)*H*pj
     if kj<=0
         # ||sj+sigma pj||² = ||sj||² + 2 <sj, sigma pj> + ||sigma*pj||²
-        a = norm(pj) 
+        a = norm(pj)^2 
         b = 2 * transpose(sj) * pj
         c = norm(sj)*norm(sj) - norm(Δ)*norm(Δ)
         sigma1 = (-b - sqrt(b*b - 4 * a * c))/(2*a)
@@ -67,7 +67,7 @@ while j <= max_iter && norm(gj) > max(norm(g0)*tol_rel, tol_abs)
 
     alphaj = transpose(gj) *gj / kj
     if (norm(sj + alphaj*pj)) >= Δ 
-        a = norm(pj) 
+        a = norm(pj)^2 
         b = 2 * transpose(sj)* pj
         c = norm(sj)*norm(sj) - norm(Δ)*norm(Δ)
         sigmaj = max((-b - sqrt(b*b - 4 * a * c))/(2*a), (-b + sqrt(b*b - 4 * a * c))/(2*a))

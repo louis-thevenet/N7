@@ -81,7 +81,7 @@ function regions_de_confiance(f::Function, gradf::Function, hessf::Function, x0:
 
         if algo_pas == "cauchy" 
             sk= cauchy(gk, hk, deltak, tol_abs=tol_abs)
-        elseif algo_pas=="gct"
+        else algo_pas=="gct"
             sk = gct(gk, hk, deltak)
         end
 
@@ -108,7 +108,6 @@ function regions_de_confiance(f::Function, gradf::Function, hessf::Function, x0:
             deltak  = γ1*deltak
         end
 
-        println(deltak)
         nb_iters = nb_iters + 1
 
 

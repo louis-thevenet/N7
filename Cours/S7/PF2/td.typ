@@ -1,5 +1,4 @@
 #import "../../templates/template.typ": *
-#set page(height: auto)
 #show: project.with(toc: false, title: "TD - Programmation Fonctionnelle 2")
 
 = TD5

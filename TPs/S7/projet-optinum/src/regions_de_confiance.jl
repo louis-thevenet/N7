@@ -82,7 +82,7 @@ function regions_de_confiance(f::Function, gradf::Function, hessf::Function, x0:
         if algo_pas == "cauchy" 
             sk= cauchy(gk, hk, deltak, tol_abs=tol_abs)
         else algo_pas=="gct"
-            sk = gct(gk, hk, deltak)
+            sk = gct(gk, hk, deltak, max_iter=max_iter_gct)
         end
 
         mk0 = f(xk)
@@ -91,13 +91,17 @@ function regions_de_confiance(f::Function, gradf::Function, hessf::Function, x0:
 
         if rhok >= η1
            xkp1= xk + sk 
-            xs = vcat(xs, [xkp1]) 
+           xs = vcat(xs, [xkp1]) 
+
            convergence = norm(gradf(xkp1)) 
            stag_itere = norm(xkp1 - xk) 
            stag_fonction = abs(f(xkp1) - f(xk)) 
 
             x_sol = xkp1
             f_sol = f(x_sol)
+        else
+            xs = vcat(xs, [xk]) 
+
         end
 
         if rhok >= η2

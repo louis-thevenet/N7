@@ -44,9 +44,7 @@ function gct(g::Vector{<:Real}, H::Matrix{<:Real}, Δ::Real;
 
     p0 = -g
     pj=p0
-
 while j <= max_iter && norm(gj) > max(norm(g0)*tol_rel, tol_abs)
-
     kj = transpose(pj)*H*pj
     if kj<=0
         # ||sj+sigma pj||² = ||sj||² + 2 <sj, sigma pj> + ||sigma*pj||²
@@ -82,6 +80,7 @@ while j <= max_iter && norm(gj) > max(norm(g0)*tol_rel, tol_abs)
     pj = -gj + betaj*pj
     j+=1
 end
+    
 
    return sj
 end

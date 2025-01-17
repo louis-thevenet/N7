@@ -104,14 +104,14 @@ function lagrangien_augmente(f::Function, gradf::Function, hessf::Function,
             etak = eta_chap / muk^alpha
         end
 
-        vcat(mus, muk)
-        vcat(lambdas, lambdak)
+        
         f_sol = f(x_sol)
 
         if norm(gradLA(x_sol)) <= max(tol_rel * norm(gradLA(x0)), tol_abs)
             return x_sol, f_sol, 1, nb_iters, mus, lambdas
         end
-
+        mus = vcat(mus, muk)
+        lambdas = vcat(lambdas, lambdak)
         nb_iters += 1
 
     end

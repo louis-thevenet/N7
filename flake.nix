@@ -59,7 +59,7 @@
 
               # # C
               # python310Packages.jupyter-c-kernel
-              jupyter
+              # jupyter
               # cmake
               # clang-tools
 
@@ -79,24 +79,29 @@
               # arduino-core
               # arduino-ide
 
-              # Java
-              jdk23
+              # # Java
+              # jdk23
 
               # OCaml
-              ocaml
-              dune_3
-              ocamlPackages.utop
-              ocamlPackages.ocamlformat
-              ocamlPackages.menhir
-              ocamlPackages.graphics
-              ocamlPackages.ppx_inline_test
-              ocamlPackages.ppx_expect
+              # ocaml
+              # dune_3
+              # ocamlPackages.utop
+              # ocamlPackages.ocamlformat
+              # ocamlPackages.menhir
+              # ocamlPackages.graphics
+              # ocamlPackages.ppx_inline_test
+              # ocamlPackages.ppx_expect
 
-              # Julia
-              julia_19
+              # # Julia
+              # julia_19
 
-              # Recherche opérationnelle
-              glpk
+              # # Recherche opérationnelle
+              # glpk
+
+              # Systèmes de transition
+              tlaplus
+              tlaps
+              texliveSmall
 
               # Utilitaires
               unzip

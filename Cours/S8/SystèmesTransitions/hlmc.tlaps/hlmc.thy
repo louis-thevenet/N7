@@ -1,5 +1,5 @@
 (* automatically generated -- do not edit manually *)
-theory Fact1 imports Constant Zenon begin
+theory hlmc imports Constant Zenon begin
 ML_command {* writeln ("*** TLAPS PARSED\n"); *}
 consts
   "isReal" :: c

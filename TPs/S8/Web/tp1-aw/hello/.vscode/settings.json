@@ -1,0 +1,40 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar"
+        ],
+        "exclude": [
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/annotations-api.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/catalina-ant.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/jasper.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/jaspic-api.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/jsp-api.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/servlet-api.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-api.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-coyote-ffm.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-coyote.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-dbcp.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/catalina-ha.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/catalina-ssi.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/catalina-storeconfig.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/catalina-tribes.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/catalina.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/ecj-4.33.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/jakartaee-migration-1.0.8-shaded.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/jasper-el.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-i18n-cs.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-i18n-de.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-i18n-es.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-i18n-fr.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-i18n-ja.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-i18n-ko.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-i18n-pt-BR.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-i18n-ru.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-i18n-zh-CN.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-jdbc.jar",
+            "/home/hagimont/install/apache-tomcat-11.0.1/lib/tomcat-jni.jar"
+        ]
+    }
+}

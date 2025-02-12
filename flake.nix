@@ -64,15 +64,16 @@
               # clang-tools
 
               # # Apprentissage (il manque des modules, je conseille pas de l'utiliser)
-              # (pkgs.python3.withPackages (python-pkgs: [
-              #   python-pkgs.jupyter
-              #   python-pkgs.numpy
-              #   python-pkgs.matplotlib
-              #   python-pkgs.scikit-learn
-              #   python-pkgs.tensorflow
-              #   python-pkgs.keras
-              #   python-pkgs.treelib
-              # ]))
+              (pkgs.python3.withPackages (python-pkgs: [
+                python-pkgs.pytest
+                # python-pkgs.jupyter
+                # python-pkgs.numpy
+                # python-pkgs.matplotlib
+                # python-pkgs.scikit-learn
+                # python-pkgs.tensorflow
+                # python-pkgs.keras
+                # python-pkgs.treelib
+              ]))
 
               # # Arduino (needs aditionnal udev rules:
               # # see https://github.com/louis-thevenet/nixos-config/blob/67c87176c875801dd2a65a699189bd9959da4837/hosts/hircine/default.nix#L70C1-L75C6)
@@ -101,7 +102,12 @@
               # Systèmes de transition
               tlaplus
               tlaps
+              tlaplusToolbox
               texliveSmall
+
+              # Web
+              tomcat
+              jdk17
 
               # Utilitaires
               unzip

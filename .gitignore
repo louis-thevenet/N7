@@ -200,3 +200,4 @@ local.properties
 #.project
 
 __pycache__/
+**/db/

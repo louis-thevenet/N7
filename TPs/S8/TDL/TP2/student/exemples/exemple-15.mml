@@ -1,0 +1,7 @@
+let a = ref 0 in
+let b = ref 0 in
+(while !b - !a <= 20 do
+  a := !a + 1;
+  b := !b + 2
+done;
+!a + !b)

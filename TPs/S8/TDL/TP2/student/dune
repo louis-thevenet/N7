@@ -1,0 +1,19 @@
+(ocamllex lexer)
+
+(menhir
+ (modules parser))
+
+; Pour exécuter automatiquement les tests
+(library
+ (name tests)
+ (modules :standard \ Main)
+ (inline_tests)
+ (preprocess
+  (pps ppx_inline_test)))
+
+; Pour générer l'exécutable dans _build/default
+(executable
+ (name Main)
+ (modules Main)
+ (libraries tests))
+

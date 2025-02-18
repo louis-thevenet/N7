@@ -201,3 +201,5 @@ local.properties
 
 __pycache__/
 **/db/
+**/__MACOSX/
+.DS_Store

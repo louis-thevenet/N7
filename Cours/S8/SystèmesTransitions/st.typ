@@ -1,4 +1,5 @@
 #import "../../templates/template.typ": *
+#import "@preview/diagraph:0.3.1": raw-render
 #set page(height: auto)
 #show: project.with(title: "Cours - Systèmes de Transition")
 
@@ -325,3 +326,104 @@ On doit les faire passer d'une rive à l'autre d'une rivière.
   ]]
 
 LR1 est-il un raffinage de LR0 ? Oui car les variables sont les mêmes et les actions sont aussi les mêmes ("raffinage de déterminisme") $=>$ exclusion est préservée adns LR1
+
+= L'algorithme de Peterson
+
+Il s'agit d'exclusion mutuellement entre deux processus.
+
+#figure(caption: [Algorithme de Peterson])[#sourcecode()[
+    ```c
+    bool demande[2];
+    int tour;
+
+    // Pour le  processus i dans {0, 1}
+    demande[i] = true;
+    tour = 1 - i;
+    while (demande[1-i] && tour == 1-i) {
+        // attendre
+    }
+    demande[i] = false;
+    // section critique
+    ```
+  ]]
+
+
+Le tableau `demande` est "auxiliaire", sa valeur est déterminée par l'endroit du programme où on se trouve.
+
+En général, ce type d'algorithme se décompose de la façon suivante :
+
+
+#raw-render(```dot
+digraph {
+Thinking -> Hungry
+Hungry -> Eating
+Eating -> Thinking
+
+}
+```)
+
+
+
+#figure(caption: [Algorithme de Peterson en TLA+])[#sourcecode()[
+    ```rust
+    MODULE Peterson
+    EXTENDS Naturals, FiniteSets
+
+
+    VARIABLES demande, tour, etat
+    TypeInvariant ==
+        /\ demande \in [0..1 -> BOOLEAN]
+        /\ tour \in 0..1
+        /\ etat \in {"T", "H", "E"}
+
+    Initial ==
+        /\ demande = [i \in 0..1 |-> FALSE]
+        /\ tour = 0
+        /\ etat = [ i \in 0..1 |-> "T"]
+
+    Demander(i) ==
+        /\ etat[i] = "T"
+        /\ etat' = [etat EXCEPT ![i] = "H"]
+        /\ demande' = [demande EXCEPT ![i] = TRUE]
+        /\ tour' = 1 - i
+
+    Sortir(i) ==
+        /\ etat[i] = "E"
+        /\ etat' = [etat EXCEPT ![i] = "T"]
+        /\ demande' = [demande EXCEPT ![i] = FALSE]
+        /\ tour' = tour
+
+    Entrer(i) ==
+        /\ etat[i] = "H"
+        /\ etat' = [etat EXCEPT ![i] = "E"]
+        /\ (\neg demande[1-i]  \/ tour = i)
+
+    Next == \E i \in 0..1 : Entrer(i) \/ Demander(i) \/ Sortir(i)
+
+    Spec ==
+        /\ Initial
+        /\ [Next]_{demande, tour, etat}
+        /\ \forall i \in 0..1 : WF_{demande, tour, etat}(Sortir(i))
+                                /\ WF_{demande, tour, etat}(Demander(i))
+
+    ExclusionMutuelle ==
+        [](~ (etat[0] = "E" /\ etat[1] = "E"))
+        (* ou *)
+        [](\forall i, j \in 0..1 : (etat[i] = "E" /\ etat[j] = "E" => i = j))
+        (* ou *)
+        [](Cardinality({i \in 0..1 : etat[i] = "E"}) <= 1)
+
+    AbsenceDeFamine ==
+        \forall i \in 0..1 : etat[i] = "H" ~> etat[i] = "E"
+
+    DemandeMaintenue ==
+        \forall i \in 0..1 : [](etat[i] = "H" => etat[i]' \in {"H", "E"})
+
+    AbsenceDeDeadlock ==
+        {i \in {0..1} | etat[i] = "H"} != \emptyset ~> {i \in 0..1 | etat[i] = "E"} != \emptyset
+        (* ou *)
+        \forall i \in 0..1 : etat[i] = "H" => \E j \in 0..1 : etat[j] = "E"
+    ```
+  ]]
+
+

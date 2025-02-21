@@ -4,11 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Personne {
-    List<Integer> adresses;
+    Integer id;
 
-    public List<Integer> getAdresses() {
-        return adresses;
+    public Integer getId() {
+        return id;
     }
+
+   
 
     String nom;
 
@@ -31,12 +33,10 @@ public class Personne {
     }
 
 
-    public Personne( String nom, String prenom ) {
-        this.adresses = new LinkedList<Integer>();
+    public Personne( String nom, String prenom,Integer id ) {
         this.nom = nom;
         this.prenom = prenom;
+        this.id = id;
     }
-    public void addAdresse(Integer addresseId) {
-        adresses.add(addresseId);
-    }
+
 }

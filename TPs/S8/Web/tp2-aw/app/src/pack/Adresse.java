@@ -1,7 +1,15 @@
 package pack;
 
+import java.util.List;
+
 public class Adresse {
     String rue;
+    Integer id;
+    List<Integer> personnes;
+
+    public Integer getId() {
+        return id;
+    }
 
     public String getRue() {
         return rue;
@@ -21,10 +29,13 @@ public class Adresse {
         this.ville = ville;
     }
 
-
-    public Adresse(String rue, String ville) {
+public void addPersonne(Integer id) {
+    personnes.add(id);
+}
+    public Adresse(String rue, String ville,Integer id) {
         this.rue = rue;
         this.ville = ville;
+        this.id=id;
     }
 
 }

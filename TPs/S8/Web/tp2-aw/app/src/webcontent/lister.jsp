@@ -9,22 +9,50 @@
 
     <body>
 
-
-            <%if (request.getAttribute("res") != null) {%>
-                <%for (Personne p : ((HashMap<Integer,Personne>)request.getAttribute("res")).values()) {%>
-                    ${p.prenom}
+        <%Collection<Personne> personnes = (Collection<Personne>)request.getAttribute("personnes");%>
+        <%HashMap<Integer, Adresse> adresses = (HashMap<Integer,Adresse>) request.getAttribute("adresses");%>
+        <h1>Liste Personnes</h1>
+            <%if (personnes != null && adresses != null) {%>
+                <%for (Personne p : personnes) {%>
+                    <p><%= p.getPrenom()%> <%= p.getNom()%></p>
+                    <ul>
                         <%for (Integer a : p.getAdresses()) {%>
+                            <%Adresse ad = adresses.get(a);%>
+                            <%if (ad == null) {%>
+                                Adresse <%=a%> null
+                            <%} else {%>
+                                <li><%=ad.getRue()%> à <%=ad.getVille()%></li>
 
-                            ${request.getAttribute("res").get(a).ville}
+                                <%}%>
+
 
                             <%}%>
+                    </ul>
+                    
+                       
                     
                     <%}%>
             <%} else {%>
                 Liste vide
             <%}%>
     
+            <h1>Toutes les adresses</h1>
+            <%if (adresses != null) {%>
+                    <ul>
+                        <%for (Adresse a : adresses.values()) {%>
+                       
+                                <li><%=ad.getRue()%> à <%=ad.getVille()%></li>
 
+
+
+                            <%}%>
+                    </ul>
+                    
+                       
+                    
+            <%} else {%>
+                Liste vide
+            <%}%>
     </body>
 
     </html>

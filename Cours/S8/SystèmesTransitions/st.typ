@@ -6,7 +6,7 @@
 = Mise en pratique : La factorielle
 
 #figure(caption: [$0$ transition])[#sourcecode()[
-    ```rust
+    ```haskell
     -------- MODULE Fact0 -------
 
     EXTENDS Naturals
@@ -20,7 +20,7 @@
   ]
 ]
 #figure(caption: [Avec transitions])[#sourcecode()[
-    ```rust
+    ```haskell
     -------- MODULE Fact1 -------
 
     EXTENDS Naturals
@@ -44,7 +44,7 @@
   ]
 ]
 #figure(caption: [Sans ordre particulier])[#sourcecode()[
-    ```rust
+    ```haskell
     -------- MODULE Fact1 -------
 
     EXTENDS Naturals
@@ -68,7 +68,7 @@
   ]
 ]
 #figure(caption: [Sans ordre particulier])[#sourcecode()[
-    ```rust
+    ```haskell
     -------- MODULE Fact1 -------
 
     EXTENDS Naturals
@@ -103,7 +103,7 @@ On doit les faire passer d'une rive à l'autre d'une rivière.
 
 
 #figure(caption: [Sans ordre particulier])[#sourcecode()[
-    ```rust
+    ```haskell
     -------- MODULE hlmc -------
 
         VARIABLES h, m, c, l
@@ -173,7 +173,7 @@ On doit les faire passer d'une rive à l'autre d'une rivière.
 = Problème Lecteurs/Rédacteurs
 
 #figure(caption: [Lecteurs/Rédacteurs 0])[#sourcecode()[
-    ```rust
+    ```haskell
     MODULE LR0
     EXTENDS Naturals
     VARIABLES nl, nr
@@ -236,7 +236,7 @@ On doit les faire passer d'une rive à l'autre d'une rivière.
 - A chaque transition
   $ ("nl"=0 or "nr" = 0) and ["Next"]_("nl", "nr") =>^? "nl"' = 0 or "nr"' = 0 $
 
-  - on étudie à chaque transition séparément
+  - on étudie chaque transition séparément
     - bégaiement
       $
         ("nl"=0 or "nr" = 0) and "nl"'="nl" and "nr"' = "nr" => "nl"' = 0 or "nr"' = 0
@@ -255,7 +255,7 @@ On doit les faire passer d'une rive à l'autre d'une rivière.
 == Raffinement
 
 #figure(caption: [Lecteurs/Rédacteurs 1])[#sourcecode()[
-    ```rust
+    ```haskell
     MODULE LR1
     EXTENDS Naturals
     VARIABLES nl, nr, ndemr (*nombre demande rédacteurs*)
@@ -365,7 +365,7 @@ Eating -> Thinking
 
 
 #figure(caption: [Algorithme de Peterson en TLA+])[#sourcecode()[
-    ```rust
+    ```haskell
     MODULE Peterson
     EXTENDS Naturals, FiniteSets
 
@@ -425,5 +425,231 @@ Eating -> Thinking
         \forall i \in 0..1 : etat[i] = "H" => \E j \in 0..1 : etat[j] = "E"
     ```
   ]]
+
+= Token Ring
+
+
+#raw-render(```dot
+digraph {
+    P0 -> P1
+    P1 -> P2  [label="Token"]
+    P2 -> P3
+    P3 -> "..."
+    "..." -> P0
+}
+```)
+
+Le token se déplace de processus en processus, c'est un problème de type exclusion mutuelle.
+
+
+Chaque processus a 3 états : `Thinking`, `Hungry` et `Eating`
+
+#raw-render(```dot
+digraph {
+Thinking -> Hungry [label="Demander"]
+Hungry -> Eating [label="Entrer"]
+Eating -> Thinking [label="Sortir"]
+}
+```)
+#figure(caption: [Token Ring 0])[#sourcecode()[
+    ```haskell
+    MODULE TokenRing0
+    EXTENDS Naturals, FiniteSets
+    CONSTANT N
+    ASSUME N \in Nat
+
+    ETAT == {"T", "H", "E"}
+
+    VARIABLES == etat, token
+
+    TypeInvariant ==
+        /\ etat \in [0..N-1 -> ETAT]
+        /\ token \in 0..N-1
+
+    Initial ==
+        /\ etat = [i \in 0..N-1 |-> "T"]
+        /\ token \in 0..N-1 (* ou juste 0 *)
+
+
+    Demander(i) ==
+        /\ etat[i] = "T"
+        /\ etat' = [etat EXCEPT ![i] = "H"]
+        /\ UNCHANGED token
+
+    Sortir(i) ==
+        /\ etat[i] = "E"
+        /\ etat' = [etat EXCEPT ![i] = "T"]
+        /\ UNCHANGED token
+
+    Entrer(i) ==
+        /\ etat[i] = "H"
+        /\ etat' = [etat = etat EXCEPT ![i] = "E"]
+        /\ token = i
+        /\ UNCHANGED token (* important *)
+
+    Bouger(i) ==
+        /\ token = i
+        /\ token' = (i+1) % N
+        /\ UNCHANGED etat
+        /\ etat[i] != "E"
+
+
+    Next ==
+        \E i \in 0..N-1:
+            \/ Demander(i)
+            \/ Entrer(i)
+            \/ Sortir(i)
+            \/ Bouger(i)
+
+    Spec ==
+        /\ Initial
+        /\ [Next]_{etat, token}
+        /\ \forall i \in 0..N-1:
+            /\ WF_{etat, token}(Sortir(i))
+            /\ WF_{etat, token}(Entrer(i))
+
+    ExclusionMutuelle == [(Cardinality({i \in 0..N-1: etat[i] = "E"}))]
+    AbsenceDeFamine == \forall i \in 0..N-1: etat[i] = "H" ~> etat[i] = "E"
+    Lien == \forall i \in 0..N-1: [etat[i] = "E" => token = i]
+    ```
+  ]]
+
+== Contre-exemple 1
+Famine des processus autre que $0$.
+
+$
+  "token"=0 \
+  ("Demander"(0) -> "Entrer"(0) -> "Sortir"(0))^omega
+$
+
+
+On décide de pousser le token dehors.
+
+#figure(
+  caption: [Nouveau `Sortir(i)`
+
+  ],
+)[#sourcecode()[
+    ```haskell
+    Sortir(i) ==
+        /\ etat[i] = "E"
+        /\ etat' = [etat EXCEPT ![i] = "T"]
+        (*/\ UNCHANGED token (*on vire ça*)*)
+    ```
+  ]]
+
+
+== Contre-exemple 2
+Le jeton bouge très vite et les processus ne peuvent pas accéder à leur ressource.
+
+$
+  "jeton" = 0 \
+  ("Demander"(0) -> "Bouger"(0) -> "Bouger"(1) -> dots -> "Bouger"(N-1))^omega
+$
+
+On ajoute une condition à `Bouger`
+
+#figure(
+  caption: [Nouveau `Bouger(i)`
+
+  ],
+)[#sourcecode()[
+    ```haskell
+    Bouger(i) ==
+        /\ token = i
+        /\ token' = (i+1) % N
+        /\ UNCHANGED etat
+        /\ etat[i] = "T"
+        (*/\ etat[i] != "E" (*on vire ça*) *)
+    ```
+  ]]
+
+
+Au lieu de modifier `Sortir` et `Bouger`, on aurait pu ajouter de l'équité plus forte que faible pour forcer l'execution quand c'est nécessaire.
+
+
+
+== Raffinage : Tableau de jetons
+
+#figure(
+  caption: [Token Ring 1
+
+  ],
+)[#sourcecode()[
+    ```haskell
+        MODULE TokenRing0
+        EXTENDS Naturals, FiniteSets
+        CONSTANT N
+        ASSUME N \in Nat
+
+        ETAT == {"T", "H", "E"}
+
+        VARIABLES == etat, token
+
+        TypeInvariant ==
+            /\ etat \in [0..N-1 -> ETAT]
+            /\ token \in [0..N-1 -> BOOLEAN]
+
+        Initial ==
+            /\ etat = [i \in 0..N-1 |-> "T"]
+            /\ \E i \in 0..N-1: token = [j \in 0..N-1 |-> i=j]
+
+
+        Demander(i) ==
+            /\ etat[i] = "T"
+            /\ etat' = [etat EXCEPT ![i] = "H"]
+            /\ UNCHANGED token
+
+        Sortir(i) ==
+            /\ etat[i] = "E"
+            /\ etat' = [etat EXCEPT ![i] = "T"]
+            /\ UNCHANGED token
+
+        Entrer(i) ==
+            /\ etat[i] = "H"
+            /\ etat' = [etat = etat EXCEPT ![i] = "E"]
+            /\ token[i]
+            /\ UNCHANGED token (* important *)
+
+        Bouger(i) ==
+            /\ token[i]
+            /\ token' = [token EXCEPT ![i]=FALSE, ![(i+1)%N] = TRUE]
+            /\ UNCHANGED etat
+            /\ etat[i] != "E"
+
+
+        Next ==
+            \E i \in 0..N-1:
+                \/ Demander(i)
+                \/ Entrer(i)
+                \/ Sortir(i)
+                \/ Bouger(i)
+
+        Spec ==
+            /\ Initial
+            /\ [Next]_{etat, token}
+            /\ \forall i \in 0..N-1:
+                /\ WF_{etat, token}(Sortir(i))
+                /\ WF_{etat, token}(Entrer(i))
+
+        ExclusionMutuelle == [(Cardinality({i \in 0..N-1: etat[i] = "E"}))]
+        AbsenceDeFamine == \forall i \in 0..N-1: etat[i] = "H" ~> etat[i] = "E"
+        Lien == \forall i \in 0..N-1: [etat[i] = "E" => token[i]]
+        TokenUnique == [\forall i, j \in 0..N-1: token[i] /\ token[j] => i = j
+    ]
+
+    ```
+  ]]
+
+Pour prouver le raffinage entre `TokenRing0` et `TokenRing1`, il faut au moins exhiber une fonction de mapping entre les variables de `TokenRing1` et sur celles de `TokenRing0`.
+
+$
+  "etat1" = "etat0" \
+  "token1" = "CHOOSE" i \in 0..N-1 : "token1"[i]
+$
+
+
+== Raffinage : Modéliser les canaux de communication
+On l'a pas fait
 
 

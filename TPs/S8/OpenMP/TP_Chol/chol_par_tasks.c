@@ -9,20 +9,33 @@ void chol_par_tasks(matrix_t A){
   int i, j, k;
 
 
-  for(k=0; k<A.NB; k++){
-    /* reduce the diagonal block */
-    potrf(A.blocks[k][k]);
-    
-    for(i=k+1; i<A.NB; i++){
+  
+  #pragma omp parallel private(k) 
+  
+  for(k=0; k<A.NB; k++)
+      {
+      /* reduce the diagonal block */
+   
+    #pragma omp single 
+    {
+      potrf(A.blocks[k][k]);
+    }    
 
-      /* compute the A[i][k] sub-diagonal block */
-      trsm(A.blocks[k][k], A.blocks[i][k]);
-      for(j=k+1; j<=i; j++){
+      #pragma omp for 
+      for(i=k+1; i<A.NB; i++){
+        /* compute the A[i][k] sub-diagonal block */
+        #pragma omp task
+        trsm(A.blocks[k][k], A.blocks[i][k]);
+      }
 
-        /* update the A[i][j] block in the trailing submatrix */
-        gemm(A.blocks[i][k], A.blocks[j][k], A.blocks[i][j]);
-      }    
-    }
+      #pragma omp for collapse(2)
+      for(i=k+1; i<A.NB; i++){
+        for(j=k+1; j<=i; j++){
+          /* update the A[i][j] block in the trailing submatrix */
+          #pragma omp task priority(999)
+           gemm(A.blocks[i][k], A.blocks[j][k], A.blocks[i][j]);
+        }    
+      }
   }
 
   return;

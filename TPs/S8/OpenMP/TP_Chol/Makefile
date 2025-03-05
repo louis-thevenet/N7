@@ -5,13 +5,14 @@ ifeq ($(ARCH),arm)
 	LBLAS    = -L/usr/local/arm/armpl-22.1.0_AArch64_RHEL-8_arm-linux-compiler_aarch64-linux/lib/ -larmpl_lp64
 else
 # on TP-rooms
-	CC       = /mnt/n7fs/ens/tp_abuttari/gcc-14.2.0/bin/gcc
-	FC       = /mnt/n7fs/ens/tp_abuttari/gcc-14.2.0/bin/gfortran
-	LBLAS    = /mnt/n7fs/ens/tp_abuttari/acml-4.4.0/gfortran64/lib/libacml.a -lm
+	# CC       = /mnt/n7fs/ens/tp_abuttari/gcc-14.2.0/bin/gcc
+	# FC       = /mnt/n7fs/ens/tp_abuttari/gcc-14.2.0/bin/gfortran
+	# LBLAS    = /mnt/n7fs/ens/tp_abuttari/acml-4.4.0/gfortran64/lib/libacml.a -lm
+	LBLAS    = ~/Downloads/libacml.a -lm
 # on my laptop
-# CC       = gcc
-# FC       = gfortran
-# LBLAS    = -lopenblas
+	CC       = gcc
+	FC       = gfortran
+	# LBLAS    = -lopenblas
 endif
 
 LINK     = $(FC)

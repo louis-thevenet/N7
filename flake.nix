@@ -49,7 +49,6 @@
               # gtksourceview
               # coqPackages.coqide
               # coq
-
               # # PIM (Ada)
               # gnat
               # gprbuild
@@ -104,6 +103,10 @@
               tlaps
               tlaplusToolbox
               texliveSmall
+
+              # OpenMP
+              openblas
+              gfortran
 
               # Web
               tomcat

@@ -2,7 +2,7 @@
 TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
 @!@!@ENDMSG 2262 @!@!@
 @!@!@STARTMSG 2187:0 @!@!@
-Running breadth-first search Model-Checking with fp 74 and seed -7660009151283606111 with 1 worker on 20 cores with 1164MB heap and 2616MB offheap memory [pid: 1163674] (Linux 5.4.0-89-generic amd64, AdoptOpenJDK 14.0.1 x86_64, OffHeapDiskFPSet, DiskStateQueue).
+Running breadth-first search Model-Checking with fp 118 and seed 5760182516358746248 with 1 worker on 20 cores with 1164MB heap and 2616MB offheap memory [pid: 1163227] (Linux 5.4.0-89-generic amd64, AdoptOpenJDK 14.0.1 x86_64, OffHeapDiskFPSet, DiskStateQueue).
 @!@!@ENDMSG 2187 @!@!@
 @!@!@STARTMSG 2220:0 @!@!@
 Starting SANY...
@@ -23,7 +23,7 @@ Semantic processing of module MC
 SANY finished.
 @!@!@ENDMSG 2219 @!@!@
 @!@!@STARTMSG 2185:0 @!@!@
-Starting... (2025-03-06 09:26:27)
+Starting... (2025-03-06 09:24:38)
 @!@!@ENDMSG 2185 @!@!@
 @!@!@STARTMSG 2212:0 @!@!@
 Implied-temporal checking--satisfiability problem has 5 branches.
@@ -35,16 +35,16 @@ Computing initial states...
 Computed 2 initial states...
 @!@!@ENDMSG 2269 @!@!@
 @!@!@STARTMSG 2190:0 @!@!@
-Finished computing initial states: 3 distinct states generated at 2025-03-06 09:26:27.
+Finished computing initial states: 3 distinct states generated at 2025-03-06 09:24:38.
 @!@!@ENDMSG 2190 @!@!@
 @!@!@STARTMSG 2200:0 @!@!@
-Progress(5) at 2025-03-06 09:26:27: 87 states generated, 36 distinct states found, 0 states left on queue.
+Progress(5) at 2025-03-06 09:24:38: 87 states generated, 36 distinct states found, 0 states left on queue.
 @!@!@ENDMSG 2200 @!@!@
 @!@!@STARTMSG 2192:0 @!@!@
-Checking 5 branches of temporal properties for the complete state space with 180 total distinct states at (2025-03-06 09:26:27)
+Checking 5 branches of temporal properties for the complete state space with 180 total distinct states at (2025-03-06 09:24:38)
 @!@!@ENDMSG 2192 @!@!@
 @!@!@STARTMSG 2267:0 @!@!@
-Finished checking temporal properties in 00s at 2025-03-06 09:26:27
+Finished checking temporal properties in 00s at 2025-03-06 09:24:38
 @!@!@ENDMSG 2267 @!@!@
 @!@!@STARTMSG 2193:0 @!@!@
 Model checking completed. No error has been found.
@@ -53,7 +53,7 @@ Model checking completed. No error has been found.
   calculated (optimistic):  val = 10.0E-17
 @!@!@ENDMSG 2193 @!@!@
 @!@!@STARTMSG 2201:0 @!@!@
-The coverage statistics at 2025-03-06 09:26:27
+The coverage statistics at 2025-03-06 09:24:38
 @!@!@ENDMSG 2201 @!@!@
 @!@!@STARTMSG 2773:0 @!@!@
 <Init line 31, col 1 to line 31, col 4 of module jeton>: 3:3
@@ -199,29 +199,11 @@ The coverage statistics at 2025-03-06 09:26:27
 @!@!@STARTMSG 2221:0 @!@!@
   |line 27, col 16 to line 27, col 24 of module jeton: 36
 @!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2774:0 @!@!@
-<Action line 97, col 21 to line 97, col 64 of module jeton>
-@!@!@ENDMSG 2774 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  line 97, col 21 to line 97, col 64 of module jeton: 36
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  |line 97, col 21 to line 97, col 60 of module jeton: 36
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  ||line 97, col 33 to line 97, col 59 of module jeton: 36
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  |||line 97, col 51 to line 97, col 58 of module jeton: 108
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  |||line 97, col 40 to line 97, col 48 of module jeton: 36
-@!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2202:0 @!@!@
 End of statistics.
 @!@!@ENDMSG 2202 @!@!@
 @!@!@STARTMSG 2200:0 @!@!@
-Progress(5) at 2025-03-06 09:26:27: 87 states generated (6 397 s/min), 36 distinct states found (2 647 ds/min), 0 states left on queue.
+Progress(5) at 2025-03-06 09:24:38: 87 states generated (7 510 s/min), 36 distinct states found (3 107 ds/min), 0 states left on queue.
 @!@!@ENDMSG 2200 @!@!@
 @!@!@STARTMSG 2199:0 @!@!@
 87 states generated, 36 distinct states found, 0 states left on queue.
@@ -233,5 +215,5 @@ The depth of the complete state graph search is 5.
 The average outdegree of the complete state graph is 1 (minimum is 0, the maximum 3 and the 95th percentile is 3).
 @!@!@ENDMSG 2268 @!@!@
 @!@!@STARTMSG 2186:0 @!@!@
-Finished in 832ms at (2025-03-06 09:26:27)
+Finished in 709ms at (2025-03-06 09:24:38)
 @!@!@ENDMSG 2186 @!@!@

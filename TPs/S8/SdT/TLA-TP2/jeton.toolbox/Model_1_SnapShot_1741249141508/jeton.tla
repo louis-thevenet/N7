@@ -3,7 +3,7 @@
 
 (* Algorithme d'exclusion mutuelle à base de jeton. *)
 
-EXTENDS Naturals, FiniteSets, Sequences
+EXTENDS Naturals, FiniteSets
 
 CONSTANT N
 
@@ -16,26 +16,24 @@ Thinking == "T"
 Eating == "E"
 
 VARIABLES
-  canal,
   etat,
   jeton
 
 TypeOK ==
    [] (/\ etat \in [ Processus -> {Hungry,Thinking,Eating} ]
-       /\ jeton \in [Processus -> BOOLEAN]
-       /\ canal \in [Processus ->Seq(BOOLEAN)]
-       )
+       /\ jeton \in Processus)
+
+
 
 Sanity ==
-  [] (\A i \in Processus : etat[i] = Eating => jeton[i])
+  [] (\A i \in Processus : etat[i] = Eating => jeton = i)
 
 ----------------------------------------------------------------
 
 Init ==
  /\ etat = [ i \in Processus |-> Thinking ]
- /\ \E i \in Processus: jeton = [j \in Processus |-> i=j]
- /\ canal = [i \in Processus |-> (Append(Seq(FALSE), FALSE))]
- 
+ /\ jeton \in Processus
+
 demander(i) ==
   /\ etat[i] = Thinking
   /\ etat' = [ etat EXCEPT ![i] = Hungry ]
@@ -43,32 +41,20 @@ demander(i) ==
 
 entrer(i) ==
   /\ etat[i] = Hungry
-  /\ jeton[i]
+  /\ jeton = i
   /\ etat' = [ etat EXCEPT ![i] = Eating ]
   /\ UNCHANGED jeton
 
 sortir(i) ==
   /\ etat[i] = Eating
   /\ etat' = [ etat EXCEPT ![i] = Thinking ]
-  (*/\ canal' = [canal EXCEPT ![i] = Append(Tail(canal[i]), TRUE)]*)
-  /\ canal' = [canal EXCEPT ![i] =   (Append(Seq(TRUE), FALSE))]
-  
+  /\ jeton' = (i+1)%N
   
 bouger(i) ==
-  /\ jeton[i]
+  /\ jeton = i
   /\ etat[i] = Thinking
-  /\ canal' = [canal EXCEPT ![i] =   (Append(Seq(TRUE), FALSE))]
+  /\ jeton' = (i+1)%N
   /\ UNCHANGED etat
-
-EnvoiJeton(i) == 
-    /\ Head(canal[i]) 
-    /\ canal' = [canal EXCEPT ![i] = (Append(Seq(TRUE), TRUE))]
-    
-ReceptionJeton(i) == 
-    /\ Tail(canal[i])
-    /\ canal' = [canal EXCEPT ![(i-1)%N] = (Append(Seq(FALSE), FALSE))]
-    /\ jeton' = [jeton EXCEPT ![i]=FALSE, ![(i+1)%N]=TRUE]
-
 
 Next ==
  \E i \in Processus :
@@ -76,8 +62,6 @@ Next ==
     \/ entrer(i)
     \/ sortir(i)
     \/ bouger(i)
-    \/ EnvoiJeton(i)
-    \/ ReceptionJeton(i)
 
 Fairness == \A i \in Processus :
               /\ WF_<<etat,jeton>> (sortir(i))
@@ -96,6 +80,7 @@ FairnessQ3 ==
           /\ WF_<<etat, jeton>> (bouger(i))
           
       
+          
 Spec ==
  /\ Init
  /\ [] [ Next ]_<<etat,jeton>>
@@ -109,15 +94,5 @@ VivaciteIndividuelle == (\A i \in Processus: etat[i] = Hungry ~> etat[i] = Eatin
 
 VivaciteGlobale == (Cardinality({i \in Processus : etat[i] = Hungry}) > 0) ~> (Cardinality({i \in Processus : etat[i] = Eating}) > 0) 
 
-JetonVaPartout == (\A i \in Processus: []<> (jeton[i]))
-
-UniciteJeton == [] (Cardinality({i \in Processus: jeton[i]}) = 1)
-
-UnSeulEnvoi == [] (Cardinality({i \in Processus: Head(canal[i])}) <= 1)
-UneSeuleReception == [] (Cardinality({i \in Processus: Head(canal[i])}) <= 1)
-
-(*Raffinage version tableau de booléen de simple entier*)
-(*etat |-> etat*)
-(*jeton |-> CHOOSE {i \in Processus: jeton[i]}*)
-
+JetonVaPartout == (\A i \in Processus: []<> (jeton=i))
 ================

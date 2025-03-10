@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/ltt5092/Téléchargements/junit-4.9.jar"
+    ]
+}

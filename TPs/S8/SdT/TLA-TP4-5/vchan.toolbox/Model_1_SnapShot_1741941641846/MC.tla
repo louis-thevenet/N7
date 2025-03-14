@@ -1,0 +1,34 @@
+---- MODULE MC ----
+EXTENDS vchan, TLC
+
+\* CONSTANT definitions @modelParameterConstants:0MaxReadLen
+const_1741941639807372000 == 
+2
+----
+
+\* CONSTANT definitions @modelParameterConstants:1MaxWriteLen
+const_1741941639807373000 == 
+2
+----
+
+\* CONSTANT definitions @modelParameterConstants:2BufferSize
+const_1741941639807374000 == 
+2
+----
+
+\* CONSTANT definitions @modelParameterConstants:3Byte
+const_1741941639807375000 == 
+1..5
+----
+
+\* CONSTRAINT definition @modelParameterContraint:0
+constr_1741941639807376000 ==
+Len(Sent) < 4
+----
+\* INVARIANT definition @modelCorrectnessInvariants:2
+inv_1741941639807379000 ==
+Len(Got) < 6
+----
+=============================================================================
+\* Modification History
+\* Created Fri Mar 14 09:40:39 CET 2025 by gss2027

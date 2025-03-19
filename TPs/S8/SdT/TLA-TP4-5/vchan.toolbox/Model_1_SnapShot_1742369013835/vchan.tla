@@ -289,13 +289,8 @@ ReceiverClose ==
 (* Spurious interruption *)
 
 \* A SenderIT spuriously appears.
-SpuriousSenderIT == 
-/\ SenderIT'=TRUE
-/\ UNCHANGED << Sent, Got, SenderLive, ReceiverLive, SenderState, ReceiverState, Buffer, msg, NotifyWrite, ReceiverIT, NotifyRead >>
 \* A ReceiverIT spuriously appears.
-SpuriousReceiverIT == 
-/\ ReceiverIT'=TRUE
-/\ UNCHANGED << Sent, Got, SenderLive, ReceiverLive, SenderState, ReceiverState, Buffer, msg, NotifyWrite, NotifyRead, SenderIT >>
+
 ----------------
 
 SenderNext == SenderIdle1 \/ SenderIdle2 \/ SenderWrite1 \/ SenderWrite2 \/ SenderWriteNext1 \/ SenderWriteNext2 \/ SenderUnblock1 \/ SenderUnblock2 \/ SenderEnd
@@ -304,7 +299,6 @@ ReceiverNext == ReceiverIdle1 \/ ReceiverIdle2 \/ ReceiverIdle3 \/ ReceiverRead 
 
 Next == \/ SenderNext \/ ReceiverNext
         \/ SenderClose \/ ReceiverClose
-        \/ SpuriousSenderIT \/ SpuriousReceiverIT
 
 \* Weak fairness on sender and weak fairness on receiver: both will progress as long as they do not deadlock.
 \* No fairness on {Sender,Receiver}Close or spurious IT: these events may never occur.
@@ -343,8 +337,5 @@ ShutdownOK == (~SenderLive \/ ~ReceiverLive) ~> (SenderState = Done /\ ReceiverS
 
 (* If both ends never close the connection (and Sent is finite), then the receiver eventually gets all the sent bytes. *)
 NoLoss == <>[](Got = Sent \/ ReceiverLive=FALSE \/ SenderLive=FALSE)
-
-EndsAfterDeath ==
-    []((~SenderLive \/ ~ReceiverLive) ~> (SenderState = Done /\ ReceiverState = Done))
 
 ================================================================

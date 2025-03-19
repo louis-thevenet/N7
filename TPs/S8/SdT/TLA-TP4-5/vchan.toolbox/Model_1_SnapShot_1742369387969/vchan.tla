@@ -289,13 +289,9 @@ ReceiverClose ==
 (* Spurious interruption *)
 
 \* A SenderIT spuriously appears.
-SpuriousSenderIT == 
-/\ SenderIT'=TRUE
-/\ UNCHANGED << Sent, Got, SenderLive, ReceiverLive, SenderState, ReceiverState, Buffer, msg, NotifyWrite, ReceiverIT, NotifyRead >>
+SpuriousSenderIT == SenderIT'=TRUE
 \* A ReceiverIT spuriously appears.
-SpuriousReceiverIT == 
-/\ ReceiverIT'=TRUE
-/\ UNCHANGED << Sent, Got, SenderLive, ReceiverLive, SenderState, ReceiverState, Buffer, msg, NotifyWrite, NotifyRead, SenderIT >>
+SpuriousReceiverIT == ReceiverIT'=TRUE
 ----------------
 
 SenderNext == SenderIdle1 \/ SenderIdle2 \/ SenderWrite1 \/ SenderWrite2 \/ SenderWriteNext1 \/ SenderWriteNext2 \/ SenderUnblock1 \/ SenderUnblock2 \/ SenderEnd

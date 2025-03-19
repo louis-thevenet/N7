@@ -289,8 +289,15 @@ ReceiverClose ==
 (* Spurious interruption *)
 
 \* A SenderIT spuriously appears.
+SpuriousSenderIT == 
+    /\ SenderIT'=TRUE
+    /\ UNCHANGED << Sent, Got, SenderLive, ReceiverLive, SenderState, ReceiverState, Buffer, msg, NotifyWrite, ReceiverIT, NotifyRead >>
+    
 \* A ReceiverIT spuriously appears.
-
+SpuriousReceiverIT == 
+    /\ ReceiverIT'=TRUE
+    /\ UNCHANGED << Sent, Got, SenderLive, ReceiverLive, SenderState, ReceiverState, Buffer, msg, NotifyWrite, NotifyRead, SenderIT >>
+    
 ----------------
 
 SenderNext == SenderIdle1 \/ SenderIdle2 \/ SenderWrite1 \/ SenderWrite2 \/ SenderWriteNext1 \/ SenderWriteNext2 \/ SenderUnblock1 \/ SenderUnblock2 \/ SenderEnd
@@ -299,6 +306,7 @@ ReceiverNext == ReceiverIdle1 \/ ReceiverIdle2 \/ ReceiverIdle3 \/ ReceiverRead 
 
 Next == \/ SenderNext \/ ReceiverNext
         \/ SenderClose \/ ReceiverClose
+        \/ SpuriousSenderIT \/ SpuriousReceiverIT
 
 \* Weak fairness on sender and weak fairness on receiver: both will progress as long as they do not deadlock.
 \* No fairness on {Sender,Receiver}Close or spurious IT: these events may never occur.
@@ -330,12 +338,15 @@ Integrity == (Take(Sent, Len(Got)) = Got)
    the receiver doesn't close the connection). In particular, this says that
    it's OK for the sender to close its end immediately after sending some data. *)
 Availability ==
-  \A x \in 0..Cardinality(Byte) : x = Len(Sent) /\ SenderState = Idle ~> (Len(Got) >= x)
+   ( \A x \in 0..Cardinality(Byte) : ((ReceiverLive=FALSE ~> ReceiverState=Done) \/ (x = Len(Sent) /\ SenderState = Idle ~> (Len(Got) >= x))))
 
 (* If either side closes the connection, both end up in their Done state *)
 ShutdownOK == (~SenderLive \/ ~ReceiverLive) ~> (SenderState = Done /\ ReceiverState = Done)
 
 (* If both ends never close the connection (and Sent is finite), then the receiver eventually gets all the sent bytes. *)
-NoLoss == <>[](Got = Sent)
+NoLoss == <>[](Got = Sent \/ ReceiverLive=FALSE \/ SenderLive=FALSE)
+
+EndsAfterDeath ==
+    []((~SenderLive \/ ~ReceiverLive) ~> (SenderState = Done /\ ReceiverState = Done))
 
 ================================================================

@@ -5,10 +5,10 @@ public aspect Trace {
 
     before():publicMethods() {
         String trace_msg = thisJoinPoint.getSignature().getName() + "(";
-        for (var arg : thisJoinPoint.getArgs()) {
-            trace_msg += arg + ", ";
+        for (Object arg : thisJoinPoint.getArgs()) {
+            trace_msg += (arg.toString()) + ", ";
         }
-        if (thisJoinPoint.getArgs().length> 0) {
+        if (thisJoinPoint.getArgs().length > 0) {
             trace_msg = trace_msg.substring(0, trace_msg.length()-2);
         }
         trace_msg += ")";

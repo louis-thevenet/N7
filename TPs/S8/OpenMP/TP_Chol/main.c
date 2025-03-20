@@ -71,18 +71,18 @@ NB is the number of block-columns the matrix is made of.\n");
   // free_matrix(&A);
   // copy_matrix(Acpy, &A);
 
-  printf("\n========== Parallel loop imp (%s threads) ==========\n",nt );
-  t_start = usecs();
-  trace_init();
-  chol_par_loop_improved(A);
-  trace_dump("trace_par_loop_improved.svg");
-  t_end = usecs();
-  printf("Time (msec.) : %7.1f\n",(t_end-t_start)/1e3);
-  printf("Gflop/s      : %7.1f\n",flops/(t_end-t_start)/1e3);
-  printf("||Ax-b||     : %.4e\n",check_res(A, Acpy));
+  // printf("\n========== Parallel loop imp (%s threads) ==========\n",nt );
+  // t_start = usecs();
+  // trace_init();
+  // chol_par_loop_improved(A);
+  // trace_dump("trace_par_loop_improved.svg");
+  // t_end = usecs();
+  // printf("Time (msec.) : %7.1f\n",(t_end-t_start)/1e3);
+  // printf("Gflop/s      : %7.1f\n",flops/(t_end-t_start)/1e3);
+  // printf("||Ax-b||     : %.4e\n",check_res(A, Acpy));
 
-  free_matrix(&A);
-  copy_matrix(Acpy, &A);
+  // free_matrix(&A);
+  // copy_matrix(Acpy, &A);
 
   printf("\n========== Parallel tasks    (%s threads) ==========\n",nt );
   t_start = usecs();

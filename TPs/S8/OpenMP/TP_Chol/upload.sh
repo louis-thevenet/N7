@@ -22,7 +22,7 @@ cat <<EOF >> dosub.sh
 ##SBATCH --exclusive
 
 module purge
-source \${HOME}/${USER}/TP_Chol_corr/env_cpuonly.sh
+source \${HOME}/${USER}/TP_Chol/env_cpuonly.sh
 
 cd \${SLURM_SUBMIT_DIR}
 
@@ -33,5 +33,5 @@ cd \${SLURM_SUBMIT_DIR}
 ./bench_weak 200 20
 EOF
 
-rsync --rsh='ssh -F none' -r ../TP_Chol_corr ${1}@turpanlogin.calmip.univ-toulouse.fr:${USER}/
+rsync --rsh='ssh -F none' -r ../TP_Chol ${1}@turpanlogin.calmip.univ-toulouse.fr:${USER}/
 

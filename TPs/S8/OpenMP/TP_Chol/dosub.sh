@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 #Job name
-#SBATCH -J louis
+#SBATCH -J ltt5092
 # Asking for one node
 #SBATCH -N 1
 #SBATCH -n 1
@@ -15,7 +15,7 @@
 ##SBATCH --exclusive
 
 module purge
-source ${HOME}/louis/TP_Chol/env_cpuonly.sh
+source ${HOME}/ltt5092/TP_Chol/env_cpuonly.sh
 
 cd ${SLURM_SUBMIT_DIR}
 

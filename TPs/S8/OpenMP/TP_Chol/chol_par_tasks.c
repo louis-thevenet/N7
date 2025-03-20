@@ -22,7 +22,7 @@ void chol_par_tasks(matrix_t A){
       // #pragma omp for 
       for(i=k+1; i<A.NB; i++){
         /* compute the A[i][k] sub-diagonal block */
-        #pragma omp task priority(4 * A.NB - i) depend(inout: A.blocks[i][k]) depend(in:A.blocks[k][k]) 
+        #pragma omp task priority(16 * A.NB - i) depend(inout: A.blocks[i][k]) depend(in:A.blocks[k][k]) 
         trsm(A.blocks[k][k], A.blocks[i][k]);
       }
 
@@ -30,7 +30,7 @@ void chol_par_tasks(matrix_t A){
       for(i=k+1; i<A.NB; i++){
         for(j=k+1; j<=i; j++){
           /* update the A[i][j] block in the trailing submatrix */
-          #pragma omp task priority(2*A.NB-i-j) depend(in:A.blocks[i][k], A.blocks[j][k]) depend(inout: A.blocks[i][j]) 
+          #pragma omp task priority(12*A.NB-i-2*(j+A.NB)) depend(in:A.blocks[i][k], A.blocks[j][k]) depend(inout: A.blocks[i][j]) 
            gemm(A.blocks[i][k], A.blocks[j][k], A.blocks[i][j]);
         }    
       }

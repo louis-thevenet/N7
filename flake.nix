@@ -107,6 +107,7 @@
               # OpenMP
               openblas
               gfortran
+              hyperfine
 
               # Web
               tomcat

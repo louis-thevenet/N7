@@ -26,16 +26,16 @@ int main(int argc, char **argv){
   cnt = 0;
 
   t_start = usecs();
-  #pragma omp parallel private(seed)
-  {
+  #pragma omp parallel private (seed,x,y) reduction(+:cnt)
   seed = omp_get_thread_num();
+  //#pragma omp parallel for firstprivate(seed)
   #pragma omp for
   for(it=0; it<npoints; it++){
     x = rnd_doub(&seed);
     y = rnd_doub(&seed);
+    
     if(y<=f(x)) cnt++;
   }
-}
   t_end = usecs();
   printf("Integral is %f\n",((double)cnt)/((double)npoints)*4.0);
   printf("Execution time : %8.2f msec.\n",((double)t_end-t_start)/1000.0);

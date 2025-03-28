@@ -84,24 +84,32 @@ void parallel_scan(int *x, int b, int n){
   
   /* Forward sweep */
   for(d=0; d<b; d++){
+    //#pragma omp parallel for
     for(i=0; i<n; i+=1<<d+1){
       l = i+(1<<d)-1;
       r = i+(1<<(d+1))-1;
+      #pragma omp task depend(in:x [l]) depend(inout:x[r]) fristprivate (l,r)
       x[r] = sum(x[l], x[r]);
     }
   }
 
   
   /* Backward sweep */
+  #pragma omp task depend(out:x[n-1])
+  {
   x[n-1]=0;
-  
+  }
   for(d=b-1; d>=0; d--){
+    //#pragma omp parallel for
     for(i=0; i<n; i+=1<<(d+1)){
       l = i+(1<<d)-1;
       r = i+(1<<(d+1))-1;
+      #pragma omp task depend(inout:x[r],x[l]) firstprivate (l,r,t)
+      {
       t = x[l];
       x[l] = x[r];
       x[r] = sum(t, x[l]);
+      }
     }
   }
 }

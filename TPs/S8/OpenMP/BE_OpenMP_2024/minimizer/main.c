@@ -51,67 +51,53 @@ int main(int argc, char **argv){
 }
 
 
-#include <math.h>
-#include <omp.h>
+void minimize_no_task(double *x, double *y, double *z, int maxit, int *nit, double delta){
 
-void minimize_no_task(double *x, double *y, double *z, int maxit, int *nit, double delta) {
-    double x_i, y_i, z_i;
-    double newx, newy, newz;
-    int it, i, j;
+  double x_i, y_i, z_i;
+  double newx, newy, newz, tmpz;
+  int    it;
+  int i, j;
 
-    x_i = *x;
-    y_i = *y;
-    z_i = f(x_i, y_i);
+  x_i = *x;
+  y_i = *y;
+  z_i = f(x_i, y_i);
 
-    for (it = 0; it < maxit; it++) {
-        newx = x_i;
-        newy = y_i;
-        newz = z_i;
-
-        // Parallel evaluation of f(x, y)
-        #pragma omp parallel
-        {
-            double tx = x_i, ty = y_i, tz = z_i; // Thread-local best values
-
-            #pragma omp for collapse(2) nowait
-            for (i = -1; i <= 1; i += 2) {
-                for (j = -1; j <= 1; j += 2) {
-                    double tmpz = f(x_i + i * delta, y_i + j * delta);
-                    if (tmpz < tz) {
-                        tx = x_i + i * delta;
-                        ty = y_i + j * delta;
-                        tz = tmpz;
-                    }
-                }
-            }
-
-            // Merge thread-local results safely
-            #pragma omp critical
-            {
-                if (tz < newz) {
-                    newx = tx;
-                    newy = ty;
-                    newz = tz;
-                }
-            }
-        } // End of parallel section
-
-        if (newx == x_i && newy == y_i) {
-            delta /= 2.0;
-        } else if (fabs(newz - z_i) / fabs(z_i) < 0.001) {
-            break;
-        } else {
-            x_i = newx;
-            y_i = newy;
-            z_i = newz;
+  for(it=0; it<maxit; it++){
+    newz = z_i;
+    #pragma omp parallee collapse(2) private(tmpz)
+    for(i=-1; i<=1; i+=2){
+     // #pragma omp parallel for
+      for(j=-1; j<=1; j+=2){
+        tmpz    = f(x_i+i*delta, y_i+j*delta);
+        #pragma omp critical
+        if(tmpz < newz){
+          newx = x_i+i*delta;
+          newy = y_i+j*delta;
+          newz = tmpz;
         }
+      }
     }
+    if(newx==x_i && newy==y_i) {
+      delta = delta/2.0;
+    } else if (fabs(newz-z_i)/fabs(z_i)< 0.001){
+      break;
+    } else {
+      x_i = newx;
+      y_i = newy;
+      z_i = newz;
+    }
+    /* printf("it:%3d, delta:%.10f  --  x:%7.4f  y:%7.4f  z:%8.4f \n",it, delta, x_i, y_i,z_i); */
+  }
 
-    *x = x_i;
-    *y = y_i;
-    *z = z_i;
-    *nit = it;
+  *x   = x_i;
+  *y   = y_i;
+  *z   = z_i;
+  *nit = it-1;
+  
+  return;
 }
+
+
 
 
 void minimize_task(double *x, double *y, double *z, int maxit, int *nit, double delta){
@@ -127,14 +113,32 @@ void minimize_task(double *x, double *y, double *z, int maxit, int *nit, double 
 
   for(it=0; it<maxit; it++){
     newz = z_i;
+    #pragma omp parallel
+    {
+    #pragma omp single
+    {
     for(i=-1; i<=1; i+=2){
       for(j=-1; j<=1; j+=2){
+        //#pragma omp task depend (in ; i,j)
+        #pragma omp task firstprivate(i,j) private (tmpz)
+        {
+
+        
         tmpz    = f(x_i+i*delta, y_i+j*delta);
+        
+        #pragma omp critical
+        {
+
+        
         if(tmpz < newz){
           newx = x_i+i*delta;
           newy = y_i+j*delta;
           newz = tmpz;
         }
+        }
+        }
+      }
+    }
       }
     }
     if(newx==x_i && newy==y_i) {

@@ -61,39 +61,60 @@ int sequential_reduction(int *x, int n){
   return res;
 }
 
+/*
+int parallel_reduction(int *x, int n){
+  int i,j, res1, res2;
 
-int parallel_reduction(int *x, int n) {
-       int i, res;
-    res = init();
-
-    int num_threads;
-    int *partial_sums;
-
-    #pragma omp parallel
+  res1=init();
+  res2 = init();
+  #pragma omp parallel 
+  {
+    #pragma omp task firstprivate(i)
     {
-        int tid = omp_get_thread_num();
-        int local_res = init();
-
-        #pragma omp single
-        {
-            num_threads = omp_get_num_threads();
-            partial_sums = (int *)malloc(num_threads * sizeof(int));
-        }
-
-        #pragma omp for
-        for (i = 0; i < n; i++) {
-            local_res = operator(local_res, x[i]);
-        }
-
-        partial_sums[tid] = local_res;
-
-        #pragma omp barrier
-        #pragma omp single
-        {
-            for (i = 0; i < num_threads; i++) {
-                res = operator(res, partial_sums[i]);
-            }
-            free(partial_sums);
-        }
+  for(i=0; i<n; i=i+2)
+    res1 = operator(res1, x[i]);
     }
-    return res;}
+
+  #pragma omp task firstprivate(j)
+  {
+  for(j=1; j<n; j =j+2)
+    res2 = operator(res2, x[j]);
+  }
+  }
+  return res1+res2;
+
+}
+*/
+/*
+int parallel_reduction(int *x, int n){
+  int i,j, res1, res2;
+
+  res1=init();
+  res2 = init();
+  #pragma omp parallel for
+  {
+  for(i=0; i<n; i=i+2)
+    #pragma omp task firstprivate(i)
+    {
+    x[i] = operator(x [i+1], x[i]);
+    }
+  }
+  return res1+res2;
+
+}*/
+
+int parallel_reduction(int *x, int n){
+  int i, res,myres;
+  #pragma omp parallel private(myres)
+  myres = init();
+  
+  #pragma omp for
+  for(i=0; i<n; i++)
+    myres = operator(myres, x[i]);
+
+
+  #pragma omp critical
+  res = operator(res,myres);
+
+  return res;
+}

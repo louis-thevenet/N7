@@ -17,6 +17,7 @@ int main(int argc, char **argv){
   init(np);
   
   t_start = usecs();
+  #pragma omp parallel for private(procedure,s)
   for(p=0; p<np; p++){
 
     get_procedure(&procedure);
@@ -25,22 +26,27 @@ int main(int argc, char **argv){
       switch (procedure.steps[s]) {
       case PRINTER:
         /* printf("%3d  %2d -- Using printer %d\n",p,s,procedure.data[s]); */
+        #pragma omp critical (printer)
         use_printer(procedure, s);
         break;
       case CPU:
         /* printf("%3d  %2d -- Using CPU     %d\n",p,s,procedure.data[s]); */
+        #pragma omp critical (cpu)
         use_cpu(procedure, s);
         break;
       case SCREEN:
         /* printf("%3d  %2d -- Using screen  %d\n",p,s,procedure.data[s]); */
+        #pragma omp critical (screeh)
         use_screen(procedure, s);
         break;
       case DISK:
         /* printf("%3d  %2d -- Using disk    %d\n",p,s,procedure.data[s]); */
+        #pragma omp critical (disk)
         use_disk(procedure, s);
         break;
       case MEMORY:
         /* printf("%3d  %2d -- Using memory  %d\n",p,s,procedure.data[s]); */
+        #pragma omp critical (memory)
         use_memory(procedure, s);
         break;
       }

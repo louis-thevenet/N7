@@ -74,3 +74,38 @@ $
   &eq.triple forall x exists y exists z (not H(x) or F(x,y) and M(x,e)) \
   &eq.triple forall x (not H(x) or F(x, f_y (x)) and (not H (x) or M (x, f_z (x, f_y (x)))))
 $
+
+= CTD SAT
+== Exercice 2-coloration
+Variables de décision $x_i = cases("vrai si on colore en bleu", "faux sinon")$
+
+Pour chaque arête entre $a$ et $b$, on ajoute la contrainte $(a and not b )or (not a and b)$
+
+== Exercice Sudoku
+
+Variables de décision $x_(i,j,k) = cases("vrai si on met " k "dans la case" (i,j), "faux sinon")$
+
+Contraintes:
+- existence
+  $
+    forall l in [1, n²], forall c in [1,n²] x_(l,c) or.big_(j in [1,n²]) x_(l,c,j)
+  $
+- unicité
+  $
+    forall l in [1, n²], forall c in [1,n²], space (forall v in [1,n²]) x_(l,c,v) -> not or.big_(v' in [1, n²]\\{v}) x_(l,c,v')
+  $
+- unicité par ligne
+  $
+    forall l in [1, n²], forall c in [1,n²], forall v in [1,n²]) x_(l,c,v) -> not or.big_(c' in [1, n²]\\{c}) x_(l,c',v)
+  $
+- unicité par colonne
+  $
+    forall l in [1, n²], forall c in [1,n²], forall v in [1,n²]) x_(l,c,v) -> not or.big_(l' in [1, n²]\\{l}) x_(l',c,v)
+  $
+- unicité par sous-grille
+  $
+    forall l in [1, n], forall c in [1,n],
+    and.big_(i in [n * l, (n+1)*l-1]),
+    and.big_(j in [n * l, (n+1)*l-1])
+    dots
+  $

@@ -95,7 +95,9 @@ void parallel_scan(int *x, int b, int n){
 
   
   /* Backward sweep */
+  
   #pragma omp task depend(out:x[n-1])
+  
   {
   x[n-1]=0;
   }

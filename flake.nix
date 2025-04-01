@@ -105,6 +105,7 @@
               texliveSmall
 
               # OpenMP
+              clang
               openblas
               gfortran
               hyperfine

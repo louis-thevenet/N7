@@ -114,6 +114,10 @@
               tomcat
               jdk17
 
+              # Prolog
+              swi-prolog
+              gprolog
+
               # Utilitaires
               unzip
               vpnc

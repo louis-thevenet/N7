@@ -105,12 +105,18 @@
               texliveSmall
 
               # OpenMP
+              clang
               openblas
               gfortran
+              hyperfine
 
               # Web
               tomcat
               jdk17
+
+              # Prolog
+              swi-prolog
+              gprolog
 
               # Utilitaires
               unzip

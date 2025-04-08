@@ -1,7 +1,7 @@
 #include <sys/time.h>
-#include <stdio.h>
 #include <stdlib.h>
 
+  
 
 long usecs (){
   struct timeval t;
@@ -21,4 +21,16 @@ void mysleep(double sec){
       e = usecs();
     }
   return;
-  }
+}
+
+
+int init(){
+  return 0;
+}
+  
+int operator(int a, int b){
+  mysleep(0.01);
+  return a + b;
+
+}
+

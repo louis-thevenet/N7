@@ -1,15 +1,11 @@
-#include <sys/time.h>
+#include "aux.h"
 #include <stdio.h>
-#include <stdlib.h>
-
-
 long usecs (){
   struct timeval t;
 
   gettimeofday(&t,NULL);
   return t.tv_sec*1000000+t.tv_usec;
 }
-
 
 void mysleep(double sec){
 
@@ -21,4 +17,14 @@ void mysleep(double sec){
       e = usecs();
     }
   return;
-  }
+}
+
+double f(double x, double y){
+  double z;
+
+  z = x*x + 2*x + 3*y*y + y + 2;
+  mysleep(0.01);
+  
+  return z;
+}
+

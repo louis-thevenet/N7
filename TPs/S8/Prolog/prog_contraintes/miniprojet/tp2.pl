@@ -24,7 +24,7 @@ within_bounds([X|Xs], [Y|Ys], [T|Ts], Max) :-
     within_bounds(Xs, Ys, Ts, Max).
  
  
-solve(Num, Xs, Ys) :-
+deprecated_solve(Num, Xs, Ys) :-
     data(Num, T, Ts),
     length(Ts, N),
     length(Xs, N),
@@ -35,7 +35,7 @@ solve(Num, Xs, Ys) :-
     noverlap(Xs, Ys, Ts),
  
     fd_labeling(Xs),
-    fd_labeling(Ys).
+    fd_labeling(Ys),
  
     % 2) Appel à printsol pour écrire la solution dans un fichier
     printsol('tiles.txt', Xs, Ys, Ts).
@@ -69,25 +69,23 @@ sum_horizontals_aux([Xl|Xls], [Yl|Yls], [Tl|Tls], H, Acc, Sum) :-
     NewAcc #= Acc + InRange * Tl,
     sum_horizontals_aux(Xls, Yls, Tls, H, NewAcc, Sum).
 
-bettersolve(Num, Xs, Ys) :-
+solve(Num, Xs, Ys, B) :-
     data(Num, T, Ts),
     length(Ts, N),
     length(Xs, N),
     length(Ys, N),
 
-    within_bounds(Xs, Ys, Ts, T),
+    % Ajout des contraintes redondantes
+    T1 is T-1,
+    sum_verticals(Xs, Ys, Ts, T, T1),
+    sum_horizontals(Xs, Ys, Ts, T, T1 ),
 
+    within_bounds(Xs, Ys, Ts, T),
     noverlap(Xs, Ys, Ts),
 
-    % Ajout des contraintes redondantes
-    sum_verticals(Xs, Ys, Ts, T, T),
-    sum_horizontals(Xs, Ys, Ts, T, T),
-
-    fd_labeling(Xs, [backtracks(B)]),
     fd_labeling(Ys, [backtracks(B)]),
-
-    % 2) Affichage du nombre de backtracks
-    format("Nombre de backtracks : ~d~n", [B]),
+    
+    fd_labeling(Xs, [backtracks(B)]),
 
     % Appel à printsol pour écrire la solution dans un fichier
     printsol('tiles.txt', Xs, Ys, Ts).

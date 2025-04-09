@@ -35,7 +35,7 @@ class Sudoku {
           exprs[v] = grid[l][c][v];
         }
         solver.add(context.mkOr(exprs));
-
+        
       }
     }
 

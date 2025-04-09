@@ -1,0 +1,72 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "SimpleIntegerProblem",
+            "request": "launch",
+            "mainClass": "fr.n7.smt.SimpleIntegerProblem",
+            // change the path to your Z3 install if necessary
+            "vmArgs": "-Djava.library.path=/mnt/n7fs/ens/tp_dupont/z3/bin"
+        },
+        {
+            "type": "java",
+            "name": "SimpleArrayProblem",
+            "request": "launch",
+            "mainClass": "fr.n7.smt.SimpleArrayProblem",
+            // change the path to your Z3 install if necessary
+            "vmArgs": "-Djava.library.path=/mnt/n7fs/ens/tp_dupont/z3/bin"
+        },
+        {
+            "type": "java",
+            "name": "SimpleBVProblem",
+            "request": "launch",
+            "mainClass": "fr.n7.smt.SimpleBVProblem",
+            // change the path to your Z3 install if necessary
+            "vmArgs": "-Djava.library.path=/mnt/n7fs/ens/tp_dupont/z3/bin"
+        },
+        {
+            "type": "java",
+            "name": "CheckingOverflowProblem",
+            "request": "launch",
+            "mainClass": "fr.n7.smt.CheckingOverflowProblem",
+            // change the path to your Z3 install if necessary
+            "vmArgs": "-Djava.library.path=/mnt/n7fs/ens/tp_dupont/z3/bin"
+        },
+        {
+            "type": "java",
+            "name": "ArraySwaps",
+            "request": "launch",
+            "mainClass": "fr.n7.smt.ArraySwaps",
+            // change the path to your Z3 install if necessary
+            "vmArgs": "-Djava.library.path=/mnt/n7fs/ens/tp_dupont/z3/bin"
+        },
+        {
+            "type": "java",
+            "name": "Sudoku",
+            "request": "launch",
+            "mainClass": "fr.n7.smt.Sudoku",
+            // change the path to your Z3 install if necessary
+            "vmArgs": "-Djava.library.path=/mnt/n7fs/ens/tp_dupont/z3/bin"
+        },
+        {
+            "type": "java",
+            "name": "MainArrayCLI",
+            "request": "launch",
+            "mainClass": "fr.n7.smt.MainArrayCLI",
+            // change the path to your Z3 install if necessary
+            "vmArgs": "-Djava.library.path=/mnt/n7fs/ens/tp_dupont/z3/bin"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}",
+            // change the path to your Z3 install if necessary
+            "vmArgs": "-Djava.library.path=/mnt/n7fs/ens/tp_dupont/z3/bin"
+        }
+    ]
+}

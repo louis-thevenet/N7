@@ -1,0 +1,12 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "classes",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        // change the path to your Z3 install if necessary
+        "/mnt/n7fs/ens/tp_dupont/z3/bin/*.jar"
+        ],
+    "files.watcherExclude": {
+        "**/target": true
+    }
+}

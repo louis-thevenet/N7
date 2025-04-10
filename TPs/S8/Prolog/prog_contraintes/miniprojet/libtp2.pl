@@ -67,8 +67,6 @@ mincritrec([X|Xs], Criterion, BC, BX, Rest, B, R):-
         C @< BC -> mincritrec(Xs, Criterion, C, X, [BX|Rest], B, R);
         mincritrec(Xs, Criterion, BC, BX, [X|Rest], B, R).
 
-l(G),
-
 mincrit([X|Xs], Criterion, Best, Rest):-
 	GC =.. [Criterion,X,C],
 	call(GC),

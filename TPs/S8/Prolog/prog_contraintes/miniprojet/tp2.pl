@@ -112,8 +112,56 @@ solve_3(Num, Xs, Ys, B, NbSol) :-
     sum_verticals(Xs, Ys, Ts, T, T1),
     sum_horizontals(Xs, Ys, Ts, T, T1 ),
 
-    labeling(Xs, Ys, assign, minmin, B, NbSol),
+    labeling(Xs, Ys, indomain, minmin, B, NbSol),
 
     % Appel à printsol pour écrire la solution dans un fichier
     printsol('tiles.txt', Xs, Ys, Ts).
 
+% assign : ~6M
+% 
+
+% Symétrie
+% 1)
+
+ensure_sorted([],[],[],_,_,_).
+ensure_sorted([X|Xs], [Y|Ys], [T|Ts], Xc, Yc, Tc) :-
+    (
+      (
+            Tc #= T,
+            (X #> Xc; (X#=Xc, Y #>= Yc))
+        
+        );
+        Tc #\= T
+    ),
+    ensure_sorted(Xs, Ys, Ts, Xc, Yc, Tc).
+    
+
+
+sorted_lexico([],[],[]).
+sorted_lexico([X|Xs], [Y| Ys], [T|Ts]) :-
+    ensure_sorted(Xs,Ys,Ts, X, Y, T).
+    
+
+
+
+solve_4(Num, Xs, Ys, B, NbSol) :-
+    data(Num, T, Ts),
+    length(Ts, N),
+    length(Xs, N),
+    length(Ys, N),
+
+    within_bounds(Xs, Ys, Ts, T),
+    noverlap(Xs, Ys, Ts),
+
+    % Ajout des contraintes redondantes
+    T1 is T-1,
+    sum_verticals(Xs, Ys, Ts, T, T1),
+    sum_horizontals(Xs, Ys, Ts, T, T1 ),
+
+    % Tri dans l'ordre lexicographique
+    sorted_lexico(Xs, Ys, Ts),
+
+    labeling(Xs, Ys, assign, minmin, B, NbSol),
+
+    % Appel à printsol pour écrire la solution dans un fichier
+    printsol('tiles.txt', Xs, Ys, Ts).

@@ -174,6 +174,7 @@ largest(Tl,[T|Ts]):-
 
 
 force_square_down(_,_,_,_,0).
+force_square_down([],[],[],_,_).
 force_square_down([X|Xs],[Y|Ys],[T|Ts],Tl,N):-
     (
         (T #= Tl 
@@ -204,7 +205,7 @@ solve_5(Num, Xs, Ys, Bx, By) :-
     % Tri des coordonnées des carrés de mêmes tailles dans l'ordre lexicographique
     sorted_lexico(Xs, Ys, Ts),
 
-    % Restriction de la position du plus grand caréé dans le coin inférieur gauche
+    % Restriction de la position du plus grand carré dans le coin inférieur gauche
     largest(Tl,Ts),
     force_square_down(Xs,Ys,Ts,Tl,1),
 

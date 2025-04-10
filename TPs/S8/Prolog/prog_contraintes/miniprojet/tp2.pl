@@ -69,7 +69,7 @@ sum_horizontals_aux([Xl|Xls], [Yl|Yls], [Tl|Tls], H, Acc, Sum) :-
     NewAcc #= Acc + InRange * Tl,
     sum_horizontals_aux(Xls, Yls, Tls, H, NewAcc, Sum).
 
-solve(Num, Xs, Ys, B) :-
+solve(Num, Xs, Ys, B, B2) :-
     data(Num, T, Ts),
     length(Ts, N),
     length(Xs, N),
@@ -84,8 +84,7 @@ solve(Num, Xs, Ys, B) :-
     noverlap(Xs, Ys, Ts),
 
     fd_labeling(Ys, [backtracks(B)]),
-    
-    fd_labeling(Xs, [backtracks(B)]),
+    fd_labeling(Xs, [backtracks(B2)]),
 
     % Appel à printsol pour écrire la solution dans un fichier
     printsol('tiles.txt', Xs, Ys, Ts).

@@ -117,34 +117,29 @@ solve_3(Num, Xs, Ys, B, NbSol) :-
     % Appel à printsol pour écrire la solution dans un fichier
     printsol('tiles.txt', Xs, Ys, Ts).
 
-% assign : ~6M
+% assign : ~6.5M backtracks
 % 
 
-% Symétrie
+% Symétries 
+% Ici, on ne part pas du principe que les carrés soient ordonnées dans l'ordre croissant de tailles comme dans les données.
 % 1)
-
-ensure_sorted([],[],[],_,_,_).
+ensure_sorted([], [], [], _, _, _).
 ensure_sorted([X|Xs], [Y|Ys], [T|Ts], Xc, Yc, Tc) :-
     (
-      (
-            Tc #= T,
-            (X #> Xc; (X#=Xc, Y #>= Yc))
-        
-        );
-        Tc #\= T
+        (
+            Tc #= T 
+            #/\ (X #> Xc #\/ (X #= Xc #/\ Y #>= Yc))
+        ) 
+        #\/
+        (Tc #\= T)
     ),
-    ensure_sorted(Xs, Ys, Ts, Xc, Yc, Tc).
+    ensure_sorted(Xs, Ys, Ts, X, Y, T).
     
-
-
-sorted_lexico([],[],[]).
-sorted_lexico([X|Xs], [Y| Ys], [T|Ts]) :-
-    ensure_sorted(Xs,Ys,Ts, X, Y, T).
+sorted_lexico([], [], []).
+sorted_lexico([X|Xs], [Y|Ys], [T|Ts]) :-
+    ensure_sorted(Xs, Ys, Ts, X, Y, T).
     
-
-
-
-solve_4(Num, Xs, Ys, B, NbSol) :-
+solve_4(Num, Xs, Ys, Bx, By) :-
     data(Num, T, Ts),
     length(Ts, N),
     length(Xs, N),
@@ -156,12 +151,65 @@ solve_4(Num, Xs, Ys, B, NbSol) :-
     % Ajout des contraintes redondantes
     T1 is T-1,
     sum_verticals(Xs, Ys, Ts, T, T1),
-    sum_horizontals(Xs, Ys, Ts, T, T1 ),
+    sum_horizontals(Xs, Ys, Ts, T, T1),
 
-    % Tri dans l'ordre lexicographique
+    % Tri des coordonnées des carrés de mêmes tailles dans l'ordre lexicographique
     sorted_lexico(Xs, Ys, Ts),
 
-    labeling(Xs, Ys, assign, minmin, B, NbSol),
+    fd_labeling(Xs, [backtracks(Bx)]),
+    fd_labeling(Ys, [backtracks(By)]),
+
+    % Appel à printsol pour écrire la solution dans un fichier
+    printsol('tiles.txt', Xs, Ys, Ts).
+
+
+%NbSolutions de 1 avec symétrie de permutations : 480
+%NbSolutions de 1 sans symétrie de permutations: 4
+
+% 2)
+largest(0,[]).
+largest(Tl,[T|Ts]):-
+    Tl #= max(T, Tl1),
+    largest(Tl1, Ts).
+
+
+force_square_down(_,_,_,_,0).
+force_square_down([X|Xs],[Y|Ys],[T|Ts],Tl,N):-
+    (
+        (T #= Tl 
+        #/\ X #= 0 
+        #/\ Y #= 0
+        #/\ N1 #= N-1)
+    #\/
+        (T #\= Tl
+        #/\ N1 #= N)
+    ),
+    force_square_down(Xs,Ys,Ts,Tl,N1).
+
+
+solve_5(Num, Xs, Ys, Bx, By) :-
+    data(Num, T, Ts),
+    length(Ts, N),
+    length(Xs, N),
+    length(Ys, N),
+
+    within_bounds(Xs, Ys, Ts, T),
+    noverlap(Xs, Ys, Ts),
+
+    % Ajout des contraintes redondantes
+    T1 is T-1,
+    sum_verticals(Xs, Ys, Ts, T, T1),
+    sum_horizontals(Xs, Ys, Ts, T, T1),
+
+    % Tri des coordonnées des carrés de mêmes tailles dans l'ordre lexicographique
+    sorted_lexico(Xs, Ys, Ts),
+
+    % Restriction de la position du plus grand caréé dans le coin inférieur gauche
+    largest(Tl,Ts),
+    force_square_down(Xs,Ys,Ts,Tl,1),
+
+    fd_labeling(Xs, [backtracks(Bx)]),
+    fd_labeling(Ys, [backtracks(By)]),
 
     % Appel à printsol pour écrire la solution dans un fichier
     printsol('tiles.txt', Xs, Ys, Ts).

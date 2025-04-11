@@ -112,13 +112,14 @@ solve_3(Num, Xs, Ys, B, NbSol) :-
     sum_verticals(Xs, Ys, Ts, T, T1),
     sum_horizontals(Xs, Ys, Ts, T, T1 ),
 
-    labeling(Xs, Ys, indomain, minmin, B, NbSol),
+    labeling(Xs, Ys, assign, minmin, B, NbSol),
 
     % Appel à printsol pour écrire la solution dans un fichier
     printsol('tiles.txt', Xs, Ys, Ts).
 
-% assign : ~6.5M backtracks
-% 
+% 2)
+% assign : à mesure que les solutions sont trouvées, le nombre de backtracks augmente (~1.5M pour la première solution)
+% indomain : l'éxecution est trop longue
 
 % Symétries 
 % Ici, on ne part pas du principe que les carrés soient ordonnées dans l'ordre croissant de tailles comme dans les données.
@@ -167,28 +168,27 @@ solve_4(Num, Xs, Ys, Bx, By) :-
 %NbSolutions de 1 sans symétrie de permutations: 4
 
 % 2)
+
 largest(0,[]).
 largest(Tl,[T|Ts]):-
     Tl #= max(T, Tl1),
     largest(Tl1, Ts).
 
 
-force_square_down(_,_,_,_,0).
-force_square_down([],[],[],_,_).
-force_square_down([X|Xs],[Y|Ys],[T|Ts],Tl,N):-
+force_square_down([],[],[],_).
+force_square_down([X|Xs],[Y|Ys],[T|Ts],Tl):-
     (
-        (T #= Tl 
+        T #= Tl 
         #/\ X #= 0 
         #/\ Y #= 0
-        #/\ N1 #= N-1)
-    #\/
-        (T #\= Tl
-        #/\ N1 #= N)
-    ),
-    force_square_down(Xs,Ys,Ts,Tl,N1).
+    );
+    (
+        T #\= Tl ,
+        force_square_down(Xs,Ys,Ts,Tl)
+    ).
 
 
-solve_5(Num, Xs, Ys, Bx, By) :-
+solve_5(Num, Xs, Ys, B, NbSol) :-
     data(Num, T, Ts),
     length(Ts, N),
     length(Xs, N),
@@ -207,10 +207,17 @@ solve_5(Num, Xs, Ys, Bx, By) :-
 
     % Restriction de la position du plus grand carré dans le coin inférieur gauche
     largest(Tl,Ts),
-    force_square_down(Xs,Ys,Ts,Tl,1),
+    %print(Tl),
+    force_square_down(Xs,Ys,Ts,Tl),
 
-    fd_labeling(Xs, [backtracks(Bx)]),
-    fd_labeling(Ys, [backtracks(By)]),
+    labeling(Xs, Ys, assign, minmin, B, NbSol),
+
+    % fd_labeling(Xs, [backtracks(Bx)]),
+    % fd_labeling(Ys, [backtracks(By)]),
 
     % Appel à printsol pour écrire la solution dans un fichier
     printsol('tiles.txt', Xs, Ys, Ts).
+
+
+% NbSolutions de 1 avec plus grand carré fixé : 1
+% NbSolutions de 2 avec plus grand carré fixé : 2554

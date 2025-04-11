@@ -1,12 +1,18 @@
 
 monProgramme {
     typedef int Entier;
+    struct zap {
+        Entier zip;
+        int zoup;
+    } zam = {1,1};
 
     Entier i = 0;
+
     while (i == 0) {
     	i = 1;
         Entier j = 0;
+        //if (zam.zip > i) {}
     }
 
-    j = j+1;
+    // j = j+1;
 }

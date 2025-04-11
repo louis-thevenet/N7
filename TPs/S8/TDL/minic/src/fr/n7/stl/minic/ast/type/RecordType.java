@@ -77,7 +77,26 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 	 */
 	@Override
 	public boolean compatibleWith(Type _other) {
-		throw new SemanticsUndefinedException( "compatibleWith is undefined in RecordType.");
+		// OTHER EST TOUJOURS UNE SEQUENCE
+		// AUCUN MOYEN DE FAIRE UN RECORD à DROITE DE L'AFFECTATION
+		// DONC VAUT MIEUX APPELER OTHER.GETTYPE.COMPATIBLEWITH....
+		// ET FAIRE LE CODE DE SEQUENCETYPE
+		if (!(_other instanceof RecordType)) {
+		return false;
+		}
+		var other_rec= (RecordType)_other;
+		if (this.fields.size() != other_rec.fields.size()) {
+			return false;
+		}
+
+		for (int i = 0; i < this.fields.size(); i++) {
+			var f1 = this.fields.get(i); 
+			var f2 = other_rec.fields.get(i); 
+			if (!(f1.getName().equals(f2.getName()) && f1.getType().compatibleWith(f2.getType()))) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/* (non-Javadoc)

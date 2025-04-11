@@ -94,8 +94,9 @@ public class Conditional implements Instruction {
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> scope) {
 		return this.condition.completeResolve(scope)
-				&& this.thenBranch.completeResolve(new SymbolTable(scope))
-				&& (this.elseBranch == null || this.elseBranch.completeResolve(new SymbolTable(scope)));
+				// new symbol table ?
+				&& this.thenBranch.completeResolve(scope)
+				&& (this.elseBranch == null || this.elseBranch.completeResolve(scope));
 	}
 
 	/*

@@ -1,6 +1,12 @@
+
 monProgramme {
-    int i = 0;
+    typedef int Entier;
+
+    Entier i = 0;
     while (i == 0) {
     	i = 1;
+        Entier j = 0;
     }
+
+    j = j+1;
 }

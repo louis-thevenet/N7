@@ -109,7 +109,7 @@ public class Block {
 	public boolean completeResolve(HierarchicalScope<Declaration> scope) {
 		boolean res = true;
 		for (Instruction ins : this.instructions) {
-			res &= ins.completeResolve(scope);
+			res &= ins.completeResolve(this.table);
 		}
 		return res;
 

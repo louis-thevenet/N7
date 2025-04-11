@@ -58,7 +58,7 @@ return this.condition.collectAndPartialResolve(scope)
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> scope) {
 		return this.condition.completeResolve(scope)
-				&& this.body.completeResolve(new SymbolTable(scope));
+				&& this.body.completeResolve(scope);
 	}
 
 	/* (non-Javadoc)

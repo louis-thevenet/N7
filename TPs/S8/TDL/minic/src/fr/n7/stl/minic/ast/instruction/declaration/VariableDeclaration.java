@@ -106,7 +106,6 @@ public class VariableDeclaration implements Declaration, Instruction {
 		if (scope.accepts(this)) {
 			scope.register(this);
 			if (this.value.collectAndPartialResolve(scope)) {
-				System.out.println(scope);
 				return true;
 			} else {
 				return false;
@@ -128,7 +127,7 @@ public class VariableDeclaration implements Declaration, Instruction {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		return this.value.completeResolve(_scope);
+		return this.value.completeResolve(_scope) && this.type.completeResolve(_scope);
 	}
 
 	/* (non-Javadoc)

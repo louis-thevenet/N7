@@ -8,9 +8,11 @@ import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
+import fr.n7.stl.util.Logger;
 
 /**
  * Implementation of the Abstract Syntax Tree node for a type declaration.
+ * 
  * @author Marc Pantel
  *
  */
@@ -20,7 +22,7 @@ public class TypeDeclaration implements Declaration, Instruction {
 	 * Name of the declared type
 	 */
 	private String name;
-	
+
 	/**
 	 * AST node for the type associated to the name
 	 */
@@ -28,6 +30,7 @@ public class TypeDeclaration implements Declaration, Instruction {
 
 	/**
 	 * Builds an AST node for a type declaration
+	 * 
 	 * @param _name : Name of the declared type
 	 * @param _type : AST node for the type associated to the name
 	 */
@@ -36,45 +39,63 @@ public class TypeDeclaration implements Declaration, Instruction {
 		this.type = _type;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Declaration#getName()
 	 */
 	@Override
 	public String getName() {
 		return this.name;
 	}
-	
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.instruction.Instruction#collect(fr.n7.stl.block.ast.scope.Scope)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.instruction.Instruction#collect(fr.n7.stl.block.ast.scope
+	 * .Scope)
 	 */
 	@Override
-	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		throw new SemanticsUndefinedException( "Semantics collectAndPartialResolve is undefined in TypeDeclaration.");
-	}
-	
+	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> scope) {
+		if (scope.accepts(this)) {
+			scope.register(this);
+			return true;
+		} else {
+			return false;
+		}	}
+
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
-		throw new SemanticsUndefinedException( "Semantics collectAndPartialResolve is undefined in ConstantDeclaration.");
+		throw new SemanticsUndefinedException(
+				"Semantics collectAndPartialResolve is undefined in ConstantDeclaration.");
 
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.instruction.Instruction#resolve(fr.n7.stl.block.ast.scope.Scope)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.instruction.Instruction#resolve(fr.n7.stl.block.ast.scope
+	 * .Scope)
 	 */
 	@Override
-	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		throw new SemanticsUndefinedException( "Semantics resolve is undefined in TypeDeclaration.");
-	}
+	public boolean completeResolve(HierarchicalScope<Declaration> scope) {
+		return this.type.completeResolve(scope);
+		}
 
 	/**
 	 * Provide the type associated to a name in a type declaration.
+	 * 
 	 * @return Type from the declaration.
 	 */
 	public Type getType() {
 		return this.type;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -82,28 +103,36 @@ public class TypeDeclaration implements Declaration, Instruction {
 		return "typedef " + this.type + " " + this.name + ";\n";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Instruction#checkType()
 	 */
 	@Override
 	public boolean checkType() {
-		return true;
+		return true;	
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.Instruction#allocateMemory(fr.n7.stl.tam.ast.Register, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.Instruction#allocateMemory(fr.n7.stl.tam.ast.Register,
+	 * int)
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
 		return 0;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Instruction#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		return _factory.createFragment();
 	}
-	
+
 }

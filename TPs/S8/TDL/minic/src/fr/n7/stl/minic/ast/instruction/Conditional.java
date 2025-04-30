@@ -65,11 +65,9 @@ public class Conditional implements Instruction {
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> scope) {
-
 		return this.condition.collectAndPartialResolve(scope)
 				&& this.thenBranch.collectAndPartialResolve(new SymbolTable(scope))
 				&& (this.elseBranch == null || this.elseBranch.collectAndPartialResolve(new SymbolTable(scope)));
-
 	}
 
 	/*

@@ -69,7 +69,11 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 	 */
 	@Override
 	public boolean equalsTo(Type _other) {
-		throw new SemanticsUndefinedException( "compatibleWith is undefined in RecordType.");
+		boolean res = true;
+		for (int i = 0; i<this.length(); i++) {
+			res &= _other.equalsTo((Type)this.fields.get(i));
+		}
+		return res;
 	}
 
 	/* (non-Javadoc)
@@ -81,22 +85,10 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		// AUCUN MOYEN DE FAIRE UN RECORD à DROITE DE L'AFFECTATION
 		// DONC VAUT MIEUX APPELER OTHER.GETTYPE.COMPATIBLEWITH....
 		// ET FAIRE LE CODE DE SEQUENCETYPE
-		if (!(_other instanceof RecordType)) {
-		return false;
-		}
-		var other_rec= (RecordType)_other;
-		if (this.fields.size() != other_rec.fields.size()) {
+		if (!(_other instanceof SequenceType)) {
 			return false;
 		}
-
-		for (int i = 0; i < this.fields.size(); i++) {
-			var f1 = this.fields.get(i); 
-			var f2 = other_rec.fields.get(i); 
-			if (!(f1.getName().equals(f2.getName()) && f1.getType().compatibleWith(f2.getType()))) {
-				return false;
-			}
-		}
-		return true;
+		return this.erase().compatibleWith(_other);
 	}
 
 	/* (non-Javadoc)
@@ -144,7 +136,7 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 	 */
 	@Override
 	public boolean accepts(FieldDeclaration _declaration) {
-		return ! this.contains(_declaration.getName());
+		return !this.contains(_declaration.getName());
 	}
 
 	/* (non-Javadoc)

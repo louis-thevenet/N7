@@ -69,11 +69,11 @@ public class Block {
 	 */
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> scope) {
 		boolean res = true;
-		this.table = new SymbolTable(scope);
-		for (Instruction ins : this.instructions) {
-			res &= ins.collectAndPartialResolve(this.table);
+		for (Instruction instruction : instructions) {
+			res = res && instruction.collectAndPartialResolve(scope);
 		}
 		return res;
+
 	}
 
 	/**
@@ -92,7 +92,11 @@ public class Block {
 	 *         allowed.
 	 */
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
-		throw new SemanticsUndefinedException("Semantics collect is undefined in Iteration.");
+		boolean res = true;
+		for (Instruction instruction : instructions) {
+			res = res && instruction.collectAndPartialResolve(_scope, _container);
+		}
+		return res;
 	}
 
 	/**

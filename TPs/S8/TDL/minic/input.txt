@@ -1,20 +1,12 @@
 
 monProgramme {
-    typedef int Entier;
-    struct zap {
-        int zip;
-        int zoup;
-    } zam = {1,1};
-    int a = zam.zip;
-
-    
-    Entier i = 0;
-
-    while (i == 0) {
-    	i = 1;
-        Entier j = 0;
-        //if (zam.zip > i) {}
+    int simon(int a) {
+        int b = a;
+        return b;
     }
 
-    // j = j+1;
+   // int tab[] = new int[3];
+   // int *ptr = tab;
+   // *(ptr+2) = 5;
+   // tab[2]=5;
 }

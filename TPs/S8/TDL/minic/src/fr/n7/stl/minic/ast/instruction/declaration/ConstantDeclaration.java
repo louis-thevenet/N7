@@ -14,7 +14,9 @@ import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
- * Implementation of the Abstract Syntax Tree node for a constant declaration instruction.
+ * Implementation of the Abstract Syntax Tree node for a constant declaration
+ * instruction.
+ * 
  * @author Marc Pantel
  *
  */
@@ -24,12 +26,12 @@ public class ConstantDeclaration implements Instruction, Declaration {
 	 * Name of the constant
 	 */
 	protected String name;
-	
+
 	/**
 	 * AST node for the type of the constant
 	 */
 	protected Type type;
-	
+
 	/**
 	 * AST node for the expression that computes the value of the constant
 	 */
@@ -37,9 +39,11 @@ public class ConstantDeclaration implements Instruction, Declaration {
 
 	/**
 	 * Builds an AST node for a constant declaration
-	 * @param _name : Name of the constant
-	 * @param _type : AST node for the type of the constant
-	 * @param _value : AST node for the expression that computes the value of the constant
+	 * 
+	 * @param _name  : Name of the constant
+	 * @param _type  : AST node for the type of the constant
+	 * @param _value : AST node for the expression that computes the value of the
+	 *               constant
 	 */
 	public ConstantDeclaration(String _name, Type _type, Expression _value) {
 		this.name = _name;
@@ -47,81 +51,116 @@ public class ConstantDeclaration implements Instruction, Declaration {
 		this.value = _value;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Declaration#getName()
 	 */
 	@Override
 	public String getName() {
 		return this.name;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Declaration#getType()
 	 */
 	@Override
 	public Type getType() {
 		return this.type;
 	}
-	
+
 	/**
 	 * Provide the value associated to a name in constant declaration.
+	 * 
 	 * @return Value from the declaration.
 	 */
 	public Expression getValue() {
 		return this.value;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
 		return "const " + this.type + " " + this.name + " = " + this.value + ";\n";
 	}
-	
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.instruction.Instruction#collect(fr.n7.stl.block.ast.scope.Scope)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.instruction.Instruction#collect(fr.n7.stl.block.ast.scope
+	 * .Scope)
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		throw new SemanticsUndefinedException( "Semantics collectAndPartialResolve is undefined in ConstantDeclaration.");
+		_scope.register(this);
+		if (this.value != null) {
+		return	this.value.collectAndPartialResolve(_scope);
+		}
+		return false;
 	}
-	
+
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
-		throw new SemanticsUndefinedException( "Semantics collectAndPartialResolve is undefined in ConstantDeclaration.");
-
+		
+		if (_scope.accepts(this)) {
+			_scope.register(this);
+			return this.value.collectAndPartialResolve(_scope);
+		} else {
+			return false;
+		}
 	}
-	
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.instruction.Instruction#resolve(fr.n7.stl.block.ast.scope.Scope)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.instruction.Instruction#resolve(fr.n7.stl.block.ast.scope
+	 * .Scope)
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		throw new SemanticsUndefinedException( "Semantics completeResolve is undefined in ConstantDeclaration.");
+		if (this.value != null) {
+			return this.value.completeResolve(_scope);
+		}
+		return false;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Instruction#checkType()
 	 */
 	@Override
 	public boolean checkType() {
-		throw new SemanticsUndefinedException( "Semantics checkType is undefined in ConstantDeclaration.");
+		return this.type.compatibleWith(this.value.getType());
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.Instruction#allocateMemory(fr.n7.stl.tam.ast.Register, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.Instruction#allocateMemory(fr.n7.stl.tam.ast.Register,
+	 * int)
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		throw new SemanticsUndefinedException( "Semantics allocateMemory is undefined in ConstantDeclaration.");
+		throw new SemanticsUndefinedException("Semantics allocateMemory is undefined in ConstantDeclaration.");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Instruction#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "Semantics getCode is undefined in ConstantDeclaration.");
+		throw new SemanticsUndefinedException("Semantics getCode is undefined in ConstantDeclaration.");
 	}
 
 }

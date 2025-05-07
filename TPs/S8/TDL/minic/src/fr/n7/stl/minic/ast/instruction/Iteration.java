@@ -49,7 +49,8 @@ return this.condition.collectAndPartialResolve(scope)
 	
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
-		throw new SemanticsUndefinedException( "Semantics collect is undefined in Iteration.");
+		return this.condition.collectAndPartialResolve(_scope)
+				&& this.body.collectAndPartialResolve(new SymbolTable(_scope), _container);
 	}
 	
 	/* (non-Javadoc)

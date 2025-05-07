@@ -10,6 +10,7 @@ import fr.n7.stl.minic.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 import fr.n7.stl.minic.ast.type.Type;
+import fr.n7.stl.minic.ast.type.declaration.LabelDeclaration;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
 import fr.n7.stl.util.Logger;
@@ -73,7 +74,8 @@ public class IdentifierAccess extends AbstractIdentifier implements AccessibleEx
 					// TODO : refactor the management of Constants
 					this.expression = new ConstantAccess((ConstantDeclaration) _declaration);
 					return true;
-				} else {
+				}
+				 else {
 					Logger.error("The declaration for " + this.name + " is of the wrong kind.");
 					return false;
 				}

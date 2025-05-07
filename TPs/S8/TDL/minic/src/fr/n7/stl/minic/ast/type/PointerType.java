@@ -4,6 +4,7 @@
 package fr.n7.stl.minic.ast.type;
 
 import fr.n7.stl.minic.ast.SemanticsUndefinedException;
+import fr.n7.stl.minic.ast.expression.accessible.AddressAccess;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 
@@ -37,7 +38,15 @@ public class PointerType implements Type {
 	 */
 	@Override
 	public boolean compatibleWith(Type _other) {
-		throw new SemanticsUndefinedException("Semantics compatibleWith undefined in PointerType.");
+		if (_other instanceof PointerType) {
+			return this.element.compatibleWith(((PointerType) _other).getPointedType());
+		} else if (_other instanceof AddressAccess) {
+			return this.element.compatibleWith(((AddressAccess) _other).getType());
+		
+		} else {
+			return false;
+		}
+	
 	}
 
 	/* (non-Javadoc)

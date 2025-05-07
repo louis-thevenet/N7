@@ -58,7 +58,7 @@ public class FunctionType implements Type {
 	 */
 	@Override
 	public int length() {
-		throw new SemanticsUndefinedException("Semantics length is undefined in FunctionType.");
+		throw new SemanticsUndefinedException( "length is undefined in FunctionType.");
 	}
 
 	/* (non-Javadoc)
@@ -82,7 +82,12 @@ public class FunctionType implements Type {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		throw new SemanticsUndefinedException("Semantics resolve is undefined in FunctionType.");
+		boolean _result = true;
+		for (Type _type : this.parameters) {
+			_result = _result && _type.completeResolve(_scope);
+		}
+		return _result && this.result.completeResolve(_scope);
 	}
 
 }
+

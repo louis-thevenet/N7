@@ -43,7 +43,11 @@ public class Return implements Instruction {
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		throw new SemanticsUndefinedException( "Semantics collect is undefined in Return.");
+		if (this.value != null) {
+			return this.value.collectAndPartialResolve(_scope);
+		} else {
+			return true;
+		}
 	}
 	
 	/* (non-Javadoc)
@@ -51,7 +55,11 @@ public class Return implements Instruction {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		throw new SemanticsUndefinedException( "Semantics resolve is undefined in Return.");
+		if (this.value != null) {
+			return this.value.completeResolve(_scope);
+		} else {
+			return true;
+		}
 	}
 	
 	@Override
@@ -69,7 +77,7 @@ public class Return implements Instruction {
 	 */
 	@Override
 	public boolean checkType() {
-		throw new SemanticsUndefinedException("Semantics checkType undefined in Return.");
+		return this.value.getType().compatibleWith(this.function.getType());
 	}
 
 	/* (non-Javadoc)

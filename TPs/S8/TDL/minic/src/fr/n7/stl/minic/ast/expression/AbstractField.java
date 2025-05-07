@@ -6,6 +6,7 @@ import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 import fr.n7.stl.minic.ast.type.RecordType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.minic.ast.type.declaration.FieldDeclaration;
+import fr.n7.stl.util.Logger;
 
 /**
  * Common elements between left (Assignable) and right (Expression) end sides of
@@ -32,6 +33,7 @@ public abstract class AbstractField<RecordKind extends Expression> implements Ex
 	public AbstractField(RecordKind _record, String _name) {
 		this.record = _record;
 		this.name = _name;
+		System.out.println("AbstractField: " + this.record + "." + this.name);
 	}
 
 	/*
@@ -51,31 +53,43 @@ public abstract class AbstractField<RecordKind extends Expression> implements Ex
 	 * fr.n7.stl.block.ast.expression.Expression#collect(fr.n7.stl.block.ast.scope.
 	 * HierarchicalScope)
 	 */
-	@Override
+		@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		this.record.collectAndPartialResolve(_scope);
+		// throw new SemanticsUndefinedException( "collect is undefined in
+		// AbstractField.");
 
-		if (!(this.record.getType() instanceof RecordType)) {
-			throw new SemanticsUndefinedException("FieldAccess: record is not a RecordType.");
+		boolean ok = this.record.collectAndPartialResolve(_scope);
+
+		if (!(record.getType() instanceof RecordType)) {
+			throw new SemanticsUndefinedException( "record.getType() is not a instanceof RecordType in AbstractField but "+ record.getType().getClass() + ".");
 		}
-		RecordType recordType2 = (RecordType) this.record.getType();
-		this.field = recordType2.get(this.name);
-		if (_scope.accepts(this.field)) {
-			_scope.register(field);
+
+		RecordType record2 = (RecordType) record.getType();
+		this.field = record2.get(name);
+
+		if (ok && _scope.accepts(this.field)) {
+			_scope.register(this.field);
 			return true;
+		} else {
+			System.out.println("ERROR");
+			Logger.error("Collect error in AbstarctField : " + this.name + "." + this.field + " is already defined.");
+			return false;
 		}
-		return false;
+	
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
+	 * @seeexpression
 	 * fr.n7.stl.block.ast.expression.Expression#resolve(fr.n7.stl.block.ast.scope.
 	 * HierarchicalScope)
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
+		if (this.record == null) {
+			throw new IllegalStateException("Record is null in AbstractField.");
+		}
 		this.collectAndPartialResolve(_scope);
 		return this.record.completeResolve(_scope);
 	}

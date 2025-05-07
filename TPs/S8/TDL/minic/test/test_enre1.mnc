@@ -11,13 +11,10 @@ monProgramme {
     } Personne;
 
     // Déclaration et initialisation d'une variable de type Personne
-    Personne p1;
-    p1.age = 20;
-    p1.majeur = true;
+    Personne p1 = {20, true};
 
     // Affectation à partir d'un autre enregistrement
-    Personne p2;
-    p2 = p1;
+    Personne p2 = p1;
 
     // Modification d’un champ
     p2.age = 17;
@@ -38,11 +35,8 @@ monProgramme {
     } Client;
 
     // Utilisation d’un enregistrement imbriqué
-    Client c1;
-    c1.infos.age = 30;
-    c1.infos.majeur = true;
-    c1.adresse.numero = 12;
-    c1.adresse.codePostal = 75000;
+    Adresse a1 = {12, 75000};
+    Client c1 = {p1, a1};
 
     // Accès à des champs imbriqués
     int code = c1.adresse.codePostal;

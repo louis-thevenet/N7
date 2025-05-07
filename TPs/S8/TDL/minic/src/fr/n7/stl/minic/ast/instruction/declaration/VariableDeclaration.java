@@ -106,9 +106,9 @@ public class VariableDeclaration implements Declaration, Instruction {
 		if (scope.accepts(this)) {
 			scope.register(this);
 			 return(this.value.collectAndPartialResolve(scope));
-		} else {
-			return false;
-		}
+		} 
+		System.out.println("Error "+ this.name +" already defined");
+		return false;
 	}
 	
 	@Override
@@ -116,9 +116,9 @@ public class VariableDeclaration implements Declaration, Instruction {
 		if (_scope.accepts(this)) {
 			_scope.register(this);
 			 return(this.value.collectAndPartialResolve(_scope));
-		} else {
-			return false;
-		}
+		} 
+		System.out.println("Error "+ this.name +" already defined");
+		return false;
 	}
 	
 

@@ -11,6 +11,7 @@ import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.instruction.Instruction;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
+import fr.n7.stl.minic.ast.scope.SymbolTable;
 import fr.n7.stl.minic.ast.type.FunctionType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
@@ -117,8 +118,6 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		if (_scope.accepts(this)) {
 			_scope.register(this);
 			for (ParameterDeclaration _parameter : this.parameters) {
-				System.out.println("registering " + _parameter);
-				
 				_scope.register(_parameter);
 			}
 			return this.body.collectAndPartialResolve(_scope, this);
@@ -129,7 +128,8 @@ public class FunctionDeclaration implements Instruction, Declaration {
 
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
-		throw new SemanticsUndefinedException("Semantics collectAndPartialResolve is undefined in FunctionDeclaration.");
+		throw new SemanticsUndefinedException(
+				"Semantics collectAndPartialResolve is undefined in FunctionDeclaration.");
 
 	}
 
@@ -142,6 +142,7 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
+		this.body.collectAndPartialResolve(_scope, this);
 		return (this.body.completeResolve(_scope));
 	}
 
@@ -152,7 +153,7 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public boolean checkType() {
-return		this.body.checkType();
+		return this.body.checkType();
 	}
 
 	/*

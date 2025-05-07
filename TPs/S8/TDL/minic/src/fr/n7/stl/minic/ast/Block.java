@@ -93,6 +93,7 @@ public class Block {
 	 */
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
 		boolean res = true;
+
 		for (Instruction instruction : instructions) {
 			res = res && instruction.collectAndPartialResolve(_scope, _container);
 		}
@@ -113,7 +114,7 @@ public class Block {
 	public boolean completeResolve(HierarchicalScope<Declaration> scope) {
 		boolean res = true;
 		for (Instruction ins : this.instructions) {
-			res &= ins.completeResolve(this.table);
+			res &= ins.completeResolve(scope);
 		}
 		return res;
 

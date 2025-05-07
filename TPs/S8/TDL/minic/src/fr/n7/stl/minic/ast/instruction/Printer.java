@@ -43,7 +43,7 @@ public class Printer implements Instruction {
 	
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
-		return this.collectAndPartialResolve(_scope);
+		return this.collectAndPartialResolve(_scope, _container);
 	}
 	
 	/* (non-Javadoc)

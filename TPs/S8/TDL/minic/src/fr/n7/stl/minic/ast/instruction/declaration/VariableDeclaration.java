@@ -105,13 +105,8 @@ public class VariableDeclaration implements Declaration, Instruction {
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> scope) {
 		if (scope.accepts(this)) {
 			scope.register(this);
-			if (this.value.collectAndPartialResolve(scope)) {
-				return true;
-			} else {
-				return false;
-			}
+			 return(type.completeResolve(scope) && this.value.collectAndPartialResolve(scope));
 		} else {
-
 			return false;
 		}
 	}
@@ -120,11 +115,12 @@ public class VariableDeclaration implements Declaration, Instruction {
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
 		if (_scope.accepts(this)) {
 			_scope.register(this);
-			return this.value.collectAndPartialResolve(_scope);
+			 return(type.completeResolve(_scope) && this.value.collectAndPartialResolve(_scope));
 		} else {
 			return false;
 		}
 	}
+	
 
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.instruction.Instruction#resolve(fr.n7.stl.block.ast.scope.Scope)

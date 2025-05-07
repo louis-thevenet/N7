@@ -46,7 +46,7 @@ public class Return implements Instruction {
 		if (this.value != null) {
 			return this.value.collectAndPartialResolve(_scope);
 		} else {
-			return true;
+			return false;
 		}
 	}
 	
@@ -58,7 +58,7 @@ public class Return implements Instruction {
 		if (this.value != null) {
 			return this.value.completeResolve(_scope);
 		} else {
-			return true;
+			return false;
 		}
 	}
 	
@@ -70,7 +70,7 @@ public class Return implements Instruction {
 			throw new InvalidParameterException("Trying to set a function declaration to a return instruction when one has already been set.");
 		}
 		return this.collectAndPartialResolve(_scope);
-	}
+		}
 
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.Instruction#checkType()

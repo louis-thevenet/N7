@@ -70,7 +70,14 @@ public class FunctionCall implements AccessibleExpression {
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		throw new SemanticsUndefinedException( "Semantics collect is undefined in FunctionCall.");
+		boolean _result = true;
+		for (AccessibleExpression _argument : this.arguments) {
+			_result = _result && _argument.collectAndPartialResolve(_scope);
+		}
+		if (_scope.knows(this.name)) {
+			this.function = (FunctionDeclaration)_scope.get(this.name);
+		}
+		return _result;
 	}
 
 	/* (non-Javadoc)
@@ -78,7 +85,12 @@ public class FunctionCall implements AccessibleExpression {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		throw new SemanticsUndefinedException( "Semantics resolve is undefined in FunctionCall.");
+		boolean res =true;
+		for (AccessibleExpression _argument : this.arguments) {
+			res &=	_argument.completeResolve(_scope);
+		}
+		res &= this.function.completeResolve(_scope);
+		return res;
 	}
 	
 	/* (non-Javadoc)
@@ -86,7 +98,7 @@ public class FunctionCall implements AccessibleExpression {
 	 */
 	@Override
 	public Type getType() {
-		throw new SemanticsUndefinedException( "Semantics getType is undefined in FunctionCall.");
+		return this.function.getType();
 	}
 
 	/* (non-Javadoc)

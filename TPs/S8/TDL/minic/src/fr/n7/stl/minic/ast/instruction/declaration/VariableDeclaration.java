@@ -105,25 +105,20 @@ public class VariableDeclaration implements Declaration, Instruction {
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> scope) {
 		if (scope.accepts(this)) {
 			scope.register(this);
-			if (this.value.collectAndPartialResolve(scope)) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-
-			return false;
+			return this.value.collectAndPartialResolve(scope);
 		}
+		System.out.println("Error "+ this.name +" already defined");
+		return false;
 	}
 	
 	@Override
-	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
-		if (_scope.accepts(this)) {
-			_scope.register(this);
-			return this.value.collectAndPartialResolve(_scope);
-		} else {
-			return false;
+	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> scope, FunctionDeclaration _container) {
+		if (scope.accepts(this)) {
+			scope.register(this);
+			return this.value.collectAndPartialResolve(scope);
 		}
+		System.out.println("Error "+ this.name +" already defined");
+		return false;
 	}
 
 	/* (non-Javadoc)

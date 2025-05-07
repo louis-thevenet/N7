@@ -68,7 +68,7 @@ public class Assignment implements Instruction, Expression {
 
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
-		return this.collectAndPartialResolve(_scope);
+		return this.collectAndPartialResolve(_scope, _container);
 	}
 
 	/*

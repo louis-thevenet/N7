@@ -105,7 +105,7 @@ public class VariableDeclaration implements Declaration, Instruction {
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> scope) {
 		if (scope.accepts(this)) {
 			scope.register(this);
-			 return(type.completeResolve(scope) && this.value.collectAndPartialResolve(scope));
+			 return(this.value.collectAndPartialResolve(scope));
 		} else {
 			return false;
 		}
@@ -115,7 +115,7 @@ public class VariableDeclaration implements Declaration, Instruction {
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
 		if (_scope.accepts(this)) {
 			_scope.register(this);
-			 return(type.completeResolve(_scope) && this.value.collectAndPartialResolve(_scope));
+			 return(this.value.collectAndPartialResolve(_scope));
 		} else {
 			return false;
 		}
@@ -127,7 +127,7 @@ public class VariableDeclaration implements Declaration, Instruction {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		return this.value.completeResolve(_scope) && this.type.completeResolve(_scope);
+		return(this.type.completeResolve(_scope) && this.value.collectAndPartialResolve(_scope));
 	}
 
 	/* (non-Javadoc)

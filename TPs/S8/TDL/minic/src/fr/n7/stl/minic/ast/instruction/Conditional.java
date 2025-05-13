@@ -19,6 +19,7 @@ import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
+import fr.n7.stl.tam.ast.impl.FragmentImpl;
 
 /**
  * Implementation of the Abstract Syntax Tree node for a conditional
@@ -118,7 +119,7 @@ public class Conditional implements Instruction {
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		throw new SemanticsUndefinedException("Semantics allocateMemory is undefined in Conditional.");
+		return (0);
 	}
 
 	/*
@@ -128,7 +129,13 @@ public class Conditional implements Instruction {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics getCode is undefined in Conditional.");
+		Fragment _result = this.condition.getCode(_factory);
+		Fragment _then = this.thenBranch.getCode(_factory);
+		_result.append(_then);
+		Fragment _else = (this.elseBranch == null) ? new FragmentImpl() : this.elseBranch.getCode(_factory);
+		_result.append(_else);
+		_result.addComment("Building the conditional ");
+		return _result;
 	}
 
 }

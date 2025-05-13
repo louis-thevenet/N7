@@ -3,6 +3,7 @@ package fr.n7.stl.minic.ast.expression;
 import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
+import fr.n7.stl.minic.ast.type.NamedType;
 import fr.n7.stl.minic.ast.type.RecordType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.minic.ast.type.declaration.FieldDeclaration;
@@ -53,29 +54,30 @@ public abstract class AbstractField<RecordKind extends Expression> implements Ex
 	 * fr.n7.stl.block.ast.expression.Expression#collect(fr.n7.stl.block.ast.scope.
 	 * HierarchicalScope)
 	 */
-		@Override
+	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
 		// throw new SemanticsUndefinedException( "collect is undefined in
 		// AbstractField.");
-
+		RecordType record2;
 		boolean ok = this.record.collectAndPartialResolve(_scope);
-
-		if (!(record.getType() instanceof RecordType)) {
-			throw new SemanticsUndefinedException( "record.getType() is not a instanceof RecordType in AbstractField but "+ record.getType().getClass() + ".");
+		if (record.getType() instanceof NamedType) {
+			NamedType t = (NamedType) record.getType();
+			ok &= t.completeResolve(_scope);
+			record2 = (RecordType) t.getType();
+		} else {
+			record2 = (RecordType) record.getType();
 		}
-
-		RecordType record2 = (RecordType) record.getType();
 		this.field = record2.get(name);
 
-		if (ok && _scope.accepts(this.field)) {
-			_scope.register(this.field);
+		if (ok) {
 			return true;
 		} else {
 			System.out.println("ERROR");
-			Logger.error("Collect error in AbstarctField : " + this.name + "." + this.field + " is already defined.");
+			Logger.error(
+					"Collect error in AbstarctField : " + this.name + "." + this.field + " is already defined.");
 			return false;
 		}
-	
+
 	}
 
 	/*

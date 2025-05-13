@@ -120,7 +120,7 @@ public class Assignment implements Instruction, Expression {
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		throw new SemanticsUndefinedException("Semantics allocateMemory is undefined in Assignment.");
+		return 0;
 	}
 
 	/*
@@ -130,7 +130,11 @@ public class Assignment implements Instruction, Expression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics getCode is undefined in Assignment.");
+		Fragment code = _factory.createFragment();
+		code.append(this.value.getCode(_factory));
+		code.append(this.assignable.getCode(_factory));
+		code.addComment(this.toString());
+		return code;
 	}
 
 }

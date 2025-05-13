@@ -6,6 +6,7 @@ package fr.n7.stl.minic.ast.expression.assignable;
 import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.AbstractField;
 import fr.n7.stl.tam.ast.Fragment;
+import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
@@ -29,7 +30,10 @@ public class FieldAssignment extends AbstractField<AssignableExpression> impleme
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics getCode undefined in FieldAssignment.");
-	}
+		Fragment code = _factory.createFragment();
+		int field_offset = field.getOffset();
+
+		//code.add(_factory.createStore(Register.ST, field_offset, this.record.getType().length()));
+		return code;	}
 	
 }

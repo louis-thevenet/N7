@@ -6,7 +6,10 @@ package fr.n7.stl.minic.ast.expression.accessible;
 import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.AbstractField;
 import fr.n7.stl.minic.ast.expression.Expression;
+import fr.n7.stl.minic.ast.type.RecordType;
+import fr.n7.stl.minic.ast.type.declaration.FieldDeclaration;
 import fr.n7.stl.tam.ast.Fragment;
+import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
@@ -30,7 +33,17 @@ public class FieldAccess extends AbstractField<AccessibleExpression> implements 
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "getCode is undefined in FieldAccess.");
+
+		Fragment code = _factory.createFragment();
+
+
+		int field_offset = field.getOffset();
+
+		code.add(_factory.createLoad(Register.ST, field_offset, this.record.getType().length()));
+		
+		
+		return code;
+
 	}
 
 }

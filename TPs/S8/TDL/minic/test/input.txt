@@ -1,8 +1,0 @@
-
-monProgramme {
-    int simon(int a) {
-        int b = a;
-        return b;
-    }
-    int c = simon(3);
-} 

@@ -1,0 +1,12 @@
+LOADL 20
+LOADL 1
+;fr.n7.stl.minic.ast.expression.accessible.VariableAccess@47089e5f
+LOAD (2) 0[SB]
+; p2 .age = 17;
+
+LOADL 17
+; p2 .majeur = false;
+
+LOADL 0
+HALT
+

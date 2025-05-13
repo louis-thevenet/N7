@@ -133,6 +133,15 @@ public class BinaryExpression implements AccessibleExpression {
 					return AtomicType.BooleanType;
 				}
 			}
+			case And:
+			case Or: {
+				if (resultType.compatibleWith(AtomicType.BooleanType)) {
+					return resultType;
+				} else {
+					Logger.warning("Type error in binary expression : " + this.operator + " parameter " + resultType);
+					return AtomicType.ErrorType;
+				}
+			}
 			default : return AtomicType.ErrorType;
 		}
 	}

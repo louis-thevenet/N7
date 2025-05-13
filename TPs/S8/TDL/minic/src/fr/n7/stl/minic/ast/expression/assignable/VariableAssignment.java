@@ -14,28 +14,35 @@ import fr.n7.stl.tam.ast.TAMFactory;
 import fr.n7.stl.util.Logger;
 
 /**
- * Abstract Syntax Tree node for an expression whose computation assigns a variable.
+ * Abstract Syntax Tree node for an expression whose computation assigns a
+ * variable.
+ * 
  * @author Marc Pantel
  *
  */
 public class VariableAssignment extends AbstractIdentifier implements AssignableExpression {
-	
+
 	protected VariableDeclaration declaration;
 
 	/**
 	 * Creates a variable assignment expression Abstract Syntax Tree node.
+	 * 
 	 * @param _name Name of the assigned variable.
 	 */
 	public VariableAssignment(String _name) {
 		super(_name);
 	}
-	
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.expression.AbstractIdentifier#collect(fr.n7.stl.block.ast.scope.HierarchicalScope)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.expression.AbstractIdentifier#collect(fr.n7.stl.block.ast
+	 * .scope.HierarchicalScope)
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		if (((HierarchicalScope<Declaration>)_scope).knows(this.name)) {
+		if (((HierarchicalScope<Declaration>) _scope).knows(this.name)) {
 			Declaration _declaration = _scope.get(this.name);
 			if (_declaration instanceof VariableDeclaration) {
 				this.declaration = ((VariableDeclaration) _declaration);
@@ -46,19 +53,25 @@ public class VariableAssignment extends AbstractIdentifier implements Assignable
 			}
 		} else {
 			Logger.error("The identifier " + this.name + " has not been found.");
-			return false;	
+			return false;
 		}
 	}
-	
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.expression.AbstractIdentifier#resolve(fr.n7.stl.block.ast.scope.HierarchicalScope)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.expression.AbstractIdentifier#resolve(fr.n7.stl.block.ast
+	 * .scope.HierarchicalScope)
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
 		return true;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.impl.VariableUseImpl#getType()
 	 */
 	@Override
@@ -66,12 +79,21 @@ public class VariableAssignment extends AbstractIdentifier implements Assignable
 		return this.declaration.getType();
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.impl.VariableUseImpl#getCode(fr.n7.stl.tam.ast.TAMFactory)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.n7.stl.block.ast.impl.VariableUseImpl#getCode(fr.n7.stl.tam.ast.
+	 * TAMFactory)
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics getCode undefined in VariableAssignment.");
+		var code = _factory.createFragment();
+		code.add(_factory.createLoad(
+				this.declaration.getRegister(),
+				this.declaration.getOffset(),
+				this.declaration.getType().length()));
+		code.addComment(this.toString());
+		return code;
 	}
 
 }

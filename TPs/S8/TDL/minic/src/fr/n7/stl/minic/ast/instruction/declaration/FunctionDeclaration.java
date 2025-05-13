@@ -11,6 +11,7 @@ import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.instruction.Instruction;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
+import fr.n7.stl.minic.ast.scope.Scope;
 import fr.n7.stl.minic.ast.scope.SymbolTable;
 import fr.n7.stl.minic.ast.type.FunctionType;
 import fr.n7.stl.minic.ast.type.Type;
@@ -52,6 +53,8 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	 */
 	protected Block body;
 
+	HierarchicalScope<Declaration> scope;
+
 	/**
 	 * Builds an AST node for a function declaration
 	 * 
@@ -66,6 +69,7 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		this.type = _type;
 		this.parameters = _parameters;
 		this.body = _body;
+		
 	}
 
 	/*
@@ -117,10 +121,11 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
 		if (_scope.accepts(this)) {
 			_scope.register(this);
+			this.scope = new SymbolTable(_scope);
 			for (ParameterDeclaration _parameter : this.parameters) {
-				_scope.register(_parameter);
+				this.scope.register(_parameter);
 			}
-			return this.body.collectAndPartialResolve(_scope, this);
+			return this.body.collectAndPartialResolve(this.scope, this);
 		} else {
 			return false;
 		}
@@ -142,8 +147,8 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		this.body.collectAndPartialResolve(_scope, this);
-		return (this.body.completeResolve(_scope));
+		this.body.completeResolve(this.scope);
+		return (this.body.completeResolve(this.scope));
 	}
 
 	/*

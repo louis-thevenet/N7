@@ -23,7 +23,7 @@ monProgramme {
     }
 
     // Appel de fonctions
-    afficherMessage(); // Appel d'une fonction sans retour
+    void a = afficherMessage(); // Appel d'une fonction sans retour
     int resultat = addition(5, 7); // Appel d'une fonction avec retour
     int fact = factorielle(5); // Calcul de la factorielle de 5
 
@@ -41,7 +41,7 @@ monProgramme {
         return p;
     }
 
-    Point p1 = creerPoint(3, 4);
-    print p1.x; // Affichage d'un champ du point
-    print p1.y;
+    //Point p1 = creerPoint(3, 4);
+    //print p1.x; // Affichage d'un champ du point
+    //print p1.y;
 }

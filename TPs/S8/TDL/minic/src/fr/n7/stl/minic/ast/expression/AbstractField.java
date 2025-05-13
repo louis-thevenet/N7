@@ -67,6 +67,7 @@ public abstract class AbstractField<RecordKind extends Expression> implements Ex
 	
 		// Handle NamedType by resolving it to its underlying type
 		if (recordType instanceof NamedType) {
+			recordType.completeResolve(_scope);
 			recordType = ((NamedType) recordType).getType();
 		}
 	
@@ -104,10 +105,9 @@ public abstract class AbstractField<RecordKind extends Expression> implements Ex
 			throw new IllegalStateException("Record is null in AbstractField.");
 		}
 		if (record.getType() instanceof NamedType) {
-			return this.record.collectAndPartialResolve(_scope);
+			return this.record.completeResolve(_scope);
 		}
 		else {
-			this.collectAndPartialResolve(_scope);
 			return this.record.completeResolve(_scope);
 		}
 	}
@@ -120,4 +120,5 @@ public abstract class AbstractField<RecordKind extends Expression> implements Ex
 	public Type getType() {
 		return this.field.getType();
 	}
+}
 

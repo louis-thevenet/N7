@@ -19,7 +19,7 @@ monProgramme {
     int h = b % a;
 
     // Expressions booléennes
-    boolean x = a < bmain;
+    boolean x = a < b;
     boolean y = b >= a;
     boolean z = (a + 1) == b;
 

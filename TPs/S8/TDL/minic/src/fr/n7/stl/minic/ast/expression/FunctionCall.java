@@ -17,6 +17,7 @@ import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
  * Abstract Syntax Tree node for a function call expression.
+ * 
  * @author Marc Pantel
  *
  */
@@ -27,21 +28,23 @@ public class FunctionCall implements AccessibleExpression {
 	 * TODO : Should be an expression.
 	 */
 	protected String name;
-	
+
 	/**
 	 * Declaration of the called function after name resolution.
 	 * TODO : Should rely on the VariableUse class.
 	 */
 	protected FunctionDeclaration function;
-	
+
 	/**
-	 * List of AST nodes that computes the values of the parameters for the function call.
+	 * List of AST nodes that computes the values of the parameters for the function
+	 * call.
 	 */
 	protected List<AccessibleExpression> arguments;
-	
+
 	/**
-	 * @param _name : Name of the called function.
-	 * @param _arguments : List of AST nodes that computes the values of the parameters for the function call.
+	 * @param _name      : Name of the called function.
+	 * @param _arguments : List of AST nodes that computes the values of the
+	 *                   parameters for the function call.
 	 */
 	public FunctionCall(String _name, List<AccessibleExpression> _arguments) {
 		this.name = _name;
@@ -49,12 +52,14 @@ public class FunctionCall implements AccessibleExpression {
 		this.arguments = _arguments;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		String _result = ((this.function == null)?this.name:this.function) + "( ";
+		String _result = ((this.function == null) ? this.name : this.function) + "( ";
 		Iterator<AccessibleExpression> _iter = this.arguments.iterator();
 		if (_iter.hasNext()) {
 			_result += _iter.next();
@@ -62,11 +67,15 @@ public class FunctionCall implements AccessibleExpression {
 		while (_iter.hasNext()) {
 			_result += " ," + _iter.next();
 		}
-		return  _result + ")";
+		return _result + ")";
 	}
-	
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.expression.Expression#collect(fr.n7.stl.block.ast.scope.HierarchicalScope)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.expression.Expression#collect(fr.n7.stl.block.ast.scope.
+	 * HierarchicalScope)
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
@@ -75,25 +84,36 @@ public class FunctionCall implements AccessibleExpression {
 			_result = _result && _argument.collectAndPartialResolve(_scope);
 		}
 		if (_scope.knows(this.name)) {
-			this.function = (FunctionDeclaration)_scope.get(this.name);
+			this.function = (FunctionDeclaration) _scope.get(this.name);
+		} else {
+			System.out.println("Erreur: fonction inconnue");
 		}
 		return _result;
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.expression.Expression#resolve(fr.n7.stl.block.ast.scope.HierarchicalScope)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.expression.Expression#resolve(fr.n7.stl.block.ast.scope.
+	 * HierarchicalScope)
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		boolean res =true;
+		boolean res = true;
 		for (AccessibleExpression _argument : this.arguments) {
-			res &=	_argument.completeResolve(_scope);
+			res &= _argument.completeResolve(_scope);
 		}
-		res &= this.function.completeResolve(_scope);
+
+		if (!this.name.equals(this.function.getName())) {
+			res &= this.function.completeResolve(_scope);
+		}
 		return res;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Expression#getType()
 	 */
 	@Override
@@ -101,12 +121,14 @@ public class FunctionCall implements AccessibleExpression {
 		return this.function.getType();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "Semantics getCode is undefined in FunctionCall.");
+		throw new SemanticsUndefinedException("Semantics getCode is undefined in FunctionCall.");
 	}
 
 }

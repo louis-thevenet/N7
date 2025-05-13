@@ -1,4 +1,3 @@
-
 /*
 Ce programme vérifie la bonne gestion des Expressions en MiniC avec des exemples valides
 */
@@ -20,7 +19,7 @@ monProgramme {
     int h = b % a;
 
     // Expressions booléennes
-    boolean x = a < b;
+    boolean x = a < bmain;
     boolean y = b >= a;
     boolean z = (a + 1) == b;
 

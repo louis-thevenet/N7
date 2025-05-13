@@ -1,3 +1,47 @@
 /*
 Ce programme vérifie la bonne gestion des Fonctions en MiniC avec des exemples valides
 */
+
+monProgramme {
+    // Déclaration d'une fonction sans paramètres et sans retour
+    void afficherMessage() {
+        print "Bonjour, MiniC!";
+    }
+
+    // Déclaration d'une fonction avec paramètres et retour
+    int addition(int x, int y) {
+        return x + y;
+    }
+
+    // Déclaration d'une fonction récursive
+    int factorielle(int n) {
+        if (n <= 1) {
+            return 1;
+        } else {
+            return n * factorielle(n - 1);
+        }
+    }
+
+    // Appel de fonctions
+    afficherMessage(); // Appel d'une fonction sans retour
+    int resultat = addition(5, 7); // Appel d'une fonction avec retour
+    int fact = factorielle(5); // Calcul de la factorielle de 5
+
+    // Utilisation du résultat d'une fonction dans une expression
+    int somme = resultat + fact;
+
+    // Fonction imbriquée avec des structures
+    typedef struct Point {
+        int x;
+        int y;
+    } Point;
+
+    Point creerPoint(int x, int y) {
+        Point p = {x, y};
+        return p;
+    }
+
+    Point p1 = creerPoint(3, 4);
+    print p1.x; // Affichage d'un champ du point
+    print p1.y;
+}

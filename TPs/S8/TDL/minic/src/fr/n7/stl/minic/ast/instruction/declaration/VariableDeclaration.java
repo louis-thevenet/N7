@@ -158,7 +158,7 @@ public class VariableDeclaration implements Declaration, Instruction {
 	public boolean checkType() {
 		boolean res = this.type.compatibleWith(this.value.getType());
 		if (!res) {
-			System.out.println( "Type error in variable declaration: " + this.toString());
+			System.out.println("Type error in variable declaration: " + this.toString());
 		}
 		return res;
 	}
@@ -184,10 +184,13 @@ public class VariableDeclaration implements Declaration, Instruction {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment _code = _factory.createFragment();
-		_code.append(this.value.getCode(_factory));
-		_code.addComment("Declare " + this.name + " to " + this.register + " + " + this.offset);
-		return _code;
+		Fragment res = _factory.createFragment();
+		res.add(_factory.createPush(this.type.length()));
+		res.addComment("Assign " + this.name);
+		res.append(this.value.getCode(_factory));
+		res.add(_factory.createLoadI(this.value.getType().length()));
+
+		return res;
 	}
 
 }

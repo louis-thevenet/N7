@@ -66,7 +66,7 @@ public class VariableAssignment extends AbstractIdentifier implements Assignable
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		return true;
+		return this.declaration.completeResolve(_scope);
 	}
 
 	/*
@@ -88,11 +88,11 @@ public class VariableAssignment extends AbstractIdentifier implements Assignable
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		var code = _factory.createFragment();
-		code.add(_factory.createLoad(
-			this.declaration.getRegister(),
-			this.declaration.getOffset(),
-			this.declaration.getType().length()));
-			code.addComment("Assign " + this.name + " from " + this.declaration.getRegister() + " + " + this.declaration.getOffset());
+		code.add(_factory.createLoadL(
+				this.declaration.getOffset()
+));
+		code.addComment("Assign " + this.name + " from " + this.declaration.getRegister() + " + "
+				+ this.declaration.getOffset());
 		return code;
 	}
 

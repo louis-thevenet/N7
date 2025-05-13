@@ -11,19 +11,38 @@ monProgramme {
     } Personne;
 
     // Déclaration et initialisation d'une variable de type Personne
-    Personne p1 = {20, true};
+    Personne p1 = {21, true};
 
     // Affectation à partir d'un autre enregistrement
     Personne p2 = p1;
+   print p2.age;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Modification d’un champ
-    p2.age = 17;
-    p2.majeur = false;
+    // p2.age = 17;
+    // p2.majeur = false;
     
-    int a =  p2.age;
-    print a;
+    // int a =  p2.age;
+    // print a;
     
-    print p2.age;
+    // print p2.age;
 
     // // Utilisation de champs dans des expressions
     // boolean estMajeur = p1.age >= 18 && p1.majeur;

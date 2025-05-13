@@ -19,7 +19,6 @@ public class NamedType implements Type {
 	private TypeDeclaration declaration;
 
 	public String name;
-
 	public NamedType(String _name) {
 		this.name = _name;
 		this.declaration = null;

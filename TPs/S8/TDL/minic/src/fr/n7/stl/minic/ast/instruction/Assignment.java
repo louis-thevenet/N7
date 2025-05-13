@@ -24,6 +24,7 @@ public class Assignment implements Instruction, Expression {
 
 	protected Expression value;
 	protected AssignableExpression assignable;
+	private int offset=-1;
 
 	/**
 	 * Create an assignment instruction implementation from the assignable
@@ -123,8 +124,8 @@ public class Assignment implements Instruction, Expression {
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
-		code.append(this.value.getCode(_factory));
 		code.append(this.assignable.getCode(_factory));
+		code.append(this.value.getCode(_factory));
 		code.addComment(this.toString());
 		return code;
 	}

@@ -1,31 +1,20 @@
-;Declare p1 to SB + 0
-LOADL 20
+;Assign p1
+PUSH 2
+LOADL 21
 LOADL 1
+LOADI (2)
+;Assign p2
+PUSH 2
 ;Load variable p1 from offset 0
-;Declare p2 to SB + 2
-LOAD (2) 0[SB]
-; p2 .age = 17;
-
-LOADL 17
-;Assign field age from record  p2 , offset 0
-LOAD (2) 0[SB]
-; p2 .majeur = false;
-
 LOADL 0
-;Assign field majeur from record  p2 , offset 1
-LOAD (2) 1[SB]
+LOADI (2)
+;Load variable p2 from offset 2
 ;Load field age from record p2, offset 0
-;Declare a to SB + 4
-LOAD (2) 0[SB]
-;Load variable a from offset 4
-;print a
-
-LOAD (1) 4[SB]
-SUBR IOut
-;Load field age from record p2, offset 0
-;print p2.age
-
-LOAD (2) 0[SB]
+;Print p2.age
+LOADL 2
+LOADL 0
+SUBR IAdd
+LOADI (1)
 SUBR IOut
 HALT
 

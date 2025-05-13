@@ -34,12 +34,14 @@ public class FieldAccess extends AbstractField<AccessibleExpression> implements 
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 
-		Fragment code = _factory.createFragment();
-
+		Fragment code = this.record.getCode(_factory);
 
 		int field_offset = field.getOffset();
 
-		code.add(_factory.createLoad(Register.SB, field_offset, this.record.getType().length()));
+		code.add(_factory.createLoadL(field_offset));
+		code.add(TAMFactory.createBinaryOperator(BinaryOperator.Add));
+		code.add(_factory.createLoadI(this.field.getType().length()));
+	
 		code.addComment("Load field " + this.name + " from record " + this.record.toString() + ", offset " + field_offset);
 		
 		return code;

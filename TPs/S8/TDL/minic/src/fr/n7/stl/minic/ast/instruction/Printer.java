@@ -97,7 +97,7 @@ public class Printer implements Instruction {
 		Fragment res = _factory.createFragment();
 		res.append(this.parameter.getCode(_factory));
 		res.add(_factory.createPrinter(this.parameter.getType()));
-		res.addComment("print " + this.parameter.toString().replace("\n", "\n; ") + "\n");
+		res.addComment("Print " + this.parameter.toString());
 		return res;
 	}
 

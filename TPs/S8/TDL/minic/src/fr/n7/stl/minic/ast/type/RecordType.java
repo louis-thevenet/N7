@@ -23,7 +23,6 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 
 	private List<FieldDeclaration> fields;
 	private String name;
-
 	/**
 	 * Constructor for a record type including fields.
 	 * @param _name Name of the record type.
@@ -201,6 +200,7 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		for (FieldDeclaration f : this.fields) {
 			f.computerOffset(offset);
 			_result = _result && f.getType().completeResolve(_scope);
+			
 			offset++;
 		}
 		return _result;

@@ -1,8 +1,10 @@
 monProgramme {
+    typedef  int Entier ;
 
-    int creerPoint(int x, int y) { return x; }
+    int creerPoint2(int x, int y) {
+        Entier a = x;
+        return a;
+    }
 
-    int creerPoint2(int x, int y) { return x; }
-
-    int a = creerPoint2(1,2);
+    Entier a = creerPoint2(1, 2);
 }

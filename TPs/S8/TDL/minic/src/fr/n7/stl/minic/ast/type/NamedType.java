@@ -16,7 +16,7 @@ import fr.n7.stl.util.Logger;
  */
 public class NamedType implements Type {
 
-	private TypeDeclaration declaration; // Changer en public pour pouvoir y avoir accès (ex: enum)
+	private TypeDeclaration declaration;
 
 	public String name;
 

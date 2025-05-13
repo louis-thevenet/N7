@@ -122,6 +122,7 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		if (_scope.accepts(this)) {
 			_scope.register(this);
 			this.scope = new SymbolTable(_scope);
+			this.type.completeResolve(_scope);
 			for (ParameterDeclaration _parameter : this.parameters) {
 				this.scope.register(_parameter);
 			}

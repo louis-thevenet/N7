@@ -41,7 +41,7 @@ public class VariableAccess extends AbstractAccess {
 				this.declaration.getRegister(), 
 				this.declaration.getOffset(),
 				this.declaration.getType().length()));
-		_result.addComment(this.toString());
+_result.addComment("Load variable " + this.declaration.getName() + " from offset " + this.declaration.getOffset());
 		return _result;
 	}
 

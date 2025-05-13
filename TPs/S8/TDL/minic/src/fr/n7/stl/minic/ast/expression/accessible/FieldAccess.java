@@ -39,8 +39,8 @@ public class FieldAccess extends AbstractField<AccessibleExpression> implements 
 
 		int field_offset = field.getOffset();
 
-		code.add(_factory.createLoad(Register.ST, field_offset, this.record.getType().length()));
-		
+		code.add(_factory.createLoad(Register.SB, field_offset, this.record.getType().length()));
+		code.addComment("Load field " + this.name + " from record " + this.record.toString() + ", offset " + field_offset);
 		
 		return code;
 

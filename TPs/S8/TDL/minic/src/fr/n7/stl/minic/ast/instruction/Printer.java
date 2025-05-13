@@ -62,7 +62,7 @@ public class Printer implements Instruction {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-return this.parameter.completeResolve(_scope);
+		return this.parameter.completeResolve(_scope);
 	}
 
 	/*
@@ -72,7 +72,7 @@ return this.parameter.completeResolve(_scope);
 	 */
 	@Override
 	public boolean checkType() {
-return true;
+		return true;
 	}
 
 	/*
@@ -84,7 +84,7 @@ return true;
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		throw new SemanticsUndefinedException("Semantics allocateMemory undefined in Printer.");
+		return 0;
 	}
 
 	/*
@@ -94,7 +94,11 @@ return true;
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics getCode undefined in Printer.");
+		Fragment res = _factory.createFragment();
+		res.append(this.parameter.getCode(_factory));
+		res.add(_factory.createPrinter(this.parameter.getType()));
+		res.addComment("print " + this.parameter.toString().replace("\n", "\n; ") + "\n");
+		return res;
 	}
 
 }

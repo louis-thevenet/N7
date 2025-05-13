@@ -19,6 +19,11 @@ monProgramme {
     // Modification d’un champ
     p2.age = 17;
     p2.majeur = false;
+    
+    int a =  p2.age;
+    print a;
+    
+    print p2.age;
 
     // // Utilisation de champs dans des expressions
     // boolean estMajeur = p1.age >= 18 && p1.majeur;

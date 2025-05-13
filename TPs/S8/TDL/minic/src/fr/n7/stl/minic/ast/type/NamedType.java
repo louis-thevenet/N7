@@ -16,7 +16,7 @@ import fr.n7.stl.util.Logger;
  */
 public class NamedType implements Type {
 
-	private TypeDeclaration declaration;
+	private TypeDeclaration declaration; // Changer en public pour pouvoir y avoir accès (ex: enum)
 
 	public String name;
 
@@ -82,11 +82,15 @@ public class NamedType implements Type {
 	 * @return Type associated to the name.
 	 */
 	public Type getType() {
-		Type _result = this.declaration.getType();
-		if (_result instanceof NamedType) {
-			return ((NamedType) _result).getType();
+		if (this.declaration != null) {
+			if (this.declaration.getType() instanceof NamedType) {
+				return ((NamedType) this.declaration.getType()).getType();
+			}
+			else{
+				return this.declaration.getType();
+			}
 		} else {
-			return _result;
+			return AtomicType.ErrorType;
 		}
 	}
 

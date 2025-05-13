@@ -80,15 +80,7 @@ public class Assignment implements Instruction, Expression {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> scope) {
-		if (this.assignable.completeResolve(scope)) {
-			if (this.value.completeResolve(scope)) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
+		return this.assignable.completeResolve(scope) && (this.value.completeResolve(scope)) && this.checkType();
 	}
 
 	/*

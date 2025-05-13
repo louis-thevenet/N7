@@ -197,8 +197,11 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
 		boolean _result = true;
+		int offset=0;
 		for (FieldDeclaration f : this.fields) {
+			f.computerOffset(offset);
 			_result = _result && f.getType().completeResolve(_scope);
+			offset++;
 		}
 		return _result;
 	}

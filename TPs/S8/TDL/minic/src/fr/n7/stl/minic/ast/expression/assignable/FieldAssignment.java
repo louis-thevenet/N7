@@ -33,7 +33,9 @@ public class FieldAssignment extends AbstractField<AssignableExpression> impleme
 		Fragment code = _factory.createFragment();
 		int field_offset = field.getOffset();
 
-		//code.add(_factory.createStore(Register.ST, field_offset, this.record.getType().length()));
+		code.add(_factory.createLoad(Register.SB, field_offset, this.record.getType().length()));
+		code.addComment("Assign field " + this.name + " from record " + this.record.toString() + ", offset " + field_offset);
+		
 		return code;	}
 	
 }

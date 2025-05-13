@@ -87,8 +87,7 @@ public abstract class AbstractField<RecordKind extends Expression> implements Ex
 			_scope.register(this.field);
 			return true;
 		} else {
-			System.out.println("ERROR");
-			return false;
+			return true;
 		}
 	}
 

@@ -8,6 +8,7 @@ import java.util.List;
 import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.accessible.BinaryOperator;
 import fr.n7.stl.minic.ast.expression.accessible.UnaryOperator;
+import fr.n7.stl.minic.ast.type.Type;
 
 /**
  * Factory to build abstract syntax tree nodes for the TAM language.
@@ -248,5 +249,7 @@ public interface TAMFactory {
 	}
 	
 	public int createLabelNumber();
+
+    public TAMInstruction createPrinter(Type type);
 
 }

@@ -6,7 +6,10 @@ package fr.n7.stl.tam.ast.impl;
 import java.util.List;
 import java.util.Optional;
 
+import fr.n7.stl.minic.ast.type.AtomicType;
+import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
+import fr.n7.stl.tam.ast.Library;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 import fr.n7.stl.tam.ast.TAMInstruction;
@@ -331,5 +334,16 @@ public class TAMFactoryImpl implements TAMFactory {
 		labelNumber++;
 		return labelNumber;
 	}
+
+	@Override
+	public TAMInstruction createPrinter(Type type) {
+		if (type instanceof AtomicType atomicType) {
+			if (atomicType.equals(AtomicType.IntegerType))
+				return Library.IOut;
+			else if (atomicType.equals(AtomicType.BooleanType))
+				return Library.BOut;
+		}
+		return null;
+    }
 
 }

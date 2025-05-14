@@ -93,7 +93,7 @@ public class First implements AccessibleExpression {
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment _result = this.target.getCode(_factory);
-		_result.add(_factory.createLoadI(this.target.getType().length()));
+		_result.add(_factory.createLoadI(this.getType().length()));
 		_result.addComment("Loading the first element of Couple"+this.toString());
 		return _result;		
 	}

@@ -5,6 +5,7 @@ package fr.n7.stl.minic.ast.expression;
 
 import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.accessible.AccessibleExpression;
+import fr.n7.stl.minic.ast.expression.accessible.BinaryOperator;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 import fr.n7.stl.minic.ast.type.Type;
@@ -91,8 +92,12 @@ public class Second implements AccessibleExpression {
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment _result = this.target.getCode(_factory);
-		_result.add(_factory.createLoadL(this.target.getType().length()));
-		_result.addComment("Loading the second element of Couple"+this.toString());
+
+
+		_result.add(_factory.createLoadL(((CoupleType)this.target.getType()).getFirst().length()));
+		_result.add(TAMFactory.createBinaryOperator(BinaryOperator.Add));
+		_result.add(_factory.createLoadI(this.getType().length()));
+			_result.addComment("Loading the second element of Couple"+this.toString());
 		return _result;		
 	}
 

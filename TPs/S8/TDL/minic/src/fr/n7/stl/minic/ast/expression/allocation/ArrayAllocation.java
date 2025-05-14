@@ -6,12 +6,14 @@ package fr.n7.stl.minic.ast.expression.allocation;
 import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.expression.accessible.AccessibleExpression;
+import fr.n7.stl.minic.ast.expression.accessible.BinaryOperator;
 import fr.n7.stl.minic.ast.expression.assignable.AssignableExpression;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 import fr.n7.stl.minic.ast.type.ArrayType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
+import fr.n7.stl.tam.ast.Library;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
@@ -86,7 +88,11 @@ public class ArrayAllocation implements AccessibleExpression, AssignableExpressi
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics getCode is undefined in ArrayAllocation.");
-	}
+Fragment res = _factory.createFragment();
+res.append(this.size.getCode(_factory));
+res.add(_factory.createLoadL(this.element.length()));
+res.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
+res.add(Library.MAlloc);
+return res;	}
 
 }

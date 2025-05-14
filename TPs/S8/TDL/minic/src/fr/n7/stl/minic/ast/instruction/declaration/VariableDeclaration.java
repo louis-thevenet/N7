@@ -9,6 +9,7 @@ import fr.n7.stl.minic.ast.instruction.Instruction;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 import fr.n7.stl.minic.ast.type.NamedType;
+import fr.n7.stl.minic.ast.type.PointerType;
 import fr.n7.stl.minic.ast.type.SequenceType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
@@ -158,7 +159,8 @@ public class VariableDeclaration implements Declaration, Instruction {
 	 */
 	@Override
 	public boolean checkType() {
-		boolean res = this.type.compatibleWith(this.value.getType());
+		boolean res = this.value.getType().compatibleWith(this.type);
+		System.out.println(this.value.getType().getClass());
 		if (!res) {
 			System.out.println("Type error in variable declaration: " + this.toString());
 		}
@@ -193,6 +195,7 @@ public class VariableDeclaration implements Declaration, Instruction {
 		{
 		res.add(_factory.createLoadI(this.value.getType().length()));
 		res.addComment("Assign " + this.name);
+		} else if (this.value.getType() instanceof PointerType) {
 		} else if (this.value.getType() instanceof SequenceType) {
 
 		}

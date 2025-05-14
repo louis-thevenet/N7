@@ -1,0 +1,27 @@
+LOADL 5
+LOADL 10
+;Load variable a from offset 0
+;(a + b)
+LOAD (1) 0[SB]
+;Load variable b from offset 1
+LOAD (1) 1[SB]
+SUBR IAdd
+LOADL 0
+;Load variable somme from offset 2
+;(somme > 10)
+;Building the conditional 
+LOAD (1) 2[SB]
+LOADL 10
+SUBR IGtr
+;Assignement  a  from 1
+LOADL 1
+;Assign a from SB + 0
+LOADL 0
+STOREI (1)
+;Assignement  a  from 0
+LOADL 0
+;Assign a from SB + 0
+LOADL 0
+STOREI (1)
+HALT
+

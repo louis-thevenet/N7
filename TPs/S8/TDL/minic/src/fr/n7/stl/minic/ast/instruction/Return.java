@@ -94,7 +94,11 @@ return 0;	}
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
 			code.append(this.value.getCode(_factory));
-			code.add(_factory.createReturn(1,1)); // maybe do (size_return_type, sum_sizes_parameters)
+			int count = 0;
+			for (var arg: this.function.getParameters()) {
+				count += arg.getType().length();
+			}
+			code.add(_factory.createReturn(this.value.getType().length(),count));
 			return code;
 	}
 

@@ -18,8 +18,8 @@ monProgramme {
         a = 0; // Affectation si la condition est fausse
     }
 
-    // Exemple de boucle while
-    while (compteur < 3) {
-        compteur = compteur + 1; // Incrémentation
-    }
+    // // Exemple de boucle while
+    // while (compteur < 3) {
+    //     compteur = compteur + 1; // Incrémentation
+    // }
 }

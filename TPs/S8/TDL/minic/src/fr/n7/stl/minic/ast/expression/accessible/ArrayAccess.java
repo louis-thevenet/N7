@@ -6,6 +6,8 @@ package fr.n7.stl.minic.ast.expression.accessible;
 import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.AbstractArray;
 import fr.n7.stl.minic.ast.expression.Expression;
+import fr.n7.stl.minic.ast.type.ArrayType;
+import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
 
@@ -30,7 +32,14 @@ public class ArrayAccess extends AbstractArray<AccessibleExpression> implements 
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException( "getCode is undefined in ArrayAccess.");
-	}
+Fragment res = _factory.createFragment();
+Type pointedType = ((ArrayType) this.array.getType()).getType();
+res.append(this.array.getCode(_factory));
+res.append(this.index.getCode(_factory));
+res.add(_factory.createLoadL(pointedType.length()));
+res.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
+res.add(TAMFactory.createBinaryOperator(BinaryOperator.Add));
+res.add(_factory.createLoadI(pointedType.length()));
+return res;	}
 
 }

@@ -10,6 +10,7 @@ import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 
 /**
  * Implementation of the Abstract Syntax Tree node for a pointer type.
+ * 
  * @author Marc Pantel
  *
  */
@@ -20,12 +21,14 @@ public class PointerType implements Type {
 	public PointerType(Type _element) {
 		this.element = _element;
 	}
-	
+
 	public Type getPointedType() {
 		return this.element;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#equalsTo(fr.n7.stl.block.ast.Type)
 	 */
 	@Override
@@ -33,7 +36,9 @@ public class PointerType implements Type {
 		throw new SemanticsUndefinedException("Semantics equalsTo undefined in PointerType.");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#compatibleWith(fr.n7.stl.block.ast.Type)
 	 */
 	@Override
@@ -42,14 +47,19 @@ public class PointerType implements Type {
 			return this.element.compatibleWith(((PointerType) _other).getPointedType());
 		} else if (_other instanceof AddressAccess) {
 			return this.element.compatibleWith(((AddressAccess) _other).getType());
-		
-		} else {
-			return false;
+
+		} else if (_other instanceof ArrayType arrayType) {
+			boolean ser = this.element.compatibleWith(arrayType.element);
+			return ser;
+
+		}else {
+			return _other.compatibleWith(this.element);
 		}
-	
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#merge(fr.n7.stl.block.ast.Type)
 	 */
 	@Override
@@ -57,23 +67,29 @@ public class PointerType implements Type {
 		throw new SemanticsUndefinedException("Semantics merge undefined in PointerType.");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#length(int)
 	 */
 	@Override
 	public int length() {
-		throw new SemanticsUndefinedException("Semantics length undefined in PointerType.");
+		return AtomicType.IntegerType.length();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "(" + this.element + " *)";
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.type.Type#resolve(fr.n7.stl.block.ast.scope.Scope)
 	 */
 	@Override

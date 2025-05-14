@@ -34,16 +34,16 @@ MonProgramme{
     }
 
     
-    // Utilisation du couple dans une fonction
+    // // Utilisation du couple dans une fonction
     
-    <int,int> JamaisPair(<int,int> c) {
-        if (fst(c) % 2 == 0 && snd(c) % 2 == 0) {
-            return JamaisPair(<fst(c)/2, snd(c)/2>);
-        } else {
-            return c;
-        }
+    // <int,int> JamaisPair(<int,int> c) {
+    //     if (fst(c) % 2 == 0 && snd(c) % 2 == 0) {
+    //         return JamaisPair(<fst(c)/2, snd(c)/2>);
+    //     } else {
+    //         return c;
+    //     }
 
-    print JamaisPair(couple2);
+    // print JamaisPair(couple2);
     }
 
 

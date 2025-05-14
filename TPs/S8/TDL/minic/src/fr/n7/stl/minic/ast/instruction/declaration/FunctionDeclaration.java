@@ -13,6 +13,7 @@ import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 import fr.n7.stl.minic.ast.scope.Scope;
 import fr.n7.stl.minic.ast.scope.SymbolTable;
+import fr.n7.stl.minic.ast.type.AtomicType;
 import fr.n7.stl.minic.ast.type.FunctionType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
@@ -69,7 +70,7 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		this.type = _type;
 		this.parameters = _parameters;
 		this.body = _body;
-		
+
 	}
 
 	/*
@@ -171,7 +172,15 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		throw new SemanticsUndefinedException("Semantics allocateMemory is undefined in FunctionDeclaration.");
+		this.body.allocateMemory(Register.LB, 3);
+		// 0[LB] contient le lien statique (toujours 0 pour Microjava)
+		// – 1[LB] contient l’instruction exécutée au retour de la fonction et est
+		// affectée automa-
+		// tiquement par un CALL ou un CALLI.
+		// – 2[LB] contient l’ancienne valeur de LB (base de la fonction appelante) et
+		// est affectée
+		// automatiquement par un CALL ou un CALLI.
+		return 0;
 	}
 
 	/*
@@ -182,7 +191,28 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics getCode is undefined in FunctionDeclaration.");
+		Fragment code = _factory.createFragment();
+		String functionEndLabel = "end_" + this.getName();
+		Fragment bodyCode = this.body.getCode(_factory);
+		code.add(_factory.createJump(functionEndLabel));
+		code.addComment("Function " + this.getName() + " start");
+
+		bodyCode.addPrefix(this.name);
+		bodyCode.addSuffix(functionEndLabel);
+		code.append(bodyCode);
+		
+		// if (this.type == AtomicType.VoidType) {
+		// 	int paramSize = 1;
+		// 	for (ParameterDeclaration param : parameters) {
+		// 		paramSize += param.getType().length();
+		// 	}
+		// 	code.add(_factory.createReturn(0, paramSize));
+		// }
+		if(type == AtomicType.VoidType) {
+			bodyCode.add(_factory.createReturn(0, 0));
+		}
+		
+		return code;
 	}
 
 }

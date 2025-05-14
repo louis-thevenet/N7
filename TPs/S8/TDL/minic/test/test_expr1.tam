@@ -1,0 +1,170 @@
+LOADL 1
+LOADL 3
+;Load variable a from offset 0
+;Print a
+LOAD (1) 0[SB]
+SUBR IOut
+;Load variable a from offset 0
+LOAD (1) 0[SB]
+;Load variable a from offset 0
+;(a + b)
+LOAD (1) 0[SB]
+;Load variable b from offset 1
+LOAD (1) 1[SB]
+SUBR IAdd
+;Load variable b from offset 1
+;(b - a)
+LOAD (1) 1[SB]
+;Load variable a from offset 0
+LOAD (1) 0[SB]
+SUBR ISub
+;Load variable a from offset 0
+;(a * b)
+LOAD (1) 0[SB]
+;Load variable b from offset 1
+LOAD (1) 1[SB]
+SUBR IMul
+;Load variable b from offset 1
+;(b / a)
+LOAD (1) 1[SB]
+;Load variable a from offset 0
+LOAD (1) 0[SB]
+SUBR IDiv
+;Load variable b from offset 1
+;(b % a)
+LOAD (1) 1[SB]
+;Load variable a from offset 0
+LOAD (1) 0[SB]
+SUBR IMod
+;Load variable a from offset 0
+;(a < b)
+LOAD (1) 0[SB]
+;Load variable b from offset 1
+LOAD (1) 1[SB]
+SUBR ILss
+;Load variable b from offset 1
+;(b >= a)
+LOAD (1) 1[SB]
+;Load variable a from offset 0
+LOAD (1) 0[SB]
+SUBR IGeq
+;Load variable a from offset 0
+;(a + 1)
+;((a + 1) == b)
+LOAD (1) 0[SB]
+LOADL 1
+SUBR IAdd
+;Load variable b from offset 1
+LOAD (1) 1[SB]
+SUBR IEq
+;Load variable x from offset 8
+;(x && y)
+LOAD (1) 8[SB]
+;Load variable y from offset 9
+LOAD (1) 9[SB]
+SUBR BAnd
+;Load variable x from offset 8
+;(x || false)
+LOAD (1) 8[SB]
+LOADL 0
+SUBR BOr
+;Load variable z from offset 10
+;(! z)
+LOAD (1) 10[SB]
+SUBR BNeg
+;Load variable a from offset 0
+;(a + b)
+;((a + b) * (c + d))
+LOAD (1) 0[SB]
+;Load variable b from offset 1
+LOAD (1) 1[SB]
+SUBR IAdd
+;Load variable c from offset 2
+;(c + d)
+LOAD (1) 2[SB]
+;Load variable d from offset 3
+LOAD (1) 3[SB]
+SUBR IAdd
+SUBR IMul
+;Load variable a from offset 0
+;(a < b)
+;((a < b) && ((c + d) > f))
+;(((a < b) && ((c + d) > f)) || (! x))
+LOAD (1) 0[SB]
+;Load variable b from offset 1
+LOAD (1) 1[SB]
+SUBR ILss
+;Load variable c from offset 2
+;(c + d)
+;((c + d) > f)
+LOAD (1) 2[SB]
+;Load variable d from offset 3
+LOAD (1) 3[SB]
+SUBR IAdd
+;Load variable f from offset 5
+LOAD (1) 5[SB]
+SUBR IGtr
+SUBR BAnd
+;Load variable x from offset 8
+;(! x)
+LOAD (1) 8[SB]
+SUBR BNeg
+SUBR BOr
+;Load variable a from offset 0
+;Print a
+LOAD (1) 0[SB]
+SUBR IOut
+;Load variable b from offset 1
+;Print b
+LOAD (1) 1[SB]
+SUBR IOut
+;Load variable c from offset 2
+;Print c
+LOAD (1) 2[SB]
+SUBR IOut
+;Load variable d from offset 3
+;Print d
+LOAD (1) 3[SB]
+SUBR IOut
+;Load variable e from offset 4
+;Print e
+LOAD (1) 4[SB]
+SUBR IOut
+;Load variable f from offset 5
+;Print f
+LOAD (1) 5[SB]
+SUBR IOut
+;Load variable g from offset 6
+;Print g
+LOAD (1) 6[SB]
+SUBR IOut
+;Load variable h from offset 7
+;Print h
+LOAD (1) 7[SB]
+SUBR IOut
+;Load variable x from offset 8
+;Print x
+LOAD (1) 8[SB]
+SUBR BOut
+;Load variable y from offset 9
+;Print y
+LOAD (1) 9[SB]
+SUBR BOut
+;Load variable z from offset 10
+;Print z
+LOAD (1) 10[SB]
+SUBR BOut
+;Load variable t from offset 11
+;Print t
+LOAD (1) 11[SB]
+SUBR BOut
+;Load variable u from offset 12
+;Print u
+LOAD (1) 12[SB]
+SUBR BOut
+;Load variable v from offset 13
+;Print v
+LOAD (1) 13[SB]
+SUBR BOut
+HALT
+

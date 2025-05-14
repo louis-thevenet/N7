@@ -24,7 +24,6 @@ public class Assignment implements Instruction, Expression {
 
 	protected Expression value;
 	protected AssignableExpression assignable;
-	private int offset=-1;
 
 	/**
 	 * Create an assignment instruction implementation from the assignable

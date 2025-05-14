@@ -7,6 +7,7 @@ monProgramme {
     // Affectation simple
     int a = 1;
     int b = 3;
+    print a;
 
     // Affectation de variables
     int c = a;
@@ -31,4 +32,20 @@ monProgramme {
     // Expressions complexes imbriquées
     int w = (a + b) * (c + d);
     boolean result = (a < b) && ((c + d) > f) || !x;
+
+    // print all
+    print a;
+    print b;
+    print c;
+    print d;
+    print e;
+    print f;
+    print g;
+    print h;
+    print x;
+    print y;
+    print z;
+    print t;
+    print u;
+    print v;
 }

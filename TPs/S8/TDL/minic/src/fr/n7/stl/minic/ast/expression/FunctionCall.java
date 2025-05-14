@@ -13,6 +13,7 @@ import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
+import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
@@ -128,7 +129,12 @@ public class FunctionCall implements AccessibleExpression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics getCode is undefined in FunctionCall.");
+		Fragment code = _factory.createFragment();
+		for (AccessibleExpression _argument : this.arguments) {
+			code.append(_argument.getCode(_factory));
+		}
+		code.add(_factory.createCall(this.function.getName(), Register.LB));
+		return code;
 	}
 
 }

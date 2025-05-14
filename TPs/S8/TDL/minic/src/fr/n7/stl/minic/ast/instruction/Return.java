@@ -85,15 +85,17 @@ public class Return implements Instruction {
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		throw new SemanticsUndefinedException("Semantics allocateMemory undefined in Return.");
-	}
+return 0;	}
 
 	/* (non-Javadoc)
 	 * @see fr.n7.stl.block.ast.Instruction#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics getCode undefined in Return.");
+		Fragment code = _factory.createFragment();
+			code.append(this.value.getCode(_factory));
+			code.add(_factory.createReturn(1,1)); // maybe do (size_return_type, sum_sizes_parameters)
+			return code;
 	}
 
 }

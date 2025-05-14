@@ -1,13 +1,33 @@
-;Assign p1
-PUSH 2
 LOADL 21
 LOADL 1
-LOADI (2)
-;Assign p2
-PUSH 2
 ;Load variable p1 from offset 0
+;Assign p2
 LOADL 0
 LOADI (2)
+;Load variable p2 from offset 2
+;Load field age from record p2, offset 0
+;Print p2.age
+LOADL 2
+LOADL 0
+SUBR IAdd
+LOADI (1)
+SUBR IOut
+;Load variable p2 from offset 2
+;Load field age from record p2, offset 0
+;(p2.age + 1)
+;Assignement  p2 .age from (p2.age + 1)
+LOADL 2
+LOADL 0
+SUBR IAdd
+LOADI (1)
+LOADL 1
+SUBR IAdd
+;Assign p2 from SB + 2
+;Assign field age from record  p2 , offset 0
+LOADL 2
+LOADL 0
+SUBR IAdd
+STOREI (1)
 ;Load variable p2 from offset 2
 ;Load field age from record p2, offset 0
 ;Print p2.age

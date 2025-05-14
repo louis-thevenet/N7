@@ -8,6 +8,8 @@ import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.instruction.Instruction;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
+import fr.n7.stl.minic.ast.type.NamedType;
+import fr.n7.stl.minic.ast.type.SequenceType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
@@ -185,10 +187,17 @@ public class VariableDeclaration implements Declaration, Instruction {
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment res = _factory.createFragment();
-		res.add(_factory.createPush(this.type.length()));
-		res.addComment("Assign " + this.name);
 		res.append(this.value.getCode(_factory));
+
+		if (this.value.getType() instanceof NamedType) 
+		{
 		res.add(_factory.createLoadI(this.value.getType().length()));
+		res.addComment("Assign " + this.name);
+		} else if (this.value.getType() instanceof SequenceType) {
+
+		}
+
+		
 
 		return res;
 	}

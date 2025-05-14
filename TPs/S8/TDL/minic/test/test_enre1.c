@@ -15,14 +15,12 @@ monProgramme {
 
     // Affectation à partir d'un autre enregistrement
     Personne p2 = p1;
-   print p2.age;
+
+    print p2.age;
 
 
-
-
-
-
-
+    p2.age = p2.age + 1;
+    print p2.age;
 
 
 

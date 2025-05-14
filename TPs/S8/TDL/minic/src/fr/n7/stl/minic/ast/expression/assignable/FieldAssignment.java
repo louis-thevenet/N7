@@ -31,12 +31,14 @@ public class FieldAssignment extends AbstractField<AssignableExpression> impleme
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment code = this.record.getCode(_factory);
+		Fragment code = _factory.createFragment();
+		
+		
 		int field_offset = field.getOffset();
 		
+		code.append(this.record.getCode(_factory));
 		code.add(_factory.createLoadL(field_offset));
 		code.add(TAMFactory.createBinaryOperator(BinaryOperator.Add));
-		code.add(_factory.createLoadI(this.field.getType().length()));
 
 		
 		code.addComment("Assign field " + this.name + " from record " + this.record.toString() + ", offset " + field_offset);

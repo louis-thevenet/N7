@@ -91,8 +91,10 @@ public class VariableAssignment extends AbstractIdentifier implements Assignable
 		code.add(_factory.createLoadL(
 				this.declaration.getOffset()
 ));
+
 		code.addComment("Assign " + this.name + " from " + this.declaration.getRegister() + " + "
 				+ this.declaration.getOffset());
+
 		return code;
 	}
 

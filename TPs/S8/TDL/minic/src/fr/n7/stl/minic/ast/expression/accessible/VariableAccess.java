@@ -37,10 +37,8 @@ public class VariableAccess extends AbstractAccess {
 	 */
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment _result = _factory.createFragment();
-		// _result.add(_factory.createLoad(
-				// this.declaration.getRegister(), 
-				// this.declaration.getOffset(),
-				// this.declaration.getType().length()));
+
+
 
 				_result.add(_factory.createLoadL(
 					this.declaration.getOffset()));

@@ -124,9 +124,10 @@ public class Assignment implements Instruction, Expression {
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
-		code.append(this.assignable.getCode(_factory));
 		code.append(this.value.getCode(_factory));
-		code.addComment(this.toString());
+		code.append(this.assignable.getCode(_factory));
+		code.add(_factory.createStoreI(this.assignable.getType().length()));
+		code.addComment("Assignement " + this.assignable + " from " + this.value);
 		return code;
 	}
 

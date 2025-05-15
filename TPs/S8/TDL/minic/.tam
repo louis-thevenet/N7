@@ -1,143 +1,54 @@
-;Assign (seq type) p1
-LOADL 21
-LOADL 1
-;Load variable p1 from offset 0
-;Assign (named type) p2
-LOADL 0
-LOADI (2)
-;Load variable p2 from offset 2
-;Load field age from record p2, offset 0
-;Print p2.age
-LOADL 2
-LOADL 0
-SUBR IAdd
-LOADI (1)
-SUBR IOut
-;Load variable p2 from offset 2
-;Load field age from record p2, offset 0
-;(p2.age + 1)
-;Assignement  p2 .age from (p2.age + 1)
-LOADL 2
-LOADL 0
-SUBR IAdd
-LOADI (1)
-LOADL 1
-SUBR IAdd
-;Assign p2 from SB + 2
-;Assign field age from record  p2 , offset 0
-LOADL 2
-LOADL 0
-SUBR IAdd
-STOREI (1)
-;Load variable p2 from offset 2
-;Load field age from record p2, offset 0
-;Print p2.age
-LOADL 2
-LOADL 0
-SUBR IAdd
-LOADI (1)
-SUBR IOut
-;Load variable p1 from offset 0
-;Load field age from record p1, offset 0
-;(p1.age >= 18)
-;((p1.age >= 18) && p1.majeur)
-LOADL 0
-LOADL 0
-SUBR IAdd
-LOADI (1)
-LOADL 18
-SUBR IGeq
-;Load variable p1 from offset 0
-;Load field majeur from record p1, offset 1
-LOADL 0
-LOADL 1
-SUBR IAdd
-LOADI (1)
-SUBR BAnd
-;Load variable estMajeur from offset 4
-;Print estMajeur
-LOAD (1) 4[SB]
-SUBR BOut
-;Assign (seq type) a1
-LOADL 55
-LOADL 75000
-;Load variable p1 from offset 0
-;Assign (seq type) c1
-LOADL 0
-LOADI (2)
-;Load variable a1 from offset 5
+;Function prints start
+JUMP end_prints
+;(a + 5)
+prints
+LOAD (1) -1[LB]
 LOADL 5
-LOADI (2)
-;Load variable a1 from offset 5
-;Load field numero from record a1, offset 0
-;Print a1.numero
-LOADL 5
-LOADL 0
 SUBR IAdd
-LOADI (1)
-SUBR IOut
-;Load variable p1 from offset 0
-;Load field age from record p1, offset 0
-;Print p1.age
-LOADL 0
-LOADL 0
-SUBR IAdd
-LOADI (1)
-SUBR IOut
-;Load variable c1 from offset 7
-;Load field infos from record c1, offset 0
-;Load field age from record c1.infos, offset 0
-;Print c1.infos.age
-LOADL 7
-LOADL 0
-SUBR IAdd
-LOADL 0
-SUBR IAdd
-LOADI (1)
-SUBR IOut
-;Assignement  c1 .infos.age from 0
-LOADL 0
-;Assign c1 from SB + 7
-;Assign field infos from record  c1 , offset 0
-;Assign field age from record  c1 .infos, offset 0
-LOADL 7
-LOADL 0
-SUBR IAdd
-LOADL 0
-SUBR IAdd
+;Assignement:
+; b 
+;from:
+;6
+LOADL 6
+;Assign b from LB + 3
+LOADL 3
 STOREI (1)
-;Load variable c1 from offset 7
-;Load field infos from record c1, offset 0
-;Load field age from record c1.infos, offset 0
-;Print c1.infos.age
-LOADL 7
-LOADL 0
+;Load variable b from offset 3
+;(b + 5)
+;Assignement:
+; b 
+;from:
+;(b + 5)
+LOAD (1) 3[LB]
+LOADL 5
 SUBR IAdd
-LOADL 0
+;Assign b from LB + 3
+LOADL 3
+STOREI (1)
+RETURN (0) 0
+end_prints
+;Function printsaa start
+JUMP end_printsaa
+printsaa
+LOADL 5
+;Load variable a from offset 3
+;(a + 5)
+;Assignement:
+; a 
+;from:
+;(a + 5)
+LOAD (1) 3[LB]
+LOADL 5
 SUBR IAdd
-LOADI (1)
-SUBR IOut
-;Function client_age start
-JUMP end_client_age
-;Load field infos from record c, offset 0
-;Load field age from record c.infos, offset 0
-client_age
-LOAD (4) -1[LB]
-LOADL 0
-SUBR IAdd
-LOADL 0
-SUBR IAdd
-LOADI (1)
-RETURN (1) 4
-end_client_age
-;Load variable c1 from offset 7
-;Print int client_age( Client c ){
-// Return in function : client_age
-return c.infos.age;
-}
-( c1)
-LOADL 7
-CALL (LB) client_age
-SUBR IOut
+;Assign a from LB + 3
+LOADL 3
+STOREI (1)
+RETURN (0) 0
+end_printsaa
+;Function printsaaa start
+JUMP end_printsaaa
+printsaaa
+RETURN (0) 0
+end_printsaaa
 HALT
 

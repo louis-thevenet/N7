@@ -7,6 +7,8 @@ import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.AbstractAccess;
 import fr.n7.stl.minic.ast.instruction.declaration.ParameterDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
+import fr.n7.stl.minic.ast.type.AtomicType;
+import fr.n7.stl.minic.ast.type.NamedType;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
@@ -39,7 +41,15 @@ public class ParameterAccess extends AbstractAccess {
 	 */
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
-		code.add(_factory.createLoad(Register.LB, this.declaration.getOffset(), this.declaration.getType().length()));
+		System.out.println("Parameter of function has offset : "+this.declaration.getOffset());
+		if (this.declaration.getType() instanceof AtomicType) {
+			System.out.println("parameter is atomic");
+			code.add(_factory.createLoad(Register.LB, this.declaration.getOffset(), this.declaration.getType().length()));
+		} else if (this.declaration.getType() instanceof NamedType) {
+			System.out.println("parameter is namedtype");
+			code.add(_factory.createLoadA(Register.LB, this.declaration.getOffset()));
+
+		}
 		return code;
 	}
 

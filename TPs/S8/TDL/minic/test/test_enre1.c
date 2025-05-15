@@ -39,19 +39,23 @@ monProgramme {
     } Client;
 
     // Utilisation d’un enregistrement imbriqué
-    Adresse a1 = {55, 75000};
+    Adresse a1 = {55, 31};
     Client c1 = {p1, a1};
 
     print a1.numero;
     print p1.age;
     print c1.infos.age;
-    c1.infos.age = 0;
+    c1.infos.age = 66;
     print c1.infos.age;
 
     int client_age(Client c) {
         return c.infos.age;
     }
+    int addre_postal(Client c) {
 
+        return c.adresse.codePostal;
+    }
     print client_age(c1);
+    print addre_postal(c1);
 
 }

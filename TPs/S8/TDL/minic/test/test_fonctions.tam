@@ -8,7 +8,8 @@ RETURN (1) 0
 end_fonc
 CALL (LB) fonc
 ;Load variable a from offset 0
-;Print a
+;Print:
+;a
 LOAD (1) 0[SB]
 SUBR IOut
 ;Function fonc2 start
@@ -24,7 +25,8 @@ LOADL 5
 SUBR IAdd
 CALL (LB) fonc2
 ;Load variable b from offset 1
-;Print b
+;Print:
+;b
 LOAD (1) 1[SB]
 SUBR IOut
 HALT

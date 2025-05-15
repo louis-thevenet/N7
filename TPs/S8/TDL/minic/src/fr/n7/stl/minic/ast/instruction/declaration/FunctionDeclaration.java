@@ -3,6 +3,7 @@
  */
 package fr.n7.stl.minic.ast.instruction.declaration;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -122,13 +123,13 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
 		if (_scope.accepts(this)) {
 			_scope.register(this);
-			System.out.println("Function declaration, old scope: "+ _scope);
+			System.out.println("Function declaration, old scope: " + _scope);
 			this.scope = new SymbolTable(_scope);
 			this.type.completeResolve(_scope);
 			for (ParameterDeclaration _parameter : this.parameters) {
 				this.scope.register(_parameter);
 			}
-			System.out.println("Function declaration, new scope: "+ scope);
+			System.out.println("Function declaration, new scope: " + scope);
 			return this.body.collectAndPartialResolve(this.scope, this);
 		} else {
 			return false;
@@ -151,8 +152,17 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		this.body.completeResolve(this.scope);
-		return (this.body.completeResolve(this.scope));
+		int offset = 0;
+		List<ParameterDeclaration> paramList = parameters;
+		Collections.reverse(paramList);
+
+		for (ParameterDeclaration parameterDeclaration : paramList) {
+			parameterDeclaration.getType().completeResolve(_scope);
+			offset -= parameterDeclaration.getType().length();
+			parameterDeclaration.setOffset(offset);
+		}
+		return this.type.completeResolve(_scope)
+				&& this.body.completeResolve(_scope);
 	}
 
 	/*
@@ -194,26 +204,21 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
+		
 		String functionEndLabel = "end_" + this.getName();
-		Fragment bodyCode = this.body.getCode(_factory);
 		code.add(_factory.createJump(functionEndLabel));
 		code.addComment("Function " + this.getName() + " start");
 
+		Fragment bodyCode = this.body.getCode(_factory);
+
+		if (type == AtomicType.VoidType) {
+			bodyCode.add(_factory.createReturn(0, 0));
+		}
 		bodyCode.addPrefix(this.name);
 		bodyCode.addSuffix(functionEndLabel);
 		code.append(bodyCode);
 		
-		// if (this.type == AtomicType.VoidType) {
-		// 	int paramSize = 1;
-		// 	for (ParameterDeclaration param : parameters) {
-		// 		paramSize += param.getType().length();
-		// 	}
-		// 	code.add(_factory.createReturn(0, paramSize));
-		// }
-		if(type == AtomicType.VoidType) {
-			bodyCode.add(_factory.createReturn(0, 0));
-		}
-		
+
 		return code;
 	}
 

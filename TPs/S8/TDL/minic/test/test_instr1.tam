@@ -13,12 +13,18 @@ LOADL 0
 LOAD (1) 2[SB]
 LOADL 10
 SUBR IGtr
-;Assignement  a  from 1
+;Assignement:
+; a 
+;from:
+;1
 LOADL 1
 ;Assign a from SB + 0
 LOADL 0
 STOREI (1)
-;Assignement  a  from 0
+;Assignement:
+; a 
+;from:
+;0
 LOADL 0
 ;Assign a from SB + 0
 LOADL 0

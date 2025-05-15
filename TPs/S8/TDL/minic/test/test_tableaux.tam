@@ -3,7 +3,8 @@ LOADL 1
 LOADL 2
 LOADL 3
 ;Load variable a from offset 0
-;Print a[ 0 ]
+;Print:
+;a[ 0 ]
 LOADL 0
 LOADL 0
 LOADL 1
@@ -12,7 +13,8 @@ SUBR IAdd
 LOADI (1)
 SUBR IOut
 ;Load variable a from offset 0
-;Print a[ 1 ]
+;Print:
+;a[ 1 ]
 LOADL 0
 LOADL 1
 LOADL 1
@@ -21,7 +23,8 @@ SUBR IAdd
 LOADI (1)
 SUBR IOut
 ;Load variable a from offset 0
-;Print a[ 2 ]
+;Print:
+;a[ 2 ]
 LOADL 0
 LOADL 2
 LOADL 1
@@ -34,7 +37,10 @@ LOADL 1
 SUBR IMul
 SUBR MAlloc
 ;Load variable a from offset 0
-;Assignement  b [ 2 ] from a[ 0 ]
+;Assignement:
+; b [ 2 ]
+;from:
+;a[ 0 ]
 LOADL 0
 LOADL 0
 LOADL 1
@@ -50,7 +56,8 @@ SUBR IAdd
 STOREI (1)
 STOREI (1)
 ;Load variable b from offset 1
-;Print b[ 2 ]
+;Print:
+;b[ 2 ]
 LOADL 1
 LOADL 2
 LOADL 1

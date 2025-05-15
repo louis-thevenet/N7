@@ -68,7 +68,7 @@ public class Assignment implements Instruction, Expression {
 
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
-		return this.collectAndPartialResolve(_scope, _container);
+		return this.collectAndPartialResolve(_scope);
 	}
 
 	/*
@@ -126,7 +126,16 @@ public class Assignment implements Instruction, Expression {
 		code.append(this.value.getCode(_factory));
 		code.append(this.assignable.getCode(_factory));
 		code.add(_factory.createStoreI(this.assignable.getType().length()));
-		code.addComment("Assignement " + this.assignable + " from " + this.value);
+		String a = this.assignable.toString();
+		code.addComment("Assignement:");
+		for (String b : a.split("\n")) {
+			code.addComment(b);
+		}
+		code.addComment("from:");
+		a = this.value.toString();
+		for (String b : a.split("\n")) {
+			code.addComment(b);
+		}
 		return code;
 	}
 

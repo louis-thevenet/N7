@@ -1,57 +1,28 @@
-/*
-Ce programme vérifie la bonne gestion des Enregistrements en MiniC avec des exemples valides
-*/
+test25 {
+    typedef struct Point {
+        int x;
+        int y;
+    } Point;
+    typedef struct Segment {
+        Point ext1;
+        Point ext2;
+    } Segment;
+    typedef struct Triangle {
+        Segment s1;
+        Segment s2;
+        Segment s3;
+    } Triangle;
 
-monProgramme {
-
-    // Déclaration d'un enregistrement (struct)
-    typedef struct Personne {
-        int age;
-        boolean majeur;
-    } Personne;
-
-    // Déclaration et initialisation d'une variable de type Personne
-    Personne p1 = {21, true};
-
-    // Affectation à partir d'un autre enregistrement
-    Personne p2 = p1;
-
-    print p2.age;
-
-
-    p2.age = p2.age + 1;
-    print p2.age;
-
-    // Utilisation de champs dans des expressions
-    boolean estMajeur = p1.age >= 18 && p1.majeur;
-
-    print estMajeur;
-
-    // Déclaration d'un enregistrement imbriqué
-    typedef struct Adresse {
-        int numero;
-        int codePostal;
-    } Adresse;
-    
-    typedef struct Client {
-        Personne infos;
-        Adresse adresse;
-    } Client;
-
-    // Utilisation d’un enregistrement imbriqué
-    Adresse a1 = {55, 75000};
-    Client c1 = {p1, a1};
-
-    print a1.numero;
-    print p1.age;
-    print c1.infos.age;
-    c1.infos.age = 0;
-    print c1.infos.age;
-
-    int client_age(Client c) {
-        return c.infos.age;
+    void prints(int a) {
+        int b = a + 5;
+        b = 6;
+        b = b + 5;
     }
 
-    print client_age(c1);
-
+    void printsaa() {
+        int a = 5;
+        a = a + 5;
+    }
+    void printsaaa(Segment s) {
+    }
 }

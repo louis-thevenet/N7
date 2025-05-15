@@ -10,6 +10,7 @@ import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.instruction.declaration.FunctionDeclaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
+import fr.n7.stl.minic.ast.type.NamedType;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
@@ -98,7 +99,14 @@ return 0;	}
 			code.append(this.value.getCode(_factory));
 			int count = 0;
 			for (var arg: this.function.getParameters()) {
-				count += arg.getType().length();
+				if (arg.getType() instanceof NamedType) {
+					count += 1;
+
+				}
+				else {
+					count += arg.getType().length();
+
+				}
 			}
 			code.add(_factory.createReturn(this.value.getType().length(),count));
 			return code;

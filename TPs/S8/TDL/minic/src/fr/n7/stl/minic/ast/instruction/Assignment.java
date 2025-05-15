@@ -122,7 +122,7 @@ public class Assignment implements Instruction, Expression {
 		Fragment res = _factory.createFragment();
 		res.append(this.value.getCode(_factory));
 		res.append(this.assignable.getCode(_factory));
-		res.addCommand("Assign " + this.value.getType().length());
+		res.addComment("Assign " + this.value.getType().length());
 		return res;
 	}
 

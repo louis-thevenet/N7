@@ -1,26 +1,45 @@
+;Declaration of a
+;End of Block
 PUSH 1
 LOADL 5
 STORE (1) 0[SB]
+;Declaration of b
 PUSH 1
 LOADL 10
 STORE (1) 1[SB]
+;Declaration of somme
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@424c0bc4
+;Access to a
 LOAD (1) 0[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@3c679bde
+;Access to b
 LOAD (1) 1[SB]
 SUBR IAdd
 STORE (1) 2[SB]
+;Declaration of compteur
 PUSH 1
 LOADL 0
 STORE (1) 3[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@63e31ee
+;Access to somme
+;if
 LOAD (1) 2[SB]
 LOADL 10
 SUBR IGtr
 JUMPIF (0) else_1
+;Assign 1
+;End of Block
 LOADL 1
+;Store a in register SB with offset 0
 STORE (1) 0[SB]
 JUMP end_if_1
+;Assign 1
+;End of Block
+;else
 else_1
 LOADL 0
+;Store a in register SB with offset 0
 STORE (1) 0[SB]
 end_if_1
 POP (0) 4

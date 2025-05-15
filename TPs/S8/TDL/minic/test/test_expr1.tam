@@ -1,121 +1,230 @@
+;Declaration of a
+;End of Block
 PUSH 1
 LOADL 1
 STORE (1) 0[SB]
+;Declaration of b
 PUSH 1
 LOADL 3
 STORE (1) 1[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@68fb2c38
+;Access to a
 LOAD (1) 0[SB]
 SUBR IOut
+;Declaration of c
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@2eafffde
+;Access to a
 LOAD (1) 0[SB]
 STORE (1) 2[SB]
+;Declaration of d
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@59690aa4
+;Access to a
 LOAD (1) 0[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@6842775d
+;Access to b
 LOAD (1) 1[SB]
 SUBR IAdd
 STORE (1) 3[SB]
+;Declaration of e
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@64cee07
+;Access to b
 LOAD (1) 1[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@1761e840
+;Access to a
 LOAD (1) 0[SB]
 SUBR ISub
 STORE (1) 4[SB]
+;Declaration of f
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@6c629d6e
+;Access to a
 LOAD (1) 0[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5ecddf8f
+;Access to b
 LOAD (1) 1[SB]
 SUBR IMul
 STORE (1) 5[SB]
+;Declaration of g
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@3f102e87
+;Access to b
 LOAD (1) 1[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@27abe2cd
+;Access to a
 LOAD (1) 0[SB]
 SUBR IDiv
 STORE (1) 6[SB]
+;Declaration of h
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5f5a92bb
+;Access to b
 LOAD (1) 1[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@6fdb1f78
+;Access to a
 LOAD (1) 0[SB]
 SUBR IMod
 STORE (1) 7[SB]
+;Declaration of x
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@51016012
+;Access to a
 LOAD (1) 0[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@29444d75
+;Access to b
 LOAD (1) 1[SB]
 SUBR ILss
 STORE (1) 8[SB]
+;Declaration of y
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@2280cdac
+;Access to b
 LOAD (1) 1[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@1517365b
+;Access to a
 LOAD (1) 0[SB]
 SUBR IGeq
 STORE (1) 9[SB]
+;Declaration of z
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@4fccd51b
+;Access to a
 LOAD (1) 0[SB]
 LOADL 1
 SUBR IAdd
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@44e81672
+;Access to b
 LOAD (1) 1[SB]
 SUBR IEq
 STORE (1) 10[SB]
+;Declaration of t
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@60215eee
+;Access to x
 LOAD (1) 8[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@4ca8195f
+;Access to y
 LOAD (1) 9[SB]
 SUBR BAnd
 STORE (1) 11[SB]
+;Declaration of u
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@65e579dc
+;Access to x
 LOAD (1) 8[SB]
 LOADL 0
 SUBR BOr
 STORE (1) 12[SB]
+;Declaration of v
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@61baa894
+;Access to z
 ;(! z)
 LOAD (1) 10[SB]
 SUBR BNeg
 STORE (1) 13[SB]
+;Declaration of w
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@b065c63
+;Access to a
 LOAD (1) 0[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@768debd
+;Access to b
 LOAD (1) 1[SB]
 SUBR IAdd
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@490d6c15
+;Access to c
 LOAD (1) 2[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@7d4793a8
+;Access to d
 LOAD (1) 3[SB]
 SUBR IAdd
 SUBR IMul
 STORE (1) 14[SB]
+;Declaration of result
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@449b2d27
+;Access to a
 LOAD (1) 0[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5479e3f
+;Access to b
 LOAD (1) 1[SB]
 SUBR ILss
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@27082746
+;Access to c
 LOAD (1) 2[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@66133adc
+;Access to d
 LOAD (1) 3[SB]
 SUBR IAdd
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@7bfcd12c
+;Access to f
 LOAD (1) 5[SB]
 SUBR IGtr
 SUBR BAnd
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@42f30e0a
+;Access to x
 ;(! x)
 LOAD (1) 8[SB]
 SUBR BNeg
 SUBR BOr
 STORE (1) 15[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@24273305
+;Access to a
 LOAD (1) 0[SB]
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5b1d2887
+;Access to b
 LOAD (1) 1[SB]
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@46f5f779
+;Access to c
 LOAD (1) 2[SB]
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@1c2c22f3
+;Access to d
 LOAD (1) 3[SB]
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@18e8568
+;Access to e
 LOAD (1) 4[SB]
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@33e5ccce
+;Access to f
 LOAD (1) 5[SB]
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5a42bbf4
+;Access to g
 LOAD (1) 6[SB]
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@270421f5
+;Access to h
 LOAD (1) 7[SB]
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@52d455b8
+;Access to x
 LOAD (1) 8[SB]
 SUBR BOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@4f4a7090
+;Access to y
 LOAD (1) 9[SB]
 SUBR BOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@18ef96
+;Access to z
 LOAD (1) 10[SB]
 SUBR BOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@6956de9
+;Access to t
 LOAD (1) 11[SB]
 SUBR BOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@769c9116
+;Access to u
 LOAD (1) 12[SB]
 SUBR BOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@6aceb1a5
+;Access to v
 LOAD (1) 13[SB]
 SUBR BOut
 POP (0) 16

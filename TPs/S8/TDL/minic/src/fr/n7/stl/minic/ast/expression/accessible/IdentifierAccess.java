@@ -129,7 +129,7 @@ public class IdentifierAccess extends AbstractIdentifier implements AccessibleEx
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
 
-		code.add( this.expression.getCode(_factory));
+		code.append(this.expression.getCode(_factory));
 		code.addComment("Access to " + this.name);
 		return code;
 	}

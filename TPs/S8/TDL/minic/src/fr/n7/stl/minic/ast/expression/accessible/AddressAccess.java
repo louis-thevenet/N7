@@ -92,7 +92,7 @@ public class AddressAccess implements AccessibleExpression {
 				if (decl.getType() instanceof ArrayType arrayType) {
 					code.add(_factory.createLoadL(arrayType.getType().length()));
 					code.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
-					
+
 				} else {
 					code.add(_factory.createLoadL(0));
 					code.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
@@ -102,7 +102,7 @@ public class AddressAccess implements AccessibleExpression {
 
 			}
 		}
-		code.addComment("Address of " + decl.getName());
+		code.addComment("Address of ");
 		return code;
 	}
 

@@ -1,86 +1,168 @@
+;Declaration of a
+;End of Block
 PUSH 1
 LOADL 5
 STORE (1) 0[SB]
+;Declaration of b
 PUSH 1
 LOADL 10
 STORE (1) 1[SB]
+;Declaration of couple1
 PUSH 2
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@68fb2c38
+;Access to a
+;Load couple
 LOAD (1) 0[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@567d299b
+;Access to b
 LOAD (1) 1[SB]
 STORE (2) 2[SB]
+;Declaration of couple2
 PUSH 2
+;Load couple
 LOADL 20
 LOADL 42
 STORE (2) 4[SB]
+;Declaration of couple3
 PUSH 2
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@2eafffde
+;Access to a
+;Load couple
 LOAD (1) 0[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@59690aa4
+;Access to b
 LOAD (1) 1[SB]
 SUBR IAdd
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@1761e840
+;Access to b
 LOAD (1) 1[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@6c629d6e
+;Access to a
 LOAD (1) 0[SB]
 SUBR ISub
 STORE (2) 6[SB]
+;Declaration of couple4
 PUSH 2
+;Load couple
 LOADL 1
 LOADL 42
 STORE (2) 8[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5ecddf8f
+;Access to couple4
+;Load first
 LOAD (2) 8[SB]
 POP (0) 1
 SUBR BOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@3f102e87
+;Access to couple4
+;Load second
 LOAD (2) 8[SB]
 POP (1) 1
 SUBR IOut
+;Declaration of premier
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@27abe2cd
+;Access to couple1
+;Load first
 LOAD (2) 2[SB]
 POP (0) 1
 STORE (1) 10[SB]
+;Declaration of second
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5f5a92bb
+;Access to couple1
+;Load second
 LOAD (2) 2[SB]
 POP (1) 1
 STORE (1) 11[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@6fdb1f78
+;Access to premier
 LOAD (1) 10[SB]
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@51016012
+;Access to second
 LOAD (1) 11[SB]
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@29444d75
+;Access to couple1
+;Load first
+;Load couple
+;Assign 2
 LOAD (2) 2[SB]
 POP (0) 1
 LOADL 1
 SUBR IAdd
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@2280cdac
+;Access to couple1
+;Load second
 LOAD (2) 2[SB]
 POP (1) 1
 LOADL 2
 SUBR IAdd
+;Store couple1 in register SB with offset 2
 STORE (2) 2[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@24273305
+;Access to couple1
+;Load first
 LOAD (2) 2[SB]
 POP (0) 1
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5b1d2887
+;Access to couple1
+;Load second
 LOAD (2) 2[SB]
 POP (1) 1
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@46f5f779
+;Access to couple2
+;Load first
+;Load couple
+;Assign 2
 LOAD (2) 4[SB]
 POP (0) 1
 LOADL 2
 SUBR IAdd
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@1c2c22f3
+;Access to couple2
+;Load second
 LOAD (2) 4[SB]
 POP (1) 1
 LOADL 2
 SUBR IAdd
+;Store couple2 in register SB with offset 4
 STORE (2) 4[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@18e8568
+;Access to couple2
+;Load first
 LOAD (2) 4[SB]
 POP (0) 1
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@33e5ccce
+;Access to couple2
+;Load second
 LOAD (2) 4[SB]
 POP (1) 1
 SUBR IOut
+;Function fonc
 JUMP end_fonc
+;Parameter Access fr.n7.stl.minic.ast.expression.accessible.ParameterAccess@5a42bbf4
+;Access to a
+;End of Block
 fonc
 LOAD (2) -2[LB]
 RETURN (2) 2
 end_fonc
+;Declaration of c
 PUSH 2
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@270421f5
+;Access to couple1
+;Call to fonc
 LOAD (2) 2[SB]
 CALL (LB) fonc
 STORE (2) 12[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@52d455b8
+;Access to c
+;Load first
 LOAD (2) 12[SB]
 POP (0) 1
 SUBR IOut

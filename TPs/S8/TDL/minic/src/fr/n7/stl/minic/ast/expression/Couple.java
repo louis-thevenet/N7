@@ -102,6 +102,7 @@ public class Couple implements AccessibleExpression {
 		code.append(this.first.getCode(_factory));
 		code.append(this.second.getCode(_factory));
 		code.addComment("Load couple");
+		return code;
 
 	}
 

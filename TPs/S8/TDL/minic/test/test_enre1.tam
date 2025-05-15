@@ -1,63 +1,112 @@
+;Declaration of p1
+;End of Block
 PUSH 2
 LOADL 21
 LOADL 1
 STORE (2) 0[SB]
+;Declaration of p2
 PUSH 2
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@3419866c
+;Access to p1
 LOAD (2) 0[SB]
 STORE (2) 2[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@63e31ee
+;Access to p2
+;Field Access p2.age
 LOAD (2) 2[SB]
 POP (0) 1
 POP (1) 0
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@567d299b
+;Access to p2
+;Field Access p2.age
+;Assign 1
 LOAD (2) 2[SB]
 POP (0) 1
 POP (1) 0
 LOADL 1
 SUBR IAdd
+;Field Assignment  p2 .age
 LOADL 2
 STOREI (1)
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@3f102e87
+;Access to p2
+;Field Access p2.age
 LOAD (2) 2[SB]
 POP (0) 1
 POP (1) 0
 SUBR IOut
+;Declaration of estMajeur
 PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@27abe2cd
+;Access to p1
+;Field Access p1.age
 LOAD (2) 0[SB]
 POP (0) 1
 POP (1) 0
 LOADL 18
 SUBR IGeq
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5f5a92bb
+;Access to p1
+;Field Access p1.majeur
 LOAD (2) 0[SB]
 POP (1) 1
 SUBR BAnd
 STORE (1) 4[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@6fdb1f78
+;Access to estMajeur
 LOAD (1) 4[SB]
 SUBR BOut
+;Declaration of a1
 PUSH 2
 LOADL 55
 LOADL 31
 STORE (2) 5[SB]
+;Declaration of c1
 PUSH 4
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@51016012
+;Access to p1
 LOAD (2) 0[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@29444d75
+;Access to a1
 LOAD (2) 5[SB]
 STORE (4) 7[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@2280cdac
+;Access to a1
+;Field Access a1.numero
 LOAD (2) 5[SB]
 POP (0) 1
 POP (1) 0
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@1517365b
+;Access to p1
+;Field Access p1.age
 LOAD (2) 0[SB]
 POP (0) 1
 POP (1) 0
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@4fccd51b
+;Access to c1
+;Field Access c1.infos
+;Field Access c1.infos.age
 LOAD (4) 7[SB]
 POP (0) 2
 POP (2) 0
 POP (0) 1
 POP (1) 0
 SUBR IOut
+;Assign 1
 LOADL 66
+;Field Assignment  c1 .infos.age
 LOADL 7
 STOREI (1)
+;Function client_age
 JUMP end_client_age
+;Parameter Access fr.n7.stl.minic.ast.expression.accessible.ParameterAccess@44e81672
+;Access to c
+;Field Access c.infos
+;Field Access c.infos.age
+;End of Block
 client_age
 LOAD (4) -4[LB]
 POP (0) 2
@@ -66,16 +115,28 @@ POP (0) 1
 POP (1) 0
 RETURN (1) 4
 end_client_age
+;Function addre_postal
 JUMP end_addre_postal
+;Parameter Access fr.n7.stl.minic.ast.expression.accessible.ParameterAccess@60215eee
+;Access to c
+;Field Access c.adresse
+;Field Access c.adresse.codePostal
+;End of Block
 addre_postal
 LOAD (4) -4[LB]
 POP (2) 2
 POP (1) 1
 RETURN (1) 4
 end_addre_postal
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@4ca8195f
+;Access to c1
+;Call to client_age
 LOAD (4) 7[SB]
 CALL (LB) client_age
 SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@65e579dc
+;Access to c1
+;Call to addre_postal
 LOAD (4) 7[SB]
 CALL (LB) addre_postal
 SUBR IOut

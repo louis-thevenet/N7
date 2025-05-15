@@ -44,7 +44,7 @@ public class ConstantAccess extends AbstractAccess {
 	 * TAMFactory)
 	 */
 	public Fragment getCode(TAMFactory _factory) {
-		return this.declaration.getCode(_factory);
+		return this.declaration.getValue().getCode(_factory);
 	}
 
 }

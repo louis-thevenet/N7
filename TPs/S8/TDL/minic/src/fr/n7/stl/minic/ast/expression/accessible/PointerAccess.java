@@ -3,9 +3,7 @@
  */
 package fr.n7.stl.minic.ast.expression.accessible;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.AbstractPointer;
-import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.type.NamedType;
 import fr.n7.stl.minic.ast.type.PointerType;
 import fr.n7.stl.minic.ast.type.Type;
@@ -49,6 +47,7 @@ public class PointerAccess extends AbstractPointer<AccessibleExpression> impleme
 		pointedType = pt.getPointedType();
 		res.append(this.pointer.getCode(_factory));
 		res.add(_factory.createLoadI(pointedType.length()));
+		res.addComment("Pointer Access " + this.toString());
 		return res;
 	}
 

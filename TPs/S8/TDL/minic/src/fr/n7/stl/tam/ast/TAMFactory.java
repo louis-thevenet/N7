@@ -3,12 +3,12 @@
  */
 package fr.n7.stl.tam.ast;
 
-import java.util.List;
-
 import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.accessible.BinaryOperator;
 import fr.n7.stl.minic.ast.expression.accessible.UnaryOperator;
 import fr.n7.stl.minic.ast.type.Type;
+
+import java.util.List;
 
 /**
  * Factory to build abstract syntax tree nodes for the TAM language.
@@ -317,8 +317,28 @@ public interface TAMFactory {
 		}
 	}
 
+	/**
+	 * Return a unique number to use for control keywords.
+	 * 
+	 * @return a unique number
+	 */
 	public int createLabelNumber();
 
-	public TAMInstruction createPrinter(Type type);
+	/**
+	 * Build a TAM stdout instruction to print a int or a boolean variable variable.
+	 * 
+	 * @param t the type (AtomicType.BooleanType or AtomicType.IntegerType)
+	 * @return A TAM instruction AST leaf corresponding to a print.
+	 */
+	public TAMInstruction createPrinter(Type t);
+
+	/**
+	 * Build a TAM MAlloc instruction to alloc a block of size on the top of the
+	 * stack.
+	 * 
+	 * @param t the type (AtomicType.BooleanType or AtomicType.IntegerType)
+	 * @return A TAM instruction AST leaf corresponding to a print.
+	 */
+	public TAMInstruction createMalloc();
 
 }

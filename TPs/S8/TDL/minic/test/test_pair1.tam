@@ -13,13 +13,9 @@ LOADL 20
 LOADL 42
 STORE (2) 4[SB]
 PUSH 2
-;(a + b)
-
 LOAD (1) 0[SB]
 LOAD (1) 1[SB]
 SUBR IAdd
-;(b - a)
-
 LOAD (1) 1[SB]
 LOAD (1) 0[SB]
 SUBR ISub
@@ -46,14 +42,10 @@ LOAD (1) 10[SB]
 SUBR IOut
 LOAD (1) 11[SB]
 SUBR IOut
-;((fstcouple1) + 1)
-
 LOAD (2) 2[SB]
 POP (0) 1
 LOADL 1
 SUBR IAdd
-;((sndcouple1) + 2)
-
 LOAD (2) 2[SB]
 POP (1) 1
 LOADL 2
@@ -65,14 +57,10 @@ SUBR IOut
 LOAD (2) 2[SB]
 POP (1) 1
 SUBR IOut
-;((fstcouple2) + 2)
-
 LOAD (2) 4[SB]
 POP (0) 1
 LOADL 2
 SUBR IAdd
-;((sndcouple2) + 2)
-
 LOAD (2) 4[SB]
 POP (1) 1
 LOADL 2

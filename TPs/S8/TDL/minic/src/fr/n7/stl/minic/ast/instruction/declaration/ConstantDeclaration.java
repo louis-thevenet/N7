@@ -12,6 +12,7 @@ import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
+import fr.n7.stl.util.Logger;
 
 /**
  * Implementation of the Abstract Syntax Tree node for a constant declaration
@@ -98,8 +99,8 @@ public class ConstantDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		_scope.register(this);
-		if (this.value != null) {
+		if (_scope.accepts(this)) {
+			_scope.register(this);
 			return this.value.collectAndPartialResolve(_scope);
 		}
 		return false;
@@ -107,13 +108,8 @@ public class ConstantDeclaration implements Instruction, Declaration {
 
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
+		return this.collectAndPartialResolve(_scope);
 
-		if (_scope.accepts(this)) {
-			_scope.register(this);
-			return this.value.collectAndPartialResolve(_scope);
-		} else {
-			return false;
-		}
 	}
 
 	/*
@@ -125,10 +121,7 @@ public class ConstantDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		if (this.value != null) {
-			return this.value.completeResolve(_scope);
-		}
-		return false;
+		return this.value.completeResolve(_scope) && this.type.completeResolve(_scope);
 	}
 
 	/*
@@ -150,7 +143,7 @@ public class ConstantDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		throw new SemanticsUndefinedException("Semantics allocateMemory is undefined in ConstantDeclaration.");
+		return 0;
 	}
 
 	/*
@@ -160,7 +153,7 @@ public class ConstantDeclaration implements Instruction, Declaration {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics getCode is undefined in ConstantDeclaration.");
+		return _factory.createFragment();
 	}
 
 }

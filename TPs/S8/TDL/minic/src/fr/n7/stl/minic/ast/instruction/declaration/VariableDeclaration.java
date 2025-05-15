@@ -3,18 +3,15 @@
  */
 package fr.n7.stl.minic.ast.instruction.declaration;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.instruction.Instruction;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
-import fr.n7.stl.minic.ast.type.NamedType;
-import fr.n7.stl.minic.ast.type.PointerType;
-import fr.n7.stl.minic.ast.type.SequenceType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
+import fr.n7.stl.util.Logger;
 
 /**
  * Abstract Syntax Tree node for a variable declaration instruction.
@@ -79,6 +76,7 @@ public class VariableDeclaration implements Declaration, Instruction {
 	 * 
 	 * @return Type of the declared variable.
 	 */
+	@Override
 	public Type getType() {
 		return this.type;
 	}
@@ -123,21 +121,18 @@ public class VariableDeclaration implements Declaration, Instruction {
 	 * .Scope)
 	 */
 	@Override
-	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> scope) {
-		if (scope.accepts(this)) {
-			scope.register(this);
-			return (this.value.collectAndPartialResolve(scope));
+	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
+		if (_scope.accepts(this)) {
+			_scope.register(this);
+			return this.value.collectAndPartialResolve(_scope);
 		}
 		return false;
 	}
 
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
-		if (_scope.accepts(this)) {
-			_scope.register(this);
-			return (this.value.collectAndPartialResolve(_scope));
-		}
-		return false;
+		return this.collectAndPartialResolve(_scope);
+
 	}
 
 	/*
@@ -149,7 +144,7 @@ public class VariableDeclaration implements Declaration, Instruction {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		return (this.type.completeResolve(_scope) && this.value.completeResolve(_scope));
+		return this.type.completeResolve(_scope) && this.value.completeResolve(_scope);
 	}
 
 	/*
@@ -159,11 +154,8 @@ public class VariableDeclaration implements Declaration, Instruction {
 	 */
 	@Override
 	public boolean checkType() {
-		boolean res = this.value.getType().compatibleWith(this.type);
-		if (!res) {
-			System.out.println("Type error in variable declaration: " + this.toString());
-		}
-		return res;
+		return this.value.getType().compatibleWith(this.type);
+
 	}
 
 	/*
@@ -174,9 +166,10 @@ public class VariableDeclaration implements Declaration, Instruction {
 	 * int)
 	 */
 	@Override
-	public int allocateMemory(Register _register, int _offset) {
-		this.register = _register;
-		this.offset = _offset;
+	public int allocateMemory(Register register, int offset) {
+		this.register = register;
+		this.offset = offset;
+
 		return this.type.length();
 	}
 
@@ -187,20 +180,12 @@ public class VariableDeclaration implements Declaration, Instruction {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment res = _factory.createFragment();
-		res.append(this.value.getCode(_factory));
-
-		if (this.value.getType() instanceof NamedType) {
-			res.add(_factory.createLoadI(this.value.getType().length()));
-			res.addComment("Assign (named type) " + this.name);
-		} else if (this.value.getType() instanceof PointerType) {
-		} else if (this.value.getType() instanceof SequenceType) {
-			res.addComment("Assign (seq type) " + this.name);
-
-		} else {
-		}
-
-		return res;
+		Fragment code = _factory.createFragment();
+		code.add(_factory.createPush(this.type.length()));
+		code.append(this.value.getCode(_factory));
+		code.add(_factory.createStore(this.register, this.offset, this.type.length()));
+		code.addComment("Declaration of " + this.name);
+		return code;
 	}
 
 }

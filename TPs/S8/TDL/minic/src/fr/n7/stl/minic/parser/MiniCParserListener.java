@@ -1,26 +1,26 @@
 // Generated from MiniCParser.g4 by ANTLR 4.13.1
 
 package fr.n7.stl.minic.parser;
+// import java.io.IOException;
 
-import java.io.IOException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.PrintWriter;
-import java.io.IOException;
-import fr.n7.stl.minic.ast.*;
-import fr.n7.stl.minic.ast.expression.*;
-import fr.n7.stl.minic.ast.expression.accessible.*;
-import fr.n7.stl.minic.ast.expression.allocation.*;
-import fr.n7.stl.minic.ast.expression.assignable.*;
-import fr.n7.stl.minic.ast.expression.value.*;
-import fr.n7.stl.minic.ast.instruction.*;
-import fr.n7.stl.minic.ast.instruction.declaration.*;
-import fr.n7.stl.minic.ast.scope.*;
-import fr.n7.stl.minic.ast.type.*;
-import fr.n7.stl.minic.ast.type.declaration.*;
-import fr.n7.stl.util.*;
-import fr.n7.stl.tam.ast.*;
-import fr.n7.stl.tam.ast.impl.*;
+// import java.io.File;
+// import java.io.FileInputStream;
+// import java.io.PrintWriter;
+// import java.io.IOException;
+// import fr.n7.stl.minic.ast.*;
+// import fr.n7.stl.minic.ast.expression.*;
+// import fr.n7.stl.minic.ast.expression.accessible.*;
+// import fr.n7.stl.minic.ast.expression.allocation.*;
+// import fr.n7.stl.minic.ast.expression.assignable.*;
+// import fr.n7.stl.minic.ast.expression.value.*;
+// import fr.n7.stl.minic.ast.instruction.*;
+// import fr.n7.stl.minic.ast.instruction.declaration.*;
+// import fr.n7.stl.minic.ast.scope.*;
+// import fr.n7.stl.minic.ast.type.*;
+// import fr.n7.stl.minic.ast.type.declaration.*;
+// import fr.n7.stl.util.*;
+// import fr.n7.stl.tam.ast.*;
+// import fr.n7.stl.tam.ast.impl.*;
 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -152,6 +152,22 @@ public interface MiniCParserListener extends ParseTreeListener {
 	void exitInstructionAffichage(MiniCParser.InstructionAffichageContext ctx);
 
 	/**
+	 * Enter a parse tree produced by the {@code instructionTantQue}
+	 * labeled alternative in {@link MiniCParser#instruction}.
+	 * 
+	 * @param ctx the parse tree
+	 */
+	void enterInstructionTantQue(MiniCParser.InstructionTantQueContext ctx);
+
+	/**
+	 * Exit a parse tree produced by the {@code instructionTantQue}
+	 * labeled alternative in {@link MiniCParser#instruction}.
+	 * 
+	 * @param ctx the parse tree
+	 */
+	void exitInstructionTantQue(MiniCParser.InstructionTantQueContext ctx);
+
+	/**
 	 * Enter a parse tree produced by the {@code instructionSi}
 	 * labeled alternative in {@link MiniCParser#instruction}.
 	 * 
@@ -198,22 +214,6 @@ public interface MiniCParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInstructionReturn(MiniCParser.InstructionReturnContext ctx);
-
-	/**
-	 * Enter a parse tree produced by the {@code instructionTantQue}
-	 * labeled alternative in {@link MiniCParser#instruction}.
-	 * 
-	 * @param ctx the parse tree
-	 */
-	void enterInstructionTantQue(MiniCParser.InstructionTantQueContext ctx);
-
-	/**
-	 * Exit a parse tree produced by the {@code instructionTantQue}
-	 * labeled alternative in {@link MiniCParser#instruction}.
-	 * 
-	 * @param ctx the parse tree
-	 */
-	void exitInstructionTantQue(MiniCParser.InstructionTantQueContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link MiniCParser#atomique}.

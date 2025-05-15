@@ -1,9 +1,12 @@
 package fr.n7.stl.minic.ast.expression;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
+import fr.n7.stl.minic.ast.type.AtomicType;
+import fr.n7.stl.minic.ast.type.NamedType;
+import fr.n7.stl.minic.ast.type.PointerType;
 import fr.n7.stl.minic.ast.type.Type;
+import fr.n7.stl.util.Logger;
 
 /**
  * Common elements between left (Assignable) and right (Expression) end sides of
@@ -50,10 +53,7 @@ public abstract class AbstractPointer<PointerKind extends Expression> implements
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		if (this.pointer != null) {
-			return this.pointer.collectAndPartialResolve(_scope);
-		}
-		return false;
+		return this.pointer.collectAndPartialResolve(_scope);
 	}
 
 	/*
@@ -65,10 +65,7 @@ public abstract class AbstractPointer<PointerKind extends Expression> implements
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		if (this.pointer != null) {
-			return this.pointer.completeResolve(_scope);
-		}
-		return false;
+		return this.pointer.completeResolve(_scope);
 	}
 
 	/**
@@ -76,8 +73,14 @@ public abstract class AbstractPointer<PointerKind extends Expression> implements
 	 * 
 	 * @return Synthesized Type of the expression.
 	 */
+	@Override
 	public Type getType() {
-		return this.pointer.getType();
+		if (this.pointer.getType() instanceof PointerType np)
+			return np.getPointedType();
+		else if (this.pointer.getType() instanceof NamedType nt) {
+			return ((PointerType) nt.getType()).getPointedType();
+		}
+		return AtomicType.ErrorType;
 	}
 
 }

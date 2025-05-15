@@ -95,6 +95,7 @@ public class BinaryExpression implements AccessibleExpression {
 		Type _left = this.left.getType();
 		Type _right = this.right.getType();
 		Type resultType = _left.merge(_right);
+		// _right.toString() + ", merge type : " + resultType.toString());
 		if (resultType.equals(AtomicType.ErrorType)) {
 			Logger.warning("Type error in binary expression : Merged parameters " + _left + " " + _right);
 		}
@@ -138,20 +139,13 @@ public class BinaryExpression implements AccessibleExpression {
 				}
 			}
 			case Equals:
-			case Different: {
+			case Different:
+			case And:
+			case Or: {
 				if (resultType.equals(AtomicType.ErrorType)) {
 					return resultType;
 				} else {
 					return AtomicType.BooleanType;
-				}
-			}
-			case And:
-			case Or: {
-				if (resultType.compatibleWith(AtomicType.BooleanType)) {
-					return resultType;
-				} else {
-					Logger.warning("Type error in binary expression : " + this.operator + " parameter " + resultType);
-					return AtomicType.ErrorType;
 				}
 			}
 			default:
@@ -167,7 +161,6 @@ public class BinaryExpression implements AccessibleExpression {
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment _result = this.left.getCode(_factory);
-		_result.addComment(this.toString());
 		/*
 		 * if (this.left instanceof AccessibleExpression) {
 		 * _result.add(_factory.createLoadI(this.left.getType().length())); }

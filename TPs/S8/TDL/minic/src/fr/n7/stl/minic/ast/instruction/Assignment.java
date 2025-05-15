@@ -3,7 +3,6 @@
  */
 package fr.n7.stl.minic.ast.instruction;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.expression.assignable.AssignableExpression;
 import fr.n7.stl.minic.ast.instruction.declaration.FunctionDeclaration;
@@ -49,7 +48,7 @@ public class Assignment implements Instruction, Expression {
 	 */
 	@Override
 	public String toString() {
-		return this.assignable + " = " + this.value.toString() + ";\n";
+		return this.assignable + " = " + this.value + ";\n";
 	}
 
 	/*
@@ -60,10 +59,8 @@ public class Assignment implements Instruction, Expression {
 	 * .HierarchicalScope)
 	 */
 	@Override
-
-	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> scope) {
-		return (this.assignable.collectAndPartialResolve(scope))
-				&& (this.value.collectAndPartialResolve(scope));
+	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
+		return this.assignable.collectAndPartialResolve(_scope) && this.value.collectAndPartialResolve(_scope);
 	}
 
 	@Override
@@ -79,8 +76,8 @@ public class Assignment implements Instruction, Expression {
 	 * .HierarchicalScope)
 	 */
 	@Override
-	public boolean completeResolve(HierarchicalScope<Declaration> scope) {
-		return this.assignable.completeResolve(scope) && (this.value.completeResolve(scope)) && this.checkType();
+	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
+		return this.assignable.completeResolve(_scope) && this.value.completeResolve(_scope);
 	}
 
 	/*
@@ -90,7 +87,7 @@ public class Assignment implements Instruction, Expression {
 	 */
 	@Override
 	public Type getType() {
-		throw new SemanticsUndefinedException("Semantics getType is undefined in Assignment.");
+		return this.value.getType();
 	}
 
 	/*
@@ -122,21 +119,11 @@ public class Assignment implements Instruction, Expression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment code = _factory.createFragment();
-		code.append(this.value.getCode(_factory));
-		code.append(this.assignable.getCode(_factory));
-		code.add(_factory.createStoreI(this.assignable.getType().length()));
-		String a = this.assignable.toString();
-		code.addComment("Assignement:");
-		for (String b : a.split("\n")) {
-			code.addComment(b);
-		}
-		code.addComment("from:");
-		a = this.value.toString();
-		for (String b : a.split("\n")) {
-			code.addComment(b);
-		}
-		return code;
+		Fragment res = _factory.createFragment();
+		res.append(this.value.getCode(_factory));
+		res.append(this.assignable.getCode(_factory));
+		res.addCommand("Assign " + this.value.getType().length());
+		return res;
 	}
 
 }

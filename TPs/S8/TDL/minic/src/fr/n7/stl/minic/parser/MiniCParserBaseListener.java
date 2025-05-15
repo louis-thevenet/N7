@@ -1,26 +1,26 @@
 // Generated from MiniCParser.g4 by ANTLR 4.13.1
 
 package fr.n7.stl.minic.parser;
+// import java.io.IOException;
 
-import java.io.IOException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.PrintWriter;
-import java.io.IOException;
-import fr.n7.stl.minic.ast.*;
-import fr.n7.stl.minic.ast.expression.*;
-import fr.n7.stl.minic.ast.expression.accessible.*;
-import fr.n7.stl.minic.ast.expression.allocation.*;
-import fr.n7.stl.minic.ast.expression.assignable.*;
-import fr.n7.stl.minic.ast.expression.value.*;
-import fr.n7.stl.minic.ast.instruction.*;
-import fr.n7.stl.minic.ast.instruction.declaration.*;
-import fr.n7.stl.minic.ast.scope.*;
-import fr.n7.stl.minic.ast.type.*;
-import fr.n7.stl.minic.ast.type.declaration.*;
-import fr.n7.stl.util.*;
-import fr.n7.stl.tam.ast.*;
-import fr.n7.stl.tam.ast.impl.*;
+// import java.io.File;
+// import java.io.FileInputStream;
+// import java.io.PrintWriter;
+// import java.io.IOException;
+// import fr.n7.stl.minic.ast.*;
+// import fr.n7.stl.minic.ast.expression.*;
+// import fr.n7.stl.minic.ast.expression.accessible.*;
+// import fr.n7.stl.minic.ast.expression.allocation.*;
+// import fr.n7.stl.minic.ast.expression.assignable.*;
+// import fr.n7.stl.minic.ast.expression.value.*;
+// import fr.n7.stl.minic.ast.instruction.*;
+// import fr.n7.stl.minic.ast.instruction.declaration.*;
+// import fr.n7.stl.minic.ast.scope.*;
+// import fr.n7.stl.minic.ast.type.*;
+// import fr.n7.stl.minic.ast.type.declaration.*;
+// import fr.n7.stl.util.*;
+// import fr.n7.stl.tam.ast.*;
+// import fr.n7.stl.tam.ast.impl.*;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -32,7 +32,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * subset
  * of the available methods.
  */
-@SuppressWarnings("CheckReturnValue")
+// @SuppressWarnings("CheckReturnValue")
 public class MiniCParserBaseListener implements MiniCParserListener {
 	/**
 	 * {@inheritDoc}
@@ -218,6 +218,28 @@ public class MiniCParserBaseListener implements MiniCParserListener {
 	 * </p>
 	 */
 	@Override
+	public void enterInstructionTantQue(MiniCParser.InstructionTantQueContext ctx) {
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>
+	 * The default implementation does nothing.
+	 * </p>
+	 */
+	@Override
+	public void exitInstructionTantQue(MiniCParser.InstructionTantQueContext ctx) {
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>
+	 * The default implementation does nothing.
+	 * </p>
+	 */
+	@Override
 	public void enterInstructionSi(MiniCParser.InstructionSiContext ctx) {
 	}
 
@@ -274,28 +296,6 @@ public class MiniCParserBaseListener implements MiniCParserListener {
 	 */
 	@Override
 	public void exitInstructionReturn(MiniCParser.InstructionReturnContext ctx) {
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation does nothing.
-	 * </p>
-	 */
-	@Override
-	public void enterInstructionTantQue(MiniCParser.InstructionTantQueContext ctx) {
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>
-	 * The default implementation does nothing.
-	 * </p>
-	 */
-	@Override
-	public void exitInstructionTantQue(MiniCParser.InstructionTantQueContext ctx) {
 	}
 
 	/**

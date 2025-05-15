@@ -33,7 +33,7 @@ public class LabelDeclaration implements Declaration {
 
 	@Override
 	public Type getType() {
-		return AtomicType.VoidType; // TODO : Should be the type of the enum containing the label...
+		return AtomicType.IntegerType; // TODO : Should be the type of the enum containing the label...
 	}
 
 	/*
@@ -43,7 +43,7 @@ public class LabelDeclaration implements Declaration {
 	 */
 	@Override
 	public String toString() {
-		return this.name + ";";
+		return this.name;
 	}
 
 }

@@ -3,8 +3,6 @@
  */
 package fr.n7.stl.minic.ast.type;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
-import fr.n7.stl.minic.ast.expression.accessible.AddressAccess;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 
@@ -33,7 +31,10 @@ public class PointerType implements Type {
 	 */
 	@Override
 	public boolean equalsTo(Type _other) {
-		throw new SemanticsUndefinedException("Semantics equalsTo undefined in PointerType.");
+		if (!(_other instanceof PointerType))
+			return false;
+		PointerType no = (PointerType) _other;
+		return this.element.equalsTo(no.element);
 	}
 
 	/*
@@ -43,18 +44,14 @@ public class PointerType implements Type {
 	 */
 	@Override
 	public boolean compatibleWith(Type _other) {
-		if (_other instanceof PointerType) {
-			return this.element.compatibleWith(((PointerType) _other).getPointedType());
-		} else if (_other instanceof AddressAccess) {
-			return this.element.compatibleWith(((AddressAccess) _other).getType());
-
+		if (_other instanceof PointerType pointerType) {
+			boolean ser = this.element.compatibleWith(pointerType.element);
+			return ser;
 		} else if (_other instanceof ArrayType arrayType) {
 			boolean ser = this.element.compatibleWith(arrayType.element);
 			return ser;
-
-		} else {
-			return _other.compatibleWith(this.element);
 		}
+		return false;
 	}
 
 	/*
@@ -64,7 +61,25 @@ public class PointerType implements Type {
 	 */
 	@Override
 	public Type merge(Type _other) {
-		throw new SemanticsUndefinedException("Semantics merge undefined in PointerType.");
+		if (_other instanceof PointerType pointerType) {
+			if (this.element.compatibleWith(pointerType.element)) {
+				return this;
+			} else {
+				return AtomicType.ErrorType;
+			}
+		} else if (_other instanceof ArrayType arrayType) {
+			if (this.element.compatibleWith(arrayType.getType())) {
+				return this;
+			} else {
+				return AtomicType.ErrorType;
+			}
+		} else if (_other instanceof AtomicType atomicType) {
+			return switch (atomicType) {
+				case IntegerType -> this;
+				default -> AtomicType.ErrorType;
+			};
+		}
+		return AtomicType.ErrorType;
 	}
 
 	/*
@@ -74,7 +89,7 @@ public class PointerType implements Type {
 	 */
 	@Override
 	public int length() {
-		return AtomicType.IntegerType.length();
+		return 1;
 	}
 
 	/*

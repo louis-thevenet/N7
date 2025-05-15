@@ -4,7 +4,6 @@
 package fr.n7.stl.minic.ast.instruction;
 
 import fr.n7.stl.minic.ast.Block;
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.instruction.declaration.FunctionDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
@@ -50,9 +49,9 @@ public class Iteration implements Instruction {
 	 * .Scope)
 	 */
 	@Override
-	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> scope) {
-		return this.condition.collectAndPartialResolve(scope)
-				&& this.body.collectAndPartialResolve(new SymbolTable(scope));
+	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
+		return this.condition.collectAndPartialResolve(_scope)
+				&& this.body.collectAndPartialResolve(new SymbolTable(_scope));
 	}
 
 	@Override
@@ -69,9 +68,9 @@ public class Iteration implements Instruction {
 	 * .Scope)
 	 */
 	@Override
-	public boolean completeResolve(HierarchicalScope<Declaration> scope) {
-		return this.condition.completeResolve(scope)
-				&& this.body.completeResolve(scope);
+	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
+		return this.condition.completeResolve((_scope))
+				&& this.body.completeResolve(_scope);
 	}
 
 	/*
@@ -81,7 +80,8 @@ public class Iteration implements Instruction {
 	 */
 	@Override
 	public boolean checkType() {
-		return this.condition.getType().compatibleWith(AtomicType.BooleanType) && this.body.checkType();
+		return this.condition.getType().compatibleWith(AtomicType.BooleanType)
+				&& this.body.checkType();
 	}
 
 	/*
@@ -93,7 +93,8 @@ public class Iteration implements Instruction {
 	 */
 	@Override
 	public int allocateMemory(Register _register, int _offset) {
-		throw new SemanticsUndefinedException("Semantics allocateMemory is undefined in Iteration.");
+		this.body.allocateMemory(_register, _offset);
+		return 0;
 	}
 
 	/*
@@ -103,7 +104,27 @@ public class Iteration implements Instruction {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		throw new SemanticsUndefinedException("Semantics getCode is undefined in Iteration.");
+		Fragment res = _factory.createFragment();
+
+		int idWhile = _factory.createLabelNumber();
+
+		String startCond = "while_condition_" + idWhile;
+		String startlab = "while_body_" + idWhile;
+		String endlab = "while_end_" + idWhile;
+
+		Fragment condFragment = this.condition.getCode(_factory);
+		condFragment.addPrefix(startCond);
+		res.append(condFragment);
+		res.add(_factory.createJumpIf(endlab, 0));
+
+		Fragment bodyFragment = this.body.getCode(_factory);
+		bodyFragment.addPrefix(startlab);
+		bodyFragment.add(_factory.createJump(startCond));
+		res.append(bodyFragment);
+
+		res.addSuffix(endlab);
+		res.addComment("While");
+		return res;
 	}
 
 }

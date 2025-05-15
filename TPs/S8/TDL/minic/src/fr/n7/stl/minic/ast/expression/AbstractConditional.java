@@ -60,7 +60,9 @@ public class AbstractConditional<ExpressionKind extends Expression> implements E
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		throw new SemanticsUndefinedException("Semantics collect is undefined in ConditionalExpression.");
+		return this.condition.collectAndPartialResolve(_scope)
+				&& this.thenExpression.collectAndPartialResolve(_scope)
+				&& this.elseExpression.collectAndPartialResolve(_scope);
 	}
 
 	/*
@@ -72,7 +74,9 @@ public class AbstractConditional<ExpressionKind extends Expression> implements E
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		throw new SemanticsUndefinedException("Semantics resolve is undefined in ConditionalExpression.");
+		return this.condition.completeResolve(_scope)
+				&& this.thenExpression.completeResolve(_scope)
+				&& this.elseExpression.completeResolve(_scope);
 	}
 
 	/*
@@ -92,7 +96,7 @@ public class AbstractConditional<ExpressionKind extends Expression> implements E
 	 */
 	@Override
 	public Type getType() {
-		throw new SemanticsUndefinedException("Semantics getType is undefined in ConditionalExpression.");
+		return this.thenExpression.getType().merge(this.elseExpression.getType());
 	}
 
 	/*

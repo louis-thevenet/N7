@@ -1,10 +1,5 @@
 package fr.n7.stl.minic.ast.expression;
 
-import fr.n7.stl.minic.ast.instruction.declaration.VariableDeclaration;
-import fr.n7.stl.minic.ast.type.AtomicType;
-import fr.n7.stl.minic.ast.type.Type;
-import fr.n7.stl.util.Logger;
-
 /**
  * Common elements between left (Assignable) and right (Expression) end sides of
  * assignments. These elements

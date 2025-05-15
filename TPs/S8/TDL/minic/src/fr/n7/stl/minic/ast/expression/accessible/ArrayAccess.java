@@ -3,9 +3,7 @@
  */
 package fr.n7.stl.minic.ast.expression.accessible;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.AbstractArray;
-import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.type.ArrayType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
@@ -46,8 +44,9 @@ public class ArrayAccess extends AbstractArray<AccessibleExpression> implements 
 		res.append(this.index.getCode(_factory));
 		res.add(_factory.createLoadL(pointedType.length()));
 		res.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
-		res.add(TAMFactory.createBinaryOperator(BinaryOperator.Add));
+		res.add(TAMFactory.createBinaryOperator(BinaryOperator.Substract));
 		res.add(_factory.createLoadI(pointedType.length()));
+		res.addComment("Array Access " + this.toString());
 		return res;
 	}
 

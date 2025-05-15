@@ -3,7 +3,6 @@
  */
 package fr.n7.stl.minic.ast.expression.assignable;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.AbstractIdentifier;
 import fr.n7.stl.minic.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
@@ -66,7 +65,7 @@ public class VariableAssignment extends AbstractIdentifier implements Assignable
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		return this.declaration.completeResolve(_scope);
+		return _scope.knows(name) && this.declaration.completeResolve(_scope);
 	}
 
 	/*
@@ -77,6 +76,8 @@ public class VariableAssignment extends AbstractIdentifier implements Assignable
 	@Override
 	public Type getType() {
 		return this.declaration.getType();
+		// throw new SemanticsUndefinedException("Semantics getType undefined in
+		// VariableAssignment.");
 	}
 
 	/*
@@ -87,14 +88,16 @@ public class VariableAssignment extends AbstractIdentifier implements Assignable
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		var code = _factory.createFragment();
-		code.add(_factory.createLoadL(
-				this.declaration.getOffset()));
+		Fragment res = _factory.createFragment();
+		res.add(_factory.createStore(this.declaration.getRegister(), this.declaration.getOffset(),
+				this.getType().length()));
+				res.addComment("Store " + this.declaration.getName() + " in register "
+						+ this.declaration.getRegister() + " with offset " + this.declaration.getOffset());
+		return res;
+	}
 
-		code.addComment("Assign " + this.name + " from " + this.declaration.getRegister() + " + "
-				+ this.declaration.getOffset());
-
-		return code;
+	public VariableDeclaration getDeclaration() {
+		return declaration;
 	}
 
 }

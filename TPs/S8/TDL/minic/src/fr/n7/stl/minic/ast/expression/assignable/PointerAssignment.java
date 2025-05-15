@@ -3,9 +3,7 @@
  */
 package fr.n7.stl.minic.ast.expression.assignable;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.AbstractPointer;
-import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.expression.accessible.AccessibleExpression;
 import fr.n7.stl.minic.ast.type.PointerType;
 import fr.n7.stl.tam.ast.Fragment;
@@ -42,6 +40,7 @@ public class PointerAssignment extends AbstractPointer<AccessibleExpression> imp
 		Fragment res = _factory.createFragment();
 		res.append(this.pointer.getCode(_factory));
 		res.add(_factory.createStoreI(((PointerType) this.pointer.getType()).getPointedType().length()));
+		res.addComment("Pointer Assignment " + this.toString());
 		return res;
 	}
 

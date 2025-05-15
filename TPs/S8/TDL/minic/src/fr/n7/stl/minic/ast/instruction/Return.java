@@ -3,17 +3,14 @@
  */
 package fr.n7.stl.minic.ast.instruction;
 
-import java.security.InvalidParameterException;
-
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.Expression;
-import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.instruction.declaration.FunctionDeclaration;
+import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
-import fr.n7.stl.minic.ast.type.NamedType;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
+import java.security.InvalidParameterException;
 
 /**
  * Implementation of the Abstract Syntax Tree node for a return instruction.
@@ -52,11 +49,7 @@ public class Return implements Instruction {
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		if (this.value != null) {
-			return this.value.collectAndPartialResolve(_scope);
-		} else {
-			return false;
-		}
+		return this.value.collectAndPartialResolve(_scope);
 	}
 
 	/*
@@ -68,12 +61,8 @@ public class Return implements Instruction {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
+		return this.value.completeResolve(_scope);
 
-		if (this.value != null) {
-			return this.value.completeResolve(_scope);
-		} else {
-			return false;
-		}
 	}
 
 	@Override
@@ -84,7 +73,6 @@ public class Return implements Instruction {
 			throw new InvalidParameterException(
 					"Trying to set a function declaration to a return instruction when one has already been set.");
 		}
-
 		return this.collectAndPartialResolve(_scope);
 	}
 
@@ -95,7 +83,7 @@ public class Return implements Instruction {
 	 */
 	@Override
 	public boolean checkType() {
-		return this.value.getType().compatibleWith(this.function.getType());
+		return this.function.getType().compatibleWith(this.value.getType());
 	}
 
 	/*
@@ -117,20 +105,10 @@ public class Return implements Instruction {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment code = _factory.createFragment();
-		code.append(this.value.getCode(_factory));
-		int count = 0;
-		for (var arg : this.function.getParameters()) {
-			if (arg.getType() instanceof NamedType) {
-				count += 0;
-
-			} else {
-				count += arg.getType().length();
-
-			}
-		}
-		code.add(_factory.createReturn(this.value.getType().length(), count));
-		return code;
+		Fragment res = _factory.createFragment();
+		res.append(this.value.getCode(_factory));
+		res.add(_factory.createReturn(this.value.getType().length(), this.function.getParametersSize()));
+		return res;
 	}
 
 }

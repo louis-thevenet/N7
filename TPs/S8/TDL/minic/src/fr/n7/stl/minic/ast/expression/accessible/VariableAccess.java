@@ -3,12 +3,12 @@
  */
 package fr.n7.stl.minic.ast.expression.accessible;
 
+// import org.antlr.v4.parse.ANTLRParser.throwsSpec_return;
+
 import fr.n7.stl.minic.ast.expression.AbstractAccess;
 import fr.n7.stl.minic.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
-import fr.n7.stl.minic.ast.type.AtomicType;
 import fr.n7.stl.tam.ast.Fragment;
-import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
@@ -46,21 +46,13 @@ public class VariableAccess extends AbstractAccess {
 	 * TAMFactory)
 	 */
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment _result = _factory.createFragment();
-
-		if (this.declaration.getType() instanceof AtomicType) {
-			// directly load the variable
-			_result.add(_factory.createLoad(
-					this.declaration.getRegister(),
-					this.declaration.getOffset(),
-					this.declaration.getType().length()));
-		} else {
-			_result.add(_factory.createLoadL(
-					this.declaration.getOffset()));
-		}
-		_result.addComment(
-				"Load variable " + this.declaration.getName() + " from offset " + this.declaration.getOffset());
-		return _result;
+		Fragment code = _factory.createFragment();
+		code.add(_factory.createLoad(
+				this.declaration.getRegister(),
+				this.declaration.getOffset(),
+				this.declaration.getType().length()));
+		code.addComment("Variable Access " + this.toString());
+		return code;
 	}
 
 }

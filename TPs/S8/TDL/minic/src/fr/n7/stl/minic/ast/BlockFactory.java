@@ -5,7 +5,6 @@ package fr.n7.stl.minic.ast;
 
 import java.util.List;
 
-import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.expression.accessible.AccessibleExpression;
 import fr.n7.stl.minic.ast.expression.accessible.ArrayAccess;
 import fr.n7.stl.minic.ast.expression.accessible.BinaryExpression;
@@ -34,7 +33,6 @@ public class BlockFactory {
 	 * 
 	 */
 	public BlockFactory() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Block createBlock(List<Instruction> _instructions) {

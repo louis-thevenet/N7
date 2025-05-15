@@ -77,11 +77,11 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 	 */
 	@Override
 	public boolean equalsTo(Type _other) {
-		boolean res = true;
-		for (int i = 0; i < this.length(); i++) {
-			res &= _other.equalsTo((Type) this.fields.get(i));
+		if (!(_other instanceof SequenceType)) {
+			return false;
+		} else {
+			return this.erase().equals(_other);
 		}
-		return res;
 	}
 
 	/*
@@ -91,10 +91,6 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 	 */
 	@Override
 	public boolean compatibleWith(Type _other) {
-		// OTHER EST TOUJOURS UNE SEQUENCE
-		// AUCUN MOYEN DE FAIRE UN RECORD à DROITE DE L'AFFECTATION
-		// DONC VAUT MIEUX APPELER OTHER.GETTYPE.COMPATIBLEWITH....
-		// ET FAIRE LE CODE DE SEQUENCETYPE
 		if (!(_other instanceof SequenceType)) {
 			return false;
 		}
@@ -128,8 +124,6 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		if (_found) {
 			return _current;
 		} else {
-			System.out.println("Field not found in RecordType.get()");
-			System.out.println(this.fields);
 			return null;
 		}
 	}
@@ -229,8 +223,7 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		int offset = 0;
 		for (FieldDeclaration f : this.fields) {
 			_result = _result && f.getType().completeResolve(_scope);
-			f.computerOffset(offset);
-			offset += f.getType().length();
+			offset += f.computerOffset(offset);
 		}
 		return _result;
 	}

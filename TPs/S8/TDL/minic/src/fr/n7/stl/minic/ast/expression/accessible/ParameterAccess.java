@@ -3,12 +3,9 @@
  */
 package fr.n7.stl.minic.ast.expression.accessible;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.AbstractAccess;
 import fr.n7.stl.minic.ast.instruction.declaration.ParameterDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
-import fr.n7.stl.minic.ast.type.AtomicType;
-import fr.n7.stl.minic.ast.type.NamedType;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
@@ -37,6 +34,7 @@ public class ParameterAccess extends AbstractAccess {
 	 * 
 	 * @see fr.n7.stl.block.ast.expression.AbstractUse#getDeclaration()
 	 */
+	@Override
 	public Declaration getDeclaration() {
 		return this.declaration;
 	}
@@ -47,19 +45,13 @@ public class ParameterAccess extends AbstractAccess {
 	 * @see fr.n7.stl.block.ast.expression.AbstractUse#getCode(fr.n7.stl.tam.ast.
 	 * TAMFactory)
 	 */
+	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment code = _factory.createFragment();
-		System.out.println("Parameter of function has offset : " + this.declaration.getOffset());
-		if (this.declaration.getType() instanceof AtomicType) {
-			System.out.println("parameter is atomic");
-			code.add(_factory.createLoad(Register.LB, this.declaration.getOffset(),
-					this.declaration.getType().length()));
-		} else if (this.declaration.getType() instanceof NamedType) {
-			System.out.println("parameter is namedtype");
-			code.add(_factory.createLoadA(Register.LB, this.declaration.getOffset()));
-
-		}
-		return code;
+		Fragment res = _factory.createFragment();
+		res.add(_factory.createLoad(Register.LB, this.declaration.getOffset(),
+				this.declaration.getType().length()));
+		res.addComment("Parameter Access " + this.toString());
+		return res;
 	}
 
 }

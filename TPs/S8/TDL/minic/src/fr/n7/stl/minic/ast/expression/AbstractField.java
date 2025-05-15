@@ -1,17 +1,12 @@
 package fr.n7.stl.minic.ast.expression;
 
-import javax.print.attribute.standard.MediaSize.NA;
-
 import fr.n7.stl.minic.ast.SemanticsUndefinedException;
-import fr.n7.stl.minic.ast.instruction.declaration.TypeDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 import fr.n7.stl.minic.ast.type.NamedType;
 import fr.n7.stl.minic.ast.type.RecordType;
-import fr.n7.stl.minic.ast.type.NamedType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.minic.ast.type.declaration.FieldDeclaration;
-import fr.n7.stl.util.Logger;
 
 /**
  * Common elements between left (Assignable) and right (Expression) end sides of
@@ -38,7 +33,6 @@ public abstract class AbstractField<RecordKind extends Expression> implements Ex
 	public AbstractField(RecordKind _record, String _name) {
 		this.record = _record;
 		this.name = _name;
-		System.out.println("AbstractField: " + this.record + "." + this.name);
 	}
 
 	/*
@@ -60,53 +54,36 @@ public abstract class AbstractField<RecordKind extends Expression> implements Ex
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		boolean ok = this.record.collectAndPartialResolve(_scope);
+		boolean res = this.record.collectAndPartialResolve(_scope);
 
-		// Resolve the type of the record
-		Type recordType = this.record.getType();
-
-		// Handle NamedType by resolving it to its underlying type
-		if (recordType instanceof NamedType) {
-			recordType.completeResolve(_scope);
-			recordType = ((NamedType) recordType).getType();
-		}
-
-		// Check if the resolved type is a RecordType
-		if (!(recordType instanceof RecordType)) {
+		if (!(record.getType() instanceof RecordType || record.getType() instanceof NamedType)) {
 			throw new SemanticsUndefinedException(
-					"record.getType() is not a RecordType in AbstractField but " + recordType.getClass() + ".");
+					"record.getType() is not a instanceof RecordType in AbstractField but "
+							+ record.getType().getClass() + ".");
 		}
-
-		// Cast to RecordType and retrieve the field
-		RecordType record2 = (RecordType) recordType;
+		RecordType record2;
+		if (record.getType() instanceof NamedType) {
+			NamedType t = (NamedType) record.getType();
+			res &= t.completeResolve(_scope);
+			record2 = (RecordType) t.getType();
+		} else {
+			record2 = (RecordType) record.getType();
+		}
 		this.field = record2.get(name);
 
-		// Register the field in the scope if valid
-		if (ok && _scope.accepts(this.field)) {
-			_scope.register(this.field);
-			return true;
-		} else {
-			return true;
-		}
+		return res;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @seeexpression
+	 * @see
 	 * fr.n7.stl.block.ast.expression.Expression#resolve(fr.n7.stl.block.ast.scope.
 	 * HierarchicalScope)
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		if (this.record == null) {
-			throw new IllegalStateException("Record is null in AbstractField.");
-		}
-		if (record.getType() instanceof NamedType) {
-			return this.record.completeResolve(_scope);
-		} else {
-			return this.record.completeResolve(_scope);
-		}
+		return this.record.completeResolve(_scope);
 	}
 
 	/**
@@ -114,7 +91,9 @@ public abstract class AbstractField<RecordKind extends Expression> implements Ex
 	 * 
 	 * @return Synthesized Type of the expression.
 	 */
+	@Override
 	public Type getType() {
 		return this.field.getType();
 	}
+
 }

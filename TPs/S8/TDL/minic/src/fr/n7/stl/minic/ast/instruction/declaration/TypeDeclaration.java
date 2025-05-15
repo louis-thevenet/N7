@@ -57,19 +57,17 @@ public class TypeDeclaration implements Declaration, Instruction {
 	 * .Scope)
 	 */
 	@Override
-	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> scope) {
-		if (scope.accepts(this)) {
-			scope.register(this);
-			return true;
-		} else {
-			return false;
+	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
+		if (_scope.accepts(this)) {
+			_scope.register(this);
+			return this.type.completeResolve(_scope);
 		}
+		return false;
 	}
 
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
-		throw new SemanticsUndefinedException(
-				"Semantics collectAndPartialResolve is undefined in ConstantDeclaration.");
+		return this.collectAndPartialResolve(_scope);
 
 	}
 
@@ -81,8 +79,8 @@ public class TypeDeclaration implements Declaration, Instruction {
 	 * .Scope)
 	 */
 	@Override
-	public boolean completeResolve(HierarchicalScope<Declaration> scope) {
-		return this.type.completeResolve(scope);
+	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
+		return this.type.completeResolve(_scope);
 	}
 
 	/**

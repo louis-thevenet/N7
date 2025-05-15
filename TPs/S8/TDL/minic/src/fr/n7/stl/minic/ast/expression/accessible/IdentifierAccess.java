@@ -3,8 +3,8 @@
  */
 package fr.n7.stl.minic.ast.expression.accessible;
 
-import fr.n7.stl.minic.ast.expression.AbstractIdentifier;
 import fr.n7.stl.minic.ast.expression.AbstractAccess;
+import fr.n7.stl.minic.ast.expression.AbstractIdentifier;
 import fr.n7.stl.minic.ast.instruction.declaration.ConstantDeclaration;
 import fr.n7.stl.minic.ast.instruction.declaration.ParameterDeclaration;
 import fr.n7.stl.minic.ast.instruction.declaration.VariableDeclaration;
@@ -54,26 +54,26 @@ public class IdentifierAccess extends AbstractIdentifier implements AccessibleEx
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * fr.n7.stl.block.ast.expression.Expression#collect(fr.n7.stl.block.ast.scope.
-	 * HierarchicalScope)
+	 * fr.n7.stl.block.ast.expression.Expression#collectAndPartialResolve(fr.n7.stl.
+	 * block.ast.scope.HierarchicalScope)
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		System.out.println(this.name);
+
 		if (((HierarchicalScope<Declaration>) _scope).knows(this.name)) {
 			Declaration _declaration = _scope.get(this.name);
-			if (_declaration instanceof VariableDeclaration) {
-				this.expression = new VariableAccess((VariableDeclaration) _declaration);
-			} else if (_declaration instanceof ParameterDeclaration) {
-				this.expression = new ParameterAccess((ParameterDeclaration) _declaration);
+			if (_declaration instanceof VariableDeclaration variableDeclaration) {
+				this.expression = new VariableAccess(variableDeclaration);
 
-			} else {
-				if (_declaration instanceof ConstantDeclaration) {
-					// TODO : refactor the management of Constants
-					this.expression = new ConstantAccess((ConstantDeclaration) _declaration);
-				}
+			} else if (_declaration instanceof ConstantDeclaration constantDeclaration) {
+				this.expression = new ConstantAccess(constantDeclaration);
+
+			} else if (_declaration instanceof ParameterDeclaration parameterDeclaration) {
+				this.expression = new ParameterAccess(parameterDeclaration);
+
 			}
 		}
+
 		return true;
 	}
 
@@ -90,15 +90,19 @@ public class IdentifierAccess extends AbstractIdentifier implements AccessibleEx
 			if (((HierarchicalScope<Declaration>) _scope).knows(this.name)) {
 				Declaration _declaration = _scope.get(this.name);
 				if (_declaration instanceof ConstantDeclaration) {
-					// TODO : refactor the management of Constants
 					this.expression = new ConstantAccess((ConstantDeclaration) _declaration);
 					return true;
+
+				} else if (_declaration instanceof ParameterDeclaration parameterDeclaration) {
+					this.expression = new ParameterAccess(parameterDeclaration);
+					return true;
+				} else if (_declaration instanceof LabelDeclaration) {
+					this.expression = null;
+					return true;
 				} else {
-					Logger.error("The declaration for " + this.name + " is of the wrong kind.");
 					return false;
 				}
 			} else {
-				Logger.error("The identifier " + this.name + " has not been found.");
 				return false;
 			}
 		} else {
@@ -123,8 +127,10 @@ public class IdentifierAccess extends AbstractIdentifier implements AccessibleEx
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment code = this.expression.getCode(_factory);
+		Fragment code = _factory.createFragment();
 
+		code.add( this.expression.getCode(_factory));
+		code.addComment("Access to " + this.name);
 		return code;
 	}
 

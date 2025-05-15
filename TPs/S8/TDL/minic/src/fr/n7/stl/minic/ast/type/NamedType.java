@@ -37,8 +37,8 @@ public class NamedType implements Type {
 	 */
 	@Override
 	public boolean equalsTo(Type _other) {
-		if (_other instanceof NamedType) {
-			return (this.declaration.getName().equals(((NamedType) _other).declaration.getName()));
+		if (_other instanceof NamedType namedType) {
+			return (this.declaration.getName().equals(namedType.declaration.getName()));
 		} else {
 			return (this.declaration.getType().equalsTo(_other));
 		}
@@ -51,8 +51,8 @@ public class NamedType implements Type {
 	 */
 	@Override
 	public boolean compatibleWith(Type _other) {
-		if (_other instanceof NamedType) {
-			return (this.declaration.getName().equals(((NamedType) _other).declaration.getName()));
+		if (_other instanceof NamedType namedType) {
+			return (this.declaration.getName().equals(namedType.declaration.getName()));
 		} else {
 			return (this.declaration.getType().compatibleWith(_other));
 		}
@@ -65,8 +65,8 @@ public class NamedType implements Type {
 	 */
 	@Override
 	public Type merge(Type _other) {
-		if (_other instanceof NamedType) {
-			if (this.declaration.getName().equals(((NamedType) _other).declaration.getName())) {
+		if (_other instanceof NamedType namedType) {
+			if (this.declaration.getName().equals(namedType.declaration.getName())) {
 				return this;
 			} else {
 				return AtomicType.ErrorType;
@@ -82,14 +82,11 @@ public class NamedType implements Type {
 	 * @return Type associated to the name.
 	 */
 	public Type getType() {
-		if (this.declaration != null) {
-			if (this.declaration.getType() instanceof NamedType) {
-				return ((NamedType) this.declaration.getType()).getType();
-			} else {
-				return this.declaration.getType();
-			}
+		Type _result = this.declaration.getType();
+		if (_result instanceof NamedType) {
+			return ((NamedType) _result).getType();
 		} else {
-			return AtomicType.ErrorType;
+			return _result;
 		}
 	}
 
@@ -125,19 +122,15 @@ public class NamedType implements Type {
 				try {
 					TypeDeclaration _declaration = (TypeDeclaration) _scope.get(this.name);
 					this.declaration = _declaration;
-
 					return true;
 				} catch (ClassCastException e) {
-					Logger.error("The declaration for " + this.name + " is of the wrong kind.");
 					return false;
 				}
 			} else {
-				Logger.error("The identifier " + this.name + " has not been found.");
 				return false;
 			}
 		} else {
-			this.declaration.collectAndPartialResolve(_scope);
-			return this.declaration.completeResolve(_scope);
+			return true;
 		}
 	}
 

@@ -3,8 +3,6 @@
  */
 package fr.n7.stl.minic.ast;
 
-import java.util.List;
-
 import fr.n7.stl.minic.ast.instruction.Instruction;
 import fr.n7.stl.minic.ast.instruction.declaration.FunctionDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
@@ -13,6 +11,8 @@ import fr.n7.stl.minic.ast.scope.SymbolTable;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
+import fr.n7.stl.util.Logger;
+import java.util.List;
 
 /**
  * Represents a Block node in the Abstract Syntax Tree node for the Bloc
@@ -32,13 +32,23 @@ public class Block {
 	 * Sequence of instructions contained in a block.
 	 */
 	protected List<Instruction> instructions;
-	protected HierarchicalScope<Declaration> table;
+
+	/**
+	 * Scope of the current block.
+	 */
+	private HierarchicalScope<Declaration> scope;
+
+	/**
+	 * Space used by the block.
+	 */
+	private int spaceUsed;
 
 	/**
 	 * Constructor for a block.
 	 */
 	public Block(List<Instruction> _instructions) {
 		this.instructions = _instructions;
+		this.spaceUsed = 0;
 	}
 
 	/*
@@ -60,20 +70,20 @@ public class Block {
 	 * check
 	 * that the declaration are allowed.
 	 * 
-	 * @param scope Inherited Scope attribute that contains the identifiers defined
-	 *              previously
-	 *              in the context.
+	 * @param _scope Inherited Scope attribute that contains the identifiers defined
+	 *               previously
+	 *               in the context.
 	 * @return Synthesized Semantics attribute that indicates if the identifier
 	 *         declaration are
 	 *         allowed.
 	 */
-	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> scope) {
-		boolean res = true;
+	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
+		boolean ok = true;
+		this.scope = new SymbolTable(_scope);
 		for (Instruction instruction : instructions) {
-			res = res && instruction.collectAndPartialResolve(scope);
+			ok = ok && instruction.collectAndPartialResolve(this.scope);
 		}
-		return res;
-
+		return ok;
 	}
 
 	/**
@@ -93,9 +103,9 @@ public class Block {
 	 */
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
 		boolean res = true;
-
+		this.scope = new SymbolTable(_scope);
 		for (Instruction instruction : instructions) {
-			res = res && instruction.collectAndPartialResolve(_scope, _container);
+			res &= instruction.collectAndPartialResolve(this.scope, _container);
 		}
 		return res;
 	}
@@ -111,27 +121,29 @@ public class Block {
 	 *         in the
 	 *         block have been previously defined.
 	 */
-	public boolean completeResolve(HierarchicalScope<Declaration> scope) {
+	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
 		boolean res = true;
-		for (Instruction ins : this.instructions) {
-			res &= ins.completeResolve(scope);
+		for (Instruction instruction : instructions) {
+			res = res && instruction.completeResolve(this.scope);
 		}
 		return res;
-
 	}
 
 	/**
-	 * Synthesized Semantics attribute to check that an instruction if well typed.
+	 * Synthesized Semantics attribute to check that an instruction is well typed.
 	 * 
 	 * @return Synthesized True if the instruction is well typed, False if not.
 	 */
 	public boolean checkType() {
 		boolean res = true;
-		for (Instruction ins : this.instructions) {
-			res &= ins.checkType();
+		for (Instruction instruction : instructions) {
+			boolean tmp = instruction.checkType();
+			res &= tmp;
+			if (!tmp) {
+				Logger.warning(instruction.toString().strip() + " : " + instruction.checkType());
+			}
 		}
 		return res;
-
 	}
 
 	/**
@@ -140,14 +152,16 @@ public class Block {
 	 * Synthesized Semantics attribute that compute the size of the allocated
 	 * memory.
 	 * 
-	 * @param _register Inherited Register associated to the address of the
-	 *                  variables.
-	 * @param _offset   Inherited Current offset for the address of the variables.
+	 * @param register Inherited Register associated to the address of the
+	 *                 variables.
+	 * @param offset   Inherited Current offset for the address of the variables.
 	 */
-	public void allocateMemory(Register _register, int _offset) {
-		int position = _offset;
-		for (Instruction instruction : this.instructions) {
-			position += instruction.allocateMemory(_register, position);
+	public void allocateMemory(Register register, int offset) {
+		int pos = offset;
+		for (Instruction instruction : instructions) {
+			int t = instruction.allocateMemory(register, pos);
+			pos += t;
+			spaceUsed += t;
 		}
 	}
 
@@ -160,11 +174,15 @@ public class Block {
 	 * @return Synthesized AST for the generated TAM code.
 	 */
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment _code = _factory.createFragment();
-		for (Instruction instruction : this.instructions) {
-			_code.append(instruction.getCode(_factory));
+		Fragment res = _factory.createFragment();
+		for (Instruction instruction : instructions) {
+			res.append(instruction.getCode(_factory));
 		}
-		return _code;
+
+		if (this.spaceUsed > 0){
+			res.add(_factory.createPop(0, this.spaceUsed));}
+		res.addComment("End of Block");
+		return res;
 	}
 
 }

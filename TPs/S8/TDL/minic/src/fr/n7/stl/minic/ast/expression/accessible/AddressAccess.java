@@ -3,14 +3,18 @@
  */
 package fr.n7.stl.minic.ast.expression.accessible;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
+import fr.n7.stl.minic.ast.expression.assignable.ArrayAssignment;
 import fr.n7.stl.minic.ast.expression.assignable.AssignableExpression;
+import fr.n7.stl.minic.ast.expression.assignable.VariableAssignment;
+import fr.n7.stl.minic.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
+import fr.n7.stl.minic.ast.type.ArrayType;
 import fr.n7.stl.minic.ast.type.PointerType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
+import fr.n7.stl.util.Logger;
 
 /**
  * Implementation of the Abstract Syntax Tree node for accessing an expression
@@ -41,10 +45,7 @@ public class AddressAccess implements AccessibleExpression {
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		if (this.assignable != null) {
-			this.assignable.collectAndPartialResolve(_scope);
-		}
-		return true;
+		return this.assignable.collectAndPartialResolve(_scope);
 	}
 
 	/*
@@ -56,10 +57,7 @@ public class AddressAccess implements AccessibleExpression {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		if (this.assignable != null) {
-			this.assignable.completeResolve(_scope);
-		}
-		return true;
+		return this.assignable.completeResolve(_scope);
 	}
 
 	/*
@@ -69,10 +67,7 @@ public class AddressAccess implements AccessibleExpression {
 	 */
 	@Override
 	public Type getType() {
-		if (this.assignable != null) {
-			return new PointerType(this.assignable.getType());
-		}
-		return null;
+		return new PointerType(this.assignable.getType());
 	}
 
 	/*
@@ -82,9 +77,33 @@ public class AddressAccess implements AccessibleExpression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment res = _factory.createFragment();
-		res.append(this.assignable.getCode(_factory));
-		return res;
+		Fragment code = _factory.createFragment();
+
+		if (this.assignable instanceof VariableAssignment variableAssignment) {
+			VariableDeclaration decl = variableAssignment.getDeclaration();
+			code.add(_factory.createLoadA(decl.getRegister(), decl.getOffset()));
+		} else if (this.assignable instanceof ArrayAssignment arrayAssignment) {
+			if (arrayAssignment.getArray() instanceof VariableAssignment variableAssignment) {
+				VariableDeclaration decl = variableAssignment.getDeclaration();
+
+				code.add(_factory.createLoad(decl.getRegister(), decl.getOffset(), decl.getType().length()));
+				code.append(arrayAssignment.getIndex().getCode(_factory));
+
+				if (decl.getType() instanceof ArrayType arrayType) {
+					code.add(_factory.createLoadL(arrayType.getType().length()));
+					code.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
+					
+				} else {
+					code.add(_factory.createLoadL(0));
+					code.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
+				}
+
+				code.add(TAMFactory.createBinaryOperator(BinaryOperator.Substract));
+
+			}
+		}
+		code.addComment("Address of " + decl.getName());
+		return code;
 	}
 
 }

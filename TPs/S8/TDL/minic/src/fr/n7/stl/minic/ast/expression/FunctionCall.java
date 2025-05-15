@@ -3,19 +3,17 @@
  */
 package fr.n7.stl.minic.ast.expression;
 
-import java.util.Iterator;
-import java.util.List;
-
 import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.accessible.AccessibleExpression;
 import fr.n7.stl.minic.ast.instruction.declaration.FunctionDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
-import fr.n7.stl.minic.ast.type.NamedType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Abstract Syntax Tree node for a function call expression.
@@ -67,9 +65,9 @@ public class FunctionCall implements AccessibleExpression {
 			_result += _iter.next();
 		}
 		while (_iter.hasNext()) {
-			_result += " ," + _iter.next();
+			_result += ", " + _iter.next();
 		}
-		return _result + ")";
+		return _result + " )";
 	}
 
 	/*
@@ -81,17 +79,19 @@ public class FunctionCall implements AccessibleExpression {
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		boolean _result = true;
-		System.out.println("Function call, scope " + _scope.toString());
-		for (AccessibleExpression _argument : this.arguments) {
-			_result = _result && _argument.collectAndPartialResolve(_scope);
+		boolean res = true;
+		for (AccessibleExpression accessibleExpression : arguments) {
+			res &= accessibleExpression.collectAndPartialResolve(_scope);
 		}
 		if (_scope.knows(this.name)) {
-			this.function = (FunctionDeclaration) _scope.get(this.name);
-		} else {
-			System.out.println("Erreur: fonction inconnue");
+			Declaration d = _scope.get(this.name);
+			if (d instanceof FunctionDeclaration nd)
+				this.function = nd;
+			else
+				throw new SemanticsUndefinedException("Impossible to apply arguments to something else of function.");
 		}
-		return _result;
+
+		return res;
 	}
 
 	/*
@@ -103,15 +103,10 @@ public class FunctionCall implements AccessibleExpression {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		boolean res = true;
-		for (AccessibleExpression _argument : this.arguments) {
-			res &= _argument.completeResolve(_scope);
+		for (AccessibleExpression accessibleExpression : arguments) {
+			accessibleExpression.completeResolve(_scope);
 		}
-
-		if (!this.name.equals(this.function.getName())) {
-			res &= this.function.completeResolve(_scope);
-		}
-		return res;
+		return this.function.completeResolve(_scope);
 	}
 
 	/*
@@ -132,14 +127,13 @@ public class FunctionCall implements AccessibleExpression {
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
-		for (AccessibleExpression _argument : this.arguments) {
-			if (_argument.getType() instanceof NamedType) {
-			} else {
-				code.append(_argument.getCode(_factory));
-			}
-		}
-		code.add(_factory.createCall(this.function.getName(), Register.LB));
 
+		for (AccessibleExpression arg : arguments) {
+			code.append(arg.getCode(_factory));
+		}
+
+		code.add(_factory.createCall(name, Register.LB));
+		code.addComment("Call to " + this.name);
 		return code;
 	}
 

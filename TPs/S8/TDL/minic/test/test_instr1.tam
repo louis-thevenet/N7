@@ -5,8 +5,6 @@ PUSH 1
 LOADL 10
 STORE (1) 1[SB]
 PUSH 1
-;(a + b)
-
 LOAD (1) 0[SB]
 LOAD (1) 1[SB]
 SUBR IAdd
@@ -14,19 +12,17 @@ STORE (1) 2[SB]
 PUSH 1
 LOADL 0
 STORE (1) 3[SB]
-;(somme > 10)
-
 LOAD (1) 2[SB]
 LOADL 10
 SUBR IGtr
-JUMPIF (0) else1
+JUMPIF (0) else_1
 LOADL 1
 STORE (1) 0[SB]
-JUMP fi1
-else1
+JUMP end_if_1
+else_1
 LOADL 0
 STORE (1) 0[SB]
-fi1
+end_if_1
 POP (0) 4
 HALT
 

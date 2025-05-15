@@ -9,11 +9,10 @@ LOAD (2) 2[SB]
 POP (0) 1
 POP (1) 0
 SUBR IOut
-;(p2.age + 1)
-
 LOAD (2) 2[SB]
 POP (0) 1
 POP (1) 0
+LOADL 1
 SUBR IAdd
 LOADL 2
 STOREI (1)
@@ -22,14 +21,13 @@ POP (0) 1
 POP (1) 0
 SUBR IOut
 PUSH 1
-;(p1.age >= 18)
-
-;((p1.age >= 18) && p1.majeur)
-
 LOAD (2) 0[SB]
 POP (0) 1
 POP (1) 0
+LOADL 18
 SUBR IGeq
+LOAD (2) 0[SB]
+POP (1) 1
 SUBR BAnd
 STORE (1) 4[SB]
 LOAD (1) 4[SB]

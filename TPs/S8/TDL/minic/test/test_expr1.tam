@@ -10,59 +10,41 @@ PUSH 1
 LOAD (1) 0[SB]
 STORE (1) 2[SB]
 PUSH 1
-;(a + b)
-
 LOAD (1) 0[SB]
 LOAD (1) 1[SB]
 SUBR IAdd
 STORE (1) 3[SB]
 PUSH 1
-;(b - a)
-
 LOAD (1) 1[SB]
 LOAD (1) 0[SB]
 SUBR ISub
 STORE (1) 4[SB]
 PUSH 1
-;(a * b)
-
 LOAD (1) 0[SB]
 LOAD (1) 1[SB]
 SUBR IMul
 STORE (1) 5[SB]
 PUSH 1
-;(b / a)
-
 LOAD (1) 1[SB]
 LOAD (1) 0[SB]
 SUBR IDiv
 STORE (1) 6[SB]
 PUSH 1
-;(b % a)
-
 LOAD (1) 1[SB]
 LOAD (1) 0[SB]
 SUBR IMod
 STORE (1) 7[SB]
 PUSH 1
-;(a < b)
-
 LOAD (1) 0[SB]
 LOAD (1) 1[SB]
 SUBR ILss
 STORE (1) 8[SB]
 PUSH 1
-;(b >= a)
-
 LOAD (1) 1[SB]
 LOAD (1) 0[SB]
 SUBR IGeq
 STORE (1) 9[SB]
 PUSH 1
-;(a + 1)
-
-;((a + 1) == b)
-
 LOAD (1) 0[SB]
 LOADL 1
 SUBR IAdd
@@ -70,54 +52,33 @@ LOAD (1) 1[SB]
 SUBR IEq
 STORE (1) 10[SB]
 PUSH 1
-;(x && y)
-
 LOAD (1) 8[SB]
 LOAD (1) 9[SB]
 SUBR BAnd
 STORE (1) 11[SB]
 PUSH 1
-;(x || false)
-
 LOAD (1) 8[SB]
 LOADL 0
 SUBR BOr
 STORE (1) 12[SB]
 PUSH 1
 ;(! z)
-
 LOAD (1) 10[SB]
 SUBR BNeg
 STORE (1) 13[SB]
 PUSH 1
-;(a + b)
-
-;((a + b) * (c + d))
-
 LOAD (1) 0[SB]
 LOAD (1) 1[SB]
 SUBR IAdd
-;(c + d)
-
 LOAD (1) 2[SB]
 LOAD (1) 3[SB]
 SUBR IAdd
 SUBR IMul
 STORE (1) 14[SB]
 PUSH 1
-;(a < b)
-
-;((a < b) && ((c + d) > f))
-
-;(((a < b) && ((c + d) > f)) || (! x))
-
 LOAD (1) 0[SB]
 LOAD (1) 1[SB]
 SUBR ILss
-;(c + d)
-
-;((c + d) > f)
-
 LOAD (1) 2[SB]
 LOAD (1) 3[SB]
 SUBR IAdd
@@ -125,7 +86,6 @@ LOAD (1) 5[SB]
 SUBR IGtr
 SUBR BAnd
 ;(! x)
-
 LOAD (1) 8[SB]
 SUBR BNeg
 SUBR BOr

@@ -3,12 +3,14 @@
  */
 package fr.n7.stl.minic.ast.expression;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.accessible.AccessibleExpression;
+import fr.n7.stl.minic.ast.expression.accessible.IdentifierAccess;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
-import fr.n7.stl.minic.ast.type.Type;
+import fr.n7.stl.minic.ast.type.AtomicType;
 import fr.n7.stl.minic.ast.type.CoupleType;
+import fr.n7.stl.minic.ast.type.NamedType;
+import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
 
@@ -22,8 +24,8 @@ import fr.n7.stl.tam.ast.TAMFactory;
 public class First implements AccessibleExpression {
 
 	/**
-	 * AST node for the expression whose value must whose first element is extracted
-	 * by the expression.
+	 * AST node for the expression whose value must be the first element is
+	 * extracted by the expression.
 	 */
 	protected AccessibleExpression target;
 
@@ -56,15 +58,7 @@ public class First implements AccessibleExpression {
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		boolean ok = this.target.collectAndPartialResolve(_scope);
-
-		Type targetType = this.target.getType();
-		if (!(targetType instanceof CoupleType)) {
-			throw new SemanticsUndefinedException(
-					"target.getType() is not a CoupleType in First but " + targetType.getClass() + ".");
-		}
-
-		return ok;
+		return this.target.collectAndPartialResolve(_scope);
 	}
 
 	/*
@@ -76,13 +70,7 @@ public class First implements AccessibleExpression {
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		boolean ok = this.target.completeResolve(_scope);
-		Type targetType = this.target.getType();
-		if (!(targetType instanceof CoupleType)) {
-			throw new SemanticsUndefinedException(
-					"target.getType() is not a CoupleType in First but " + targetType.getClass() + ".");
-		}
-		return ok;
+		return this.target.completeResolve(_scope);
 	}
 
 	/*
@@ -92,13 +80,19 @@ public class First implements AccessibleExpression {
 	 */
 	@Override
 	public Type getType() {
-		Type targetType = this.target.getType();
-		if (targetType instanceof CoupleType) {
-			return ((CoupleType) targetType).getFirst();
-		} else {
-			throw new SemanticsUndefinedException(
-					"target.getType() is not a CoupleType in First but " + targetType.getClass() + ".");
+		Type res = this.target.getType();
+		while (!(res instanceof CoupleType)) {
+			if (res instanceof NamedType nt) {
+				res = nt.getType();
+			} else if (res instanceof IdentifierAccess ia) {
+				res = ia.getType();
+			}
 		}
+		if (res instanceof CoupleType c) {
+			return c.getFirst();
+		}
+		return AtomicType.ErrorType;
+
 	}
 
 	/*
@@ -108,10 +102,24 @@ public class First implements AccessibleExpression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment _result = this.target.getCode(_factory);
-		_result.add(_factory.createLoadI(this.getType().length()));
-		_result.addComment("Loading the first element of Couple" + this.toString());
-		return _result;
+		Fragment res = _factory.createFragment();
+
+		res.append(this.target.getCode(_factory));
+
+		Type t = this.target.getType();
+		while (!(t instanceof CoupleType)) {
+			if (t instanceof NamedType nt) {
+				t = nt.getType();
+			} else if (t instanceof IdentifierAccess ia) {
+				t = ia.getType();
+			}
+		}
+
+		if (t instanceof CoupleType ct) {
+			res.add(_factory.createPop(0, ct.getSecond().length()));
+		}
+res.addComment("Load first");
+		return res;
 	}
 
 }

@@ -3,11 +3,8 @@
  */
 package fr.n7.stl.minic.ast.expression.assignable;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.AbstractField;
-import fr.n7.stl.minic.ast.expression.accessible.BinaryOperator;
 import fr.n7.stl.tam.ast.Fragment;
-import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
@@ -39,18 +36,22 @@ public class FieldAssignment extends AbstractField<AssignableExpression> impleme
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment code = _factory.createFragment();
+		Fragment res = _factory.createFragment();
+		AssignableExpression nRecord = this.record;
 
-		int field_offset = field.getOffset();
+		// get offset
+		int offset = this.field.getOffset();
+		while (nRecord instanceof FieldAssignment fa) {
+			offset += fa.field.getOffset();
+			nRecord = fa.record;
+		}
 
-		code.append(this.record.getCode(_factory));
-		code.add(_factory.createLoadL(field_offset));
-		code.add(TAMFactory.createBinaryOperator(BinaryOperator.Add));
-
-		code.addComment(
-				"Assign field " + this.name + " from record " + this.record.toString() + ", offset " + field_offset);
-
-		return code;
+		if (nRecord instanceof VariableAssignment va) {
+			res.add(_factory.createLoadL(offset + va.declaration.getOffset()));
+		}
+		res.add(_factory.createStoreI(this.field.getType().length()));
+		res.addComment("Field Assignment " + this.toString());
+		return res;
 	}
 
 }

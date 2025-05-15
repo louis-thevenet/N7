@@ -41,7 +41,7 @@ public class MiniCParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache = new PredictionContextCache();
 	public static final int Egal = 1, AccoladeOuvrante = 2, AccoladeFermante = 3, ParentheseOuvrante = 4,
 			ParentheseFermante = 5, CrochetOuvrant = 6, CrochetFermant = 7, Point = 8, PointInterrogation = 9,
-			DeuxPoint = 10, Virgule = 11, PointVirgule = 12, Afficher = 13, Si = 14, TantQue = 15,
+			DeuxPoint = 10, Virgule = 11, PointVirgule = 12, Afficher = 13, TantQue = 14, Si = 15,
 			Sinon = 16, Retour = 17, DefinitionConstante = 18, DefinitionType = 19, Enregistrement = 20,
 			Enumeration = 21, Nouveau = 22, Asterisque = 23, Oblique = 24, PourCent = 25, Plus = 26,
 			Moins = 27, DoubleBarre = 28, DoubleEsperluette = 29, PointExclamation = 30, Inferieur = 31,
@@ -68,7 +68,7 @@ public class MiniCParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 				null, "'='", "'{'", "'}'", "'('", "')'", "'['", "']'", "'.'", "'?'",
-				"':'", "','", "';'", "'print'", "'if'", "'while'", "'else'", "'return'",
+				"':'", "','", "';'", "'print'", "'while'", "'if'", "'else'", "'return'",
 				"'const'", "'typedef'", "'struct'", "'enum'", "'new'", "'*'", "'/'",
 				"'%'", "'+'", "'-'", "'||'", "'&&'", "'!'", "'<'", "'>'", "'<='", "'>='",
 				"'=='", "'!='", "'&'", "'int'", "'float'", "'boolean'", "'char'", "'String'",
@@ -82,7 +82,7 @@ public class MiniCParser extends Parser {
 		return new String[] {
 				null, "Egal", "AccoladeOuvrante", "AccoladeFermante", "ParentheseOuvrante",
 				"ParentheseFermante", "CrochetOuvrant", "CrochetFermant", "Point", "PointInterrogation",
-				"DeuxPoint", "Virgule", "PointVirgule", "Afficher", "Si", "TantQue",
+				"DeuxPoint", "Virgule", "PointVirgule", "Afficher", "TantQue", "Si",
 				"Sinon", "Retour", "DefinitionConstante", "DefinitionType", "Enregistrement",
 				"Enumeration", "Nouveau", "Asterisque", "Oblique", "PourCent", "Plus",
 				"Moins", "DoubleBarre", "DoubleEsperluette", "PointExclamation", "Inferieur",
@@ -463,6 +463,47 @@ public class MiniCParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
+	public static class InstructionTantQueContext extends InstructionContext {
+		public BlocContext alors;
+
+		public TerminalNode TantQue() {
+			return getToken(MiniCParser.TantQue, 0);
+		}
+
+		public TerminalNode ParentheseOuvrante() {
+			return getToken(MiniCParser.ParentheseOuvrante, 0);
+		}
+
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class, 0);
+		}
+
+		public TerminalNode ParentheseFermante() {
+			return getToken(MiniCParser.ParentheseFermante, 0);
+		}
+
+		public BlocContext bloc() {
+			return getRuleContext(BlocContext.class, 0);
+		}
+
+		public InstructionTantQueContext(InstructionContext ctx) {
+			copyFrom(ctx);
+		}
+
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if (listener instanceof MiniCParserListener)
+				((MiniCParserListener) listener).enterInstructionTantQue(this);
+		}
+
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if (listener instanceof MiniCParserListener)
+				((MiniCParserListener) listener).exitInstructionTantQue(this);
+		}
+	}
+
+	@SuppressWarnings("CheckReturnValue")
 	public static class InstructionSiSinonContext extends InstructionContext {
 		public BlocContext alors;
 		public BlocContext sinon;
@@ -509,47 +550,6 @@ public class MiniCParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if (listener instanceof MiniCParserListener)
 				((MiniCParserListener) listener).exitInstructionSiSinon(this);
-		}
-	}
-
-	@SuppressWarnings("CheckReturnValue")
-	public static class InstructionTantQueContext extends InstructionContext {
-		public BlocContext corps;
-
-		public TerminalNode TantQue() {
-			return getToken(MiniCParser.TantQue, 0);
-		}
-
-		public TerminalNode ParentheseOuvrante() {
-			return getToken(MiniCParser.ParentheseOuvrante, 0);
-		}
-
-		public ExpressionContext expression() {
-			return getRuleContext(ExpressionContext.class, 0);
-		}
-
-		public TerminalNode ParentheseFermante() {
-			return getToken(MiniCParser.ParentheseFermante, 0);
-		}
-
-		public BlocContext bloc() {
-			return getRuleContext(BlocContext.class, 0);
-		}
-
-		public InstructionTantQueContext(InstructionContext ctx) {
-			copyFrom(ctx);
-		}
-
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if (listener instanceof MiniCParserListener)
-				((MiniCParserListener) listener).enterInstructionTantQue(this);
-		}
-
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if (listener instanceof MiniCParserListener)
-				((MiniCParserListener) listener).exitInstructionTantQue(this);
 		}
 	}
 
@@ -883,10 +883,10 @@ public class MiniCParser extends Parser {
 				}
 					break;
 				case 6:
-					_localctx = new InstructionSiContext(_localctx);
+					_localctx = new InstructionTantQueContext(_localctx);
 					enterOuterAlt(_localctx, 6); {
 					setState(83);
-					match(Si);
+					match(TantQue);
 					setState(84);
 					match(ParentheseOuvrante);
 					setState(85);
@@ -894,11 +894,11 @@ public class MiniCParser extends Parser {
 					setState(86);
 					match(ParentheseFermante);
 					setState(87);
-					((InstructionSiContext) _localctx).alors = bloc();
+					((InstructionTantQueContext) _localctx).alors = bloc();
 				}
 					break;
 				case 7:
-					_localctx = new InstructionSiSinonContext(_localctx);
+					_localctx = new InstructionSiContext(_localctx);
 					enterOuterAlt(_localctx, 7); {
 					setState(89);
 					match(Si);
@@ -909,37 +909,37 @@ public class MiniCParser extends Parser {
 					setState(92);
 					match(ParentheseFermante);
 					setState(93);
-					((InstructionSiSinonContext) _localctx).alors = bloc();
-					setState(94);
-					match(Sinon);
-					setState(95);
-					((InstructionSiSinonContext) _localctx).sinon = bloc();
+					((InstructionSiContext) _localctx).alors = bloc();
 				}
 					break;
 				case 8:
-					_localctx = new InstructionReturnContext(_localctx);
+					_localctx = new InstructionSiSinonContext(_localctx);
 					enterOuterAlt(_localctx, 8); {
+					setState(95);
+					match(Si);
+					setState(96);
+					match(ParentheseOuvrante);
 					setState(97);
-					match(Retour);
-					setState(98);
 					expression(0);
+					setState(98);
+					match(ParentheseFermante);
 					setState(99);
-					match(PointVirgule);
+					((InstructionSiSinonContext) _localctx).alors = bloc();
+					setState(100);
+					match(Sinon);
+					setState(101);
+					((InstructionSiSinonContext) _localctx).sinon = bloc();
 				}
 					break;
 				case 9:
-					_localctx = new InstructionTantQueContext(_localctx);
+					_localctx = new InstructionReturnContext(_localctx);
 					enterOuterAlt(_localctx, 9); {
-					setState(101);
-					match(TantQue);
-					setState(102);
-					match(ParentheseOuvrante);
 					setState(103);
-					expression(0);
+					match(Retour);
 					setState(104);
-					match(ParentheseFermante);
+					expression(0);
 					setState(105);
-					((InstructionTantQueContext) _localctx).corps = bloc();
+					match(PointVirgule);
 				}
 					break;
 			}
@@ -3636,16 +3636,16 @@ public class MiniCParser extends Parser {
 			"\u000b\u0000QR\u0005\f\u0000\u0000Rl\u0001\u0000\u0000\u0000ST\u0005\u000e" +
 			"\u0000\u0000TU\u0005\u0004\u0000\u0000UV\u0003\u0016\u000b\u0000VW\u0005" +
 			"\u0005\u0000\u0000WX\u0003\u0002\u0001\u0000Xl\u0001\u0000\u0000\u0000" +
-			"YZ\u0005\u000e\u0000\u0000Z[\u0005\u0004\u0000\u0000[\\\u0003\u0016\u000b" +
-			"\u0000\\]\u0005\u0005\u0000\u0000]^\u0003\u0002\u0001\u0000^_\u0005\u0010" +
-			"\u0000\u0000_`\u0003\u0002\u0001\u0000`l\u0001\u0000\u0000\u0000ab\u0005" +
-			"\u0011\u0000\u0000bc\u0003\u0016\u000b\u0000cd\u0005\f\u0000\u0000dl\u0001" +
-			"\u0000\u0000\u0000ef\u0005\u000f\u0000\u0000fg\u0005\u0004\u0000\u0000" +
-			"gh\u0003\u0016\u000b\u0000hi\u0005\u0005\u0000\u0000ij\u0003\u0002\u0001" +
+			"YZ\u0005\u000f\u0000\u0000Z[\u0005\u0004\u0000\u0000[\\\u0003\u0016\u000b" +
+			"\u0000\\]\u0005\u0005\u0000\u0000]^\u0003\u0002\u0001\u0000^l\u0001\u0000" +
+			"\u0000\u0000_`\u0005\u000f\u0000\u0000`a\u0005\u0004\u0000\u0000ab\u0003" +
+			"\u0016\u000b\u0000bc\u0005\u0005\u0000\u0000cd\u0003\u0002\u0001\u0000" +
+			"de\u0005\u0010\u0000\u0000ef\u0003\u0002\u0001\u0000fl\u0001\u0000\u0000" +
+			"\u0000gh\u0005\u0011\u0000\u0000hi\u0003\u0016\u000b\u0000ij\u0005\f\u0000" +
 			"\u0000jl\u0001\u0000\u0000\u0000k6\u0001\u0000\u0000\u0000k>\u0001\u0000" +
 			"\u0000\u0000kC\u0001\u0000\u0000\u0000kJ\u0001\u0000\u0000\u0000kO\u0001" +
 			"\u0000\u0000\u0000kS\u0001\u0000\u0000\u0000kY\u0001\u0000\u0000\u0000" +
-			"ka\u0001\u0000\u0000\u0000ke\u0001\u0000\u0000\u0000l\u0007\u0001\u0000" +
+			"k_\u0001\u0000\u0000\u0000kg\u0001\u0000\u0000\u0000l\u0007\u0001\u0000" +
 			"\u0000\u0000mn\u0007\u0000\u0000\u0000n\t\u0001\u0000\u0000\u0000op\u0003" +
 			"\u000e\u0007\u0000pq\u0003\u0018\f\u0000qr\u0005\f\u0000\u0000r\u000b" +
 			"\u0001\u0000\u0000\u0000sx\u00053\u0000\u0000tu\u0005\u000b\u0000\u0000" +

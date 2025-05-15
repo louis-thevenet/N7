@@ -49,6 +49,7 @@ public class FieldDeclaration implements Declaration {
 	 * 
 	 * @return Type of the field.
 	 */
+	@Override
 	public Type getType() {
 		return this.type;
 	}

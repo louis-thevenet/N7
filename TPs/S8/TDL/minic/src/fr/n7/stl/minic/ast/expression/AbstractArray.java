@@ -1,6 +1,5 @@
 package fr.n7.stl.minic.ast.expression;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.accessible.AccessibleExpression;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
@@ -61,8 +60,7 @@ public abstract class AbstractArray<ArrayKind extends Expression> implements Exp
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		return this.array.collectAndPartialResolve(_scope) &&
-				this.index.collectAndPartialResolve(_scope);
+		return this.array.collectAndPartialResolve(_scope) && this.index.collectAndPartialResolve(_scope);
 	}
 
 	/*
@@ -74,8 +72,7 @@ public abstract class AbstractArray<ArrayKind extends Expression> implements Exp
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		return this.array.completeResolve(_scope) &&
-				this.index.completeResolve(_scope);
+		return this.array.completeResolve(_scope) && this.index.completeResolve(_scope);
 	}
 
 	/**
@@ -83,9 +80,18 @@ public abstract class AbstractArray<ArrayKind extends Expression> implements Exp
 	 * 
 	 * @return Synthesized Type of the expression.
 	 */
+	@Override
 	public Type getType() {
 		ArrayType na = (ArrayType) array.getType();
 		return na.getType();
+	}
+
+	public ArrayKind getArray() {
+		return array;
+	}
+
+	public AccessibleExpression getIndex() {
+		return index;
 	}
 
 }

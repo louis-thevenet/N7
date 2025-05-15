@@ -3,7 +3,6 @@
  */
 package fr.n7.stl.minic.ast.expression.allocation;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.expression.accessible.AccessibleExpression;
 import fr.n7.stl.minic.ast.expression.accessible.BinaryOperator;
@@ -13,7 +12,6 @@ import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 import fr.n7.stl.minic.ast.type.ArrayType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
-import fr.n7.stl.tam.ast.Library;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
@@ -49,10 +47,9 @@ public class ArrayAllocation implements AccessibleExpression, AssignableExpressi
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
-		if (this.size != null) {
-			this.size.collectAndPartialResolve(_scope);
-		}
-		return true;
+		// throw new SemanticsUndefinedException( "Semantics collect is undefined in
+		// ArrayAllocation.");
+		return this.size.collectAndPartialResolve(_scope);
 	}
 
 	/*
@@ -64,10 +61,9 @@ public class ArrayAllocation implements AccessibleExpression, AssignableExpressi
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
-		if (this.size != null) {
-			this.size.completeResolve(_scope);
-		}
-		return true;
+		// throw new SemanticsUndefinedException( "Semantics resolve is undefined in
+		// ArrayAllocation.");
+		return this.size.completeResolve(_scope) && this.element.completeResolve(_scope);
 	}
 
 	/*
@@ -78,7 +74,6 @@ public class ArrayAllocation implements AccessibleExpression, AssignableExpressi
 	@Override
 	public Type getType() {
 		return new ArrayType(this.element);
-
 	}
 
 	/*
@@ -88,12 +83,14 @@ public class ArrayAllocation implements AccessibleExpression, AssignableExpressi
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment res = _factory.createFragment();
-		res.append(this.size.getCode(_factory));
-		res.add(_factory.createLoadL(this.element.length()));
-		res.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
-		res.add(Library.MAlloc);
-		return res;
+		Fragment code = _factory.createFragment();
+
+		code.append(this.size.getCode(_factory));
+		code.add(_factory.createLoadL(this.element.length()));
+		code.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
+		code.add(_factory.createMalloc());
+		code.addComment("Allocation of " + this.element + " array");
+		return code;
 	}
 
 }

@@ -3,16 +3,21 @@
  */
 package fr.n7.stl.tam.ast.impl;
 
-import java.util.List;
-import java.util.Optional;
-
+import fr.n7.stl.minic.ast.type.ArrayType;
 import fr.n7.stl.minic.ast.type.AtomicType;
+import fr.n7.stl.minic.ast.type.PointerType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Library;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 import fr.n7.stl.tam.ast.TAMInstruction;
+import fr.n7.stl.util.Logger;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.stringtemplate.v4.compiler.CodeGenerator.region_return;
 
 /**
  * Implementation of the factory to build a TAM program AST.
@@ -384,14 +389,30 @@ public class TAMFactoryImpl implements TAMFactory {
 	}
 
 	@Override
-	public TAMInstruction createPrinter(Type type) {
-		if (type instanceof AtomicType atomicType) {
+	public TAMInstruction createPrinter(Type t) {
+		if (t instanceof AtomicType atomicType) {
 			if (atomicType.equals(AtomicType.IntegerType))
 				return Library.IOut;
 			else if (atomicType.equals(AtomicType.BooleanType))
 				return Library.BOut;
+			// else if (atomicType.equals(AtomicType.StringType))
+			// return Library.SOut;
+			else
+				Logger.warning("Print with a AtomicType : " + atomicType);
+		} else if (t instanceof PointerType) {
+			return Library.IOut;
+		} else if (t instanceof ArrayType) {
+			return Library.IOut;
+		} else {
+			Logger.warning("Print with a Type : " + t);
 		}
-		return null;
+		// sinon ne rien faire
+		return this.createPush(0);
+	}
+
+	@Override
+	public TAMInstruction createMalloc() {
+		return Library.MAlloc;
 	}
 
 }

@@ -3,9 +3,7 @@
  */
 package fr.n7.stl.minic.ast.instruction;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.Expression;
-import fr.n7.stl.minic.ast.expression.accessible.VariableAccess;
 import fr.n7.stl.minic.ast.instruction.declaration.FunctionDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
@@ -98,13 +96,6 @@ public class Printer implements Instruction {
 		Fragment res = _factory.createFragment();
 		res.append(this.parameter.getCode(_factory));
 		res.add(_factory.createPrinter(this.parameter.getType()));
-		String a = this.parameter.toString();
-		res.addComment("Print:");
-
-		for (String b : a.split("\n")) {
-
-			res.addComment(b);
-		}
 		return res;
 	}
 

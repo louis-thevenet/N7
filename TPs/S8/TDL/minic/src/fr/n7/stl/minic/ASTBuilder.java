@@ -44,20 +44,19 @@ public class ASTBuilder extends MiniCParserBaseListener {
         System.out.println(this.name + " " + this.mainBlock);
         SymbolTable tds = new SymbolTable();
         if (this.mainBlock.collectAndPartialResolve(tds)) {
-            System.out.println("collect succeeded");
+            System.out.println("collect succeeded.");
             if (this.mainBlock.completeResolve(tds)) {
                 System.out.println("Resolve succeeded.");
                 if (this.mainBlock.checkType()) {
                     System.out.println("Type verification succeeded.");
-
-                    System.out.println("Code generation ...");
                     this.mainBlock.allocateMemory(Register.SB, 0);
+                    System.out.println("Code generation ...");
                     try {
                         PrintWriter writer = new PrintWriter(output_path);
                         TAMFactory factory = new TAMFactoryImpl();
                         Fragment f = this.mainBlock.getCode(factory);
                         f.add(factory.createHalt());
-                        // f.append(this.mainBlock.getFunctions(factory));
+                        // f.append(this.mainBlock.getCode(factory));
                         writer.println(f);
                         writer.close();
                     } catch (IOException e) {
@@ -157,18 +156,18 @@ public class ASTBuilder extends MiniCParserBaseListener {
     }
 
     @Override
-    public void exitInstructionSiSinon(InstructionSiSinonContext ctx) {
-        ctx.i = new Conditional(ctx.expression().e, ctx.alors.b, ctx.sinon.b);
-    }
-
-    @Override
     public void exitInstructionTantQue(InstructionTantQueContext ctx) {
-        ctx.i = new Iteration(ctx.expression().e, ctx.corps.b);
+        ctx.i = new Iteration(ctx.expression().e, ctx.alors.b);
     }
 
     @Override
     public void exitInstructionSi(InstructionSiContext ctx) {
         ctx.i = new Conditional(ctx.expression().e, ctx.alors.b);
+    }
+
+    @Override
+    public void exitInstructionSiSinon(InstructionSiSinonContext ctx) {
+        ctx.i = new Conditional(ctx.expression().e, ctx.alors.b, ctx.sinon.b);
     }
 
     @Override

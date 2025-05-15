@@ -3,16 +3,15 @@
  */
 package fr.n7.stl.minic.ast.type;
 
-import java.util.Iterator;
-import java.util.List;
-
 import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.value.IntegerValue;
 import fr.n7.stl.minic.ast.instruction.declaration.ConstantDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
-import fr.n7.stl.minic.ast.type.declaration.FieldDeclaration;
 import fr.n7.stl.minic.ast.type.declaration.LabelDeclaration;
+import fr.n7.stl.util.Logger;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Marc Pantel
@@ -39,12 +38,12 @@ public class EnumerationType implements Type, Declaration {
 	 */
 	@Override
 	public String toString() {
-		String _result = "enum" + this.name + " { ";
+		String _result = "enum " + this.name + " { ";
 		Iterator<LabelDeclaration> _iter = this.labels.iterator();
 		if (_iter.hasNext()) {
 			_result += _iter.next();
 			while (_iter.hasNext()) {
-				_result += " ," + _iter.next();
+				_result += ", " + _iter.next();
 			}
 		}
 		return _result + " }";
@@ -57,16 +56,8 @@ public class EnumerationType implements Type, Declaration {
 	 */
 	@Override
 	public boolean equalsTo(Type _other) {
-		if (_other instanceof EnumerationType) {
-			for (int i = 0; i < this.labels.size(); i++) {
-				if (!this.labels.get(i).getName().equals(((EnumerationType) _other).labels.get(i).getName())) {
-					return false;
-				}
-			}
-			return true;
-		} else {
-			return false;
-		}
+		throw new SemanticsUndefinedException("Semantics equalsTo is not implemented in EnumerationType.");
+
 	}
 
 	/*
@@ -97,7 +88,7 @@ public class EnumerationType implements Type, Declaration {
 	 */
 	@Override
 	public int length() {
-		return this.labels.size(); // TODO: size for TAM
+		return this.labels.size();
 	}
 
 	/*

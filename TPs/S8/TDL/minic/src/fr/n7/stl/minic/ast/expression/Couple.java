@@ -98,10 +98,19 @@ public class Couple implements AccessibleExpression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment _result = this.first.getCode(_factory);
-		_result.append(this.second.getCode(_factory));
-		_result.addComment("Building a couple " + this.toString());
-		return _result;
+		Fragment code = _factory.createFragment();
+		code.append(this.first.getCode(_factory));
+		code.append(this.second.getCode(_factory));
+		code.addComment("Load couple");
+
+	}
+
+	public AccessibleExpression getFirst() {
+		return first;
+	}
+
+	public AccessibleExpression getSecond() {
+		return second;
 	}
 
 }

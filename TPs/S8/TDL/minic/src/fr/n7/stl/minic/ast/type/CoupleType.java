@@ -50,9 +50,11 @@ public class CoupleType implements Type {
 	 */
 	@Override
 	public boolean compatibleWith(Type _other) {
-		if (_other instanceof CoupleType) {
-			return this.first.compatibleWith(((CoupleType) _other).first)
-					&& this.second.compatibleWith(((CoupleType) _other).second);
+		if (_other instanceof CoupleType c) {
+			return this.first.compatibleWith(c.first)
+					&& this.second.compatibleWith(c.second);
+		} else if (_other instanceof NamedType nt) {
+			return this.compatibleWith(nt.getType());
 		} else {
 			return false;
 		}

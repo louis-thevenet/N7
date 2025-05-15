@@ -18,8 +18,6 @@ LOAD (1) -1[LB]
 RETURN (1) 1
 end_fonc2
 PUSH 1
-;(a + 5)
-
 LOAD (1) 0[SB]
 LOADL 5
 SUBR IAdd

@@ -3,11 +3,10 @@
  */
 package fr.n7.stl.minic.ast.expression.assignable;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.AbstractArray;
-import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.expression.accessible.AccessibleExpression;
 import fr.n7.stl.minic.ast.expression.accessible.BinaryOperator;
+import fr.n7.stl.minic.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.minic.ast.type.ArrayType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
@@ -42,17 +41,22 @@ public class ArrayAssignment extends AbstractArray<AssignableExpression> impleme
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		Fragment res = _factory.createFragment();
+		Fragment code = _factory.createFragment();
 
 		Type pointedType = ((ArrayType) this.array.getType()).getType();
 
-		res.append(this.array.getCode(_factory));
-		res.append(this.index.getCode(_factory));
-		res.add(_factory.createLoadL(pointedType.length()));
-		res.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
-		res.add(TAMFactory.createBinaryOperator(BinaryOperator.Add));
-		res.add(_factory.createStoreI(pointedType.length()));
-		return res;
+		if (this.array instanceof VariableAssignment variableAssignment) {
+			VariableDeclaration declaration = variableAssignment.getDeclaration();
+			code.add(_factory.createLoad(declaration.getRegister(), declaration.getOffset(),
+					declaration.getType().length()));
+		}
+		code.append(this.index.getCode(_factory));
+		code.add(_factory.createLoadL(pointedType.length()));
+		code.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
+		code.add(TAMFactory.createBinaryOperator(BinaryOperator.Substract));
+		code.add(_factory.createStoreI(pointedType.length()));
+		code.addComment("Array Assignment " + this.toString());
+		return code;
 	}
 
 }

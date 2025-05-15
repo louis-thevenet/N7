@@ -13,8 +13,10 @@ import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
- * Common elements between left (Assignable) and right (Expression) end sides of assignments. These elements
+ * Common elements between left (Assignable) and right (Expression) end sides of
+ * assignments. These elements
  * share attributes, toString and getType methods.
+ * 
  * @author Marc Pantel
  *
  */
@@ -29,14 +31,16 @@ public abstract class AbstractConversion<TargetType> implements Expression {
 		this.name = _type;
 		this.type = null;
 	}
-	
+
 	public AbstractConversion(TargetType _target, Type _type) {
 		this.target = _target;
 		this.name = null;
 		this.type = _type;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
@@ -47,31 +51,43 @@ public abstract class AbstractConversion<TargetType> implements Expression {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Expression#getType()
 	 */
 	@Override
 	public Type getType() {
 		throw new SemanticsUndefinedException("Semantics getType undefined in TypeConversion.");
 	}
-	
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.expression.Expression#collect(fr.n7.stl.block.ast.scope.Scope)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.expression.Expression#collect(fr.n7.stl.block.ast.scope.
+	 * Scope)
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
 		throw new SemanticsUndefinedException("Semantics collect undefined in TypeConversion.");
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.expression.Expression#resolve(fr.n7.stl.block.ast.scope.Scope)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.expression.Expression#resolve(fr.n7.stl.block.ast.scope.
+	 * Scope)
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
 		throw new SemanticsUndefinedException("Semantics resolve undefined in TypeConversion.");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override

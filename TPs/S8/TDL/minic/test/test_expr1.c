@@ -1,9 +1,10 @@
 /*
-Ce programme vérifie la bonne gestion des Expressions en MiniC avec des exemples valides
+Ce programme vérifie la bonne gestion des Expressions en MiniC avec des exemples
+valides
 */
 
 monProgramme {
-    
+
     // Affectation simple
     int a = 1;
     int b = 3;

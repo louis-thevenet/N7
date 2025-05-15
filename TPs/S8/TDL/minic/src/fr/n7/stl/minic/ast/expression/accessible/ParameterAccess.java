@@ -14,37 +14,46 @@ import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
- * Implementation of the Abstract Syntax Tree node for a variable access expression.
+ * Implementation of the Abstract Syntax Tree node for a variable access
+ * expression.
+ * 
  * @author Marc Pantel
  */
 public class ParameterAccess extends AbstractAccess {
-	
+
 	protected ParameterDeclaration declaration;
-	
+
 	/**
 	 * Creates a variable use expression Abstract Syntax Tree node.
+	 * 
 	 * @param _name Name of the used variable.
 	 */
 	public ParameterAccess(ParameterDeclaration _declaration) {
 		this.declaration = _declaration;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.expression.AbstractUse#getDeclaration()
 	 */
 	public Declaration getDeclaration() {
 		return this.declaration;
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.expression.AbstractUse#getCode(fr.n7.stl.tam.ast.TAMFactory)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see fr.n7.stl.block.ast.expression.AbstractUse#getCode(fr.n7.stl.tam.ast.
+	 * TAMFactory)
 	 */
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
-		System.out.println("Parameter of function has offset : "+this.declaration.getOffset());
+		System.out.println("Parameter of function has offset : " + this.declaration.getOffset());
 		if (this.declaration.getType() instanceof AtomicType) {
 			System.out.println("parameter is atomic");
-			code.add(_factory.createLoad(Register.LB, this.declaration.getOffset(), this.declaration.getType().length()));
+			code.add(_factory.createLoad(Register.LB, this.declaration.getOffset(),
+					this.declaration.getType().length()));
 		} else if (this.declaration.getType() instanceof NamedType) {
 			System.out.println("parameter is namedtype");
 			code.add(_factory.createLoadA(Register.LB, this.declaration.getOffset()));

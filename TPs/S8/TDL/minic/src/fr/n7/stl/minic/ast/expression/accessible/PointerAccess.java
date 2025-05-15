@@ -13,21 +13,28 @@ import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
- * Implementation of the Abstract Syntax Tree node for a pointer access expression.
+ * Implementation of the Abstract Syntax Tree node for a pointer access
+ * expression.
+ * 
  * @author Marc Pantel
  *
  */
 public class PointerAccess extends AbstractPointer<AccessibleExpression> implements AccessibleExpression {
 
 	/**
-	 * Construction for the implementation of a pointer content access expression Abstract Syntax Tree node.
-	 * @param _pointer Abstract Syntax Tree for the pointer expression in a pointer content access expression.
+	 * Construction for the implementation of a pointer content access expression
+	 * Abstract Syntax Tree node.
+	 * 
+	 * @param _pointer Abstract Syntax Tree for the pointer expression in a pointer
+	 *                 content access expression.
 	 */
 	public PointerAccess(AccessibleExpression _pointer) {
 		super(_pointer);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
@@ -42,7 +49,8 @@ public class PointerAccess extends AbstractPointer<AccessibleExpression> impleme
 		pointedType = pt.getPointedType();
 		res.append(this.pointer.getCode(_factory));
 		res.add(_factory.createLoadI(pointedType.length()));
-		return res;	}
+		return res;
+	}
 
 	@Override
 	public String toString() {

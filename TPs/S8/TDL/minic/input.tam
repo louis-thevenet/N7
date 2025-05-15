@@ -1,0 +1,45 @@
+PUSH 2
+LOADL 21
+LOADL 1
+STORE (2) 0[SB]
+PUSH 2
+LOADL 55
+LOADL 31
+STORE (2) 2[SB]
+PUSH 4
+LOAD (2) 0[SB]
+LOAD (2) 2[SB]
+STORE (4) 4[SB]
+JUMP end_client_age
+client_age
+LOAD (4) -4[LB]
+POP (0) 2
+POP (2) 0
+POP (0) 1
+POP (1) 0
+RETURN (1) 4
+end_client_age
+JUMP end_addre_postal
+addre_postal
+LOAD (4) -4[LB]
+POP (2) 2
+POP (1) 1
+RETURN (1) 4
+end_addre_postal
+LOAD (4) 4[SB]
+POP (2) 2
+POP (1) 1
+SUBR IOut
+LOAD (4) 4[SB]
+CALL (LB) client_age
+SUBR IOut
+LOAD (4) 4[SB]
+POP (2) 2
+POP (1) 1
+SUBR IOut
+LOAD (4) 4[SB]
+CALL (LB) addre_postal
+SUBR IOut
+POP (0) 8
+HALT
+

@@ -190,19 +190,15 @@ public class VariableDeclaration implements Declaration, Instruction {
 		Fragment res = _factory.createFragment();
 		res.append(this.value.getCode(_factory));
 
-		if (this.value.getType() instanceof NamedType) 
-		{
-		res.add(_factory.createLoadI(this.value.getType().length()));
-		res.addComment("Assign (named type) " + this.name);
+		if (this.value.getType() instanceof NamedType) {
+			res.add(_factory.createLoadI(this.value.getType().length()));
+			res.addComment("Assign (named type) " + this.name);
 		} else if (this.value.getType() instanceof PointerType) {
 		} else if (this.value.getType() instanceof SequenceType) {
-		res.addComment("Assign (seq type) " + this.name);
-
+			res.addComment("Assign (seq type) " + this.name);
 
 		} else {
 		}
-
-		
 
 		return res;
 	}

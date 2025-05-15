@@ -15,7 +15,7 @@ import fr.n7.stl.tam.ast.TAMFactory;
  *
  */
 public enum BooleanValue implements Value {
-	
+
 	/**
 	 * Represents the True value.
 	 */
@@ -24,36 +24,51 @@ public enum BooleanValue implements Value {
 	 * Represents the False value.
 	 */
 	False;
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Enum#toString()
 	 */
 	public String toString() {
 		switch (this) {
-		case False: return "false";
-		case True: return "true";
-		default: throw new IllegalArgumentException( "The default case should never be triggered.");
-		
+			case False:
+				return "false";
+			case True:
+				return "true";
+			default:
+				throw new IllegalArgumentException("The default case should never be triggered.");
+
 		}
 	}
-	
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.expression.Expression#collect(fr.n7.stl.block.ast.scope.Scope)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.expression.Expression#collect(fr.n7.stl.block.ast.scope.
+	 * Scope)
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.expression.Expression#resolve(fr.n7.stl.block.ast.scope.Scope)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.expression.Expression#resolve(fr.n7.stl.block.ast.scope.
+	 * Scope)
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Expression#getType()
 	 */
 	@Override
@@ -61,24 +76,26 @@ public enum BooleanValue implements Value {
 		return AtomicType.BooleanType;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * Pushes the value on the stack.
+	 * 
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment _code = _factory.createFragment();
 		switch (this) {
-			case True : {
+			case True: {
 				_code.add(_factory.createLoadL(1));
 				break;
 			}
-			case False : {
+			case False: {
 				_code.add(_factory.createLoadL(0));
 				break;
 			}
 		}
 		return _code;
 	}
-	
+
 }

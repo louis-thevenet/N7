@@ -204,7 +204,7 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
-		
+
 		String functionEndLabel = "end_" + this.getName();
 		code.add(_factory.createJump(functionEndLabel));
 		code.addComment("Function " + this.getName() + " start");
@@ -217,7 +217,6 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		bodyCode.addPrefix(this.name);
 		bodyCode.addSuffix(functionEndLabel);
 		code.append(bodyCode);
-		
 
 		return code;
 	}

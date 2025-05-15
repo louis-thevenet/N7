@@ -52,7 +52,7 @@ public class PointerType implements Type {
 			boolean ser = this.element.compatibleWith(arrayType.element);
 			return ser;
 
-		}else {
+		} else {
 			return _other.compatibleWith(this.element);
 		}
 	}

@@ -19,6 +19,7 @@ public class NamedType implements Type {
 	private TypeDeclaration declaration;
 
 	public String name;
+
 	public NamedType(String _name) {
 		this.name = _name;
 		this.declaration = null;
@@ -84,8 +85,7 @@ public class NamedType implements Type {
 		if (this.declaration != null) {
 			if (this.declaration.getType() instanceof NamedType) {
 				return ((NamedType) this.declaration.getType()).getType();
-			}
-			else{
+			} else {
 				return this.declaration.getType();
 			}
 		} else {

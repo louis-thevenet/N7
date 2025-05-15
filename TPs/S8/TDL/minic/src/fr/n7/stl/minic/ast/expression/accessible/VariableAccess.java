@@ -51,11 +51,9 @@ public class VariableAccess extends AbstractAccess {
 		if (this.declaration.getType() instanceof AtomicType) {
 			// directly load the variable
 			_result.add(_factory.createLoad(
-				this.declaration.getRegister(),
-				this.declaration.getOffset(),
-				this.declaration.getType().length() 
-			)
-			);		
+					this.declaration.getRegister(),
+					this.declaration.getOffset(),
+					this.declaration.getType().length()));
 		} else {
 			_result.add(_factory.createLoadL(
 					this.declaration.getOffset()));

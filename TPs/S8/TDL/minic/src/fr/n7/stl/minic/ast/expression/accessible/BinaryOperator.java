@@ -5,11 +5,12 @@ package fr.n7.stl.minic.ast.expression.accessible;
 
 /**
  * Binary operators in the Bloc language.
+ * 
  * @author Marc Pantel
  *
  */
 public enum BinaryOperator {
-	
+
 	/**
 	 * Numeric addition and String concatenation
 	 */
@@ -23,27 +24,41 @@ public enum BinaryOperator {
 	Greater,
 	Lesser,
 	And,
-	Or, 
-	LesserOrEqual, 
+	Or,
+	LesserOrEqual,
 	GreaterOrEqual;
 
 	@Override
 	public String toString() {
 		switch (this) {
-		case Add: return "+";
-		case And: return "&&";
-		case Different: return "!=";
-		case Divide: return "/";
-		case Equals: return "==";
-		case Greater: return ">";
-		case GreaterOrEqual: return ">=";
-		case Lesser: return "<";
-		case LesserOrEqual: return "<=";
-		case Modulo: return "%";
-		case Multiply: return "*";
-		case Or: return "||";
-		case Substract: return "-";
-		default: throw new IllegalArgumentException( "The default case should never be triggered.");		
+			case Add:
+				return "+";
+			case And:
+				return "&&";
+			case Different:
+				return "!=";
+			case Divide:
+				return "/";
+			case Equals:
+				return "==";
+			case Greater:
+				return ">";
+			case GreaterOrEqual:
+				return ">=";
+			case Lesser:
+				return "<";
+			case LesserOrEqual:
+				return "<=";
+			case Modulo:
+				return "%";
+			case Multiply:
+				return "*";
+			case Or:
+				return "||";
+			case Substract:
+				return "-";
+			default:
+				throw new IllegalArgumentException("The default case should never be triggered.");
 		}
 	}
 }

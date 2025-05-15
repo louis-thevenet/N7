@@ -8,6 +8,6 @@ test_fonctions {
 
     int fonc2(int a) { return a; }
 
-    int b = fonc2(a +5);
+    int b = fonc2(a + 5);
     print b;
 }

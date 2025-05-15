@@ -5,40 +5,41 @@ package fr.n7.stl.tam.ast;
 
 /**
  * Registers available in the TAM virtual machine.
+ * 
  * @author Marc Pantel
  *
  */
 
 public enum Register {
-	
+
 	/**
-	 * Stack Bottom register. 
+	 * Stack Bottom register.
 	 */
-	SB, 
+	SB,
 	/**
 	 * Stack Top register.
 	 */
-	ST, 
+	ST,
 	/**
 	 * Heap Bottom register.
 	 */
-	HB, 
+	HB,
 	/**
 	 * Heap Top register.
 	 */
-	HT, 
+	HT,
 	/**
 	 * Static Link register (points to the current frame in the call stack).
 	 */
-	LB, 
+	LB,
 	/**
 	 * Code Bottom register.
 	 */
-	CB, 
+	CB,
 	/**
 	 * Code Top register.
 	 */
-	CT, 
+	CT,
 	/**
 	 * Code Pointer register.
 	 */

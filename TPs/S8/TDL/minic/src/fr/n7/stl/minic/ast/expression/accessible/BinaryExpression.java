@@ -23,26 +23,30 @@ import fr.n7.stl.util.Logger;
 public class BinaryExpression implements AccessibleExpression {
 
 	/**
-	 * AST node for the expression whose value is the left parameter for the binary expression.
+	 * AST node for the expression whose value is the left parameter for the binary
+	 * expression.
 	 */
 	protected AccessibleExpression left;
-	
+
 	/**
-	 * AST node for the expression whose value is the left parameter for the binary expression.
+	 * AST node for the expression whose value is the left parameter for the binary
+	 * expression.
 	 */
 	protected AccessibleExpression right;
-	
+
 	/**
 	 * Binary operator computed by the Binary Expression.
 	 */
 	protected BinaryOperator operator;
-	
+
 	/**
-	 * Builds a binary expression Abstract Syntax Tree node from the left and right sub-expressions
+	 * Builds a binary expression Abstract Syntax Tree node from the left and right
+	 * sub-expressions
 	 * and the binary operation.
-	 * @param _left : Expression for the left parameter.
+	 * 
+	 * @param _left     : Expression for the left parameter.
 	 * @param _operator : Binary Operator.
-	 * @param _right : Expression for the right parameter.
+	 * @param _right    : Expression for the right parameter.
 	 */
 	public BinaryExpression(AccessibleExpression _left, BinaryOperator _operator, AccessibleExpression _right) {
 		this.left = _left;
@@ -50,23 +54,29 @@ public class BinaryExpression implements AccessibleExpression {
 		this.operator = _operator;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "(" + this.left + " " + this.operator + " " + this.right + ")";
 	}
-	
+
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
 		boolean _left = this.left.collectAndPartialResolve(_scope);
 		boolean _right = this.right.collectAndPartialResolve(_scope);
 		return _left && _right;
 	}
-	
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.expression.Expression#resolve(fr.n7.stl.block.ast.scope.Scope)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.expression.Expression#resolve(fr.n7.stl.block.ast.scope.
+	 * Scope)
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
@@ -75,7 +85,9 @@ public class BinaryExpression implements AccessibleExpression {
 		return _left && _right;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Expression#getType()
 	 */
 	@Override
@@ -88,8 +100,8 @@ public class BinaryExpression implements AccessibleExpression {
 		}
 		switch (this.operator) {
 			case Add: {
-				if (resultType.compatibleWith(AtomicType.FloatingType) 
-						|| resultType.compatibleWith(AtomicType.StringType))  {
+				if (resultType.compatibleWith(AtomicType.FloatingType)
+						|| resultType.compatibleWith(AtomicType.StringType)) {
 					return resultType;
 				} else {
 					Logger.warning("Type error in binary expression : " + this.operator + " parameter " + resultType);
@@ -123,7 +135,7 @@ public class BinaryExpression implements AccessibleExpression {
 				} else {
 					Logger.warning("Type error in binary expression : " + this.operator + " parameter " + resultType);
 					return AtomicType.ErrorType;
-				}				
+				}
 			}
 			case Equals:
 			case Different: {
@@ -142,11 +154,14 @@ public class BinaryExpression implements AccessibleExpression {
 					return AtomicType.ErrorType;
 				}
 			}
-			default : return AtomicType.ErrorType;
+			default:
+				return AtomicType.ErrorType;
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override

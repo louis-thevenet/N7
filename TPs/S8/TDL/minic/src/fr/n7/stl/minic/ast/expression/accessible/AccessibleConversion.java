@@ -5,7 +5,9 @@ import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.type.Type;
 
 /**
- * Implementation of the Abstract Syntax Tree node for a type conversion expression.
+ * Implementation of the Abstract Syntax Tree node for a type conversion
+ * expression.
+ * 
  * @author Marc Pantel
  *
  */

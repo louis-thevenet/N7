@@ -165,6 +165,6 @@ public class Block {
 			_code.append(instruction.getCode(_factory));
 		}
 		return _code;
-		}
+	}
 
 }

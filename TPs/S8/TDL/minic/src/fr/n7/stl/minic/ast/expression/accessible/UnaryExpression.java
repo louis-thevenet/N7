@@ -12,7 +12,9 @@ import fr.n7.stl.tam.ast.TAMFactory;
 import fr.n7.stl.util.Logger;
 
 /**
- * Implementation of the Abstract Syntax Tree node for an unary operation expression.
+ * Implementation of the Abstract Syntax Tree node for an unary operation
+ * expression.
+ * 
  * @author Marc Pantel
  *
  */
@@ -20,11 +22,13 @@ public class UnaryExpression implements AccessibleExpression {
 
 	private UnaryOperator operator;
 	private AccessibleExpression parameter;
-	
+
 	/**
-	 * Builds a unary expression Abstract Syntax Tree node from the parameter sub-expression
+	 * Builds a unary expression Abstract Syntax Tree node from the parameter
+	 * sub-expression
 	 * and the unary operation.
-	 * @param _operator : Unary Operator.
+	 * 
+	 * @param _operator  : Unary Operator.
 	 * @param _parameter : Expression for the parameter.
 	 */
 	public UnaryExpression(UnaryOperator _operator, AccessibleExpression _parameter) {
@@ -32,31 +36,43 @@ public class UnaryExpression implements AccessibleExpression {
 		this.parameter = _parameter;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "(" + this.operator + " " + this.parameter + ")";
 	}
-	
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.expression.Expression#collect(fr.n7.stl.block.ast.scope.Scope)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.expression.Expression#collect(fr.n7.stl.block.ast.scope.
+	 * Scope)
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
 		return this.parameter.collectAndPartialResolve(_scope);
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.expression.Expression#resolve(fr.n7.stl.block.ast.scope.Scope)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.expression.Expression#resolve(fr.n7.stl.block.ast.scope.
+	 * Scope)
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
 		return this.parameter.completeResolve(_scope);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Expression#getType()
 	 */
 	@Override
@@ -67,7 +83,7 @@ public class UnaryExpression implements AccessibleExpression {
 		} else {
 			switch (this.operator) {
 				case Negate: {
-					if (resultType.compatibleWith(AtomicType.BooleanType))  {
+					if (resultType.compatibleWith(AtomicType.BooleanType)) {
 						return resultType;
 					} else {
 						Logger.warning("Type error in unary expression : Negate parameter " + resultType);
@@ -82,12 +98,15 @@ public class UnaryExpression implements AccessibleExpression {
 						return AtomicType.ErrorType;
 					}
 				}
-				default : return AtomicType.ErrorType;
+				default:
+					return AtomicType.ErrorType;
 			}
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override

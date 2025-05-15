@@ -8,6 +8,7 @@ import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 
 /**
  * Implementation of the Abstract Syntax Tree node for a couple type.
+ * 
  * @author Marc Pantel
  *
  */
@@ -18,7 +19,8 @@ public class CoupleType implements Type {
 
 	/**
 	 * Builds a couple type.
-	 * @param _first Type of the first part of the couple.
+	 * 
+	 * @param _first  Type of the first part of the couple.
 	 * @param _second Type of the second part of the couple.
 	 */
 	public CoupleType(Type _first, Type _second) {
@@ -26,7 +28,9 @@ public class CoupleType implements Type {
 		this.second = _second;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.block.ast.Type#equalsTo(fr.n7.block.ast.Type)
 	 */
 	@Override
@@ -39,7 +43,9 @@ public class CoupleType implements Type {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.block.ast.Type#compatibleWith(fr.n7.block.ast.Type)
 	 */
 	@Override
@@ -52,13 +58,15 @@ public class CoupleType implements Type {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.block.ast.Type#merge(fr.n7.block.ast.Type)
 	 */
 	@Override
 	public Type merge(Type _other) {
 		if (_other instanceof CoupleType) {
-			return new CoupleType( 
+			return new CoupleType(
 					this.first.merge(((CoupleType) _other).first),
 					this.second.merge(((CoupleType) _other).second));
 		} else {
@@ -66,7 +74,9 @@ public class CoupleType implements Type {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#length()
 	 */
 	@Override
@@ -74,7 +84,9 @@ public class CoupleType implements Type {
 		return this.first.length() + this.second.length();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -84,6 +96,7 @@ public class CoupleType implements Type {
 
 	/**
 	 * Provide the type of the first element in the couple.
+	 * 
 	 * @return Type of the first element.
 	 */
 	public Type getFirst() {
@@ -92,13 +105,16 @@ public class CoupleType implements Type {
 
 	/**
 	 * Provide the type of the second element in the couple.
+	 * 
 	 * @return Type of the second element.
 	 */
 	public Type getSecond() {
 		return this.second;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.type.Type#resolve(fr.n7.stl.block.ast.scope.Scope)
 	 */
 	@Override

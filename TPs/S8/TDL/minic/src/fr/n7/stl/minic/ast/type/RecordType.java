@@ -16,6 +16,7 @@ import fr.n7.stl.minic.ast.type.declaration.FieldDeclaration;
 /**
  * Implementation of the Abstract Syntax Tree node for a record type.
  * This one is a scope to allow an easy access to the fields.
+ * 
  * @author Marc Pantel
  *
  */
@@ -23,10 +24,13 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 
 	private List<FieldDeclaration> fields;
 	private String name;
+
 	/**
 	 * Constructor for a record type including fields.
-	 * @param _name Name of the record type.
-	 * @param _fields Sequence of fields to initialize the content of the record type.
+	 * 
+	 * @param _name   Name of the record type.
+	 * @param _fields Sequence of fields to initialize the content of the record
+	 *                type.
 	 */
 	public RecordType(String _name, Iterable<FieldDeclaration> _fields) {
 		this.name = _name;
@@ -38,6 +42,7 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 
 	/**
 	 * Constructor for an empty record type (i.e. without fields).
+	 * 
 	 * @param _name Name of the record type.
 	 */
 	public RecordType(String _name) {
@@ -47,6 +52,7 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 
 	/**
 	 * Add a field to a record type.
+	 * 
 	 * @param _field The added field.
 	 */
 	public void add(FieldDeclaration _field) {
@@ -55,6 +61,7 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 
 	/**
 	 * Add a sequence of fields to a record type.
+	 * 
 	 * @param _fields : Sequence of fields to be added.
 	 */
 	public void addAll(Iterable<FieldDeclaration> _fields) {
@@ -62,20 +69,24 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 			this.fields.add(_field);
 		}
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#equalsTo(fr.n7.stl.block.ast.Type)
 	 */
 	@Override
 	public boolean equalsTo(Type _other) {
 		boolean res = true;
-		for (int i = 0; i<this.length(); i++) {
-			res &= _other.equalsTo((Type)this.fields.get(i));
+		for (int i = 0; i < this.length(); i++) {
+			res &= _other.equalsTo((Type) this.fields.get(i));
 		}
 		return res;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#compatibleWith(fr.n7.stl.block.ast.Type)
 	 */
 	@Override
@@ -90,15 +101,19 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		return this.erase().compatibleWith(_other);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#merge(fr.n7.stl.block.ast.Type)
 	 */
 	@Override
 	public Type merge(Type _other) {
-		throw new SemanticsUndefinedException( "compatibleWith is undefined in RecordType.");
+		throw new SemanticsUndefinedException("compatibleWith is undefined in RecordType.");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Scope#get(java.lang.String)
 	 */
 	@Override
@@ -106,7 +121,7 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		boolean _found = false;
 		Iterator<FieldDeclaration> _iter = this.fields.iterator();
 		FieldDeclaration _current = null;
-		while (_iter.hasNext() && (! _found)) {
+		while (_iter.hasNext() && (!_found)) {
 			_current = _iter.next();
 			_found = _found || _current.getName().contentEquals(_name);
 		}
@@ -119,20 +134,24 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Scope#contains(java.lang.String)
 	 */
 	@Override
 	public boolean contains(String _name) {
 		boolean _result = false;
 		Iterator<FieldDeclaration> _iter = this.fields.iterator();
-		while (_iter.hasNext() && (! _result)) {
+		while (_iter.hasNext() && (!_result)) {
 			_result = _result || _iter.next().getName().contentEquals(_name);
 		}
 		return _result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Scope#accepts(fr.n7.stl.block.ast.Declaration)
 	 */
 	@Override
@@ -140,7 +159,9 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		return !this.contains(_declaration.getName());
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Scope#register(fr.n7.stl.block.ast.Declaration)
 	 */
 	@Override
@@ -151,9 +172,10 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 			throw new IllegalArgumentException();
 		}
 	}
-	
+
 	/**
 	 * Build a sequence type by erasing the names of the fields.
+	 * 
 	 * @return Sequence type extracted from record fields.
 	 */
 	public SequenceType erase() {
@@ -164,7 +186,9 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		return _local;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#length()
 	 */
 	@Override
@@ -176,7 +200,9 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		return _length;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -191,14 +217,16 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		}
 		return _result + "}";
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.type.Type#resolve(fr.n7.stl.block.ast.scope.Scope)
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
 		boolean _result = true;
-		int offset=0;
+		int offset = 0;
 		for (FieldDeclaration f : this.fields) {
 			_result = _result && f.getType().completeResolve(_scope);
 			f.computerOffset(offset);
@@ -207,7 +235,9 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		return _result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.scope.Declaration#getName()
 	 */
 	@Override
@@ -215,7 +245,9 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		return this.name;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.scope.Declaration#getType()
 	 */
 	@Override

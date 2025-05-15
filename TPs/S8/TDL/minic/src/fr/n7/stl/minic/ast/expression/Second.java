@@ -14,33 +14,43 @@ import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
- * Implementation of the Abstract Syntax Tree node  for an expression extracting the second component in a couple.
+ * Implementation of the Abstract Syntax Tree node for an expression extracting
+ * the second component in a couple.
+ * 
  * @author Marc Pantel
  *
  */
 public class Second implements AccessibleExpression {
 
 	/**
-	 * AST node for the expression whose value must whose second element is extracted by the expression.
+	 * AST node for the expression whose value must whose second element is
+	 * extracted by the expression.
 	 */
 	private AccessibleExpression target;
-	
+
 	/**
-	 * Builds an Abstract Syntax Tree node for an expression extracting the second component of a couple.
-	 * @param _target : AST node for the expression whose value must whose second element is extracted by the expression.
+	 * Builds an Abstract Syntax Tree node for an expression extracting the second
+	 * component of a couple.
+	 * 
+	 * @param _target : AST node for the expression whose value must whose second
+	 *                element is extracted by the expression.
 	 */
 	public Second(AccessibleExpression _target) {
 		this.target = _target;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
 		return "(snd" + this.target + ")";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Expression#getType()
 	 */
 	@Override
@@ -48,31 +58,37 @@ public class Second implements AccessibleExpression {
 		Type targetType = this.target.getType();
 		if (!(targetType instanceof CoupleType)) {
 			throw new SemanticsUndefinedException(
-				"target.getType() is not a CoupleType in Second but " + targetType.getClass() + "."
-			);
+					"target.getType() is not a CoupleType in Second but " + targetType.getClass() + ".");
 		}
 		return ((CoupleType) targetType).getSecond();
-		}
-	
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.expression.Expression#collect(fr.n7.stl.block.ast.scope.Scope)
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.expression.Expression#collect(fr.n7.stl.block.ast.scope.
+	 * Scope)
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
 		boolean ok = this.target.collectAndPartialResolve(_scope);
-		
+
 		Type targetType = this.target.getType();
 		if (!(targetType instanceof CoupleType)) {
 			throw new SemanticsUndefinedException(
-				"target.getType() is not a CoupleType in Second but " + targetType.getClass() + "."
-			);
+					"target.getType() is not a CoupleType in Second but " + targetType.getClass() + ".");
 		}
-		
+
 		return ok;
 	}
 
-	/* (non-Javadoc)
-	 * @see fr.n7.stl.block.ast.expression.Expression#resolve(fr.n7.stl.block.ast.scope.Scope)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * fr.n7.stl.block.ast.expression.Expression#resolve(fr.n7.stl.block.ast.scope.
+	 * Scope)
 	 */
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> _scope) {
@@ -80,25 +96,25 @@ public class Second implements AccessibleExpression {
 		Type targetType = this.target.getType();
 		if (!(targetType instanceof CoupleType)) {
 			throw new SemanticsUndefinedException(
-				"target.getType() is not a CoupleType in Second but " + targetType.getClass() + "."
-			);
+					"target.getType() is not a CoupleType in Second but " + targetType.getClass() + ".");
 		}
 		return ok;
-		}
+	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment _result = this.target.getCode(_factory);
 
-
-		_result.add(_factory.createLoadL(((CoupleType)this.target.getType()).getFirst().length()));
+		_result.add(_factory.createLoadL(((CoupleType) this.target.getType()).getFirst().length()));
 		_result.add(TAMFactory.createBinaryOperator(BinaryOperator.Add));
 		_result.add(_factory.createLoadI(this.getType().length()));
-			_result.addComment("Loading the second element of Couple"+this.toString());
-		return _result;		
+		_result.addComment("Loading the second element of Couple" + this.toString());
+		return _result;
 	}
 
 }

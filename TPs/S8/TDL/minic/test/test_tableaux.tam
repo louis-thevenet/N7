@@ -1,82 +1,65 @@
-;Function fonc start
 JUMP end_fonc
-;Print:
-;c[ 2 ]
 fonc
+LOAD (1) -1[LB]
 LOADL 2
 LOADL 1
 SUBR IMul
 SUBR IAdd
 LOADI (1)
 SUBR IOut
-RETURN (0) 0
+RETURN (0) 1
 end_fonc
-;Assign (seq type) a
+PUSH 1
 LOADL 1
 LOADL 2
 LOADL 3
-;Load variable a from offset 0
-;Print:
-;a[ 0 ]
-LOADL 0
+STORE (1) 0[SB]
+LOAD (1) 0[SB]
 LOADL 0
 LOADL 1
 SUBR IMul
 SUBR IAdd
 LOADI (1)
 SUBR IOut
-;Load variable a from offset 0
-;Print:
-;a[ 1 ]
-LOADL 0
+LOAD (1) 0[SB]
 LOADL 1
 LOADL 1
 SUBR IMul
 SUBR IAdd
 LOADI (1)
 SUBR IOut
-;Load variable a from offset 0
-;Print:
-;a[ 2 ]
-LOADL 0
+LOAD (1) 0[SB]
 LOADL 2
 LOADL 1
 SUBR IMul
 SUBR IAdd
 LOADI (1)
 SUBR IOut
+PUSH 1
 LOADL 3
 LOADL 1
 SUBR IMul
 SUBR MAlloc
-;Load variable a from offset 0
-;Assignement:
-; b [ 2 ]
-;from:
-;a[ 0 ]
-LOADL 0
+STORE (1) 1[SB]
+LOAD (1) 0[SB]
 LOADL 0
 LOADL 1
 SUBR IMul
 SUBR IAdd
 LOADI (1)
-;Assign b from SB + 1
-LOADL 1
+LOAD (1) 1[SB]
 LOADL 2
 LOADL 1
 SUBR IMul
 SUBR IAdd
 STOREI (1)
-STOREI (1)
-;Load variable b from offset 1
-;Print:
-;b[ 2 ]
-LOADL 1
+LOAD (1) 1[SB]
 LOADL 2
 LOADL 1
 SUBR IMul
 SUBR IAdd
 LOADI (1)
 SUBR IOut
+POP (0) 2
 HALT
 

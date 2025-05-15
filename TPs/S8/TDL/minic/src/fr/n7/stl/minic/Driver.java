@@ -11,8 +11,8 @@ import java.io.IOException;
 
 class Driver {
 
-	public static void main(String[] args) throws Exception {
-        String[] files; 
+    public static void main(String[] args) throws Exception {
+        String[] files;
         if (args.length == 0) {
             System.out.println("Using default file : input.txt");
             files = new String[1];
@@ -45,6 +45,6 @@ class Driver {
                 e.printStackTrace();
             }
         }
-	}
-	
+    }
+
 }

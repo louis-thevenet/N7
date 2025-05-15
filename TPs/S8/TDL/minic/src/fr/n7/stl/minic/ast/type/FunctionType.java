@@ -13,6 +13,7 @@ import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 
 /**
  * Implementation of the Abstract Syntax Tree node for a function type.
+ * 
  * @author Marc Pantel
  *
  */
@@ -29,39 +30,49 @@ public class FunctionType implements Type {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#equalsTo(fr.n7.stl.block.ast.Type)
 	 */
 	@Override
 	public boolean equalsTo(Type _other) {
-		throw new SemanticsUndefinedException( "equalsTo is undefined in FunctionType.");
+		throw new SemanticsUndefinedException("equalsTo is undefined in FunctionType.");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#compatibleWith(fr.n7.stl.block.ast.Type)
 	 */
 	@Override
 	public boolean compatibleWith(Type _other) {
-		throw new SemanticsUndefinedException( "compatibleWith is undefined in FunctionType.");
+		throw new SemanticsUndefinedException("compatibleWith is undefined in FunctionType.");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#merge(fr.n7.stl.block.ast.Type)
 	 */
 	@Override
 	public Type merge(Type _other) {
-		throw new SemanticsUndefinedException( "merge is undefined in FunctionType.");
+		throw new SemanticsUndefinedException("merge is undefined in FunctionType.");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#length(int)
 	 */
 	@Override
 	public int length() {
-		throw new SemanticsUndefinedException( "length is undefined in FunctionType.");
+		throw new SemanticsUndefinedException("length is undefined in FunctionType.");
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -76,8 +87,10 @@ public class FunctionType implements Type {
 		}
 		return _result + ") -> " + this.result;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.type.Type#resolve(fr.n7.stl.block.ast.scope.Scope)
 	 */
 	@Override
@@ -90,4 +103,3 @@ public class FunctionType implements Type {
 	}
 
 }
-

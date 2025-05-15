@@ -63,7 +63,8 @@ public class TypeDeclaration implements Declaration, Instruction {
 			return true;
 		} else {
 			return false;
-		}	}
+		}
+	}
 
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
@@ -82,7 +83,7 @@ public class TypeDeclaration implements Declaration, Instruction {
 	@Override
 	public boolean completeResolve(HierarchicalScope<Declaration> scope) {
 		return this.type.completeResolve(scope);
-		}
+	}
 
 	/**
 	 * Provide the type associated to a name in a type declaration.
@@ -110,7 +111,7 @@ public class TypeDeclaration implements Declaration, Instruction {
 	 */
 	@Override
 	public boolean checkType() {
-		return true;	
+		return true;
 	}
 
 	/*

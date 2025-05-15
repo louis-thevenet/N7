@@ -78,8 +78,8 @@ public class ArrayAllocation implements AccessibleExpression, AssignableExpressi
 	@Override
 	public Type getType() {
 		return new ArrayType(this.element);
-	
- 	}
+
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -88,11 +88,12 @@ public class ArrayAllocation implements AccessibleExpression, AssignableExpressi
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-Fragment res = _factory.createFragment();
-res.append(this.size.getCode(_factory));
-res.add(_factory.createLoadL(this.element.length()));
-res.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
-res.add(Library.MAlloc);
-return res;	}
+		Fragment res = _factory.createFragment();
+		res.append(this.size.getCode(_factory));
+		res.add(_factory.createLoadL(this.element.length()));
+		res.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
+		res.add(Library.MAlloc);
+		return res;
+	}
 
 }

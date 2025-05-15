@@ -8,6 +8,7 @@ import fr.n7.stl.minic.ast.type.Type;
 
 /**
  * Abstract Syntax Tree node for a field in a record.
+ * 
  * @author Marc Pantel
  *
  */
@@ -23,7 +24,9 @@ public class FieldDeclaration implements Declaration {
 		this.offset = -1;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Declaration#getName()
 	 */
 	@Override
@@ -31,7 +34,9 @@ public class FieldDeclaration implements Declaration {
 		return this.name;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -41,6 +46,7 @@ public class FieldDeclaration implements Declaration {
 
 	/**
 	 * Provide the type of the field in a record.
+	 * 
 	 * @return Type of the field.
 	 */
 	public Type getType() {
@@ -49,13 +55,14 @@ public class FieldDeclaration implements Declaration {
 
 	/**
 	 * Provide the offset of the field in a record.
+	 * 
 	 * @return Offset of the field.
 	 */
 	public int getOffset() {
 		return this.offset;
 	}
-	
-	public int computerOffset( int _offset ) {
+
+	public int computerOffset(int _offset) {
 		this.offset = _offset;
 		return this.type.length();
 	}

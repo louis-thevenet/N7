@@ -77,7 +77,7 @@ public abstract class AbstractPointer<PointerKind extends Expression> implements
 	 * @return Synthesized Type of the expression.
 	 */
 	public Type getType() {
-			return this.pointer.getType();
+		return this.pointer.getType();
 	}
 
 }

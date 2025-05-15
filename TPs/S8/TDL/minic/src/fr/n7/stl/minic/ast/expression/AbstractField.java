@@ -61,27 +61,26 @@ public abstract class AbstractField<RecordKind extends Expression> implements Ex
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
 		boolean ok = this.record.collectAndPartialResolve(_scope);
-	
+
 		// Resolve the type of the record
 		Type recordType = this.record.getType();
-	
+
 		// Handle NamedType by resolving it to its underlying type
 		if (recordType instanceof NamedType) {
 			recordType.completeResolve(_scope);
 			recordType = ((NamedType) recordType).getType();
 		}
-	
+
 		// Check if the resolved type is a RecordType
 		if (!(recordType instanceof RecordType)) {
 			throw new SemanticsUndefinedException(
-				"record.getType() is not a RecordType in AbstractField but " + recordType.getClass() + "."
-			);
+					"record.getType() is not a RecordType in AbstractField but " + recordType.getClass() + ".");
 		}
-	
+
 		// Cast to RecordType and retrieve the field
 		RecordType record2 = (RecordType) recordType;
 		this.field = record2.get(name);
-	
+
 		// Register the field in the scope if valid
 		if (ok && _scope.accepts(this.field)) {
 			_scope.register(this.field);
@@ -105,8 +104,7 @@ public abstract class AbstractField<RecordKind extends Expression> implements Ex
 		}
 		if (record.getType() instanceof NamedType) {
 			return this.record.completeResolve(_scope);
-		}
-		else {
+		} else {
 			return this.record.completeResolve(_scope);
 		}
 	}
@@ -120,4 +118,3 @@ public abstract class AbstractField<RecordKind extends Expression> implements Ex
 		return this.field.getType();
 	}
 }
-

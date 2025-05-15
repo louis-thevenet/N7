@@ -12,22 +12,25 @@ import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 
 /**
  * Implementation of the Abstract Syntax Tree node for a sequence type.
+ * 
  * @author Marc Pantel
  *
  */
 public class SequenceType implements Type {
-	
+
 	private List<Type> types;
 
 	public SequenceType() {
 		this.types = new LinkedList<Type>();
 	}
-	
+
 	public void add(Type _type) {
 		this.types.add(_type);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#equalsTo(fr.n7.stl.block.ast.Type)
 	 */
 	@Override
@@ -48,7 +51,7 @@ public class SequenceType implements Type {
 		} else {
 			if (_other instanceof ArrayType) {
 				boolean _result = true;
-				Type _element = ((ArrayType)_other).getType();
+				Type _element = ((ArrayType) _other).getType();
 				Iterator<Type> _iter = this.types.iterator();
 				while (_iter.hasNext() && _result) {
 					_result = _result && _iter.next().equalsTo(_element);
@@ -56,12 +59,12 @@ public class SequenceType implements Type {
 				return _result;
 			} else {
 				if (_other instanceof RecordType) {
-					return this.equalsTo(((RecordType)_other).erase());
+					return this.equalsTo(((RecordType) _other).erase());
 				} else {
 					if (_other instanceof CoupleType) {
 						if (this.types.size() == 2) {
-							return this.types.get(0).equalsTo(((CoupleType)_other).getFirst()) &&
-									this.types.get(1).equalsTo(((CoupleType)_other).getSecond());
+							return this.types.get(0).equalsTo(((CoupleType) _other).getFirst()) &&
+									this.types.get(1).equalsTo(((CoupleType) _other).getSecond());
 						} else {
 							return false;
 						}
@@ -73,7 +76,9 @@ public class SequenceType implements Type {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#compatibleWith(fr.n7.stl.block.ast.Type)
 	 */
 	@Override
@@ -97,7 +102,7 @@ public class SequenceType implements Type {
 			} else {
 				if (_other instanceof ArrayType) {
 					boolean _result = true;
-					Type _element = ((ArrayType)_other).getType();
+					Type _element = ((ArrayType) _other).getType();
 					Iterator<Type> _iter = this.types.iterator();
 					while (_iter.hasNext() && _result) {
 						_result = _result && _iter.next().equalsTo(_element);
@@ -105,12 +110,12 @@ public class SequenceType implements Type {
 					return _result;
 				} else {
 					if (_other instanceof RecordType) {
-						return this.compatibleWith(((RecordType)_other).erase());
+						return this.compatibleWith(((RecordType) _other).erase());
 					} else {
 						if (_other instanceof CoupleType) {
 							if (this.types.size() == 2) {
-								return this.types.get(0).compatibleWith(((CoupleType)_other).getFirst()) &&
-										this.types.get(1).compatibleWith(((CoupleType)_other).getSecond());
+								return this.types.get(0).compatibleWith(((CoupleType) _other).getFirst()) &&
+										this.types.get(1).compatibleWith(((CoupleType) _other).getSecond());
 							} else {
 								return false;
 							}
@@ -123,7 +128,9 @@ public class SequenceType implements Type {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#merge(fr.n7.stl.block.ast.Type)
 	 */
 	@Override
@@ -146,7 +153,9 @@ public class SequenceType implements Type {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Type#length(int)
 	 */
 	@Override
@@ -157,8 +166,10 @@ public class SequenceType implements Type {
 		}
 		return _result;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.type.Type#resolve(fr.n7.stl.block.ast.scope.Scope)
 	 */
 	@Override

@@ -82,7 +82,7 @@ public class FunctionCall implements AccessibleExpression {
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
 		boolean _result = true;
-		System.out.println("Function call, scope "+ _scope.toString());
+		System.out.println("Function call, scope " + _scope.toString());
 		for (AccessibleExpression _argument : this.arguments) {
 			_result = _result && _argument.collectAndPartialResolve(_scope);
 		}
@@ -133,11 +133,13 @@ public class FunctionCall implements AccessibleExpression {
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
 		for (AccessibleExpression _argument : this.arguments) {
-			if (_argument.getType() instanceof NamedType) {} else
-			{code.append(_argument.getCode(_factory));}
+			if (_argument.getType() instanceof NamedType) {
+			} else {
+				code.append(_argument.getCode(_factory));
+			}
 		}
 		code.add(_factory.createCall(this.function.getName(), Register.LB));
-		
+
 		return code;
 	}
 

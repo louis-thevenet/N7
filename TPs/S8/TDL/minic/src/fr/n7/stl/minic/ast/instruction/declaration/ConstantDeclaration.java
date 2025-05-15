@@ -100,14 +100,14 @@ public class ConstantDeclaration implements Instruction, Declaration {
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
 		_scope.register(this);
 		if (this.value != null) {
-		return	this.value.collectAndPartialResolve(_scope);
+			return this.value.collectAndPartialResolve(_scope);
 		}
 		return false;
 	}
 
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope, FunctionDeclaration _container) {
-		
+
 		if (_scope.accepts(this)) {
 			_scope.register(this);
 			return this.value.collectAndPartialResolve(_scope);

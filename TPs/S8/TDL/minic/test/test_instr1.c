@@ -1,5 +1,6 @@
 /*
-Ce programme vérifie la bonne gestion des Instructions en MiniC avec des exemples valides
+Ce programme vérifie la bonne gestion des Instructions en MiniC avec des
+exemples valides
 */
 
 monProgramme {
@@ -9,7 +10,6 @@ monProgramme {
     int b = 10;
     int somme = a + b;
     int compteur = 0;
-
 
     // Exemple d'instruction conditionnelle
     if (somme > 10) {

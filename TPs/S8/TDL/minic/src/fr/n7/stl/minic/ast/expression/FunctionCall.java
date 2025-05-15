@@ -125,16 +125,12 @@ public class FunctionCall implements AccessibleExpression {
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
-	public Fragment getCode(TAMFactory _factory) {
-		Fragment code = _factory.createFragment();
-
-		for (AccessibleExpression arg : arguments) {
-			code.append(arg.getCode(_factory));
-		}
-
-		code.add(_factory.createCall(name, Register.LB));
-		code.addComment("Call to " + this.name);
-		return code;
+	public Fragment getCode(TAMFactory factory) {
+		Fragment funcCallCode = factory.createFragment();
+		arguments.forEach(arg -> funcCallCode.append(arg.getCode(factory)));
+		funcCallCode.add(factory.createCall(name, Register.LB));
+		funcCallCode.addComment("Call to " + name);
+		return funcCallCode;
 	}
 
 }

@@ -77,15 +77,12 @@ public enum NullValue implements Value {
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
-	public Fragment getCode(TAMFactory _factory) {
-		Fragment _code = _factory.createFragment();
-		switch (this) {
-			case Null: {
-				_code.add(_factory.createLoadL(0));
-				break;
-			}
+	public Fragment getCode(TAMFactory factory) {
+		Fragment nullCode = factory.createFragment();
+		if (this == Null) {
+			nullCode.add(factory.createLoadL(0));
 		}
-		return _code;
+		return nullCode;
 	}
 
 }

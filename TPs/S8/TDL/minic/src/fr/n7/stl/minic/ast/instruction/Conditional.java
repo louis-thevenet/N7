@@ -126,30 +126,27 @@ public class Conditional implements Instruction {
 	 * @see fr.n7.stl.block.ast.Instruction#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
-	public Fragment getCode(TAMFactory _factory) {
-		Fragment code = _factory.createFragment();
-		int idCond = _factory.createLabelNumber();
-		String elseLabel = "else_" + idCond;
-		String finalLabel = "end_if_" + idCond;
+	public Fragment getCode(TAMFactory factory) {
+		Fragment conditionalCode = factory.createFragment();
+		int labelId = factory.createLabelNumber();
+		String elseLabel = "else_" + labelId;
+		String endLabel = "end_if_" + labelId;
 
-		code.append(this.condition.getCode(_factory));
+		conditionalCode.append(condition.getCode(factory));
 
-
-		if (this.elseBranch != null) {
-			code.add(_factory.createJumpIf(elseLabel, 0));
-			code.append(this.thenBranch.getCode(_factory));
-			code.add(_factory.createJump(finalLabel));
-			Fragment else_frag = this.elseBranch.getCode(_factory);
-			else_frag.addPrefix(elseLabel);
-			else_frag.addComment("else");
-			code.append(else_frag);
+		if (elseBranch != null) {
+			conditionalCode.add(factory.createJumpIf(elseLabel, 0));
+			conditionalCode.append(thenBranch.getCode(factory));
+			conditionalCode.add(factory.createJump(endLabel));
+			Fragment elseCode = elseBranch.getCode(factory);
+			elseCode.addPrefix(elseLabel);
+			conditionalCode.append(elseCode);
 		} else {
-			code.add(_factory.createJumpIf(finalLabel, 0));
-			code.append(this.thenBranch.getCode(_factory));
+			conditionalCode.add(factory.createJumpIf(endLabel, 0));
+			conditionalCode.append(thenBranch.getCode(factory));
 		}
-		code.addSuffix(finalLabel);
-		code.addComment("if");
-		return code;
+		conditionalCode.addSuffix(endLabel);
+		return conditionalCode;
 	}
 
 }

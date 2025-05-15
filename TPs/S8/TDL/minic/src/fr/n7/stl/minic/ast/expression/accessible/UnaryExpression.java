@@ -110,15 +110,10 @@ public class UnaryExpression implements AccessibleExpression {
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
-	public Fragment getCode(TAMFactory _factory) {
-		Fragment _result = this.parameter.getCode(_factory);
-		_result.addComment(this.toString());
-		/*
-		 * if (this.parameter instanceof AccessibleExpression) {
-		 * _result.add(_factory.createLoadI(this.parameter.getType().length())); }
-		 */
-		_result.add(TAMFactory.createUnaryOperator(this.operator));
-		return _result;
+	public Fragment getCode(TAMFactory factory) {
+		Fragment unaryCode = parameter.getCode(factory);
+		unaryCode.add(TAMFactory.createUnaryOperator(operator));
+		return unaryCode;
 	}
 
 }

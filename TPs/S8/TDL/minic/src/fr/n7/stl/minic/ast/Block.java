@@ -173,16 +173,19 @@ public class Block {
 	 * @param _factory Inherited Factory to build AST nodes for TAM code.
 	 * @return Synthesized AST for the generated TAM code.
 	 */
-	public Fragment getCode(TAMFactory _factory) {
-		Fragment res = _factory.createFragment();
-		for (Instruction instruction : instructions) {
-			res.append(instruction.getCode(_factory));
-		}
+	public Fragment getCode(TAMFactory factory) {
+	    Fragment fragment = factory.createFragment();
+	    for (Instruction instruction : this.instructions) {
+	        fragment.append(instruction.getCode(factory));
+	    }
 
-		if (this.spaceUsed > 0){
-			res.add(_factory.createPop(0, this.spaceUsed));}
-		res.addComment("End of Block");
-		return res;
+	    if (this.spaceUsed > 0) {
+	        fragment.add(factory.createPop(0, this.spaceUsed));
+	    }
+
+	    fragment.addComment("End of Block");
+
+	    return fragment;
 	}
 
 }

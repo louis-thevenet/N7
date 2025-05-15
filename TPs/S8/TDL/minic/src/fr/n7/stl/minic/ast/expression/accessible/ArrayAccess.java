@@ -37,17 +37,16 @@ public class ArrayAccess extends AbstractArray<AccessibleExpression> implements 
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
-	public Fragment getCode(TAMFactory _factory) {
-		Fragment res = _factory.createFragment();
-		Type pointedType = ((ArrayType) this.array.getType()).getType();
-		res.append(this.array.getCode(_factory));
-		res.append(this.index.getCode(_factory));
-		res.add(_factory.createLoadL(pointedType.length()));
-		res.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
-		res.add(TAMFactory.createBinaryOperator(BinaryOperator.Substract));
-		res.add(_factory.createLoadI(pointedType.length()));
-		res.addComment("Array Access " + this.toString());
-		return res;
+	public Fragment getCode(TAMFactory factory) {
+		Fragment arrayCode = factory.createFragment();
+		Type elementType = ((ArrayType) array.getType()).getType();
+		arrayCode.append(array.getCode(factory));
+		arrayCode.append(index.getCode(factory));
+		arrayCode.add(factory.createLoadL(elementType.length()));
+		arrayCode.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
+		arrayCode.add(TAMFactory.createBinaryOperator(BinaryOperator.Substract));
+		arrayCode.add(factory.createLoadI(elementType.length()));
+		return arrayCode;
 	}
 
 }

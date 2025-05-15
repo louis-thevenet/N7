@@ -159,19 +159,11 @@ public class BinaryExpression implements AccessibleExpression {
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
-	public Fragment getCode(TAMFactory _factory) {
-		Fragment _result = this.left.getCode(_factory);
-		/*
-		 * if (this.left instanceof AccessibleExpression) {
-		 * _result.add(_factory.createLoadI(this.left.getType().length())); }
-		 */
-		_result.append(this.right.getCode(_factory));
-		/*
-		 * if (this.right instanceof AccessibleExpression) {
-		 * _result.add(_factory.createLoadI(this.right.getType().length())); }
-		 */
-		_result.add(TAMFactory.createBinaryOperator(this.operator));
-		return _result;
+	public Fragment getCode(TAMFactory factory) {
+	    Fragment binaryCode = left.getCode(factory);
+	    binaryCode.append(right.getCode(factory));
+	    binaryCode.add(TAMFactory.createBinaryOperator(operator));
+	    return binaryCode;
 	}
 
 }

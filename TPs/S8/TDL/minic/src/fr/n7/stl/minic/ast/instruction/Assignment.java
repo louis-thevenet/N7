@@ -118,12 +118,11 @@ public class Assignment implements Instruction, Expression {
 	 * @see fr.n7.stl.block.ast.Instruction#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
-	public Fragment getCode(TAMFactory _factory) {
-		Fragment res = _factory.createFragment();
-		res.append(this.value.getCode(_factory));
-		res.append(this.assignable.getCode(_factory));
-		res.addComment("Assign " + this.value.getType().length());
-		return res;
+	public Fragment getCode(TAMFactory factory) {
+		Fragment assignmentCode = factory.createFragment();
+		assignmentCode.append(value.getCode(factory));
+		assignmentCode.append(assignable.getCode(factory));
+		return assignmentCode;
 	}
 
 }

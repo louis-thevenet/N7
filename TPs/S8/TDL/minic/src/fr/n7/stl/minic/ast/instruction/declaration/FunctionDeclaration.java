@@ -122,11 +122,13 @@ public class FunctionDeclaration implements Instruction, Declaration {
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
 		if (_scope.accepts(this)) {
 			_scope.register(this);
+			System.out.println("Function declaration, old scope: "+ _scope);
 			this.scope = new SymbolTable(_scope);
 			this.type.completeResolve(_scope);
 			for (ParameterDeclaration _parameter : this.parameters) {
 				this.scope.register(_parameter);
 			}
+			System.out.println("Function declaration, new scope: "+ scope);
 			return this.body.collectAndPartialResolve(this.scope, this);
 		} else {
 			return false;

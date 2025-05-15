@@ -22,45 +22,36 @@ monProgramme {
     p2.age = p2.age + 1;
     print p2.age;
 
+    // Utilisation de champs dans des expressions
+    boolean estMajeur = p1.age >= 18 && p1.majeur;
 
+    print estMajeur;
 
-
-
-
-
-
-
-
-
-
-    // Modification d’un champ
-    // p2.age = 17;
-    // p2.majeur = false;
+    // Déclaration d'un enregistrement imbriqué
+    typedef struct Adresse {
+        int numero;
+        int codePostal;
+    } Adresse;
     
-    // int a =  p2.age;
-    // print a;
-    
-    // print p2.age;
+    typedef struct Client {
+        Personne infos;
+        Adresse adresse;
+    } Client;
 
-    // // Utilisation de champs dans des expressions
-    // boolean estMajeur = p1.age >= 18 && p1.majeur;
+    // Utilisation d’un enregistrement imbriqué
+    Adresse a1 = {55, 75000};
+    Client c1 = {p1, a1};
 
-    // // Déclaration d'un enregistrement imbriqué
-    // typedef struct Adresse {
-    //     int numero;
-    //     int codePostal;
-    // } Adresse;
+    print a1.numero;
+    print p1.age;
+    print c1.infos.age;
+    c1.infos.age = 0;
+    print c1.infos.age;
 
-    // typedef struct Client {
-    //     Personne infos;
-    //     Adresse adresse;
-    // } Client;
+    int client_age(Client c) {
+        return c.infos.age;
+    }
 
-    // // Utilisation d’un enregistrement imbriqué
-    // Adresse a1 = {12, 75000};
-    // Client c1 = {p1, a1};
+    print client_age(c1);
 
-    // // Accès à des champs imbriqués
-    // int code = c1.adresse.codePostal;
-    // boolean adulte = c1.infos.majeur;
 }

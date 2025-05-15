@@ -10,6 +10,7 @@ import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
+import fr.n7.stl.minic.ast.type.NamedType;
 import fr.n7.stl.minic.ast.type.SequenceType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
@@ -96,6 +97,10 @@ public class Sequence implements AccessibleExpression {
 var _code = _factory.createFragment();
 		for (Expression _value : this.values) {
 			_code.append(_value.getCode(_factory));
+			if (_value.getType() instanceof NamedType) {
+		_code.add(_factory.createLoadI(_value.getType().length()));
+
+			}
 		}
 		return _code;
 	}

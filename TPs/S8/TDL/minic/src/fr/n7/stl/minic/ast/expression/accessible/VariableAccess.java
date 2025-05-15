@@ -60,7 +60,6 @@ public class VariableAccess extends AbstractAccess {
 			_result.add(_factory.createLoadL(
 					this.declaration.getOffset()));
 		}
-
 		_result.addComment(
 				"Load variable " + this.declaration.getName() + " from offset " + this.declaration.getOffset());
 		return _result;

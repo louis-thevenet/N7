@@ -1,3 +1,4 @@
+;Assign (seq type) a
 LOADL 1
 LOADL 2
 LOADL 3

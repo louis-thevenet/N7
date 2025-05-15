@@ -106,7 +106,9 @@ public class IdentifierAccess extends AbstractIdentifier implements AccessibleEx
 	 */
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
-		return this.expression.getCode(_factory);
+		Fragment code= this.expression.getCode(_factory);
+
+		return code;
 	}
 
 }

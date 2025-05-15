@@ -6,6 +6,7 @@ package fr.n7.stl.minic.ast.expression.accessible;
 import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.AbstractField;
 import fr.n7.stl.minic.ast.expression.Expression;
+import fr.n7.stl.minic.ast.type.NamedType;
 import fr.n7.stl.minic.ast.type.RecordType;
 import fr.n7.stl.minic.ast.type.declaration.FieldDeclaration;
 import fr.n7.stl.tam.ast.Fragment;
@@ -40,7 +41,12 @@ public class FieldAccess extends AbstractField<AccessibleExpression> implements 
 
 		code.add(_factory.createLoadL(field_offset));
 		code.add(TAMFactory.createBinaryOperator(BinaryOperator.Add));
-		code.add(_factory.createLoadI(this.field.getType().length()));
+
+
+		if (this.field.getType() instanceof NamedType) {
+// No loadI if we're loading a namedtype
+		} else 
+		{code.add(_factory.createLoadI(this.field.getType().length()));}
 	
 		code.addComment("Load field " + this.name + " from record " + this.record.toString() + ", offset " + field_offset);
 		

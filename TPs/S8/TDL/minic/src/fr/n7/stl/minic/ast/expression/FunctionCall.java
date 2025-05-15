@@ -81,6 +81,7 @@ public class FunctionCall implements AccessibleExpression {
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
 		boolean _result = true;
+		System.out.println("Function call, scope "+ _scope.toString());
 		for (AccessibleExpression _argument : this.arguments) {
 			_result = _result && _argument.collectAndPartialResolve(_scope);
 		}

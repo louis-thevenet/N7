@@ -113,6 +113,8 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		if (_found) {
 			return _current;
 		} else {
+			System.out.println("Field not found in RecordType.get()");
+			System.out.println(this.fields);
 			return null;
 		}
 	}
@@ -198,8 +200,8 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		boolean _result = true;
 		int offset=0;
 		for (FieldDeclaration f : this.fields) {
-			f.computerOffset(offset);
 			_result = _result && f.getType().completeResolve(_scope);
+			f.computerOffset(offset);
 			
 			offset++;
 		}

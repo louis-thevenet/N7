@@ -125,6 +125,7 @@ public class NamedType implements Type {
 				try {
 					TypeDeclaration _declaration = (TypeDeclaration) _scope.get(this.name);
 					this.declaration = _declaration;
+
 					return true;
 				} catch (ClassCastException e) {
 					Logger.error("The declaration for " + this.name + " is of the wrong kind.");
@@ -135,7 +136,8 @@ public class NamedType implements Type {
 				return false;
 			}
 		} else {
-			return true;
+			this.declaration.collectAndPartialResolve(_scope);
+			return this.declaration.completeResolve(_scope);
 		}
 	}
 

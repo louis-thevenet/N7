@@ -194,10 +194,13 @@ public class VariableDeclaration implements Declaration, Instruction {
 		if (this.value.getType() instanceof NamedType) 
 		{
 		res.add(_factory.createLoadI(this.value.getType().length()));
-		res.addComment("Assign " + this.name);
+		res.addComment("Assign (named type) " + this.name);
 		} else if (this.value.getType() instanceof PointerType) {
 		} else if (this.value.getType() instanceof SequenceType) {
+		res.addComment("Assign (seq type) " + this.name);
 
+
+		} else {
 		}
 
 		

@@ -50,8 +50,7 @@ let sem_itv n1 n2 = if n1=n2 then
   if n1 mod 2 = 0 then Pair else Impair
 else if
   n1 > n2 then
-    Bottom 
-else Top
+    Bottom else Top
 
 let sem_plus x y = match x,y with
 | Pair,Pair|Impair,Impair -> Pair

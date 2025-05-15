@@ -19,7 +19,7 @@
  *)
 
 (* Abstract domain used for the analyses. *)
-module Dom : Relational.Domain = NonRelational.MakeRelational (ModuloDeux) 
+module Dom : Relational.Domain = NonRelational.MakeRelational (Intervalles) 
 (* module Dom : Relational.Domain = NonRelational.MakeRelational (Parity) *)
 (* module Dom : Relational.Domain = NonRelational.MakeRelational (Kildall) *)
 (* To be able to use this last two domains, you have to install the Apron

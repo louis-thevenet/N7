@@ -100,7 +100,7 @@ return 0;	}
 			int count = 0;
 			for (var arg: this.function.getParameters()) {
 				if (arg.getType() instanceof NamedType) {
-					count += 1;
+					count += 0;
 
 				}
 				else {

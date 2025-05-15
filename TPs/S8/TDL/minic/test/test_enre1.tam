@@ -118,18 +118,6 @@ SUBR IAdd
 LOADL 0
 SUBR IAdd
 STOREI (1)
-;Load variable c1 from offset 7
-;Load field infos from record c1, offset 0
-;Load field age from record c1.infos, offset 0
-;Print:
-;c1.infos.age
-LOADL 7
-LOADL 0
-SUBR IAdd
-LOADL 0
-SUBR IAdd
-LOADI (1)
-SUBR IOut
 ;Function client_age start
 JUMP end_client_age
 ;Load field infos from record c, offset 0
@@ -141,39 +129,35 @@ SUBR IAdd
 LOADL 0
 SUBR IAdd
 LOADI (1)
-RETURN (1) 1
+RETURN (1) 0
 end_client_age
 ;Function addre_postal start
 JUMP end_addre_postal
-;Load field adresse from record c, offset 1
+;Load field adresse from record c, offset 2
 ;Load field codePostal from record c.adresse, offset 1
 addre_postal
 LOADA -4[LB]
-LOADL 1
+LOADL 2
 SUBR IAdd
 LOADL 1
 SUBR IAdd
 LOADI (1)
-RETURN (1) 1
+RETURN (1) 0
 end_addre_postal
-;Load variable c1 from offset 7
 ;Print:
 ;int client_age( Client c ){
 ;// Return in function : client_age
 ;return c.infos.age;
 ;}
 ;( c1)
-LOADL 7
 CALL (LB) client_age
 SUBR IOut
-;Load variable c1 from offset 7
 ;Print:
 ;int addre_postal( Client c ){
 ;// Return in function : addre_postal
 ;return c.adresse.codePostal;
 ;}
 ;( c1)
-LOADL 7
 CALL (LB) addre_postal
 SUBR IOut
 HALT

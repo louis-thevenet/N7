@@ -3,6 +3,7 @@ Ce programme vérifie la bonne gestion des Paires (Couples) en MiniC avec des ex
 */
 
 MonProgramme{
+
     // Déclaration de variables
     int a = 5;
     int b = 10;
@@ -33,4 +34,11 @@ MonProgramme{
 
     print fst(couple2);
     print snd(couple2);
+
+
+    <int,int> fonc(<int,int> a) {
+        return a;
+    }
+    <int,int> c = fonc(couple1);
+    print fst(c);
 }

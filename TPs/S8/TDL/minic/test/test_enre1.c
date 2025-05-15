@@ -16,16 +16,16 @@ monProgramme {
     // Affectation à partir d'un autre enregistrement
     Personne p2 = p1;
 
-    print p2.age;
+    print p2.age; // 21
 
 
     p2.age = p2.age + 1;
-    print p2.age;
+    print p2.age; // 22
 
     // Utilisation de champs dans des expressions
     boolean estMajeur = p1.age >= 18 && p1.majeur;
 
-    print estMajeur;
+    print estMajeur; // true
 
     // Déclaration d'un enregistrement imbriqué
     typedef struct Adresse {
@@ -42,11 +42,10 @@ monProgramme {
     Adresse a1 = {55, 31};
     Client c1 = {p1, a1};
 
-    print a1.numero;
-    print p1.age;
-    print c1.infos.age;
+    print a1.numero; // 55
+    print p1.age; // 21
+    print c1.infos.age; // 21
     c1.infos.age = 66;
-    print c1.infos.age;
 
     int client_age(Client c) {
         return c.infos.age;
@@ -55,7 +54,7 @@ monProgramme {
 
         return c.adresse.codePostal;
     }
-    print client_age(c1);
-    print addre_postal(c1);
+    print client_age(c1); // 66
+    print addre_postal(c1); // 31
 
 }

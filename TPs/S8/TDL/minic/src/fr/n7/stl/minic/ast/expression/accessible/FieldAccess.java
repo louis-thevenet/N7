@@ -14,22 +14,29 @@ import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
 
 /**
- * Implementation of the Abstract Syntax Tree node for accessing a field in a record.
+ * Implementation of the Abstract Syntax Tree node for accessing a field in a
+ * record.
+ * 
  * @author Marc Pantel
  *
  */
 public class FieldAccess extends AbstractField<AccessibleExpression> implements AccessibleExpression {
 
 	/**
-	 * Construction for the implementation of a record field access expression Abstract Syntax Tree node.
-	 * @param _record Abstract Syntax Tree for the record part in a record field access expression.
-	 * @param _name Name of the field in the record field access expression.
+	 * Construction for the implementation of a record field access expression
+	 * Abstract Syntax Tree node.
+	 * 
+	 * @param _record Abstract Syntax Tree for the record part in a record field
+	 *                access expression.
+	 * @param _name   Name of the field in the record field access expression.
 	 */
 	public FieldAccess(AccessibleExpression _record, String _name) {
 		super(_record, _name);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see fr.n7.stl.block.ast.Expression#getCode(fr.n7.stl.tam.ast.TAMFactory)
 	 */
 	@Override
@@ -42,14 +49,15 @@ public class FieldAccess extends AbstractField<AccessibleExpression> implements 
 		code.add(_factory.createLoadL(field_offset));
 		code.add(TAMFactory.createBinaryOperator(BinaryOperator.Add));
 
-
 		if (this.field.getType() instanceof NamedType) {
-// No loadI if we're loading a namedtype
-		} else 
-		{code.add(_factory.createLoadI(this.field.getType().length()));}
-	
-		code.addComment("Load field " + this.name + " from record " + this.record.toString() + ", offset " + field_offset);
-		
+			// No loadI if we're loading a namedtype
+		} else {
+			code.add(_factory.createLoadI(this.field.getType().length()));
+		}
+
+		code.addComment(
+				"Load field " + this.name + " from record " + this.record.toString() + ", offset " + field_offset);
+
 		return code;
 
 	}

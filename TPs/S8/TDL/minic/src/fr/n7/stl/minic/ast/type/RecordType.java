@@ -202,8 +202,7 @@ public class RecordType implements Type, Declaration, Scope<FieldDeclaration> {
 		for (FieldDeclaration f : this.fields) {
 			_result = _result && f.getType().completeResolve(_scope);
 			f.computerOffset(offset);
-			
-			offset++;
+			offset += f.getType().length();
 		}
 		return _result;
 	}

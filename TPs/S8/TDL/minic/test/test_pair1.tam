@@ -140,5 +140,20 @@ LOADL 1
 SUBR IAdd
 LOADI (1)
 SUBR IOut
+;Function fonc start
+JUMP end_fonc
+fonc
+RETURN (2) 2
+end_fonc
+;Load variable couple1 from offset 2
+LOADL 2
+CALL (LB) fonc
+;Load variable c from offset 12
+;Loading the first element of Couple(fstc)
+;Print:
+;(fstc)
+LOADL 12
+LOADI (1)
+SUBR IOut
 HALT
 

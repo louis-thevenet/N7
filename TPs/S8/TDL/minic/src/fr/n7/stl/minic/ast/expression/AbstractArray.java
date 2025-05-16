@@ -1,5 +1,8 @@
 package fr.n7.stl.minic.ast.expression;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
+import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.accessible.AccessibleExpression;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
@@ -60,6 +63,9 @@ public abstract class AbstractArray<ArrayKind extends Expression> implements Exp
 	 */
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
+		if (!(this.index.getType() instanceof AtomicInteger)) {
+			throw new SemanticsUndefinedException("The provided index is not of type int");
+		}
 		return this.array.collectAndPartialResolve(_scope) && this.index.collectAndPartialResolve(_scope);
 	}
 

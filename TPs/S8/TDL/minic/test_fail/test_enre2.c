@@ -17,5 +17,5 @@ monProgramme {
     // Affectation à partir d'un autre enregistrement
     Personne p2 = p1;
 
-    print p2.ages; // 21
+    int z = p2.ages; // 21
 }

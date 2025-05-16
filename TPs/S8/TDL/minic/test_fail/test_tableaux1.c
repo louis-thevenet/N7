@@ -1,0 +1,1 @@
+test_tableaux { int a[] = {false, 22, 33}; }

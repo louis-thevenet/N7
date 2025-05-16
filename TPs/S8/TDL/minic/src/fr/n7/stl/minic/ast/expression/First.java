@@ -81,13 +81,7 @@ public class First implements AccessibleExpression {
 	@Override
 	public Type getType() {
 		Type res = this.target.getType();
-		while (!(res instanceof CoupleType)) {
-			if (res instanceof NamedType nt) {
-				res = nt.getType();
-			} else if (res instanceof IdentifierAccess ia) {
-				res = ia.getType();
-			}
-		}
+
 		if (res instanceof CoupleType c) {
 			return c.getFirst();
 		}

@@ -109,13 +109,6 @@ public class Second implements AccessibleExpression {
 		code.append(this.target.getCode(_factory));
 
 		Type t = this.target.getType();
-		while (!(t instanceof CoupleType)) {
-			if (t instanceof NamedType nt) {
-				t = nt.getType();
-			} else if (t instanceof IdentifierAccess ia) {
-				t = ia.getType();
-			}
-		}
 
 		if (t instanceof CoupleType ct) {
 			code.add(_factory.createPop(ct.getSecond().length(), ct.getFirst().length()));

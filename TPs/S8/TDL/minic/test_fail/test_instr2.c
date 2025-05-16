@@ -14,11 +14,29 @@ monProgramme {
     int compteur = 0;
 
     // Exemple d'instruction conditionnelle
-    if (999) {
+    if (somme > 10) {
         a = 1; // Affectation si la condition est vraie
         b = 0;
     } else {
         a = 0; // Affectation si la condition est fausse
         b = 1;
     }
+    print a; // 1
+
+    // Exemple d'instruction conditionnelle
+    if (somme <= 10) {
+        a = 1; // Affectation si la condition est vraie
+        b = 0;
+    } else {
+        a = 0; // Affectation si la condition est fausse
+        b = 1;
+    }
+
+    print a; // 0
+
+    // Exemple de boucle while
+    while (987) {
+        compteur = compteur + 1; // Incrémentation
+    }
+    print compteur; // 3
 }

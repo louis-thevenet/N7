@@ -7,7 +7,7 @@ fonc
 PUSH 1
 LOADL 5
 STORE (1) 3[LB]
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@77afea7d
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@161cd475
 ;Access to b
 LOAD (1) 3[LB]
 RETURN (1) 0
@@ -18,13 +18,13 @@ PUSH 1
 ;Call to fonc
 CALL (LB) fonc
 STORE (1) 0[SB]
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@57fa26b7
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5f8ed237
 ;Access to a
 LOAD (1) 0[SB]
 SUBR IOut
 ;Function fonc2
 JUMP end_fonc2
-;Parameter Access fr.n7.stl.minic.ast.expression.accessible.ParameterAccess@2f410acf
+;Parameter Access fr.n7.stl.minic.ast.expression.accessible.ParameterAccess@47089e5f
 ;Access to a
 ;End of Block
 fonc2
@@ -33,7 +33,7 @@ RETURN (1) 1
 end_fonc2
 ;Declaration of b
 PUSH 1
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@47089e5f
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@4141d797
 ;Access to a
 ;Call to fonc2
 LOAD (1) 0[SB]
@@ -41,10 +41,46 @@ LOADL 5
 SUBR IAdd
 CALL (LB) fonc2
 STORE (1) 1[SB]
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@4f47d241
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@4c3e4790
 ;Access to b
 LOAD (1) 1[SB]
 SUBR IOut
+;Function fonc3
+JUMP end_fonc3
+;Declaration of b
+;End of Block
+fonc3
+PUSH 1
+LOADL 5
+STORE (1) 3[LB]
+;Parameter Access fr.n7.stl.minic.ast.expression.accessible.ParameterAccess@38cccef
+;Access to a
+LOAD (1) -1[LB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5679c6c6
+;Access to b
+LOAD (1) 3[LB]
+SUBR IAdd
+RETURN (1) 1
+POP (0) 1
+end_fonc3
+;Call to fonc3
+LOADL 4
+CALL (LB) fonc3
+SUBR IOut
+;Function fonc4
+JUMP end_fonc4
+;Declaration of a
+;End of Block
+fonc4
+PUSH 1
+LOADL 5
+STORE (1) 3[LB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@27ddd392
+;Access to a
+LOAD (1) 3[LB]
+RETURN (1) 0
+POP (0) 1
+end_fonc4
 POP (0) 2
 HALT
 

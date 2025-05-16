@@ -8,6 +8,7 @@ package fr.n7.stl.minic.ast.expression.accessible;
 import fr.n7.stl.minic.ast.expression.AbstractAccess;
 import fr.n7.stl.minic.ast.instruction.declaration.VariableDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
+import fr.n7.stl.minic.ast.type.ArrayType;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
 
@@ -47,10 +48,15 @@ public class VariableAccess extends AbstractAccess {
 	 */
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment code = _factory.createFragment();
-		code.add(_factory.createLoad(
-				this.declaration.getRegister(),
-				this.declaration.getOffset(),
-				this.declaration.getType().length()));
+		if (this.declaration.getType() instanceof ArrayType) {
+			code.add(_factory.createLoadL(
+					this.declaration.getOffset()));
+		} else {
+			code.add(_factory.createLoad(
+					this.declaration.getRegister(),
+					this.declaration.getOffset(),
+					this.declaration.getType().length()));
+		}
 		code.addComment("Variable Access " + this.toString());
 		return code;
 	}

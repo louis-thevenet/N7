@@ -1,0 +1,33 @@
+;Declaration of i
+;End of Block
+PUSH 1
+LOADL 1
+STORE (1) 0[SB]
+;Declaration of p
+PUSH 1
+;Address of 
+LOADA 0[SB]
+STORE (1) 1[SB]
+;Declaration of k
+PUSH 1
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@6073f712
+;Access to p
+LOAD (1) 1[SB]
+LOADI (1)
+STORE (1) 2[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@43556938
+;Access to k
+LOAD (1) 2[SB]
+SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@7a46a697
+;Access to p
+LOAD (1) 1[SB]
+LOADI (1)
+SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5f205aa
+;Access to p
+LOAD (1) 1[SB]
+SUBR IOut
+POP (0) 3
+HALT
+

@@ -44,7 +44,7 @@ public class ArrayAccess extends AbstractArray<AccessibleExpression> implements 
 		arrayCode.append(index.getCode(factory));
 		arrayCode.add(factory.createLoadL(elementType.length()));
 		arrayCode.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
-		arrayCode.add(TAMFactory.createBinaryOperator(BinaryOperator.Substract));
+		arrayCode.add(TAMFactory.createBinaryOperator(BinaryOperator.Add));
 		arrayCode.add(factory.createLoadI(elementType.length()));
 		return arrayCode;
 	}

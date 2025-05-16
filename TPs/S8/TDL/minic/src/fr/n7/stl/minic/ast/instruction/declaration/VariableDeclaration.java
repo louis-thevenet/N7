@@ -7,11 +7,12 @@ import fr.n7.stl.minic.ast.expression.Expression;
 import fr.n7.stl.minic.ast.instruction.Instruction;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
+import fr.n7.stl.minic.ast.type.ArrayType;
+import fr.n7.stl.minic.ast.type.SequenceType;
 import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
-import fr.n7.stl.util.Logger;
 
 /**
  * Abstract Syntax Tree node for a variable declaration instruction.
@@ -181,9 +182,15 @@ public class VariableDeclaration implements Declaration, Instruction {
 	@Override
 	public Fragment getCode(TAMFactory factory) {
 		Fragment varCode = factory.createFragment();
-		varCode.add(factory.createPush(type.length()));
-		varCode.append(value.getCode(factory));
-		varCode.add(factory.createStore(register, offset, type.length()));
+		if ((this.getType() instanceof ArrayType)) {
+			varCode.append(value.getCode(factory));
+			System.out.println("Array : " + this.toString());
+		} else {
+			varCode.add(factory.createPush(type.length()));
+			varCode.append(value.getCode(factory));
+
+			varCode.add(factory.createStore(register, offset, type.length()));
+		}
 		varCode.addComment("Declaration of " + name);
 		return varCode;
 	}

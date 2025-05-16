@@ -6,6 +6,7 @@ package fr.n7.stl.minic.ast.expression;
 import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.accessible.AccessibleExpression;
 import fr.n7.stl.minic.ast.instruction.declaration.FunctionDeclaration;
+import fr.n7.stl.minic.ast.instruction.declaration.ParameterDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
 import fr.n7.stl.minic.ast.type.Type;
@@ -80,19 +81,41 @@ public class FunctionCall implements AccessibleExpression {
 	@Override
 	public boolean collectAndPartialResolve(HierarchicalScope<Declaration> _scope) {
 		boolean res = true;
+	
 		for (AccessibleExpression accessibleExpression : arguments) {
 			res &= accessibleExpression.collectAndPartialResolve(_scope);
 		}
+	
 		if (_scope.knows(this.name)) {
 			Declaration d = _scope.get(this.name);
-			if (d instanceof FunctionDeclaration nd)
-				this.function = nd;
-			else
-				throw new SemanticsUndefinedException("Impossible to apply arguments to something else of function.");
+			if (d instanceof FunctionDeclaration fd) {
+				this.function = fd;
+	
+				List<ParameterDeclaration> parameters = function.getParameters();
+				if (parameters.size() != arguments.size()) {
+					throw new SemanticsUndefinedException("Argument count does not match parameter count.");
+				}
+	
+				for (int i = 0; i < arguments.size(); i++) {
+					Type argType = arguments.get(i).getType(); 
+					Type paramType = parameters.get(i).getType();
+	
+					if (!argType.compatibleWith(paramType)) {
+						throw new SemanticsUndefinedException(
+							"Argument type at position " + i + " (" + argType + 
+							") is not compatible with parameter type (" + paramType + ")."
+						);
+					}
+				}
+	
+			} else {
+				throw new SemanticsUndefinedException("Cannot apply arguments to a non-function.");
+			}
 		}
-
+	
 		return res;
 	}
+	
 
 	/*
 	 * (non-Javadoc)

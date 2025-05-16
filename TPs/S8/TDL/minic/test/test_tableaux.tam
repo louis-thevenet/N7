@@ -15,9 +15,9 @@ SUBR IOut
 RETURN (0) 1
 end_fonc
 ;Declaration of a
-LOADL 1
-LOADL 2
-LOADL 3
+LOADL 11
+LOADL 22
+LOADL 33
 ;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@3c679bde
 ;Access to a
 LOADL 0
@@ -60,11 +60,11 @@ SUBR IMul
 SUBR IAdd
 LOADI (1)
 ;Array Assignment  b [ 2 ]
-LOAD (1) 1[SB]
+LOADL 1
 LOADL 2
 LOADL 1
 SUBR IMul
-SUBR ISub
+SUBR IAdd
 STOREI (1)
 ;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@2a098129
 ;Access to b

@@ -89,6 +89,7 @@ public class VariableAssignment extends AbstractIdentifier implements Assignable
 	@Override
 	public Fragment getCode(TAMFactory _factory) {
 		Fragment res = _factory.createFragment();
+
 		res.add(_factory.createStore(this.declaration.getRegister(), this.declaration.getOffset(),
 				this.getType().length()));
 		res.addComment("Store " + this.declaration.getName() + " in register "

@@ -139,9 +139,6 @@ public class Block {
 		for (Instruction instruction : instructions) {
 			boolean tmp = instruction.checkType();
 			res &= tmp;
-			if (!tmp) {
-				Logger.warning(instruction.toString().strip() + " : " + instruction.checkType());
-			}
 		}
 		return res;
 	}

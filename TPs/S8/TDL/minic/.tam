@@ -1,35 +1,42 @@
-;Declaration of a
+;Function fonc
 ;End of Block
-LOADL 11
-LOADL 22
-LOADL 33
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@75828a0f
-;Access to a
-LOADL 0
-LOADL 0
-LOADL 1
-SUBR IMul
-SUBR IAdd
-LOADI (1)
-SUBR IOut
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@532760d8
-;Access to a
-LOADL 0
-LOADL 1
-LOADL 1
-SUBR IMul
-SUBR IAdd
-LOADI (1)
-SUBR IOut
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@57fa26b7
-;Access to a
-LOADL 0
-LOADL 2
-LOADL 1
-SUBR IMul
-SUBR IAdd
-LOADI (1)
-SUBR IOut
+JUMP end_fonc
+;Declaration of b
+;End of Block
+fonc
+PUSH 1
+LOADL 5
+STORE (1) 3[LB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@6073f712
+;Access to b
+LOAD (1) 3[LB]
+RETURN (1) 0
 POP (0) 1
+end_fonc
+;Declaration of a
+PUSH 1
+;Call to fonc
+CALL (LB) fonc
+STORE (1) 0[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@7a46a697
+;Access to a
+LOAD (1) 0[SB]
+SUBR IOut
+;Function fonc2
+JUMP end_fonc2
+;Parameter Access fr.n7.stl.minic.ast.expression.accessible.ParameterAccess@6d86b085
+;Access to a
+;End of Block
+fonc2
+LOAD (1) -1[LB]
+RETURN (1) 1
+end_fonc2
+;Declaration of b
+PUSH 1
+;Call to fonc2
+LOADL 1
+CALL (LB) fonc2
+STORE (1) 1[SB]
+POP (0) 2
 HALT
 

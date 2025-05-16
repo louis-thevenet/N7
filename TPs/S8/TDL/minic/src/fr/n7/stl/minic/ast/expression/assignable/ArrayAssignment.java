@@ -47,13 +47,16 @@ public class ArrayAssignment extends AbstractArray<AssignableExpression> impleme
 
 		if (this.array instanceof VariableAssignment variableAssignment) {
 			VariableDeclaration declaration = variableAssignment.getDeclaration();
-			code.add(_factory.createLoad(declaration.getRegister(), declaration.getOffset(),
-					declaration.getType().length()));
+			// code.add(_factory.createLoad(declaration.getRegister(),
+			// declaration.getOffset(),
+			// declaration.getType().length()));
+
+			code.add(_factory.createLoadL(declaration.getOffset()));
 		}
 		code.append(this.index.getCode(_factory));
 		code.add(_factory.createLoadL(pointedType.length()));
 		code.add(TAMFactory.createBinaryOperator(BinaryOperator.Multiply));
-		code.add(TAMFactory.createBinaryOperator(BinaryOperator.Substract));
+		code.add(TAMFactory.createBinaryOperator(BinaryOperator.Add));
 		code.add(_factory.createStoreI(pointedType.length()));
 		code.addComment("Array Assignment " + this.toString());
 		return code;

@@ -15,12 +15,12 @@ test_fonctions {
         int b = 5;
         return a + b;
     }
-    print fonc3(4); // 9
+    print fonc3(4, 45); // 9
 
     int fonc4(boolean c, int d) {
-        boolean z = c;
+
         int a = d;
         return a;
     }
-    print fonc4(false, 4);
+    print fonc4(false);
 }

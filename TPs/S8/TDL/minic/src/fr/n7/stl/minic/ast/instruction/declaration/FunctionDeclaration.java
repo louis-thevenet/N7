@@ -169,11 +169,11 @@ public class FunctionDeclaration implements Instruction, Declaration {
 		int offset = 0;
 		List<ParameterDeclaration> param2 = parameters;
 		Collections.reverse(param2);
-
 		for (ParameterDeclaration parameterDeclaration : param2) {
 			offset -= parameterDeclaration.getType().length();
 			parameterDeclaration.offset = offset;
 		}
+		Collections.reverse(param2);
 		return this.type.completeResolve(_scope)
 				&& this.body.completeResolve(_scope);
 	}

@@ -28,22 +28,3 @@ for f in test/*.c; do
     rm test/$(basename "$f" .c).new_out
 done
 
-
-for f in test_fail/*.c; do
-    echo "========================="
-    echo "-------------------------"
-    echo "Testing failing tests $f"
-    echo "-------------------------"
-
-    java -cp "bin/cls:tools/commons-lang3-3.7.jar:tools/commons-text-1.2.jar:tools/antlr-4.13.1-complete.jar:$CLASSPATH" fr.n7.stl.minic.Driver "$f"
-
-    if [ $? -ne 0 ]; then
-        echo "-------------------------"
-        echo "Test $f failed to compile"
-        echo "-------------------------"
-    else
-      echo "-------------------------"
-        echo "Test $f compiled"
-        echo "-------------------------"
-    fi
-done

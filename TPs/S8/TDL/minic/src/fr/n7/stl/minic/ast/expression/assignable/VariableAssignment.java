@@ -91,8 +91,8 @@ public class VariableAssignment extends AbstractIdentifier implements Assignable
 		Fragment res = _factory.createFragment();
 		res.add(_factory.createStore(this.declaration.getRegister(), this.declaration.getOffset(),
 				this.getType().length()));
-				res.addComment("Store " + this.declaration.getName() + " in register "
-						+ this.declaration.getRegister() + " with offset " + this.declaration.getOffset());
+		res.addComment("Store " + this.declaration.getName() + " in register "
+				+ this.declaration.getRegister() + " with offset " + this.declaration.getOffset());
 		return res;
 	}
 

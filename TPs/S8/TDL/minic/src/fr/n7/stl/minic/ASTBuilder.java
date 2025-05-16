@@ -56,13 +56,11 @@ public class ASTBuilder extends MiniCParserBaseListener {
                         TAMFactory factory = new TAMFactoryImpl();
                         Fragment f = this.mainBlock.getCode(factory);
                         f.add(factory.createHalt());
-                        // f.append(this.mainBlock.getCode(factory));
                         writer.println(f);
                         writer.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    System.out.println("Code generation finished");
 
                 } else {
                     System.out.println("Type verification failed.");

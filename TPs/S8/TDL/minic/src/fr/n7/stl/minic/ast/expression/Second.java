@@ -121,7 +121,7 @@ public class Second implements AccessibleExpression {
 			code.add(_factory.createPop(ct.getSecond().length(), ct.getFirst().length()));
 		}
 
-code.addComment("Load second");
+		code.addComment("Load second");
 		return code;
 	}
 

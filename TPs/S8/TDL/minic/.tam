@@ -1,159 +1,84 @@
-LOADL 5
-LOADL 10
-;Load variable a from offset 0
-;Building a couple < a, b>
-LOAD (1) 0[SB]
-;Load variable b from offset 1
-LOAD (1) 1[SB]
-;Building a couple < 20, 42>
-LOADL 20
-LOADL 42
-;Load variable a from offset 0
-;(a + b)
-;Building a couple < (a + b), (b - a)>
-LOAD (1) 0[SB]
-;Load variable b from offset 1
-LOAD (1) 1[SB]
-SUBR IAdd
-;Load variable b from offset 1
-;(b - a)
-LOAD (1) 1[SB]
-;Load variable a from offset 0
-LOAD (1) 0[SB]
-SUBR ISub
-;Building a couple < true, 42>
-LOADL 1
-LOADL 42
-;Load variable couple4 from offset 8
-;Loading the first element of Couple(fstcouple4)
-;Print:
-;(fstcouple4)
-LOADL 8
-LOADI (1)
-SUBR BOut
-;Load variable couple4 from offset 8
-;Loading the second element of Couple(sndcouple4)
-;Print:
-;(sndcouple4)
-LOADL 8
-LOADL 1
-SUBR IAdd
-LOADI (1)
-SUBR IOut
-;Load variable couple1 from offset 2
-;Loading the first element of Couple(fstcouple1)
-LOADL 2
-LOADI (1)
-;Load variable couple1 from offset 2
-;Loading the second element of Couple(sndcouple1)
-LOADL 2
-LOADL 1
-SUBR IAdd
-LOADI (1)
-;Load variable premier from offset 10
-;Print:
-;premier
-LOAD (1) 10[SB]
-SUBR IOut
-;Load variable second from offset 11
-;Print:
-;second
-LOAD (1) 11[SB]
-SUBR IOut
-;Load variable couple1 from offset 2
-;Loading the first element of Couple(fstcouple1)
-;((fstcouple1) + 1)
-;Building a couple < ((fstcouple1) + 1), ((sndcouple1) + 2)>
-;Assignement:
-; couple1 
-;from:
-;< ((fstcouple1) + 1), ((sndcouple1) + 2)>
-LOADL 2
-LOADI (1)
-LOADL 1
-SUBR IAdd
-;Load variable couple1 from offset 2
-;Loading the second element of Couple(sndcouple1)
-;((sndcouple1) + 2)
-LOADL 2
-LOADL 1
-SUBR IAdd
-LOADI (1)
-LOADL 2
-SUBR IAdd
-;Assign couple1 from SB + 2
-LOADL 2
-STOREI (2)
-;Load variable couple1 from offset 2
-;Loading the first element of Couple(fstcouple1)
-;Print:
-;(fstcouple1)
-LOADL 2
-LOADI (1)
-SUBR IOut
-;Load variable couple1 from offset 2
-;Loading the second element of Couple(sndcouple1)
-;Print:
-;(sndcouple1)
-LOADL 2
-LOADL 1
-SUBR IAdd
-LOADI (1)
-SUBR IOut
-;Load variable couple2 from offset 4
-;Loading the first element of Couple(fstcouple2)
-;((fstcouple2) + 2)
-;Building a couple < ((fstcouple2) + 2), ((sndcouple2) + 2)>
-;Assignement:
-; couple2 
-;from:
-;< ((fstcouple2) + 2), ((sndcouple2) + 2)>
-LOADL 4
-LOADI (1)
-LOADL 2
-SUBR IAdd
-;Load variable couple2 from offset 4
-;Loading the second element of Couple(sndcouple2)
-;((sndcouple2) + 2)
-LOADL 4
-LOADL 1
-SUBR IAdd
-LOADI (1)
-LOADL 2
-SUBR IAdd
-;Assign couple2 from SB + 4
-LOADL 4
-STOREI (2)
-;Load variable couple2 from offset 4
-;Loading the first element of Couple(fstcouple2)
-;Print:
-;(fstcouple2)
-LOADL 4
-LOADI (1)
-SUBR IOut
-;Load variable couple2 from offset 4
-;Loading the second element of Couple(sndcouple2)
-;Print:
-;(sndcouple2)
-LOADL 4
-LOADL 1
-SUBR IAdd
-LOADI (1)
-SUBR IOut
-;Function fonc start
+;Function fonc
+;End of Block
 JUMP end_fonc
+;Parameter Access fr.n7.stl.minic.ast.expression.accessible.ParameterAccess@1996cd68
+;Access to c
+;End of Block
 fonc
-RETURN (2) 2
-end_fonc
-;Load variable couple1 from offset 2
+LOAD (1) -1[LB]
 LOADL 2
-CALL (LB) fonc
-;Load variable c from offset 12
-;Loading the first element of Couple(fstc)
-;Print:
-;(fstc)
-LOADL 12
+LOADL 1
+SUBR IMul
+SUBR ISub
 LOADI (1)
 SUBR IOut
+RETURN (0) 1
+end_fonc
+;Declaration of a
+PUSH 1
+LOADL 1
+LOADL 2
+LOADL 3
+STORE (1) 0[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@3c679bde
+;Access to a
+LOAD (1) 0[SB]
+LOADL 0
+LOADL 1
+SUBR IMul
+SUBR ISub
+LOADI (1)
+SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@16b4a017
+;Access to a
+LOAD (1) 0[SB]
+LOADL 1
+LOADL 1
+SUBR IMul
+SUBR ISub
+LOADI (1)
+SUBR IOut
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@8807e25
+;Access to a
+LOAD (1) 0[SB]
+LOADL 2
+LOADL 1
+SUBR IMul
+SUBR ISub
+LOADI (1)
+SUBR IOut
+;Declaration of b
+PUSH 1
+;Allocation of int array
+LOADL 3
+LOADL 1
+SUBR IMul
+SUBR MAlloc
+STORE (1) 1[SB]
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@2a3046da
+;Access to a
+LOAD (1) 0[SB]
+LOADL 0
+LOADL 1
+SUBR IMul
+SUBR ISub
+LOADI (1)
+;Array Assignment  b [ 2 ]
+LOAD (1) 1[SB]
+LOADL 2
+LOADL 1
+SUBR IMul
+SUBR ISub
+STOREI (1)
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@2a098129
+;Access to b
+LOAD (1) 1[SB]
+LOADL 2
+LOADL 1
+SUBR IMul
+SUBR ISub
+LOADI (1)
+SUBR IOut
+POP (0) 2
 HALT
 

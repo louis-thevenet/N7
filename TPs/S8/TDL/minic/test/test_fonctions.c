@@ -10,4 +10,15 @@ test_fonctions {
 
     int b = fonc2(a + 5);
     print b;
+
+    int fonc3(int a) {
+        int b = 5;
+        return a + b;
+    }
+    print fonc3(4); // 9
+
+    int fonc4() {
+        int a = 5;
+        return a;
+    }
 }

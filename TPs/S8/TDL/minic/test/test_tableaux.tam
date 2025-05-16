@@ -3,7 +3,6 @@
 JUMP end_fonc
 ;Parameter Access fr.n7.stl.minic.ast.expression.accessible.ParameterAccess@1996cd68
 ;Access to c
-;Array Access c[ 2 ]
 ;End of Block
 fonc
 LOAD (1) -1[LB]
@@ -23,7 +22,6 @@ LOADL 3
 STORE (1) 0[SB]
 ;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@3c679bde
 ;Access to a
-;Array Access a[ 0 ]
 LOAD (1) 0[SB]
 LOADL 0
 LOADL 1
@@ -33,7 +31,6 @@ LOADI (1)
 SUBR IOut
 ;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@16b4a017
 ;Access to a
-;Array Access a[ 1 ]
 LOAD (1) 0[SB]
 LOADL 1
 LOADL 1
@@ -43,7 +40,6 @@ LOADI (1)
 SUBR IOut
 ;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@8807e25
 ;Access to a
-;Array Access a[ 2 ]
 LOAD (1) 0[SB]
 LOADL 2
 LOADL 1
@@ -61,8 +57,6 @@ SUBR MAlloc
 STORE (1) 1[SB]
 ;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@2a3046da
 ;Access to a
-;Array Access a[ 0 ]
-;Assign 1
 LOAD (1) 0[SB]
 LOADL 0
 LOADL 1
@@ -76,9 +70,8 @@ LOADL 1
 SUBR IMul
 SUBR ISub
 STOREI (1)
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@63e31ee
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@2a098129
 ;Access to b
-;Array Access b[ 2 ]
 LOAD (1) 1[SB]
 LOADL 2
 LOADL 1

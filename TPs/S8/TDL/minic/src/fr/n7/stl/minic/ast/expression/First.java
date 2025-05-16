@@ -118,7 +118,7 @@ public class First implements AccessibleExpression {
 		if (t instanceof CoupleType ct) {
 			res.add(_factory.createPop(0, ct.getSecond().length()));
 		}
-res.addComment("Load first");
+		res.addComment("Load first");
 		return res;
 	}
 

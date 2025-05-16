@@ -226,7 +226,7 @@ public class FunctionDeclaration implements Instruction, Declaration {
 
 		corps.addSuffix(end_label);
 		res.append(corps);
-		res.addComment("Function " + this.name );
+		res.addComment("Function " + this.name);
 		return res;
 	}
 

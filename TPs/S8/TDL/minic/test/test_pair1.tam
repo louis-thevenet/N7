@@ -87,7 +87,6 @@ SUBR IOut
 ;Access to couple1
 ;Load first
 ;Load couple
-;Assign 2
 LOAD (2) 2[SB]
 POP (0) 1
 LOADL 1
@@ -101,28 +100,27 @@ LOADL 2
 SUBR IAdd
 ;Store couple1 in register SB with offset 2
 STORE (2) 2[SB]
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@24273305
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@27082746
 ;Access to couple1
 ;Load first
 LOAD (2) 2[SB]
 POP (0) 1
 SUBR IOut
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5b1d2887
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@66133adc
 ;Access to couple1
 ;Load second
 LOAD (2) 2[SB]
 POP (1) 1
 SUBR IOut
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@46f5f779
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@7bfcd12c
 ;Access to couple2
 ;Load first
 ;Load couple
-;Assign 2
 LOAD (2) 4[SB]
 POP (0) 1
 LOADL 2
 SUBR IAdd
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@1c2c22f3
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@42f30e0a
 ;Access to couple2
 ;Load second
 LOAD (2) 4[SB]
@@ -131,13 +129,13 @@ LOADL 2
 SUBR IAdd
 ;Store couple2 in register SB with offset 4
 STORE (2) 4[SB]
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@18e8568
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@24273305
 ;Access to couple2
 ;Load first
 LOAD (2) 4[SB]
 POP (0) 1
 SUBR IOut
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@33e5ccce
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5b1d2887
 ;Access to couple2
 ;Load second
 LOAD (2) 4[SB]
@@ -145,7 +143,7 @@ POP (1) 1
 SUBR IOut
 ;Function fonc
 JUMP end_fonc
-;Parameter Access fr.n7.stl.minic.ast.expression.accessible.ParameterAccess@5a42bbf4
+;Parameter Access fr.n7.stl.minic.ast.expression.accessible.ParameterAccess@46f5f779
 ;Access to a
 ;End of Block
 fonc
@@ -154,13 +152,13 @@ RETURN (2) 2
 end_fonc
 ;Declaration of c
 PUSH 2
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@270421f5
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@33e5ccce
 ;Access to couple1
 ;Call to fonc
 LOAD (2) 2[SB]
 CALL (LB) fonc
 STORE (2) 12[SB]
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@52d455b8
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5a42bbf4
 ;Access to c
 ;Load first
 LOAD (2) 12[SB]

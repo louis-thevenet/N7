@@ -174,18 +174,18 @@ public class Block {
 	 * @return Synthesized AST for the generated TAM code.
 	 */
 	public Fragment getCode(TAMFactory factory) {
-	    Fragment fragment = factory.createFragment();
-	    for (Instruction instruction : this.instructions) {
-	        fragment.append(instruction.getCode(factory));
-	    }
+		Fragment fragment = factory.createFragment();
+		for (Instruction instruction : this.instructions) {
+			fragment.append(instruction.getCode(factory));
+		}
 
-	    if (this.spaceUsed > 0) {
-	        fragment.add(factory.createPop(0, this.spaceUsed));
-	    }
+		if (this.spaceUsed > 0) {
+			fragment.add(factory.createPop(0, this.spaceUsed));
+		}
 
-	    fragment.addComment("End of Block");
+		fragment.addComment("End of Block");
 
-	    return fragment;
+		return fragment;
 	}
 
 }

@@ -121,7 +121,6 @@ STORE (1) 12[SB]
 PUSH 1
 ;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@61baa894
 ;Access to z
-;(! z)
 LOAD (1) 10[SB]
 SUBR BNeg
 STORE (1) 13[SB]
@@ -166,7 +165,6 @@ SUBR IGtr
 SUBR BAnd
 ;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@42f30e0a
 ;Access to x
-;(! x)
 LOAD (1) 8[SB]
 SUBR BNeg
 SUBR BOr

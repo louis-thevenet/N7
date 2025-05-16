@@ -38,7 +38,8 @@ public class PointerAccess extends AbstractPointer<AccessibleExpression> impleme
 	@Override
 	public Fragment getCode(TAMFactory factory) {
 		Fragment pointerCode = factory.createFragment();
-		PointerType pointerType = (PointerType) (pointer.getType() instanceof NamedType namedType ? namedType.getType() : pointer.getType());
+		PointerType pointerType = (PointerType) (pointer.getType() instanceof NamedType namedType ? namedType.getType()
+				: pointer.getType());
 		pointerCode.append(pointer.getCode(factory));
 		pointerCode.add(factory.createLoadI(pointerType.getPointedType().length()));
 		return pointerCode;

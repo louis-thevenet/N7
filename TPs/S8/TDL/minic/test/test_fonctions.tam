@@ -18,13 +18,13 @@ PUSH 1
 ;Call to fonc
 CALL (LB) fonc
 STORE (1) 0[SB]
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@161cd475
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@57fa26b7
 ;Access to a
 LOAD (1) 0[SB]
 SUBR IOut
 ;Function fonc2
 JUMP end_fonc2
-;Parameter Access fr.n7.stl.minic.ast.expression.accessible.ParameterAccess@57fa26b7
+;Parameter Access fr.n7.stl.minic.ast.expression.accessible.ParameterAccess@2f410acf
 ;Access to a
 ;End of Block
 fonc2
@@ -33,7 +33,7 @@ RETURN (1) 1
 end_fonc2
 ;Declaration of b
 PUSH 1
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@5f8ed237
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@47089e5f
 ;Access to a
 ;Call to fonc2
 LOAD (1) 0[SB]
@@ -41,7 +41,7 @@ LOADL 5
 SUBR IAdd
 CALL (LB) fonc2
 STORE (1) 1[SB]
-;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@4141d797
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@4f47d241
 ;Access to b
 LOAD (1) 1[SB]
 SUBR IOut

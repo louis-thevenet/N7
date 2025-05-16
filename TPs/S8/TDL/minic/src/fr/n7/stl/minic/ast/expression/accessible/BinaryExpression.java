@@ -160,10 +160,10 @@ public class BinaryExpression implements AccessibleExpression {
 	 */
 	@Override
 	public Fragment getCode(TAMFactory factory) {
-	    Fragment binaryCode = left.getCode(factory);
-	    binaryCode.append(right.getCode(factory));
-	    binaryCode.add(TAMFactory.createBinaryOperator(operator));
-	    return binaryCode;
+		Fragment binaryCode = left.getCode(factory);
+		binaryCode.append(right.getCode(factory));
+		binaryCode.add(TAMFactory.createBinaryOperator(operator));
+		return binaryCode;
 	}
 
 }

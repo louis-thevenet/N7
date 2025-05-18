@@ -1,0 +1,27 @@
+;Allocation of int array
+;Declaration of b
+;End of Block
+LOADL 3
+LOADL 1
+SUBR IMul
+SUBR MAlloc
+LOADL 6
+;Array Assignment  b [ 1 ]
+LOADL 0
+LOADL 1
+LOADL 1
+SUBR IMul
+SUBR IAdd
+STOREI (1)
+;Variable Access fr.n7.stl.minic.ast.expression.accessible.VariableAccess@7cef4e59
+;Access to b
+LOADL 0
+LOADL 1
+LOADL 1
+SUBR IMul
+SUBR IAdd
+LOADI (1)
+SUBR IOut
+POP (0) 1
+HALT
+

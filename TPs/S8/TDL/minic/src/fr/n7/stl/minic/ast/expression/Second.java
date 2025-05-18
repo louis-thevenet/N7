@@ -3,7 +3,6 @@
  */
 package fr.n7.stl.minic.ast.expression;
 
-import fr.n7.stl.minic.ast.SemanticsUndefinedException;
 import fr.n7.stl.minic.ast.expression.accessible.AccessibleExpression;
 import fr.n7.stl.minic.ast.expression.accessible.IdentifierAccess;
 import fr.n7.stl.minic.ast.scope.Declaration;

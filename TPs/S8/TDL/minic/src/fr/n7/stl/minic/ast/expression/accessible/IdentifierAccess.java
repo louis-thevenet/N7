@@ -14,7 +14,6 @@ import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.minic.ast.type.declaration.LabelDeclaration;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
-import fr.n7.stl.util.Logger;
 
 /**
  * Implementation of the Abstract Syntax Tree node for an identifier access

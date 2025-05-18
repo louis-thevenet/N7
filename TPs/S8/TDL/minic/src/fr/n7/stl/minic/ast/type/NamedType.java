@@ -6,7 +6,6 @@ package fr.n7.stl.minic.ast.type;
 import fr.n7.stl.minic.ast.instruction.declaration.TypeDeclaration;
 import fr.n7.stl.minic.ast.scope.Declaration;
 import fr.n7.stl.minic.ast.scope.HierarchicalScope;
-import fr.n7.stl.util.Logger;
 
 /**
  * Implementation of the Abstract Syntax Tree node for a named type.

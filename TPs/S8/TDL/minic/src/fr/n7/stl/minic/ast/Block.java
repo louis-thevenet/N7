@@ -11,7 +11,6 @@ import fr.n7.stl.minic.ast.scope.SymbolTable;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
-import fr.n7.stl.util.Logger;
 import java.util.List;
 
 /**

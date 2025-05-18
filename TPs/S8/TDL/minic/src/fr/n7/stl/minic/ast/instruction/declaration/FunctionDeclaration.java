@@ -13,7 +13,6 @@ import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.Register;
 import fr.n7.stl.tam.ast.TAMFactory;
-import fr.n7.stl.util.Logger;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;

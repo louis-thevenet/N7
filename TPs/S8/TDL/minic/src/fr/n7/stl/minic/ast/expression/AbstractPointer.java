@@ -6,7 +6,6 @@ import fr.n7.stl.minic.ast.type.AtomicType;
 import fr.n7.stl.minic.ast.type.NamedType;
 import fr.n7.stl.minic.ast.type.PointerType;
 import fr.n7.stl.minic.ast.type.Type;
-import fr.n7.stl.util.Logger;
 
 /**
  * Common elements between left (Assignable) and right (Expression) end sides of

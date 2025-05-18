@@ -6,7 +6,6 @@ package fr.n7.stl.minic.ast.expression.accessible;
 import fr.n7.stl.minic.ast.expression.AbstractPointer;
 import fr.n7.stl.minic.ast.type.NamedType;
 import fr.n7.stl.minic.ast.type.PointerType;
-import fr.n7.stl.minic.ast.type.Type;
 import fr.n7.stl.tam.ast.Fragment;
 import fr.n7.stl.tam.ast.TAMFactory;
 

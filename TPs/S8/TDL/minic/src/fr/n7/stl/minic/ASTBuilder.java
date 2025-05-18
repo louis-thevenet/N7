@@ -155,7 +155,7 @@ public class ASTBuilder extends MiniCParserBaseListener {
 
     @Override
     public void exitInstructionTantQue(InstructionTantQueContext ctx) {
-        ctx.i = new Iteration(ctx.expression().e, ctx.alors.b);
+        ctx.i = new Iteration(ctx.expression().e, ctx.corps.b);
     }
 
     @Override

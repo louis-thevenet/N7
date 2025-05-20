@@ -1,0 +1,4 @@
+test04 {
+   // Erreur de type : appel d'une opération arithmétique sur une valeur entière et une valeur booléenne
+   int i = 1 + true;
+}

@@ -1,0 +1,6 @@
+test67 {
+   // Erreur de déclaration : initialisation d'une variable de enregistrement contenant deux champs entiers avec une valeur séquence d'entiers de taille 2
+   // 	   	              initialisation d'une variable avec un type identique au précédent donc double déclaration.
+   struct P { int x; int y; } p = { 1, 2};
+   struct P { int x; int y; } q = p;
+}

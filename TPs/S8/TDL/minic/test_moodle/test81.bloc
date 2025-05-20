@@ -1,0 +1,5 @@
+test81 {
+   // Erreur de type : initialisation d'une variable de type tableau d'entier avec un tableau créé statiquement, puis affectation du tableau avec une séquence entier et booléen
+   int p[] = { 1, 2};
+   p = { 3, true};
+}

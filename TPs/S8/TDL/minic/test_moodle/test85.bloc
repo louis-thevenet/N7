@@ -1,0 +1,5 @@
+test85 {
+   // Erreur de type : initialisation d'une variable de type tableau d'entier avec un tableau créé dynamiquement puis affectation avec un booléen
+   int p[] = new int[2];
+   p[0] = true;
+}

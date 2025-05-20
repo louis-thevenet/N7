@@ -1,0 +1,6 @@
+test38 {
+   // Erreur de type : utilisation d'une variable entière dans une condition.
+   int i = 1 ;
+   while (i) {
+   }
+}

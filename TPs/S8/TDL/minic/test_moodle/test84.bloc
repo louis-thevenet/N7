@@ -1,0 +1,5 @@
+test84 {
+   // Erreur de type : initialisation d'une variable de type tableau d'entier avec un tableau créé statiquement, puis affectation d'une variable booléenne avec le contenu de la première case
+   int p[] = { 1, 2};
+   boolean a = p[0];
+}

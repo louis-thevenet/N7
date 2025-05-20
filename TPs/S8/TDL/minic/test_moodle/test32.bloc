@@ -1,0 +1,7 @@
+test32 {
+   // Sans erreur : utilisation d'une variable dans un sous-bloc.
+   int i = 1 ;
+   while (true) {
+      int j = i;
+   }
+}

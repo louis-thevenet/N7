@@ -1,0 +1,4 @@
+test02 {
+   // Erreur de type : initialisation d'une variable de type entier avec une valeur booléenne
+   int i = true;
+}

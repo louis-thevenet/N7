@@ -1,0 +1,4 @@
+test52 {
+   // Sans erreur : initialisation d'une variable de type tableau d'entier avec un tableau créé statiquement
+   int p[] = { 1, 2};
+}

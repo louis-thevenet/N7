@@ -1,0 +1,6 @@
+test97 {
+   // Sans erreur : initialisation d'une variable de type tableau d'entier avec un tableau créé statiquement, puis affectation du tableau
+   int i = 1;
+   int *p = &i;
+   int j = *p;
+}

@@ -1,0 +1,7 @@
+test39 {
+   // Erreur de type : utilisation d'une variable avec un autre type dans un sous-bloc.
+   int i = 1 ;
+   while (true) {
+      boolean a = i;
+   }
+}

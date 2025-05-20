@@ -1,0 +1,7 @@
+test27 {
+   // Correct : double déclaration dans un sous-bloc avec un type différent.
+   int i = 1 ;
+   while (true) {
+      boolean i = true;
+   }
+}

@@ -1,0 +1,9 @@
+test13 {
+   // Correct : double déclaration dans un sous-bloc avec un type différent.
+   int i = 1 ;
+   if (true) {
+      boolean i = true;
+   } else  {
+      boolean i = true;
+   }
+}

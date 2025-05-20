@@ -1,0 +1,7 @@
+test25 {
+   // Erreur de type : utilisation d'une variable avec un autre type après un sous-bloc.
+   int i = 1 ;
+   if (true) {
+   }
+   i = true;
+}

@@ -1,0 +1,5 @@
+test09 {
+   // Erreur de déclaration : double déclaration d'une variable avec un type différent.
+   int i = 1 ;
+   boolean i = true;
+}

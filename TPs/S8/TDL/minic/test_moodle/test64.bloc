@@ -1,0 +1,4 @@
+test64 {
+   // Sans erreur : initialisation d'une variable de enregistrement contenant deux champs entiers avec une valeur séquence d'entiers de taille 2
+   struct P { int x; int y; } p = { 1, 2};
+}

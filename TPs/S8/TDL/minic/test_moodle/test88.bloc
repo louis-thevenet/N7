@@ -1,0 +1,6 @@
+test88 {
+   // Erreur de type : initialisation d'une variable de enregistrement contenant deux champs entiers avec une valeur séquence d'entiers de taille 2
+   // 	   	       lecture du premier champs de l'enregistrement.
+   struct P { int x; int y; } p = { 1, 2};
+   boolean a = p.x;
+}

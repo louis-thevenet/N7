@@ -1,0 +1,8 @@
+test102 {
+   // Sans erreur : initialisation d'une variable de type tableau statique de booléens avec une valeur séquence de booléens de taille 2
+   // 	   	    extraction du premier élément de la paire dans une condition de répétition
+   boolean a = true;
+   boolean *p =  & a ;
+   while (*p) {
+   }
+}

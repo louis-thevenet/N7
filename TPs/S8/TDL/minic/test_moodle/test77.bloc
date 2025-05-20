@@ -1,0 +1,6 @@
+test77 {
+   // Erreur de type : initialisation d'une variable de type paire d'entier avec une valeur séquence d'entiers de taille 2
+   // 	   	       affectation d'une variable de type paire d'entier avec une valeur paire d'entier et de booléen
+   <int,int> p = { 1, 2};
+   p = { 1, true };
+}

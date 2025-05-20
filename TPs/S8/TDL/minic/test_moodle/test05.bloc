@@ -1,0 +1,4 @@
+test05 {
+   // Erreur de type : appel d'une opération booléenne sur une valeur entière et une valeur booléenne
+   int i = 1 && true;
+}

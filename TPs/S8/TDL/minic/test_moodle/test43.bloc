@@ -1,0 +1,6 @@
+test43 {
+   // Sans erreur : initialisation d'une variable de type paire d'entier avec une valeur séquence d'entiers de taille 2
+   // 	   	    lecture de la première composante de la paire.
+   <int,int> p = { 1, 2};
+   int i = (fst p);
+}

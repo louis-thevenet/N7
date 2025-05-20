@@ -1,0 +1,4 @@
+test80 {
+   // Erreur de type : initialisation d'une variable de type tableau d'entier avec un tableau créé statiquement initialisé par une séquence d'entier et booleen
+   int p[] = { 1, true};
+}

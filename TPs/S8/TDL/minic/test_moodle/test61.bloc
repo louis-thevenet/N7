@@ -1,0 +1,7 @@
+test61 {
+   // Sans erreur : initialisation d'une variable de type tableau dynamique de booléens avec une valeur séquence de booléens de taille 2
+   // 	   	    extraction du premier élément de la paire dans une condition de conditionnelle
+   boolean p[] = new boolean [2];
+   if (p[0]) {
+   }
+}

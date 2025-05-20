@@ -1,0 +1,5 @@
+test92 {
+   // Sans erreur : initialisation d'une variable de type pointeur sur entier avec une variable entière créé statiquement
+   int i = 1;
+   int *p = &i;
+}

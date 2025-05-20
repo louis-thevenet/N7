@@ -1,0 +1,7 @@
+test72 {
+   // Sans erreur : initialisation d'une variable de type enregistrement contenant deux champs booléens avec une valeur séquence de booléens de taille 2
+   // 	   	    extraction du premier champ de l'enregistrement dans une condition de conditionnelle
+   struct B { boolean a; int n; } p =  { true, 1 } ;
+   if (p.a) {
+   }
+}

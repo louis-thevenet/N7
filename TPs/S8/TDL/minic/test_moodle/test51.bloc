@@ -1,0 +1,7 @@
+test51 {
+   // Sans erreur : initialisation d'une variable de type paire composée d'un booléen et un entier avec une valeur séquence composée d'un booléen et un entier
+   // 	   	    extraction du premier élément dans la paire dans une condition de conditionnelle
+   <boolean,int> p =  { true, 1 } ;
+   while (fst p) {
+   }
+}

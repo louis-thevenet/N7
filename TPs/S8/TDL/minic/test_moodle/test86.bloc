@@ -1,0 +1,5 @@
+test86 {
+   // Erreur de type : initialisation d'une variable de type tableau d'entier avec un tableau créé dynamiquement
+   int p[] = new int[2];
+   boolean a = p[0];
+}

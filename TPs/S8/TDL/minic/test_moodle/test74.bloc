@@ -1,0 +1,4 @@
+test74 {
+   // Erreur de type : initialisation d'une variable de type paire d'entier avec une valeur séquence contenant un entier et un booléen
+   <int,int> p = { 1, true};
+}

@@ -1,0 +1,7 @@
+test49 {
+   // Sans erreur : initialisation d'une variable de type paire de booléens avec une valeur séquence de booléens de taille 2
+   // 	   	    extraction du premier élément dans la paire dans une condition de conditionnelle
+   <boolean,boolean> p =  { true, false } ;
+   while (fst p) {
+   }
+}

@@ -1,0 +1,4 @@
+test53 {
+   // Sans erreur : initialisation d'une variable de type tableau d'entier avec un tableau créé dynamiquement
+   int p[] = new int[2];
+}

@@ -1,0 +1,8 @@
+test14 {
+   // Erreur de déclaration : double déclaration du même type séparée par un sous-bloc.
+   int i = 1 ;
+   if (true) {
+      int i = 1;
+   }
+   int i = 1;
+}

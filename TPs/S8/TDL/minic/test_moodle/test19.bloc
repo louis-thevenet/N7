@@ -1,0 +1,7 @@
+test19 {
+   // Sans erreur : utilisation d'une variable après un sous-bloc.
+   int i = 1 ;
+   if (true) {
+   }
+   int j = i;
+}

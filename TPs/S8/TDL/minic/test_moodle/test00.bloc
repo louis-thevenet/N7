@@ -1,0 +1,4 @@
+test00 {
+   // Sans erreur : initialisation d'une variable de type entier avec une valeur entière
+   int i = 1;
+}

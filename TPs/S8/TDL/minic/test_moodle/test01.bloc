@@ -1,0 +1,4 @@
+test01 {
+   // Erreur de déclaration : affectation d'une variable qui n'est pas définie
+   i = 1;
+}

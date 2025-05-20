@@ -1,0 +1,4 @@
+test06 {
+   // Erreur de déclaration : lecture d'une variable qui n'est pas définie
+   int i = 1 + j;
+}

@@ -1,0 +1,4 @@
+test87 {
+   // Erreur de type : initialisation d'une variable de enregistrement contenant deux champs entiers avec une valeur séquence d'entier et booléen
+   struct P { int x; int y; } p = { 1, true};
+}

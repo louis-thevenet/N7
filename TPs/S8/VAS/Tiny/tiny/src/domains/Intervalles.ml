@@ -97,23 +97,64 @@ let sem_minus x y = match x,y with
       |(Some n,Some m),(Some n',None)->Itv(None,Some(n'- m)) 
       |(Some n, Some m),(Some n',Some m')->Itv(Some(n-n'),Some(m-m')) 
       |_->top
-    end
-let sem_times x y = match x, y with
-    | Bottom, _ | _, Bottom -> Bottom
-    | Itv (n1, n2), Itv (m1, m2) ->
-      let all = List.filter_map (fun (a, b) ->
-        match a, b with
-        | Some a, Some b -> Some (a * b)
-        | _ -> None
-      ) [
-        (n1, m1); (n1, m2); (n2, m1); (n2, m2)
-      ] in
-      if all = [] then Itv (None, None)
-      else
-        let min = Some (List.fold_left min max_int all) in
-        let max = Some (List.fold_left max min_int all) in
-        Itv (min, max)
-  
+     end
+
+(* let sem_times x y = match x, y with
+  | Bottom, _ | _, Bottom -> Bottom
+  | Itv (n1, n2), Itv (m1, m2) ->
+    let all = List.filter_map (fun (a, b) ->
+      match a, b with
+      | Some a, Some b -> Some (a * b)
+      | _ -> None
+    ) [
+      (n1, m1); (n1, m2); (n2, m1); (n2, m2)
+    ] in
+    if all = [] then Itv (None, None)
+    else
+      let min = Some (List.fold_left min max_int all) in *)
+      (* let max = Some (List.fold_left max min_int all) in
+      Itv (min, max) *)
+    
+let sem_times x y =
+          let reorder x = match x with| Bottom -> Bottom | Itv (n,m) -> Itv (min_minf n m, max_pinf n m)
+        in
+        match x, y with
+        |Bottom,_|_,Bottom->Bottom
+        |Itv (n, m), Itv ( n', m') -> 
+            begin 
+              match (n,m),(n',m') with
+              (* [-oo, m] * [n', m'] *)
+              (* [n', m'] * [-oo, m] *)
+              
+              (*[-oo, -1] * [1, 3] -> [-oo, -1] *)
+              |(None,Some m),(Some n',Some m')| (Some n',Some m'),(None,Some m) when n' >= 0 && m < 0 ->Itv(None, Some (m * n'))
+              (*[-oo, 1] * [1, 3] -> [-oo, 3] *)
+              |(None,Some m),(Some n',Some m') | (Some n',Some m'),(None,Some m) when n' >= 0 ->Itv(None, Some(m*m')) 
+
+              (*[-oo, -1] * [-1, 3] -> [-oo, -3] *)
+              (*CAS DIFFERNET*)
+              
+              (*[-oo, 1] * [-2, -1] -> [-oo, -1] *)
+              (*CAS DIFFERNET*)
+
+              (*[-oo, 1] * [-1, 3] -> [-oo, 3] *)
+              (*[-oo, -1] * [-1, -3] -> [-oo, 3] *)
+              |(None,Some m),(Some n',Some m')| (Some n',Some m'),(None,Some m) when n' < 0 ->Itv(None ,Some (m*m'))
+              
+              (* [n, +oo] * [n', m'] *)
+              (* [n', m'] * [n, +oo] *)
+              |(Some n, None),(Some n',Some m') | (Some n',Some m'),(Some n, None) when m' >= 0 -> Itv(Some (n*n'), None) 
+              |(Some n, None),(Some n',Some m') | (Some n',Some m'),(Some n, None) when m' < 0 -> Itv(None, ) 
+
+
+
+
+              (* [_, m] * [-oo, m'] *)
+              | (_,Some m),(None,Some m')->Itv(None, Some(m*m')) 
+              |(Some n, None),(Some n',_)|(Some n,_),(Some n',None)->Itv(Some(n*n'),None) 
+              |(Some n, Some m),(Some n',Some m')->Itv(Some(n*n'),Some(m*m')) 
+              |_->top
+            end
 let sem_div x y = match x, y with
     | Bottom, _ | _, Bottom -> Bottom
     | _, Itv (Some l, Some u) when l <= 0 && u >= 0 -> Bottom (* division par zéro *)
@@ -134,7 +175,69 @@ let sem_div x y = match x, y with
 let sem_guard = function
   | t -> t
 
-let backsem_plus x y r = x, y
+  let (+) x y = match x,y with 
+  |None,None->None
+  |None,Some y ->Some y
+  |Some x,None ->Some x
+  |Some x,Some y -> Some (x+y)   
+  and
+   (-) x y = match x,y with 
+  |None,None->None
+  |None,Some y ->Some y
+  |Some x,None ->Some x
+  |Some x,Some y -> Some (x+y) 
+
+  let backsem_plus x y r = 
+    match x, y with
+      | Bottom, _ | _, Bottom-> Bottom, Bottom
+      | Itv (nx,mx), Itv (ny, my) ->
+      begin  
+        match r with
+          | Bottom -> Bottom, Bottom
+          | Itv (nr,mr) ->  Itv (min_minf (nr - ny) nx, max_pinf (mr-my) mx),Itv (min_minf (nr-nx) ny, max_pinf (mr-mx) my)
+      end
+  let backsem_minus x y r = match x, y with
+  | Bottom, _ | _, Bottom-> Bottom, Bottom
+  | Itv (nx,mx), Itv (ny, my) ->
+  begin  
+    match r with
+      | Bottom -> Bottom, Bottom
+      | Itv (nr,mr) ->  Itv (min_minf (nr + ny) nx, max_pinf (mr+my) mx),Itv (min_minf (nr+nx) ny, max_pinf (mr+mx) my)
+  end
+
+(* let backsem_plus x y r = 
+ 
+  match x, y with
+  | Bottom, _ | _, Bottom-> Bottom, Bottom
+  | Itv (nx,mx), Itv (ny, my) -> begin  
+  
+  match r with
+  (* r € [-oo, +oo]*)
+| Bottom -> Bottom,Bottom
+| Itv (nr,mr) -> begin 
+  match nr, mr with
+  | None, None -> x, y
+  (* r € [-oo, mr]*)
+  | None, Some mr -> 
+      Itv (nx, match my with |None->mx |Some(my)-> min (Some (mr-my)) mx ),
+      Itv (ny, match mx with |None->my |Some(mx)-> min (Some (mr-mx)) my
+      )
+  (* r € [nr, +oo]*)
+  | Some nr, None -> 
+    (
+      (*x € [nx, max(mx, max(nr-ny si ny=Some, nx))]*)
+      (*x € [nx, max(mx, max(nr-ny si ny=Some, nx))]*)
+      Itv ((match ny with |None->nx |Some(ny)-> max (Some (nr-ny)) nx ), mx),
+      Itv ((match nx with |None->ny |Some(nx)-> max (Some (nr-nx)) ny), my)
+    )
+  (* r € [nr, mr]*)
+  | Some (nr), Some(mr) ->
+    (
+      Itv ((match ny with |None->nx |Some(ny)-> min (Some (nr-ny)) nx ), match my with |None->mx |Some(my)-> max (Some (mr-my)) mx )),
+      Itv ((match nx with |None->ny |Some(nx)-> min (Some (nr-nx)) ny), match mx with |None->my |Some(mx)-> max (Some (mr-mx)) my
+    )
+end *)
+(* end *)
 let backsem_minus x y r = x, y
 let backsem_times x y r = x, y
 let backsem_div x y r = x, y

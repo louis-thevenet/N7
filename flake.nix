@@ -37,7 +37,7 @@
 
               # Typst
               typst
-              typst-lsp
+              tinymist
               typst-fmt
 
               # # Modélisation
@@ -83,14 +83,14 @@
               # jdk23
 
               # OCaml
-              # ocaml
-              # dune_3
-              # ocamlPackages.utop
-              # ocamlPackages.ocamlformat
-              # ocamlPackages.menhir
-              # ocamlPackages.graphics
-              # ocamlPackages.ppx_inline_test
-              # ocamlPackages.ppx_expect
+              ocaml
+              dune_3
+              ocamlPackages.utop
+              ocamlPackages.ocamlformat
+              ocamlPackages.menhir
+              ocamlPackages.graphics
+              ocamlPackages.ppx_inline_test
+              ocamlPackages.ppx_expect
 
               # # Julia
               # julia_19

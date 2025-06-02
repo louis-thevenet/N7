@@ -18,16 +18,16 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *)
 
-(** Module to print results of analysis and warning about possible
-    runtime errors and dead code. *)
+(** Module to print results of analysis and warning about possible runtime
+    errors and dead code. *)
 
 module Make (Dom : Relational.Domain) : sig
   (** The functions of this module take an abstract syntax tree [t : Ast.stm]
       and a map [m : Dom.t Location.Map.t] mapping locations in the AST to
-      abstract values in the abstract domain [Dom]. Those values are assumed
-      to be sound overapproximations of the collecting semantics of
-      the program [t].
-      
+      abstract values in the abstract domain [Dom]. Those values are assumed to
+      be sound overapproximations of the collecting semantics of the program
+      [t].
+
       Locations that will be considered are the followings (all are points as
       returned by [Location.beg_p] or [Location.end_p]) :
       - end of each statement;
@@ -38,17 +38,17 @@ module Make (Dom : Relational.Domain) : sig
 
       In each case, an absence of value is soundly interpreted as [Dom.top]. *)
 
-  (** [alarms m t] uses informations contained in [m] (as described above)
-      to print warnings (using [Report.warning_loc]) about possible
-      empty rand intervals, divisions by zero and code proven to be dead.
+  val alarms : Dom.t Location.Map.t -> Ast.stm -> bool
+  (** [alarms m t] uses informations contained in [m] (as described above) to
+      print warnings (using [Report.warning_loc]) about possible empty rand
+      intervals, divisions by zero and code proven to be dead.
 
       Returns [true] if possible runtime errors (empty rand intervals or
       division by zero) are found, [false] if the program is proven without
       runtime errors. *)
-  val alarms : Dom.t Location.Map.t -> Ast.stm -> bool
 
+  val print : Dom.t Location.Map.t -> Ast.stm -> string option -> unit
   (** [print m t output_filename] prints the statement [t], with results
       contained in [m] (as described above) interleaved in comments in file
       [output_filename] (or stdout if [output_filename] is [None]). *)
-  val print : Dom.t Location.Map.t -> Ast.stm -> string option -> unit
 end

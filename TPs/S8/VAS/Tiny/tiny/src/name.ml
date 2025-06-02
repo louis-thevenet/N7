@@ -22,9 +22,9 @@ type t = string
 
 module OrderedName = struct
   type t = string
+
   let compare = compare
 end
 
 module Set = Set.Make (OrderedName)
-
 module Map = Map.Make (OrderedName)

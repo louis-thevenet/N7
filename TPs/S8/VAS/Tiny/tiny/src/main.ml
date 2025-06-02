@@ -22,47 +22,63 @@ let input_file = ref None
 let output_file = ref None
 let compile_mode = ref false
 let descending = ref 0
-
 let quiet () = Report.verbosity := 0
 
 let set_input_file =
   let fst_call = ref true in
-    fun filename ->
-      if !fst_call then begin
-        input_file := Some filename;
-	fst_call := false
-      end else
-	raise (Arg.Bad ("Only accepts one input file: superfluous file \""
-                        ^ filename ^ "\""))
+  fun filename ->
+    if !fst_call then (
+      input_file := Some filename;
+      fst_call := false)
+    else
+      raise
+        (Arg.Bad
+           ("Only accepts one input file: superfluous file \"" ^ filename ^ "\""))
 
 let set_output_file s = output_file := Some s
 
 let _ =
-  let usage_msg = Printf.sprintf
-    "Usage: %s [options] <input_filename>" Sys.argv.(0) in
-  let speclist = Arg.align [
-    ("--compile", Arg.Set compile_mode," Compilation mode: compile to C");
-    ("-c", Arg.Set compile_mode," Compilation mode: compile to C");
-    ("--quiet", Arg.Unit quiet," Quiet mode");
-    ("-q", Arg.Unit quiet, " Quiet mode");
-    ("--verbose", Arg.Set_int Report.verbosity, "<n>  Verbosity level (default is 1)");
-    ("-v", Arg.Set_int Report.verbosity, "<n>  Verbosity level (default is 1)");
-    ("--output", Arg.String set_output_file,
-     "<filename>  Output results to file <filename> (default is standard ouput)");
-    ("-o", Arg.String set_output_file,
-     "<filename>  Output results to file <filename> (default is standard ouput)");
-    ("--descending", Arg.Set_int descending, "<n>  Perform <n> descending iterations after fixpoint of a loop is reached (default is 0)");
-    ("-d", Arg.Set_int descending, "<n>  Perform <n> descending iterations after fixpoint of a loop is reached (default is 0)");
-  ] in
-  try 
+  let usage_msg =
+    Printf.sprintf "Usage: %s [options] <input_filename>" Sys.argv.(0)
+  in
+  let speclist =
+    Arg.align
+      [
+        ("--compile", Arg.Set compile_mode, " Compilation mode: compile to C");
+        ("-c", Arg.Set compile_mode, " Compilation mode: compile to C");
+        ("--quiet", Arg.Unit quiet, " Quiet mode");
+        ("-q", Arg.Unit quiet, " Quiet mode");
+        ( "--verbose",
+          Arg.Set_int Report.verbosity,
+          "<n>  Verbosity level (default is 1)" );
+        ( "-v",
+          Arg.Set_int Report.verbosity,
+          "<n>  Verbosity level (default is 1)" );
+        ( "--output",
+          Arg.String set_output_file,
+          "<filename>  Output results to file <filename> (default is standard \
+           ouput)" );
+        ( "-o",
+          Arg.String set_output_file,
+          "<filename>  Output results to file <filename> (default is standard \
+           ouput)" );
+        ( "--descending",
+          Arg.Set_int descending,
+          "<n>  Perform <n> descending iterations after fixpoint of a loop is \
+           reached (default is 0)" );
+        ( "-d",
+          Arg.Set_int descending,
+          "<n>  Perform <n> descending iterations after fixpoint of a loop is \
+           reached (default is 0)" );
+      ]
+  in
+  try
     Arg.parse speclist set_input_file usage_msg;
     match !input_file with
     | None ->
-      Printf.eprintf "%s: No input file provided.\n" Sys.argv.(0);
-      Arg.usage speclist usage_msg
+        Printf.eprintf "%s: No input file provided.\n" Sys.argv.(0);
+        Arg.usage speclist usage_msg
     | Some f ->
-      if !compile_mode then
-        Compile.compile f !output_file
-      else
-        Analyze.analyze !descending f !output_file
+        if !compile_mode then Compile.compile f !output_file
+        else Analyze.analyze !descending f !output_file
   with Report.Error -> exit 2

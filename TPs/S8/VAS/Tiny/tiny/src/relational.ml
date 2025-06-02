@@ -22,38 +22,44 @@
 
 (** Module type for relational domains. *)
 module type Domain = sig
-  (** Type of abstract values. *)
   type t
+  (** Type of abstract values. *)
 
-  (** Prints an abstract value. *)
   val fprint : Format.formatter -> t -> unit
+  (** Prints an abstract value. *)
 
   (** {2 Lattice Structure} *)
 
-  (** Order on type [t]. [t] with this order must be a lattice. *)
   val order : t -> t -> bool
+  (** Order on type [t]. [t] with this order must be a lattice. *)
 
   val top : Name.Set.t -> t
+
   val bottom : Name.Set.t -> t
   (** Infimums of the lattice (when the relational domain focuses on given set
       of variables). *)
 
   val join : t -> t -> t
+
   val meet : t -> t -> t
   (** Least upper bound and greatest lower bound of the lattice. *)
 
-  (** Widening to ensure termination of the analyses. *)
   val widening : t -> t -> t
+  (** Widening to ensure termination of the analyses. *)
 
   (** {2 Abstract Operators} *)
 
   (** Abstract semantics of assignments and guards. *)
 
-  (** [assignment n e t] returns a [t'] such that:
-      {[[|n = e;|](\gamma(t)) \subseteq \gamma(t').]}*)
   val assignment : Name.t -> Ast.expr -> t -> t
+  (** [assignment n e t] returns a [t'] such that:
+      {[
+        [|n = e;|](\gamma(t)) \subseteq \gamma(t').
+      ]}*)
 
-  (** [guard e t] returns a [t'] such that:
-      {[[|e > 0|](\gamma(t)) \subseteq \gamma(t').]}*)
   val guard : Ast.expr -> t -> t
+  (** [guard e t] returns a [t'] such that:
+      {[
+        [|e > 0|](\gamma(t)) \subseteq \gamma(t').
+      ]}*)
 end

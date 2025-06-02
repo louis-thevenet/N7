@@ -18,9 +18,9 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *)
 
-(** Compile TINY files to C files. This mostly consists in declaring
-    variables as C integers and copy/pasting the code in a main function. *)
+(** Compile TINY files to C files. This mostly consists in declaring variables
+    as C integers and copy/pasting the code in a main function. *)
 
-(** [compile input output] compiles TINY file [input] to C file [output]
-    or standard output if no output is provided. *)
 val compile : string -> string option -> unit
+(** [compile input output] compiles TINY file [input] to C file [output] or
+    standard output if no output is provided. *)

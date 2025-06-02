@@ -20,6 +20,7 @@
 
 module type TypeAndManager = sig
   type domain_type
+
   val manager : domain_type Apron.Manager.t
 end
 
@@ -29,7 +30,6 @@ module Wrapper (T : TypeAndManager) : Relational.Domain = struct
   type t = domain_type Apron.Abstract1.t
 
   let fprint = Apron.Abstract1.print
-
   let order = Apron.Abstract1.is_leq manager
 
   let env_of_name_set s =
@@ -39,13 +39,13 @@ module Wrapper (T : TypeAndManager) : Relational.Domain = struct
 
   let top s = Apron.Abstract1.top manager (env_of_name_set s)
   let bottom s = Apron.Abstract1.bottom manager (env_of_name_set s)
-
   let join = Apron.Abstract1.join manager
   let meet = Apron.Abstract1.meet manager
 
   let widening x y =
-    let y = join x y in  (* Apron's widening requires that its first argument
-                          * is included in the second one. *)
+    let y = join x y in
+    (* Apron's widening requires that its first argument
+     * is included in the second one. *)
     Apron.Abstract1.widening manager x y
 
   let rec apron_texpr_of_expr env e =
@@ -53,38 +53,45 @@ module Wrapper (T : TypeAndManager) : Relational.Domain = struct
       | Ast.Int (_, n) -> Apron.Texpr1.Cst (Apron.Coeff.s_of_int n)
       | Ast.Var (_, n) -> Apron.Texpr1.Var (Apron.Var.of_string n)
       | Ast.Binop (_, bop, e1, e2) ->
-        let e1 = apron_expr_of_expr e1 in
-        let e2 = apron_expr_of_expr e2 in
-        let bop = match bop with
-          | Ast.Plus -> Apron.Texpr1.Add
-          | Ast.Minus -> Apron.Texpr1.Sub
-          | Ast.Times -> Apron.Texpr1.Mul
-          | Ast.Div -> Apron.Texpr1.Div in
-        Apron.Texpr1.Binop (bop, e1, e2, Apron.Texpr1.Int, Apron.Texpr1.Near)
-      | Ast.Rand (_, n1, n2) -> Apron.Texpr1.Cst (Apron.Coeff.i_of_int n1 n2) in
+          let e1 = apron_expr_of_expr e1 in
+          let e2 = apron_expr_of_expr e2 in
+          let bop =
+            match bop with
+            | Ast.Plus -> Apron.Texpr1.Add
+            | Ast.Minus -> Apron.Texpr1.Sub
+            | Ast.Times -> Apron.Texpr1.Mul
+            | Ast.Div -> Apron.Texpr1.Div
+          in
+          Apron.Texpr1.Binop (bop, e1, e2, Apron.Texpr1.Int, Apron.Texpr1.Near)
+      | Ast.Rand (_, n1, n2) -> Apron.Texpr1.Cst (Apron.Coeff.i_of_int n1 n2)
+    in
     Apron.Texpr1.of_expr env (apron_expr_of_expr e)
-      
+
   let assignment n e t =
     let e = apron_texpr_of_expr (Apron.Abstract1.env t) e in
-    Apron.Abstract1.assign_texpr_array manager
-      t [|Apron.Var.of_string n|] [|e|] None
-      
+    Apron.Abstract1.assign_texpr_array manager t
+      [| Apron.Var.of_string n |]
+      [| e |] None
+
   let guard e t =
     let e = apron_texpr_of_expr (Apron.Abstract1.env t) e in
     let cons = Apron.Tcons1.make e Apron.Tcons1.SUP in
     let earray =
       let a = Apron.Tcons1.array_make (Apron.Abstract1.env t) 1 in
       Apron.Tcons1.array_set a 0 cons;
-      a in
+      a
+    in
     Apron.Abstract1.meet_tcons_array manager t earray
 end
 
 module Polka = Wrapper (struct
-  type domain_type = Polka.loose Polka.t 
+  type domain_type = Polka.loose Polka.t
+
   let manager = Polka.manager_alloc_loose ()
 end)
 
 module Oct = Wrapper (struct
-  type domain_type = Oct.t 
+  type domain_type = Oct.t
+
   let manager = Oct.manager_alloc ()
 end)

@@ -18,23 +18,24 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *)
 
-(** Parses the file.
-    If a parsing error occurs, print a message and raise Report.Error *)
+(** Parses the file. If a parsing error occurs, print a message and raise
+    Report.Error *)
 let file filename =
-  let ast = Utils.with_in_ch (Some filename) (fun in_ch ->
-    let lexbuf = Lexing.from_channel in_ch in
-    try
-      Location.filename := filename;
-      Parser.file Lexer.token lexbuf 
-    with
-    | Lexer.Lexing_error s ->
-      let loc = Location.get_current_from_lexbuf lexbuf in
-      Report.error_loc loc "%s." s
-    | Failure _
-    | Parsing.Parse_error ->
-      let loc = Location.get_current_from_lexbuf lexbuf in
-      Report.error_loc loc "Syntax error.") in
+  let ast =
+    Utils.with_in_ch (Some filename) (fun in_ch ->
+        let lexbuf = Lexing.from_channel in_ch in
+        try
+          Location.filename := filename;
+          Parser.file Lexer.token lexbuf
+        with
+        | Lexer.Lexing_error s ->
+            let loc = Location.get_current_from_lexbuf lexbuf in
+            Report.error_loc loc "%s." s
+        | Failure _ | Parsing.Parse_error ->
+            let loc = Location.get_current_from_lexbuf lexbuf in
+            Report.error_loc loc "Syntax error.")
+  in
   let vars = Ast.vars_of_stm ast in
   Report.nlogf 1 "Input parsed.";
   Report.nlogf 2 "%a" Ast.fprint_stm ast;
-  vars, ast
+  (vars, ast)

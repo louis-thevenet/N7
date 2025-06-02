@@ -26,7 +26,7 @@ type expr =
   | Binop of Location.t * bop * expr * expr
   | Rand of Location.t * int * int
 
-type stm = 
+type stm =
   | Asn of Location.t * Name.t * expr
   | Seq of Location.t * stm * stm
   | Ite of Location.t * expr * stm * stm
@@ -39,26 +39,31 @@ let loc_of_stm = function
   | Asn (l, _, _) | Seq (l, _, _) | Ite (l, _, _, _) | While (l, _, _) -> l
 
 let neg_guard = function
-  | Binop (l, Minus, Int (l', n), e2) when n > min_int ->  (* avoid underflows *)
-    Binop (l, Minus, e2, Int (l', n - 1))
-  | Binop (l, Minus, e1, Int (l', n)) when n < max_int ->  (* avoid overflows *)
-    Binop (l, Minus, Int (l', n + 1), e1)
+  | Binop (l, Minus, Int (l', n), e2) when n > min_int ->
+      (* avoid underflows *)
+      Binop (l, Minus, e2, Int (l', n - 1))
+  | Binop (l, Minus, e1, Int (l', n)) when n < max_int ->
+      (* avoid overflows *)
+      Binop (l, Minus, Int (l', n + 1), e1)
   | Binop (l, Minus, e1, e2) ->
-    Binop (l, Minus, Binop (l, Plus, e2, Int (l, 1)), e1)
-  | e -> let l = loc_of_expr e in Binop (l, Minus, Int (l, 1), e)
+      Binop (l, Minus, Binop (l, Plus, e2, Int (l, 1)), e1)
+  | e ->
+      let l = loc_of_expr e in
+      Binop (l, Minus, Int (l, 1), e)
 
 let vars_of_stm stm =
   let rec vars_of_expr s = function
     | Int _ -> s
     | Var (_, n) -> Name.Set.add n s
     | Binop (_, _, e1, e2) -> vars_of_expr (vars_of_expr s e1) e2
-    | Rand _ -> s in
+    | Rand _ -> s
+  in
   let rec vars_of_stm s = function
     | Asn (_, n, e) -> vars_of_expr (Name.Set.add n s) e
     | Seq (_, s1, s2) -> vars_of_stm (vars_of_stm s s1) s2
-    | Ite (_, e, s1, s2) ->
-      vars_of_stm (vars_of_stm (vars_of_expr s e) s1) s2
-    | While (_, e, st) -> vars_of_stm (vars_of_expr s e) st in
+    | Ite (_, e, s1, s2) -> vars_of_stm (vars_of_stm (vars_of_expr s e) s1) s2
+    | While (_, e, st) -> vars_of_stm (vars_of_expr s e) st
+  in
   vars_of_stm Name.Set.empty stm
 
 let char_of_bop = function
@@ -68,38 +73,41 @@ let char_of_bop = function
   | Div -> '/'
 
 let fprint_expr ff e =
-  let prior_bop = function
-    | Plus | Minus -> 0
-    | Times | Div -> 1 in
+  let prior_bop = function Plus | Minus -> 0 | Times | Div -> 1 in
   let prior_right_bop = function
     | Plus -> 0
     | Minus -> 1
     | Times -> 1
-    | Div -> 2 in
+    | Div -> 2
+  in
   let rec fprint_expr_prior prior ff = function
     | Int (_, n) -> Format.fprintf ff "%d" n
     | Var (_, n) -> Format.fprintf ff "%s" n
     | Binop (_, bop, e1, e2) ->
-      if prior_bop bop < prior then
-        Format.fprintf ff "(@[%a@ %c %a@])"
-          (fprint_expr_prior (prior_bop bop)) e1
-          (char_of_bop bop)
-          (fprint_expr_prior (prior_right_bop bop)) e2
-      else
-        Format.fprintf ff "%a@ %c %a"
-          (fprint_expr_prior (prior_bop bop)) e1
-          (char_of_bop bop)
-          (fprint_expr_prior (prior_right_bop bop)) e2
-    | Rand (_, n1, n2) -> Format.fprintf ff "rand(@[%d,@ %d@])" n1 n2 in
+        if prior_bop bop < prior then
+          Format.fprintf ff "(@[%a@ %c %a@])"
+            (fprint_expr_prior (prior_bop bop))
+            e1 (char_of_bop bop)
+            (fprint_expr_prior (prior_right_bop bop))
+            e2
+        else
+          Format.fprintf ff "%a@ %c %a"
+            (fprint_expr_prior (prior_bop bop))
+            e1 (char_of_bop bop)
+            (fprint_expr_prior (prior_right_bop bop))
+            e2
+    | Rand (_, n1, n2) -> Format.fprintf ff "rand(@[%d,@ %d@])" n1 n2
+  in
   fprint_expr_prior 0 ff e
 
 let rec fprint_stm ff = function
   | Asn (_, n, e) -> Format.fprintf ff "%s = @[%a@];" n fprint_expr e
   | Seq (_, s1, s2) ->
-    Format.fprintf ff "@[<v>%a@ %a@]" fprint_stm s1 fprint_stm s2
+      Format.fprintf ff "@[<v>%a@ %a@]" fprint_stm s1 fprint_stm s2
   | Ite (_, e, s1, s2) ->
-    Format.fprintf ff "@[<v>@[<v 2>if (@[%a@] > 0) {@ %a@]@ @[<v 2>} else {@ %a@]@ }@]"
-      fprint_expr e fprint_stm s1 fprint_stm s2
+      Format.fprintf ff
+        "@[<v>@[<v 2>if (@[%a@] > 0) {@ %a@]@ @[<v 2>} else {@ %a@]@ }@]"
+        fprint_expr e fprint_stm s1 fprint_stm s2
   | While (_, e, s) ->
-    Format.fprintf ff "@[<v>@[<v 2>while (@[%a@] > 0) {@ %a@]@ }@]"
-      fprint_expr e fprint_stm s
+      Format.fprintf ff "@[<v>@[<v 2>while (@[%a@] > 0) {@ %a@]@ }@]"
+        fprint_expr e fprint_stm s

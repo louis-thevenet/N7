@@ -20,10 +20,10 @@
 
 (** Analyze TINY programs. *)
 
-(** [analyze descending input output] analyzes TINY program in file [input]
-    and outputs result as a commented program in file [output] or standard
-    output if no output is provided.
-
-    After fixpoint of loops are reached,
-    performs [descending] descending iterations. *)
 val analyze : int -> string -> string option -> unit
+(** [analyze descending input output] analyzes TINY program in file [input] and
+    outputs result as a commented program in file [output] or standard output if
+    no output is provided.
+
+    After fixpoint of loops are reached, performs [descending] descending
+    iterations. *)

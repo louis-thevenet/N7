@@ -20,9 +20,9 @@
 
 (** Parsing of TINY programs. *)
 
+val file : string -> Name.Set.t * Ast.stm
 (** [file filename] returns the abstract syntax tree parsed from file [filename]
     and the set of variables used in this program.
 
     Prints a message on standard error and raises [Report.Error] in case
     something bad happens. *)
-val file : string -> Name.Set.t * Ast.stm

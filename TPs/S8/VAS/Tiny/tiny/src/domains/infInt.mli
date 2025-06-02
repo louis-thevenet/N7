@@ -20,53 +20,50 @@
 
 (** Module to soundly manipulate potentially infinite integers. *)
 
-(** Int64.t extended with -oo and +oo *)
 type t
+(** Int64.t extended with -oo and +oo *)
 
-(** Equality on type [t]. *)
 val eq : t -> t -> bool
+(** Equality on type [t]. *)
 
-(** Order (less or equal) on type [t] (-oo is less than everything,..). *)
 val order : t -> t -> bool
+(** Order (less or equal) on type [t] (-oo is less than everything,..). *)
 
 val min : t -> t -> t
 val max : t -> t -> t
-
 val zero : t
 val one : t
 
-(** -oo *)
 val minfty : t
+(** -oo *)
 
-(** +oo *)
 val pinfty : t
+(** +oo *)
 
 val fin : int -> t
-
 val to_int : t -> int option
-
 val to_string : t -> string
 
-(** [add_lb x y] is a lower bound of [x+y]. *)
 val add_lb : t -> t -> t
+(** [add_lb x y] is a lower bound of [x+y]. *)
 
-(** [add_ub x y] is an upper bound of [x+y]. *)
 val add_ub : t -> t -> t
+(** [add_ub x y] is an upper bound of [x+y]. *)
 
-(** [sub_lb x y] is a lower bound of [x-y]. *)
 val sub_lb : t -> t -> t
+(** [sub_lb x y] is a lower bound of [x-y]. *)
 
-(** [sub_ub x y] is an upper bound of [x-y]. *)
 val sub_ub : t -> t -> t
+(** [sub_ub x y] is an upper bound of [x-y]. *)
 
-(** [mul_lb x y] is a lower bound of [x*y]. *)
 val mul_lb : t -> t -> t
+(** [mul_lb x y] is a lower bound of [x*y]. *)
 
-(** [mul_ub x y] is an upper bound of [x*y]. *)
 val mul_ub : t -> t -> t
+(** [mul_ub x y] is an upper bound of [x*y]. *)
 
-(** [div_lb x y] is a lower bound of [x/y] when [y != 0]. *)
 val div_lb : t -> t -> t
+(** [div_lb x y] is a lower bound of [x/y] when [y != 0]. *)
 
-(** [div_ub x y] is an upper bound of [x/y] when [y != 0]. *)
 val div_ub : t -> t -> t
+(** [div_ub x y] is an upper bound of [x/y] when [y != 0]. *)

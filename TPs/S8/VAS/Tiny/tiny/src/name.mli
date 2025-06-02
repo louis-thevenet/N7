@@ -20,8 +20,11 @@
 
 (** Type for variable names. *)
 
-type t = string  (** A variable name is just a string. *)
+type t = string
+(** A variable name is just a string. *)
 
-module Set : Set.S with type elt = t  (** Sets of names. *)
+module Set : Set.S with type elt = t
+(** Sets of names. *)
 
-module Map : Map.S with type key = t  (** Maps from names. *)
+module Map : Map.S with type key = t
+(** Maps from names. *)

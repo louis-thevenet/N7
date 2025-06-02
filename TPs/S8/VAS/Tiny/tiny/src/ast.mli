@@ -30,32 +30,31 @@ type expr =
   | Binop of Location.t * bop * expr * expr  (** expr + expr,... *)
   | Rand of Location.t * int * int  (** rand(n, n) *)
 
-type stm = 
+type stm =
   | Asn of Location.t * Name.t * expr  (** v = expr; *)
   | Seq of Location.t * stm * stm  (** stm stm *)
-  | Ite of Location.t * expr * stm * stm  (** if (expr > 0) \{ stm \} else \{ stm \} *)
+  | Ite of Location.t * expr * stm * stm
+      (** if (expr > 0) \{ stm \} else \{ stm \} *)
   | While of Location.t * expr * stm  (** while (expr > 0) \{ stm \} *)
 
 (** {2 Various Utility Functions} *)
 
-(** [loc_of_expr e] returns location contained in expression [e]. *)
 val loc_of_expr : expr -> Location.t
+(** [loc_of_expr e] returns location contained in expression [e]. *)
 
-(** [loc_of_stm s] returns location contained in statement [s]. *)
 val loc_of_stm : stm -> Location.t
+(** [loc_of_stm s] returns location contained in statement [s]. *)
 
-(** [neg_guard e] returns an expression [e'] such that guard e' > 0
-    is equivalent to e <= 0. *)
 val neg_guard : expr -> expr
+(** [neg_guard e] returns an expression [e'] such that guard e' > 0 is
+    equivalent to e <= 0. *)
 
-(** [vars_of_stm stm] returns the set of variables appearing
-    in statement [stm]. *)
 val vars_of_stm : stm -> Name.Set.t
+(** [vars_of_stm stm] returns the set of variables appearing in statement [stm].
+*)
 
 (** {2 Printing Functions} *)
 
 val char_of_bop : bop -> char
-
 val fprint_expr : Format.formatter -> expr -> unit
-
 val fprint_stm : Format.formatter -> stm -> unit

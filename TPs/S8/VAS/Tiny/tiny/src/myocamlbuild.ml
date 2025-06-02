@@ -22,36 +22,34 @@
 
 (* Turn this to true if you want to use Apron relational
  * abstract domains. *)
-let actually_use_apron = false;;
+let actually_use_apron = false
 
 (* Then set the path for Apron (this is the default
  * for the debian package). *)
-let apron_include = "/usr/lib/ocaml/apron";;
+let apron_include = "/usr/lib/ocaml/apron"
 
 (* End of configuration section *)
- 
-let apron_lib = "-lboxMPQ_caml -lboxMPQ \
--loctMPQ_caml -loctMPQ  \
--lpolkaMPQ_caml -lpolkaMPQ_debug \
--lapron_caml -lapron \
--lgmp_caml -lmpfr -lgmp -lbigarray -lcamlidl"
 
-open Ocamlbuild_plugin;;
+let apron_lib =
+  "-lboxMPQ_caml -lboxMPQ -loctMPQ_caml -loctMPQ  -lpolkaMPQ_caml \
+   -lpolkaMPQ_debug -lapron_caml -lapron -lgmp_caml -lmpfr -lgmp -lbigarray \
+   -lcamlidl"
+
+open Ocamlbuild_plugin
 open Command;;
 
-dispatch begin function
-| After_rules ->
-  if actually_use_apron then begin
-    (* We declare external libraries *)
-    ocaml_lib ~extern:true "gmp";
-    ocaml_lib ~extern:true ~dir:apron_include "apron";
-    ocaml_lib ~extern:true "polka";
-    ocaml_lib ~extern:true "oct";
-    ocaml_lib ~extern:true "box";
-    (* Link flag for APRON *)
-    flag ["link"; "ocaml"; "use_apron"] (S[A"-cclib"; A apron_lib]);
-    (* Link flag for APRON *)
-    flag ["doc"; "use_apron"] (S[A"-I"; A apron_include])
-  end else ()
-| _ -> ()
-end;;
+dispatch (function
+  | After_rules ->
+      if actually_use_apron then (
+        (* We declare external libraries *)
+        ocaml_lib ~extern:true "gmp";
+        ocaml_lib ~extern:true ~dir:apron_include "apron";
+        ocaml_lib ~extern:true "polka";
+        ocaml_lib ~extern:true "oct";
+        ocaml_lib ~extern:true "box";
+        (* Link flag for APRON *)
+        flag [ "link"; "ocaml"; "use_apron" ] (S [ A "-cclib"; A apron_lib ]);
+        (* Link flag for APRON *)
+        flag [ "doc"; "use_apron" ] (S [ A "-I"; A apron_include ]))
+      else ()
+  | _ -> ())

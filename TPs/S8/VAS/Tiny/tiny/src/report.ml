@@ -25,27 +25,22 @@ let verbosity = ref 1
 let nlogf n =
   if n <= !verbosity then
     Format.kfprintf
-      (fun ff ->
-        Format.kfprintf
-          (fun ff -> Format.fprintf ff "@]\n%!")
-          ff)
-      Format.err_formatter
-      "%s@[" (if n >= 4 then String.make (2 * (n - 3)) ' ' else "")
-  else
-    Format.ifprintf
-      Format.err_formatter
+      (fun ff -> Format.kfprintf (fun ff -> Format.fprintf ff "@]\n%!") ff)
+      Format.err_formatter "%s@["
+      (if n >= 4 then String.make (2 * (n - 3)) ' ' else "")
+  else Format.ifprintf Format.err_formatter
 
 let kstr_loc k str loc =
   Format.kfprintf
     (fun ff ->
       Format.kfprintf
-        (fun ff -> Format.fprintf ff "\n%!"; k ff)
+        (fun ff ->
+          Format.fprintf ff "\n%!";
+          k ff)
         ff)
-    Format.err_formatter
-    "%a%s" Location.fprint loc str
+    Format.err_formatter "%a%s" Location.fprint loc str
 
 let warning_loc loc = kstr_loc (fun _ -> ()) "Warning: " loc
-
 let error_loc loc = kstr_loc (fun _ -> raise Error) "Error: " loc
 
 let silent f =

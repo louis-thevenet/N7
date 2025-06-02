@@ -19,7 +19,8 @@
  *)
 
 (* Abstract domain used for the analyses. *)
-module Dom : Relational.Domain = NonRelational.MakeRelational (Intervalles) 
+module Dom : Relational.Domain = NonRelational.MakeRelational (Intervalles)
+
 (* module Dom : Relational.Domain = NonRelational.MakeRelational (Parity) *)
 (* module Dom : Relational.Domain = NonRelational.MakeRelational (Kildall) *)
 (* To be able to use this last two domains, you have to install the Apron
@@ -33,41 +34,40 @@ module Dom : Relational.Domain = NonRelational.MakeRelational (Intervalles)
  * after fixpoint of loops are reached.
  * m registers results as described in PrintResults.mli. *)
 let rec post_stm descending (m, t) s =
-
   (* Just a shortcut. *)
   let post_stm = post_stm descending in
 
   (* Some functions in Dom with printing added. *)
   let assignment l n e t =
     let t' = Dom.assignment n e t in
-    Report.nlogf 4 "%a⟦%s = %a⟧@,(%a)@ = %a." Location.fprint l
-      n Ast.fprint_expr e Dom.fprint t Dom.fprint t';
-    t' in
+    Report.nlogf 4 "%a⟦%s = %a⟧@,(%a)@ = %a." Location.fprint l n
+      Ast.fprint_expr e Dom.fprint t Dom.fprint t';
+    t'
+  in
   let guard l e t =
     let t' = Dom.guard e t in
-    Report.nlogf 4 "%a⟦%a > 0⟧@,(%a)@ = %a." Location.fprint l
-      Ast.fprint_expr e Dom.fprint t Dom.fprint t';
-    t' in
+    Report.nlogf 4 "%a⟦%a > 0⟧@,(%a)@ = %a." Location.fprint l Ast.fprint_expr e
+      Dom.fprint t Dom.fprint t';
+    t'
+  in
   let join l x y =
     let t = Dom.join x y in
-    Report.nlogf 4 "%a%a@ ⊔ %a@ = %a." Location.fprint l
-      Dom.fprint x Dom.fprint y Dom.fprint t;
-    t in
+    Report.nlogf 4 "%a%a@ ⊔ %a@ = %a." Location.fprint l Dom.fprint x Dom.fprint
+      y Dom.fprint t;
+    t
+  in
   let order x y =
     let b = Dom.order x y in
-    Report.nlogf 4 "%a@ ⊑ %a@ = %b."
-      Dom.fprint x Dom.fprint y b;
-    b in
+    Report.nlogf 4 "%a@ ⊑ %a@ = %b." Dom.fprint x Dom.fprint y b;
+    b
+  in
 
   match s with
-
-    | Ast.Asn (l, n, e) ->
+  | Ast.Asn (l, n, e) ->
       let t = assignment l n e t in
-      Location.Map.add (Location.end_p l) t m, t
-
-    | Ast.Seq (_, s1, s2) -> post_stm (post_stm (m, t) s1) s2
-
-    | Ast.Ite (l, e, s1, s2) ->
+      (Location.Map.add (Location.end_p l) t m, t)
+  | Ast.Seq (_, s1, s2) -> post_stm (post_stm (m, t) s1) s2
+  | Ast.Ite (l, e, s1, s2) ->
       let t1 = guard (Ast.loc_of_expr e) e t in
       let m = Location.Map.add (Location.beg_p (Ast.loc_of_stm s1)) t1 m in
       let m, t1 = post_stm (m, t1) s1 in
@@ -75,60 +75,59 @@ let rec post_stm descending (m, t) s =
       let m = Location.Map.add (Location.beg_p (Ast.loc_of_stm s2)) t2 m in
       let m, t2 = post_stm (m, t2) s2 in
       let t = join (Location.end_p l) t1 t2 in
-      Location.Map.add (Location.end_p l) t m, t
-
-    | Ast.While (l, e, s) ->
-
+      (Location.Map.add (Location.end_p l) t m, t)
+  | Ast.While (l, e, s) ->
       let rec lfp n m t =
         let m = Location.Map.add (Location.beg_p (Ast.loc_of_expr e)) t m in
         let t' = guard (Ast.loc_of_expr e) e t in
         let m = Location.Map.add (Location.beg_p (Ast.loc_of_stm s)) t' m in
         let m, t' = post_stm (m, t') s in
-        if order t' t then begin
+        if order t' t then (
           Report.nlogf 3 "%aIteration %d: @[%a@ ⊑ %a,@ fixpoint reached.@]"
             Location.fprint l n Dom.fprint t' Dom.fprint t;
-          m, t, t'
-        end else begin
+          (m, t, t'))
+        else
           let t'' = Dom.widening t t' in
-          Report.nlogf 3 "%aIteration %d: @[%a@ ∇ %a@ = %a.@]"
-            Location.fprint l n Dom.fprint t Dom.fprint t' Dom.fprint t'';
+          Report.nlogf 3 "%aIteration %d: @[%a@ ∇ %a@ = %a.@]" Location.fprint l
+            n Dom.fprint t Dom.fprint t' Dom.fprint t'';
           lfp (n + 1) m t''
-        end in
+      in
 
       let rec desc_iter n m t' =
         let t'' = Dom.join t t' in
         let m = Location.Map.add (Location.beg_p (Ast.loc_of_expr e)) t'' m in
         Report.nlogf 3 "%aDescending iteration %d of %d: @[%a@ ⊔ %a@ = %a.@]"
-          Location.fprint l n descending Dom.fprint t Dom.fprint t' Dom.fprint t'';
-        if n >= descending then
-          m, t''
-        else begin
+          Location.fprint l n descending Dom.fprint t Dom.fprint t' Dom.fprint
+          t'';
+        if n >= descending then (m, t'')
+        else
           let t' = guard (Ast.loc_of_expr e) e t'' in
           let m = Location.Map.add (Location.beg_p (Ast.loc_of_stm s)) t' m in
           let m, t' = post_stm (m, t') s in
           desc_iter (n + 1) m t'
-        end in
+      in
 
       (* Compute loop invariant. *)
       let m, t =
         (* First compute fixpoint. *)
         let m, t, t' = lfp 1 m t in
         (* Then perform potential descending iterations. *)
-        if descending <= 0 then m, t
-        else desc_iter 1 m t' in
+        if descending <= 0 then (m, t) else desc_iter 1 m t'
+      in
       (* Compute reachable states after the loop. *)
       let t = guard (Location.end_p l) (Ast.neg_guard e) t in
-      Location.Map.add (Location.end_p l) t m, t
+      (Location.Map.add (Location.end_p l) t m, t)
 
 module PrintResults = PrintResults.Make (Dom)
 
 let analyze descending input_filename output_filename =
-  Report.nlogf 1 "Analyze file %s, writing results to %s."
-    input_filename (Utils.output_filename_string output_filename);
+  Report.nlogf 1 "Analyze file %s, writing results to %s." input_filename
+    (Utils.output_filename_string output_filename);
   let vars, ast = Parse.file input_filename in
   let m, _ =
     let top = Dom.top vars in
-    post_stm descending (Location.Map.empty, top) ast in
+    post_stm descending (Location.Map.empty, top) ast
+  in
   Report.nlogf 1 "Analysis done.";
   if not (PrintResults.alarms m ast) then
     Report.nlogf 1 "The program is proven free of runtime errors.";

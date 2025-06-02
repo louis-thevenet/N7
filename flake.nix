@@ -85,6 +85,7 @@
               # OCaml
               ocaml
               dune_3
+              ocamlPackages.ocamlbuild
               ocamlPackages.utop
               ocamlPackages.ocamlformat
               ocamlPackages.menhir
